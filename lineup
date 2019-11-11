@@ -1,0 +1,73 @@
+8_2,8_2_2,9_2,10_2,12_3
+"5 ранг ""Холодная война"" 1946","5 эра ""Холодная война"" 1950 (ПТУР 1 поколения + ранние реактивы)","5 ранг ""Холодная война"" 1950 (ПТУР 2 поколения + реактивы + ранние вертолёты)","6 ранг ""Холодная война"" TOP",СССР/США/Германия вертолёты
+Команда А,Команда А,Команда А,Команда А,Команда А
+АСУ-85,АСУ-85,БМП-1,БМП-1,БМП-1
+БТР-152А,БТР-152А,БМП-2,БМП-2,БМП-2
+ЗСУ-37,ЗСУ-57-2,ЗСУ-23-4,ЗПРК 2C6,ЗПРК 2C6
+ИС-3,ИС-4М,ЗСУ-57-2,ЗСУ-23-4,ЗСУ-23-4
+ИС-4М,ИС-6,ИС-7,ЗСУ-57-2,ЗСУ-57-2
+ИС-6,ИС-7,ИТ-1,ИТ-1,ИТ-1
+Объект 268,Объект 268,Объект 120,Объект 120,Объект 120
+ПТ-76Б,ПТ-76Б,Объект 906,Объект 906,Объект 906
+СУ-100П,СУ-122-54,СУ-122-54,Т-55АМ-1,Т-55АМ-1
+Т-34-100,Т-54 (1947),Т-10М,Т-62М-1,Т-62М-1
+Т-44,Т-54 (1949),Т-55А,Т-64А (1971),Т-64А (1971)
+Т-44-100,Т-54 (1951),Т-55АМ-1,T-64Б,T-64Б
+Т-44-122,Type 65,Т-62,Т-72А,Т-72А
+Т-54 (1947),Type-62,,Т-80Б,Т-80Б
+Т-54 (1949),,,Т-80У,Т-80У
+Type 65,,,,
+Type-62,,,,
+Команда Б,Команда Б,Команда Б,Команда Б,Команда Б
+[JP] M41A1,[JP] M42,[UK] Sho't Kal Dalet,[UK] Sho't Kal Dalet,Begleitpanzer 57
+[JP] M42,[US] Magach 3,AMX-10RC,AMX-10RC,FlakPz I Gepard
+AMX-13 DCA 40,AMX-13 (SS.11),AMX-13 (HOT),AMX-13 (HOT),KPz-70
+AMX-13-90,AMX-13 DCA 40,AMX-13-90,AMX-30,Leopard 2A4
+AMX-50,AMX-13-90,AMX-30,AMX-30 DCA,Leopard 2A5
+AMX-50 Foch,AMX-30,AMX-30 (1972),AMX-30B2,Leopard 2K
+AMX-50 Surbaissé,AMX-30 (1972),AMX-30 DCA,AMX-30B2 BRENUS,Leopard A1A1
+AUBL/74,AMX-50,AMX-30B2,AMX-40,Leopard A1A1 (L/44)
+Caernarvon,AMX-50 Foch,AMX-30B2 BRENUS,Ariete (P),M1 Abrams
+Centurion Mk.10,AMX-50 Surbaissé,AMX-50 Foch,Begleitpanzer 57,M1 IP
+Centurion Mk.3,AUBL/74,AMX-50 Surbaissé,Centauro ROMOR,M1A1 Abrams
+Char 25t,Centurion Mk.10,AUBL/74,Centurion Mk.5 AVRE,M163
+Coelian,Coelian,Begleitpanzer 57,Challenger 2,M247
+Conqueror,Conqueror,Centauro,Challenger Mk.2,M3 Bradley
+Conway,Conway,Centurion Mk.5 AVRE,Challenger Mk.3,M551
+Crusader AA Mk.I,Falcon,Chieftain Marksman,Chieftain Marksman,M60A1 RISE (P)
+E-100,FV4005,Chieftain Mk.3,Chieftain Mk.10,MBT-70
+FV4005,Ho-Ri Production,Chieftain Mk.5,FlakPz I Gepard,RakJPz 2 (HOT)
+FV4202,JPz 4-5,Conway,KPz-70,TAM
+Ho-Ri Production,Kugelblitz,Falcon,Leopard 2A4,XM-1 (GM)
+Jagdtiger,Leopard I,FlakPz I Gepard,Leopard 2A5,XM-803
+Kugelblitz,M103,FV4005,Leopard 2K,
+Lorraine 40t,M42,JPz 4-5,Leopard A1A1,
+"M26 ""Ariete""",M46,Leopard A1A1,Leopard A1A1 (L/44),
+"M26 ""Ariete""",M46 «Tiger»,Leopard A1A1 (L/44),M1 Abrams,
+M26A1,M47,Leopard I,M1 IP,
+M41A1,M47 (105/55),M103,M1A1 Abrams,
+M42,M48A1,M113A1 (TOW),M163,
+M42 Contraereo,M48A2 G A2,M163,M247,
+M46,M50 Ontos,M247,M3 Bradley,
+M46 «Tiger»,M56,M3 Bradley,M551,
+M47,M60,M47 (105/55),M60A1 RISE (P),
+M47 (105/55),mKPz M47,M48A2 G A2,MBT-70,
+M56,RakJPz 2,M551,OF-40 Mk.2A,
+Maus,Ru 251,M60,OTOMATIC,
+mKPz M47,SIDAM 25,"M60A1 ""D.C.Ariete""",RakJPz 2 (HOT),
+Panther II,Strv 81 (Rb.52),M60A1 (AOS),SIDAM 25,
+ST-A1,T114,M60A1 RISE (P),Striker,
+ST-A2,T54E1,M60A2,Swingfire,
+T26E1-1,T92,OF-40,TAM,
+T28,T95,RakJPz 2,Type 74,
+T29,Type 60 ATM,RakJPz 2 (HOT),Type 74G,
+T32,Type 60 SPRG (C),SIDAM 25,Type 87,
+T32E1,Type 61,STB-1,Type 89,
+T34,Type 75 MLRS,Swingfire,Type 90,
+T92,Vickers MBT,T114,Warrior,
+T95,,T54E1,XM-1 (GM),
+Tortoise,,T95E1,XM-803,
+Type 61,,Type 74,,
+Type 75 MLRS,,Type 74G,,
+,,Type 87,,
+,,Type 89,,
