@@ -1,73 +1,318 @@
-8_2,8_2_2,9_2,10_2,12_3
-"5 ранг ""Холодная война"" 1946","5 эра ""Холодная война"" 1950 (ПТУР 1 поколения + ранние реактивы)","5 ранг ""Холодная война"" 1950 (ПТУР 2 поколения + реактивы + ранние вертолёты)","6 ранг ""Холодная война"" TOP",СССР/США/Германия вертолёты
-Команда А,Команда А,Команда А,Команда А,Команда А
-АСУ-85,АСУ-85,БМП-1,БМП-1,БМП-1
-БТР-152А,БТР-152А,БМП-2,БМП-2,БМП-2
-ЗСУ-37,ЗСУ-57-2,ЗСУ-23-4,ЗПРК 2C6,ЗПРК 2C6
-ИС-3,ИС-4М,ЗСУ-57-2,ЗСУ-23-4,ЗСУ-23-4
-ИС-4М,ИС-6,ИС-7,ЗСУ-57-2,ЗСУ-57-2
-ИС-6,ИС-7,ИТ-1,ИТ-1,ИТ-1
-Объект 268,Объект 268,Объект 120,Объект 120,Объект 120
-ПТ-76Б,ПТ-76Б,Объект 906,Объект 906,Объект 906
-СУ-100П,СУ-122-54,СУ-122-54,Т-55АМ-1,Т-55АМ-1
-Т-34-100,Т-54 (1947),Т-10М,Т-62М-1,Т-62М-1
-Т-44,Т-54 (1949),Т-55А,Т-64А (1971),Т-64А (1971)
-Т-44-100,Т-54 (1951),Т-55АМ-1,T-64Б,T-64Б
-Т-44-122,Type 65,Т-62,Т-72А,Т-72А
-Т-54 (1947),Type-62,,Т-80Б,Т-80Б
-Т-54 (1949),,,Т-80У,Т-80У
-Type 65,,,,
-Type-62,,,,
-Команда Б,Команда Б,Команда Б,Команда Б,Команда Б
-[JP] M41A1,[JP] M42,[UK] Sho't Kal Dalet,[UK] Sho't Kal Dalet,Begleitpanzer 57
-[JP] M42,[US] Magach 3,AMX-10RC,AMX-10RC,FlakPz I Gepard
-AMX-13 DCA 40,AMX-13 (SS.11),AMX-13 (HOT),AMX-13 (HOT),KPz-70
-AMX-13-90,AMX-13 DCA 40,AMX-13-90,AMX-30,Leopard 2A4
-AMX-50,AMX-13-90,AMX-30,AMX-30 DCA,Leopard 2A5
-AMX-50 Foch,AMX-30,AMX-30 (1972),AMX-30B2,Leopard 2K
-AMX-50 Surbaissé,AMX-30 (1972),AMX-30 DCA,AMX-30B2 BRENUS,Leopard A1A1
-AUBL/74,AMX-50,AMX-30B2,AMX-40,Leopard A1A1 (L/44)
-Caernarvon,AMX-50 Foch,AMX-30B2 BRENUS,Ariete (P),M1 Abrams
-Centurion Mk.10,AMX-50 Surbaissé,AMX-50 Foch,Begleitpanzer 57,M1 IP
-Centurion Mk.3,AUBL/74,AMX-50 Surbaissé,Centauro ROMOR,M1A1 Abrams
-Char 25t,Centurion Mk.10,AUBL/74,Centurion Mk.5 AVRE,M163
-Coelian,Coelian,Begleitpanzer 57,Challenger 2,M247
-Conqueror,Conqueror,Centauro,Challenger Mk.2,M3 Bradley
-Conway,Conway,Centurion Mk.5 AVRE,Challenger Mk.3,M551
-Crusader AA Mk.I,Falcon,Chieftain Marksman,Chieftain Marksman,M60A1 RISE (P)
-E-100,FV4005,Chieftain Mk.3,Chieftain Mk.10,MBT-70
-FV4005,Ho-Ri Production,Chieftain Mk.5,FlakPz I Gepard,RakJPz 2 (HOT)
-FV4202,JPz 4-5,Conway,KPz-70,TAM
-Ho-Ri Production,Kugelblitz,Falcon,Leopard 2A4,XM-1 (GM)
-Jagdtiger,Leopard I,FlakPz I Gepard,Leopard 2A5,XM-803
-Kugelblitz,M103,FV4005,Leopard 2K,
-Lorraine 40t,M42,JPz 4-5,Leopard A1A1,
-"M26 ""Ariete""",M46,Leopard A1A1,Leopard A1A1 (L/44),
-"M26 ""Ariete""",M46 «Tiger»,Leopard A1A1 (L/44),M1 Abrams,
-M26A1,M47,Leopard I,M1 IP,
-M41A1,M47 (105/55),M103,M1A1 Abrams,
-M42,M48A1,M113A1 (TOW),M163,
-M42 Contraereo,M48A2 G A2,M163,M247,
-M46,M50 Ontos,M247,M3 Bradley,
-M46 «Tiger»,M56,M3 Bradley,M551,
-M47,M60,M47 (105/55),M60A1 RISE (P),
-M47 (105/55),mKPz M47,M48A2 G A2,MBT-70,
-M56,RakJPz 2,M551,OF-40 Mk.2A,
-Maus,Ru 251,M60,OTOMATIC,
-mKPz M47,SIDAM 25,"M60A1 ""D.C.Ariete""",RakJPz 2 (HOT),
-Panther II,Strv 81 (Rb.52),M60A1 (AOS),SIDAM 25,
-ST-A1,T114,M60A1 RISE (P),Striker,
-ST-A2,T54E1,M60A2,Swingfire,
-T26E1-1,T92,OF-40,TAM,
-T28,T95,RakJPz 2,Type 74,
-T29,Type 60 ATM,RakJPz 2 (HOT),Type 74G,
-T32,Type 60 SPRG (C),SIDAM 25,Type 87,
-T32E1,Type 61,STB-1,Type 89,
-T34,Type 75 MLRS,Swingfire,Type 90,
-T92,Vickers MBT,T114,Warrior,
-T95,,T54E1,XM-1 (GM),
-Tortoise,,T95E1,XM-803,
-Type 61,,Type 74,,
-Type 75 MLRS,,Type 74G,,
-,,Type 87,,
-,,Type 89,,
+1_1,,,,2_1,,,,3_1,,,,4_1,,,,5_1,,,,6_1,,,,8_2,,,,8_2_2,,,,9_2,,,,10_2,,,,12_2,,,
+"Команда А: FR, UK, US, RU, CH",,,,"Команда А: FR, UK, US, RU, CH",,,,"Команда А: FR, UK, US, RU, CH",,,,"Команда А: FR, UK, US, RU, CH",,,,"Команда А: FR, UK, US, RU, CH",,,,"Команда А: FR, UK, US, RU, CH",,,,"Команда А: RU, CH",,,,"Команда А: RU, CH",,,,"Команда А: RU, CH",,,,"Команда А: RU, CH",,,,Команда А: RU,,,
+FR,AMC.34 YR,,1.0,FR,AMC.35 (ACG.1),,1.3,FR,AMX-13 (FL11),,3.3,FR,AMX-13 (FL11),,3.3,FR,AMX-13,,6.3,FR,AMX-13,,6.3,RU,АСУ-85,,6.3,RU,АСУ-85,,6.3,RU,БМП-1,,7.3,RU,БМП-2,,8.3,RU,БМП-2,,8.3
+FR,AMD.35,,1.0,FR,AMX-13 (FL11),,3.3,FR,ARL-44 (ACL-1),,4.0,FR,ARL-44,,5.7,FR,AMX M4,,6.7,FR,AMX-13 DCA 40,,4.7,RU,БТР-152А,,3.0,RU,БТР-152А,,3.0,RU,БМП-2,,8.3,RU,БМП-3,,9.0,RU,БМП-3,,9.0
+FR,AMC.35 (ACG.1),,1.3,FR,B1 bis,,2.0,FR,CCKW 353 AA,,3.0,FR,CCKW 353 AA,,3.0,FR,ARL-44,,5.7,FR,AMX-50,,7.0,RU,ИС-3,,7.7,RU,ИС-4М,,7.7,RU,БМП-3,,9.0,RU,ИТ-1,,8.7,RU,ИТ-1,,8.7
+FR,AMR.35 ZT3,,1.0,FR,B1 ter,,2.3,FR,Lorraine 155 Mle.50,,4.3,FR,Lorraine 155 Mle.50,,4.3,FR,CCKW 353 AA,,3.0,FR,AMX M4,,6.7,RU,ИС-4М,,7.7,RU,ИС-6,,7.3,RU,ИС-7,,8.3,RU,Объект 120,,7.7,RU,Объект 120,,7.7
+FR,P.7.T AA,,1.3,FR,P.7.T AA,,1.3,FR,M10 GMC (FR),,3.3,FR,M4A1 (FL10),,4.7,FR,CA Lorraine,,6.3,FR,Char 25t,,6.7,RU,ИС-6,,7.3,RU,ИС-7,,8.3,RU,ИТ-1,,8.7,RU,Объект 906,,8.0,RU,Объект 906,,8.0
+FR,FCM.36,,1.0,FR,M10 GMC (FR),,3.3,FR,M4A1 (FR),,3.3,FR,M4A3E2 (FR),,5.0,FR,M4A4 (SA50),,4.7,FR,CA Lorraine,,6.3,RU,Объект 268,,7.3,RU,Объект 268,,7.3,RU,Объект 120,,7.7,RU,Т-55АМ-1,,8.7,RU,Т-55АМ-1,,8.7
+FR,H.35,,1.0,FR,M4A1 (FR),,3.3,UK,Achilles,,4.0,FR,M4A4 (SA50),,4.7,FR,Panther «Dauphine»,,5.7,FR,Lorraine 40t,,7.3,RU,ПТ-76Б,,5.3,RU,ПТ-76Б,,5.3,RU,Объект 906,,8.0,RU,Т-62М-1,,9.0,RU,Т-62М-1,,9.0
+FR,H.39,,1.3,FR,S.35,,1.3,UK,Achilles (65 Rg.),,4.0,UK,Achilles,,4.0,UK,Challenger,,5.3,FR,Panther «Dauphine»,,5.7,RU,СУ-100П,,6.7,RU,СУ-122-54,,7.0,RU,СУ-122-54,,7.0,RU,T-64Б,,9.7,RU,T-64Б,,9.7
+FR,H.39 «Cambronne»,,1.3,FR,SAu 40,,2.0,UK,Cromwell I,,3.7,UK,Achilles (65 Rg.),,4.0,UK,Avenger,,4.7,UK,Challenger,,5.3,RU,Т-34-100,,6.7,RU,Т-54 (1947),,7.7,RU,Т-10М,,8.3,RU,Т-64А (1971),,9.3,RU,Т-64А (1971),,9.3
+FR,R.35 (SA38),,1.0,UK,3 inch Gun Carrier,,3.0,UK,Cromwell V,,3.0,UK,Cromwell Mk.V (RP-3),,3.3,UK,Comet I,,5.0,UK,Tortoise,,6.3,RU,Т-44,,6.7,RU,Т-54 (1949),,7.7,RU,Т-55АМ-1,,8.7,RU,T-72A,,9.3,RU,T-72A,,9.3
+FR,S.35,,1.3,UK,Cromwell I,,3.7,UK,Cromwell Mk.V (RP-3),,3.3,UK,Avenger,,4.7,UK,Iron Duke IV,,5.0,UK,Black Prince,,5.7,RU,Т-44-100,,7.0,RU,Т-54 (1951),,7.7,RU,Т-55А,,8.3,RU,Т-80Б,,10.0,RU,Т-80Б,,10.0
+FR,SAu 40,,2.0,UK,Cromwell V,,3.0,UK,Churchill Mk.III,,4.0,UK,Churchill Mk.VII,,4.7,UK,Black Prince,,5.7,UK,Centurion Mk.1,,5.7,RU,Т-44-122,,6.3,RU,Type 62 (CH),,6.7,RU,Т-62,,8.3,RU,Т-80У,,10.3,RU,Т-80У,,10.3
+UK,Tetrarch Mk.I,,1.0,UK,Matilda Mk.II,,2.7,UK,Churchill Mk.VII,,4.7,UK,Comet I,,5.0,UK,Centurion Mk.1,,5.7,UK,Centurion Mk.3,,6.7,RU,Т-54 (1947),,7.7,RU,Type 65 (CH),,5.3,RU,Т-62М-1,,9.0,RU,ЗСУ-23-4,,8.0,RU,ЗСУ-23-4,,8.0
+UK,Independent,,1.3,UK,A13 Mk.II 1939,,1.7,UK,Excelsior,,4.0,UK,Iron Duke IV,,5.0,UK,Charioteer Mk.VII,,6.0,UK,Charioteer Mk.VII,,6.0,RU,Т-54 (1949),,7.7,RU,ЗСУ-57-2,,7.7,RU,ЗСУ-23-4,,8.0,RU,ЗСУ-57-2,,7.7,RU,ЗСУ-57-2,,7.7
+UK,A13 Mk.I,,1.0,UK,Churchill Mk.I,,3.0,UK,A.C.IV,,5.3,UK,A.C.IV,,5.3,UK,Crusader AA Mk.I,,4.7,UK,Crusader AA Mk.I,,4.7,RU,Type 62 (CH),,6.7,CH,PT-76 (CH),,5.3,RU,ЗСУ-57-2,,7.7,RU,ЗПРК 2С6,,10.3,RU,ЗПРК 2С6,,10.3
+UK,A13 Mk.I (3rd RTR),,1.0,UK,AEC Mk.II,,3.0,UK,AEC Mk.II,,3.0,UK,Crusader AA Mk.I,,4.7,UK,Firefly «Scorpion»,,4.7,UK,Caernarvon,,6.3,RU,Type 65 (CH),,5.3,CH,Type 63-I,,6.3,RU,Объект 685,,9.0,RU,Штурм-С,,9.3,RU,Штурм-С,,9.3
+UK,A13 Mk.II,,1.3,UK,AC Mk.II AA,,2.7,UK,Crusader AA Mk.II,,3.7,UK,Crusader AA Mk.II,,3.7,UK,Sherman Firefly,,4.7,UK,FV4202,,6.7,RU,ЗСУ-37,,4.7,CH,Type 62,,6.7,CH,ZBD86,,7.3,RU,Объект 685,,9.0,RU,Объект 685,,9.0
+UK,A13 Mk.II 1939,,1.7,UK,Crusader Mk.III,,2.7,UK,Sherman II,,3.7,UK,Firefly «Scorpion»,,4.7,US,M15A1 CGMC,,3.3,US,Super Hellcat,,6.3,CH,PT-76 (CH),,5.3,CH,M48A1 (CH),,7.7,CH,M60A3 TTS,,8.7,CH,ZTZ59D1,,8.7,,,,
+UK,Crusader Mk.II,,2.0,UK,Grant I,,2.7,UK,Archer,,3.3,UK,Sherman Firefly,,4.7,US,M16 MGMC,,2.3,US,M19,,5.0,CH,Type 63-I,,6.3,CH,Type 59,,7.7,CH,M113A1 TOW (CH),,8.3,CH,ZTZ96,,9.7,RU,Ми-24А,,9.0
+UK,Crusader Mk.III,,2.7,UK,Sherman II,,3.7,US,M13 MGMC,,1.3,US,M15A1 CGMC,,3.3,US,M18 GMC,,4.7,US,M26,,6.3,CH,Type 62,,6.7,CH,Type 65,,5.3,CH,T-62 №545,,8.3,CH,ZBD86,,7.3,RU,Ми-24Д,,9.3
+UK,Daimler AC Mk.II,,1.3,UK,Valentine Mk.XI,,3.0,US,M15A1 CGMC,,3.3,US,M16 MGMC,,2.3,US,M18 «Black Cat»,,4.7,US,M26 T99,,6.3,CH,Type 65,,5.3,,,,,CH,Type 59,,7.7,CH,M60A3 TTS,,8.7,RU,Ми-24П,,9.7
+UK,Grant I,,2.7,UK,Valentine Mk.IX,,3.0,US,M16 MGMC,,2.3,US,M18 GMC,,4.7,US,Super Hellcat,,6.3,US,M26E1,,6.3,,,,,RU,Ил-10,,5.3,CH,Type 69,,7.7,CH,CM11,,9.3,RU,Ми-24В,,9.7
+UK,T17E2,,1.7,UK,Mk.VIA AA,,1.0,US,M10 GMC,,3.3,US,M18 «Black Cat»,,4.7,US,M19,,5.0,US,M36 GMC,,5.7,RU,Ил-10,,5.3,RU,Ил-10 (1946),,5.3,CH,ZTZ59D1,,8.7,CH,M113A1 TOW (CH),,8.3,RU,Ми-35М,,10.0
+UK,Valentine Mk.I,,2.3,US,M13 MGMC,,1.3,US,M18 GMC,,4.7,US,M22,,2.0,US,M26,,6.3,US,M42,,6.7,RU,Ил-10 (1946),,5.3,RU,МиГ-9,,7.7,,,,,,,,,RU,Ми-4АВ,,9.0
+UK,Mk.VIA AA,,1.0,US,M15A1 CGMC,,3.3,US,M18 «Black Cat»,,4.7,US,M24,,3.3,US,M26E1,,6.3,US,M4A3E2 (76) W,,6.0,RU,Ла-11,,6.0,RU,МиГ-9 (п),,7.7,RU,Ил-28,,8.0,RU,Ил-28,,8.0,RU,Ка-50,,10.0
+US,M13 MGMC,,1.3,US,M16 MGMC,,2.3,US,M22,,2.0,US,M24 (TL),,3.3,US,M36 GMC,,5.7,US,T26E1-1,,6.3,RU,Ла-9,,6.3,RU,Пе-2-205,,3.7,RU,Ил-28Ш,,8.0,RU,Ил-28Ш,,8.0,RU,Ми-28Н,,10.3
+US,M3 GMC,,1.7,US,LVT(A)(4) ZIS-2 (US),,2.3,US,M24,,3.3,US,Calliope,,4.3,US,Calliope,,4.3,US,T28,,6.7,RU,Пе-2-205,,3.7,RU,Пе-2-359,,4.7,RU,Ла-15,,8.0,RU,Ла-15,,8.0,,,,
+US,LVT(A)(4) ZIS-2 (US),,2.3,US,M10 GMC,,3.3,US,M24 (TL),,3.3,US,M4A1 (76) W,,4.7,US,M4A3E2 (76) W,,6.0,RU,АСУ-85,,6.3,RU,Пе-2-359,,4.7,RU,Су-6 (AM-42),,5.0,RU,Ла-174,,8.0,RU,Ла-174,,8.0,,,,
+US,LVT(A)(1),,1.0,US,M22,,2.0,US,M4,,3.7,US,M4A2 (76) W,,5.0,US,M4A3 (76) W,,5.3,RU,ИС-2 (1944),,6.3,RU,Су-6 (AM-42),,5.0,RU,Су-6 (М-71Ф),,5.3,RU,Ла-200,,8.0,RU,Ла-200,,8.0,,,,
+US,M2,,1.3,US,M3 Lee,,2.7,US,M4A1 (76) W,,4.7,US,M4A3E2 (76) W,,6.0,US,T25,,6.0,RU,ИС-2 «Месть»,,6.3,RU,Су-6 (М-71Ф),,5.3,RU,Як-15,,6.7,RU,Ми-24А,,9.0,RU,Ми-24А,,9.0,,,,
+US,M2A2,,1.0,US,M4,,3.7,US,M4A2,,3.7,US,M4A3E2,,5.0,RU,ИС-2,,5.7,RU,ИСУ-122,,5.3,RU,Як-3 (BK-107),,6.3,RU,Як-15П,,6.7,RU,Ми-24Д,,9.3,RU,Ми-24Д,,9.3,,,,
+US,M2A4,,1.0,US,M4A1,,3.3,US,M4A3 (105),,3.0,US,Cobra King,,5.0,RU,ИС-2 (1944),,6.3,RU,ИСУ-122С,,5.7,RU,Як-3П,,5.7,RU,Як-17,,7.0,RU,Ми-4АВ,,8.3,RU,Ми-24П,,9.7,,,,
+US,M2A4 (1st Arm.Div.),,1.0,US,M4A5,,3.7,US,M4A5,,3.7,US,M4A3 (76) W,,5.3,RU,ИС-2 «Месть»,,6.3,RU,ИСУ-152,,5.3,RU,Як-9П,,5.3,RU,Як-23,,7.7,RU,МиГ-15бис,,8.7,RU,Ми-24В,,9.7,,,,
+US,M3 Lee,,2.7,US,M5A1 (5th arm.div.),,2.3,US,M8A1,,2.7,US,M6A1,,4.7,RU,ИСУ-122,,5.3,RU,КВ-122,,6.0,RU,Як-9У,,5.0,CH,MiG-9 (CH),,7.7,RU,МиГ-15,,8.3,RU,Ми-35М,,10.0,,,,
+US,M3 Stuart,,1.3,US,M8 HMC,,2.0,US,T14,,4.3,US,T20,,5.3,RU,ИСУ-122С,,5.7,RU,ПТ-76Б,,5.3,RU,Як-9УТ,,6.3,CH,MiG-9 (l) (CH),,7.7,RU,МиГ-15бис ИШ,,9.0,RU,Ми-4АВ,,8.3,,,,
+US,M3A1 Stuart,,2.0,US,M8A1,,2.7,RU,АСУ-57,,4.3,RU,АСУ-57,,4.3,RU,ИСУ-152,,5.3,RU,СУ-100Y,,5.3,RU,Як-3У,,6.3,CH,IL-10 (1946) (CH),,5.3,RU,МиГ-17,,9.0,RU,Ка-50,,10.0,,,,
+US,M3A1 (USMC),,2.0,US,Grant I,,2.7,RU,БМ-13Н,,3.7,RU,ИС-1,,5.3,RU,КВ-122,,6.0,RU,СУ-100,,6.7,CH,IL-10 (1946) (CH),,5.3,CH,F-84G-21-RE (CH),,8.0,RU,МиГ-9,,7.7,RU,Ми-28Н,,10.3,,,,
+US,M5A1,,2.3,US,T18E2,,3.0,RU,БТР-152А,,3.0,RU,КВ-122,,6.0,RU,КВ-220,,5.7,RU,СУ-100П,,6.7,CH,La-9 (CH),,6.3,,,,,RU,МиГ-9 (п),,7.7,RU,МиГ-15бис,,8.7,,,,
+US,M5A1 (5th arm.div.),,2.3,RU,MK-II «Матильда» (RU),,3.3,RU,КВ-1 (ЗиС-5),,4.3,RU,КВ-1С,,4.3,RU,M4A2 (RU),,5.0,RU,СУ-122П,,6.7,CH,P1Y1 mod. 11 (CH),,4.7,,,,,RU,Як-15,,6.7,RU,МиГ-15,,8.3,,,,
+US,M8,,1.3,RU,БМ-13Н,,3.7,RU,КВ-1Э,,4.3,RU,КВ-220,,5.7,RU,ПТ-76Б,,5.3,RU,Т-34-100,,6.7,CH,P-51K (CH),,4.3,,,,,RU,Як-15П,,6.7,RU,МиГ-15бис ИШ,,9.0,,,,
+US,M8 HMC,,2.0,RU,БМ-8-24,,2.3,RU,КВ-1С,,4.3,RU,КВ-2 (1939),,4.3,RU,T-V (RU),,5.7,RU,Т-44,,6.7,CH,P-51D-20 (CH),,5.0,,,,,RU,Як-17,,7.0,RU,МиГ-17,,9.0,,,,
+US,Grant I,,2.7,RU,ГАЗ-ММ (72-К),,2.3,RU,КВ-2 (1939),,4.3,RU,КВ-2 (1940),,4.3,RU,СУ-100Y,,5.3,RU,Т-44-100,,7.0,,,,,,,,,RU,Як-23,,7.7,RU,МиГ-19ПТ,,10.3,,,,
+US,T18E2,,3.0,RU,КВ-1 (Л-11),,3.7,RU,КВ-2 (1940),,4.3,RU,КВ-2 (ЗиС-6),,5.0,RU,СУ-100,,6.7,RU,Т-44-122,,6.3,,,,,,,,,RU,Як-30,,8.0,RU,Як-23,,7.7,,,,
+RU,БТ-5,,1.0,RU,М-3 Средний (RU),,2.7,RU,M4A2 (RU),,5.0,RU,КВ-85,,5.3,RU,СУ-122П,,6.7,RU,Type 65 (CH),,5.3,,,,,,,,,CH,H-5,,8.0,RU,Як-30,,8.0,,,,
+RU,БТ-7,,1.3,RU,T-III (RU),,2.3,RU,РБТ-5,,1.3,RU,M4A2 (RU),,5.0,RU,СУ-152,,5.0,RU,ЗСУ-37,,4.7,,,,,,,,,CH,J-2,,8.7,RU,МиГ-21 Ф-13,,10.3,,,,
+RU,ГАЗ-AAA (4M),,1.0,RU,РБТ-5,,1.3,RU,СМК,,3.7,RU,СУ-100Y,,5.3,RU,СУ-85М,,5.7,CH,M36 (CH),,5.7,,,,,,,,,CH,J-4,,9.0,RU,МиГ-17АС,,9.0,,,,
+RU,ГАЗ-ААА (ДШК),,1.0,RU,СМК,,3.7,RU,СУ-122,,3.0,RU,СУ-152,,5.0,RU,Т-34-100,,6.7,CH,IS-2 (CH),,5.7,,,,,,,,,CH,F-84G-21-RE (CH),,8.0,CH,H-5,,8.0,,,,
+RU,ГАЗ-ММ (72-К),,2.3,RU,СУ-122,,3.0,RU,СУ-57Б,,3.3,RU,СУ-85,,4.3,RU,Т-34-85Э,,5.7,CH,IS-2 mod.1944 (CH),,6.3,,,,,,,,,CH,F-86F-30 (CH),,9.0,CH,J-6A,,10.3,,,,
+RU,М-3 Средний (RU),,2.7,RU,СУ-57Б,,3.3,RU,СУ-76М (5гв.Кав.Корп.),,2.3,RU,СУ-85А,,4.0,RU,Т-34-85,,5.7,CH,ISU-152 (CH),,5.3,,,,,,,,,,,,,CH,J-7II,,10.3,,,,
+RU,T-III (RU),,2.3,RU,СУ-76М,,2.3,RU,СУ-85,,4.3,RU,СУ-85М,,5.7,RU,Т-44,,6.7,CH,ISU-122 (CH),,5.3,,,,,,,,,,,,,CH,Shenyang F-5,,9.3,,,,
+RU,РБТ-5,,1.3,RU,СУ-76М (5гв.Кав.Корп.),,2.3,RU,Т-126,,2.7,RU,Т-34-57 (1943),,4.3,RU,Т-44-122,,6.3,CH,PT-76 (CH),,5.3,,,,,,,,,,,,,CH,F-84G-21-RE (CH),,8.0,,,,
+RU,СУ-57,,2.3,RU,Т-126,,2.7,RU,БТ-7 (Ф-32),,3.0,RU,Т-34-85Э,,5.7,RU,Type 65 (CH),,5.3,CH,SU-100 (CH),,6.3,,,,,,,,,,,,,CH,F-86F-30 (CH),,9.0,,,,
+RU,СУ-5-1,,1.3,RU,Т-28Э,,2.7,RU,Т-34Э,,3.7,RU,Т-34-85 (Д-5Т),,5.3,RU,ЗиС-43,,4.0,CH,Type 65,,5.3,,,,,,,,,,,,,,,,,,,,
+RU,Т-126,,2.7,RU,Т-34Э,,3.7,RU,Т-34Э СТЗ,,3.7,RU,Т-34-85,,5.7,RU,ЗСУ-37,,4.7,,,,,,,,,,,,,,,,,,,,,,,,
+RU,Т-26Э,,1.3,RU,БТ-7 (Ф-32),,3.0,RU,Т-34-57,,4.3,RU,Type 65 (CH),,5.3,RU,ЗУТ-37,,3.0,US,A-26B-10,,5.0,,,,,,,,,,,,,,,,,,,,
+RU,Т-26,,1.0,RU,Т-34 (Прототип),,2.7,RU,Т-34 (1942),,3.7,RU,ЗиС-12 (94-КМ),,3.3,CH,T-34-85 (S-53) (CH),,5.7,US,AD-2,,5.7,,,,,,,,,,,,,,,,,,,,
+RU,Т-26 (1 Гв.Т.Бр.),,1.0,RU,Т-34 (1941),,3.7,RU,Т-34-57 (1943),,4.3,RU,ЗиС-43,,4.0,CH,T-34-85 Gai,,5.7,US,AD-4,,5.7,,,,,,,,,,,,,,,,,,,,
+RU,Т-26-4,,1.0,RU,Т-34 (1 Гв.Т.Бр.),,3.7,RU,Т-50,,2.7,RU,ЯГ-10 (29-К),,3.7,CH,IS-2 (CH),,5.7,FR,AD-4 (FR),,6.0,,,,,,,,,,,,,,,,,,,,
+RU,Т-28,,2.0,RU,Т-34 (1940),,2.7,RU,ЗиС-12 (94-КМ),,3.3,RU,ЗСУ-37,,4.7,CH,IS-2 mod.1944 (CH),,6.3,US,AM-1,,5.7,,,,,,,,,,,,,,,,,,,,
+RU,Т-28Э,,2.7,RU,Т-50,,2.7,RU,ЯГ-10 (29-К),,3.7,RU,ЗУТ-37,,3.0,CH,M18 (CH),,4.7,US,F4U-4,,5.0,,,,,,,,,,,,,,,,,,,,
+RU,Т-35,,1.3,RU,ЗУТ-37,,3.0,RU,ЗУТ-37,,3.0,CH,M4A4 (CH),,3.7,CH,Type 65,,5.3,US,F4U-4B,,5.7,,,,,,,,,,,,,,,,,,,,
+RU,Т-60,,1.0,CH,LVT(A)(4) (ZiS-2) (CH),,2.3,CH,M4A4 (CH),,3.7,CH,M4A1 (75) W (CH),,4.7,CH,ISU-152 (CH),,5.3,FR,F4U-7,,6.0,,,,,,,,,,,,,,,,,,,,
+RU,Т-70,,2.0,CH,SU-76M (CH),,2.3,CH,M4A1 (75) W (CH),,4.7,CH,M4A4 (1st PTG),,3.7,CH,ISU-122 (CH),,5.3,UK,Hornet Mk.III,,5.7,,,,,,,,,,,,,,,,,,,,
+RU,Т-80,,2.3,CH,M10 (CH),,3.3,CH,M4A4 (1st PTG),,3.7,CH,M24 (CH),,3.3,CH,M36 (CH),,5.7,RU,И-185 (М-71),,4.7,,,,,,,,,,,,,,,,,,,,
+RU,ЗиС-30,,2.3,CH,M8 HMC (CH),,2.0,CH,M24 (CH),,3.3,CH,T-34 (1943) (CH),,3.7,CH,SU-100 (CH),,6.3,RU,И-185 (М-82),,4.0,,,,,,,,,,,,,,,,,,,,
+CH,M8 LAC (CH),,1.0,CH,M5A1 (CH),,2.3,CH,T-34 (1943) (CH),,3.7,CH,T-34-85 (S-53) (CH),,5.7,,,,,RU,Ил-10,,5.3,,,,,,,,,,,,,,,,,,,,
+CH,M3A3 Stuart (CH),,2.0,,,,,CH,M10 (CH),,3.3,CH,T-34-85 Gai,,5.7,US,A-26B-10,,5.0,RU,Ил-10 (1946),,5.3,,,,,,,,,,,,,,,,,,,,
+CH,M5A1 (CH),,2.3,FR,A-35B (FR),,3.3,CH,M18 (CH),,4.7,CH,M10 (CH),,3.3,US,F4U-4,,5.0,RU,Ил-2M тип 3,,3.3,,,,,,,,,,,,,,,,,,,,
+CH,T-26 (CH),,1.0,UK,D.520 (UK),,2.3,CH,SU-76M (CH),,2.3,CH,M18 (CH),,4.7,US,F4U-4B,,5.7,RU,Ил-2M «Мститель»,,3.3,,,,,,,,,,,,,,,,,,,,
+CH,Chi-Ha (CH),,1.3,FR,D.520,,2.3,,,,,CH,Type 65,,5.3,FR,F4U-7,,6.0,RU,Ил-2-37,,3.7,,,,,,,,,,,,,,,,,,,,
+CH,Chi-Ha Kai (CH),,2.0,UK,D.521 (UK),,2.7,UK,D.520 (UK),,2.3,,,,,FR,F6F-5 (FR),,3.7,RU,Ил-2M (1943),,3.7,,,,,,,,,,,,,,,,,,,,
+CH,M8 HMC (CH),,2.0,UK,Hurricane Mk.IV,,2.0,FR,D.520,,2.3,US,A-26B-10,,5.0,FR,F6F-5N (FR),,4.7,RU,Ла-5ФН,,4.0,,,,,,,,,,,,,,,,,,,,
+CH,LVT(A)(4) (ZiS-2) (CH),,2.3,UK,Hurricane Mk.IIB/Trop,,2.0,UK,D.521 (UK),,2.7,UK,Avenger Mk.II (UK),,2.7,UK,Firebrand TF.Mk.IV,,4.3,RU,Ла-7,,5.0,,,,,,,,,,,,,,,,,,,,
+CH,T-26 №531,,1.0,RU,Hurricane Mk.IIB (RU),,3.0,US,F6F-5,,3.7,US,F6F-5,,3.7,UK,Firecrest,,4.0,RU,Ла-7 Долгушина,,5.0,,,,,,,,,,,,,,,,,,,,
+,,,,RU,И-16 тип 27,,2.7,FR,F6F-5 (FR),,3.7,FR,F6F-5 (FR),,3.7,RU,И-185 (М-71),,4.7,RU,Ла-7-Б-20,,5.7,,,,,,,,,,,,,,,,,,,,
+FR,A-35B (FR),,3.3,RU,И-16 тип 28,,3.0,US,F6F-5N,,4.7,US,F6F-5N,,4.7,RU,И-185 (М-82),,4.0,UK,Mosquito FB.Mk.XVIII,,3.7,,,,,,,,,,,,,,,,,,,,
+UK,Hurricane Mk.IIB/Trop,,2.0,RU,Ил-2 (1942),,2.7,FR,F6F-5N (FR),,4.7,FR,F6F-5N (FR),,4.7,RU,Ил-10,,5.3,US,P-38J-15,,4.0,,,,,,,,,,,,,,,,,,,,
+RU,Hurricane Mk.IIB (RU),,3.0,RU,Ил-2 (1941),,2.3,UK,Hellcat Mk.II (UK),,3.7,UK,Firebrand TF.Mk.IV,,4.3,RU,Ил-2M тип 3,,3.3,US,P-38J-15 Бонга,,4.3,,,,,,,,,,,,,,,,,,,,
+RU,И-153-М62 Жуковского,,2.0,RU,Ил-2-37,,3.7,RU,И-16 тип 27,,2.7,UK,Firefly FR.Mk.V,,4.0,RU,Ил-2M «Мститель»,,3.3,US,P-38K,,5.3,,,,,,,,,,,,,,,,,,,,
+RU,И-153П,,2.3,RU,Ла-5Ф,,3.3,RU,И-16 тип 28,,3.0,UK,Firecrest,,4.0,RU,Ил-2-37,,3.7,US,P-38L-5-LO,,4.0,,,,,,,,,,,,,,,,,,,,
+RU,И-16 тип 18,,2.0,RU,ЛаГГ-3-23,,2.3,RU,Ил-2 (1942),,2.7,UK,Hellcat Mk.II (UK),,3.7,RU,Ил-2M (1943),,3.7,US,P-47D-25,,3.7,,,,,,,,,,,,,,,,,,,,
+RU,И-16 тип 24,,2.7,RU,ЛаГГ-3-34,,2.3,RU,Ил-2M тип 3,,3.3,RU,Ил-2 (1942),,2.7,RU,Ла-5ФН,,4.0,US,P-47D-28,,4.3,,,,,,,,,,,,,,,,,,,,
+RU,И-16 тип 28,,3.0,FR,M.S.410,,2.0,RU,Ил-2M «Мститель»,,3.3,RU,Ил-2M тип 3,,3.3,RU,Ла-7,,5.0,RU,P-47D-27 (RU),,3.7,,,,,,,,,,,,,,,,,,,,
+RU,Ил-2 (1941),,2.3,RU,P-39K-1 (RU),,3.0,RU,Ил-2 (1941),,2.3,RU,Ил-2M «Мститель»,,3.3,RU,Ла-7 Долгушина,,5.0,US,P-47M-1-RE,,5.7,,,,,,,,,,,,,,,,,,,,
+RU,ЛаГГ-3-11,,2.0,US,P-39N-0,,3.0,RU,Ил-2-37,,3.7,RU,Ил-2 (1941),,2.3,UK,Mosquito FB.Mk.XVIII,,3.7,US,P-47N-15,,4.7,,,,,,,,,,,,,,,,,,,,
+RU,ЛаГГ-3-23,,2.3,RU,P-39N-0 Покрышкина (RU),,3.0,RU,Ил-2M (1943),,3.7,RU,Ил-2-37,,3.7,UK,Mosquito FB.Mk.VI,,3.7,US,P-51D-10,,5.0,,,,,,,,,,,,,,,,,,,,
+FR,MS.406C1,,2.0,US,P-40E-1,,2.3,RU,Ла-5Ф,,3.3,RU,Ил-2M (1943),,3.7,US,P-38J-15,,4.0,US,P-51D-20-NA,,5.0,,,,,,,,,,,,,,,,,,,,
+FR,M.S.410,,2.0,RU,P-40E-1 (RU),,2.3,RU,ЛаГГ-3-34,,2.3,RU,Ла-5ФН,,4.0,US,P-38J-15 Бонга,,4.3,US,P-51D-5,,5.0,,,,,,,,,,,,,,,,,,,,
+US,P-36A,,1.7,US,P-40F-10,,2.7,RU,ЛаГГ-3-66,,2.7,RU,ЛаГГ-3-34,,2.3,US,P-38K,,5.3,US,P-63A-10,,4.7,,,,,,,,,,,,,,,,,,,,
+US,P-36A Расмуссена,,1.7,US,A-36,,2.7,FR,M.B.157,,3.3,FR,M.B.157,,3.3,US,P-38L-5-LO,,4.0,RU,P-63A-10 (RU),,4.7,,,,,,,,,,,,,,,,,,,,
+US,P-36C,,2.3,RU,Пе-2-31,,3.7,FR,M.B.175T,,3.3,FR,M.B.175T,,3.3,US,P-47D-25,,3.7,US,P-63A-5,,3.7,,,,,,,,,,,,,,,,,,,,
+US,P-36G,,2.7,FR,Potez 631,,2.0,US,P-38E,,3.3,UK,Mosquito FB.Mk.XVIII,,3.7,US,P-47D-28,,4.3,RU,P-63A-5 (RU),,3.7,,,,,,,,,,,,,,,,,,,,
+FR,Potez 630,,1.7,FR,Potez 633,,1.7,US,P-38G-1,,3.7,UK,Mosquito FB.Mk.VI,,3.7,RU,P-47D-27 (RU),,3.7,US,P-63C-5,,4.7,,,,,,,,,,,,,,,,,,,,
+FR,Potez 631,,2.0,US,SB2U-2,,1.3,US,XP-38G,,3.3,US,P-38E,,3.3,US,P-47M-1-RE,,5.7,FR,P-63C-5 (FR),,4.7,,,,,,,,,,,,,,,,,,,,
+US,SB2U-2,,1.3,US,SB2U-3,,1.7,RU,P-39K-1 (RU),,3.0,US,P-38G-1,,3.7,US,P-47N-15,,4.7,US,PBJ-1H,,4.3,,,,,,,,,,,,,,,,,,,,
+US,SB2U-3,,1.7,UK,Spitfire Mk.IIb,,3.0,US,P-39N-0,,3.0,US,XP-38G,,3.3,US,P-51,,4.0,RU,Пе-2-205,,3.7,,,,,,,,,,,,,,,,,,,,
+US,SBD-3,,1.7,UK,Typhoon Mk.Ia,,2.7,RU,P-39N-0 Покрышкина (RU),,3.0,RU,P-39K-1 (RU),,3.0,UK,Mustang Mk.IA (UK),,4.0,RU,Пе-2-359,,4.7,,,,,,,,,,,,,,,,,,,,
+RU,Су-2 (М-82),,2.7,UK,V-156-B1,,1.3,US,P-40E-1,,2.3,US,P-39N-0,,3.0,US,P-51D-10,,5.0,RU,Пе-3бис,,3.0,,,,,,,,,,,,,,,,,,,,
+RU,Су-2 МВ-5,,2.0,FR,V-156-F,,1.3,RU,P-40E-1 (RU),,2.3,RU,P-39N-0 Покрышкина (RU),,3.0,US,P-51D-20-NA,,5.0,UK,Spitfire FR Mk.XIVe,,5.3,,,,,,,,,,,,,,,,,,,,
+RU,Су-2 ТСС-1,,1.7,RU,Як-1Б,,3.3,US,P-40F-10,,2.7,US,P-47D-25,,3.7,US,P-51D-5,,5.0,UK,Spitfire LF Mk.IX,,5.0,,,,,,,,,,,,,,,,,,,,
+RU,Тандем МАИ,,2.0,RU,Як-4,,2.3,US,A-36,,2.7,US,P-47D-28,,4.3,US,P-61A-1,,3.7,UK,Spitfire LF Mk.IXc Плагиса,,5.0,,,,,,,,,,,,,,,,,,,,
+RU,ТБ-3М-17-32,,1.3,RU,Як-9М Головачёва,,3.7,US,P-51,,4.0,RU,P-47D-27 (RU),,3.7,US,P-61C-1,,4.3,US,Spitfire LF Mk.IXc (US),,5.0,,,,,,,,,,,,,,,,,,,,
+UK,V-156-B1,,1.3,RU,Як-2 КАББ,,2.7,UK,Mustang Mk.IA (UK),,4.0,US,P-51,,4.0,US,P-63A-10,,4.7,RU,Spitfire Mk.IXc (RU),,5.0,,,,,,,,,,,,,,,,,,,,
+FR,V-156-F,,1.3,RU,И-180С,,3.0,RU,Пе-2-31,,3.7,UK,Mustang Mk.IA (UK),,4.0,RU,P-63A-10 (RU),,4.7,UK,Spitfire F Mk.XIVc,,5.3,,,,,,,,,,,,,,,,,,,,
+UK,Wirraway (UK),,1.3,CH,P-40E-1 (CH),,2.3,RU,Пе-2-83,,4.0,US,P-51D-10,,5.0,US,P-63A-5,,3.7,UK,Spitfire F Mk.XIVe,,5.3,,,,,,,,,,,,,,,,,,,,
+RU,Як-1,,2.7,CH,H-81A-2,,2.3,RU,Пе-3,,2.7,US,P-51D-20-NA,,5.0,RU,P-63A-5 (RU),,3.7,UK,Spitfire F Mk.XVIIIe,,5.3,,,,,,,,,,,,,,,,,,,,
+RU,Як-4,,2.3,CH,Hs.123A-1 (CH),,1.3,RU,Пе-3 (р),,2.0,US,P-51D-5,,5.0,US,P-63C-5,,4.7,RU,Су-6 (AM-42),,5.0,,,,,,,,,,,,,,,,,,,,
+RU,Як-2 КАББ,,2.7,CH,Ki-61-I otsu (CH),,3.3,FR,SB2C-5 (FR),,4.0,US,P-63A-10,,4.7,FR,P-63C-5 (FR),,4.7,RU,Су-6 (М-71Ф),,5.3,,,,,,,,,,,,,,,,,,,,
+CH,Hs.123A-1 (CH),,1.3,CH,Ki-44-II hei (CH),,3.0,UK,Spitfire F Mk.IX,,4.7,RU,P-63A-10 (RU),,4.7,US,PBJ-1H,,4.3,UK,Tempest Mk.V,,6.0,,,,,,,,,,,,,,,,,,,,
+CH,Ki-61-I otsu (CH),,3.3,CH,I-16 type 17 (CH),,2.7,UK,Typhoon Mk.Ia,,2.7,US,P-63A-5,,3.7,RU,Пе-2-110,,4.3,UK,Tempest Mk.V (Vickers P),,4.0,,,,,,,,,,,,,,,,,,,,
+CH,Ki-44-II hei (CH),,3.0,,,,,UK,Typhoon Mk.Ib,,4.0,RU,P-63A-5 (RU),,3.7,RU,Пе-2-205,,3.7,FR,VB.10-02,,4.0,,,,,,,,,,,,,,,,,,,,
+CH,I-16 type 17 (CH),,2.7,,,,,UK,Typhoon Mk.Ib/L,,5.0,US,P-63C-5,,4.7,RU,Пе-3бис,,3.0,FR,VB.10C-1,,3.7,,,,,,,,,,,,,,,,,,,,
+CH,I-16 type 10,,1.7,,,,,RU,Як-1Б,,3.3,FR,P-63C-5 (FR),,4.7,UK,Spitfire FR Mk.XIVe,,5.3,US,XA-38,,4.7,,,,,,,,,,,,,,,,,,,,
+CH,I-153 M-62 (CH),,2.0,,,,,RU,Як-9Б,,3.0,US,PBJ-1H,,4.3,UK,Spitfire LF Mk.IX,,5.0,RU,Як-3,,4.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,RU,Як-9М Головачёва,,3.7,RU,Пе-2-110,,4.3,UK,Spitfire LF Mk.IXc Плагиса,,5.0,FR,Yak-3 (FR),,4.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,RU,Як-9Т,,4.0,RU,Пе-2-83,,4.0,US,Spitfire LF Mk.IXc (US),,5.0,RU,Як-3Т,,5.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,FR,Yak-9Т Шалля (FR),,4.0,RU,Пе-3,,2.7,RU,Spitfire Mk.IXc (RU),,5.0,RU,Як-9К,,4.3,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,RU,И-180С,,3.0,RU,Пе-3бис,,3.0,UK,Spitfire F Mk.XIVc,,5.3,RU,Як-9М Головачёва,,3.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,CH,P-40E-1 (CH),,2.3,RU,Пе-3 (р),,2.0,UK,Spitfire F Mk.XIVe,,5.3,RU,Як-9Т,,4.0,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,CH,H-81A-2,,2.3,UK,Spitfire FR Mk.XIVe,,5.3,UK,Spitfire F Mk.XVIIIe,,5.3,RU,Як-3У,,6.3,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,CH,Ki-61-I otsu (CH),,3.3,UK,Spitfire LF Mk.IX,,5.0,RU,Су-6 (М-71Ф),,5.3,CH,P1Y1 mod. 11 (CH),,4.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,CH,Ki-44-II hei (CH),,3.0,UK,Spitfire F Mk.IX,,4.7,UK,Tempest Mk.V (Vickers P),,4.0,CH,Mosquito FB.Mk.26,,3.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,UK,Spitfire LF Mk.IXc Плагиса,,5.0,UK,Typhoon Mk.Ib,,4.0,CH,P-51D-20 (CH),,5.0,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,US,Spitfire LF Mk.IXc (US),,5.0,UK,Typhoon Mk.Ib/L,,5.0,CH,P-38L-1 (CH),,5.0,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,RU,Spitfire Mk.IXc (RU),,5.0,UK,Whirlwind Mk I,,4.7,CH,P-47D-28 (CH),,3.3,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,US,TBF-1C,,2.7,UK,Whirlwind P.9,,4.3,CH,Ki-84 Ko,,4.7,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,UK,Tempest Mk.V (Vickers P),,4.0,US,XA-38,,4.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,UK,Typhoon Mk.Ib,,4.0,RU,Як-3,,4.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,UK,Typhoon Mk.Ib/L,,5.0,FR,Yak-3 (FR),,4.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,UK,Whirlwind Mk I,,4.7,RU,Як-3Т,,5.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,UK,Whirlwind P.9,,4.3,RU,Як-9К,,4.3,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,US,XA-38,,4.7,RU,Як-9М Головачёва,,3.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,RU,Як-3,,4.7,RU,Як-9Т,,4.0,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,FR,Yak-3 (FR),,4.7,FR,Yak-9T Шалля (FR),,4.0,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,RU,Як-3Т,,5.7,US,TBF-1C,,2.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,RU,Як-9Б,,3.0,UK,Avenger Mk.II (UK),,2.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,RU,Як-9М Головачёва,,3.7,CH,P1Y1 mod. 11 (CH),,4.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,RU,Як-9Т,,4.0,CH,Mosquito FB.Mk.26,,3.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,FR,Yak-9Т Шалля (FR),,4.0,CH,P-51D-20 (CH),,5.0,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,CH,P1Y1 mod. 11 (CH),,4.7,CH,P-38L-1 (CH),,5.0,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,CH,Mosquito FB.Mk.26,,3.7,CH,P-47D-28 (CH),,3.3,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,CH,P-51D-20 (CH),,5.0,CH,Ki-84 Ko,,4.7,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,CH,P-47D-28 (CH),,3.3,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Бронетехники,,,74, Бронетехники,,,66, Бронетехники,,,69, Бронетехники,,,70, Бронетехники,,,65, Бронетехники,,,53, Бронетехники,,,21, Бронетехники,,,20, Бронетехники,,,23, Бронетехники,,,23, Бронетехники,,,17
+ Авиации,,,39, Авиации,,,43, Авиации,,,52, Авиации,,,72, Авиации,,,76, Авиации,,,72, Авиации,,,19, Авиации,,,16, Авиации,,,24, Авиации,,,28, Авиации,,,8
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Команда Б: GR, IT, JP",,,,"Команда Б: GR, IT, JP",,,,"Команда Б: GR, IT, JP",,,,"Команда Б: GR, IT, JP",,,,"Команда Б: GR, IT, JP",,,,"Команда Б: GR, IT, JP",,,,"Команда Б: FR, GR, IT, JP, UK, US",,,,"Команда Б: FR, GR, IT, JP, UK, US",,,,"Команда Б: FR, GR, IT, JP, UK, US",,,,"Команда Б: FR, GR, IT, JP, UK, US",,,,"Команда Б: FR, GR, US, UK",,,
+GR,Flakpanzer I,,1.3,GR,Flakpanzer 38,,2.0,GR,Wirbelwind,,3.7,GR,Ostwind,,4.7,GR,Ostwind,,4.7,GR,Kugelblitz,,7.0,FR,AMX-13-90,,7.0,FR,AMX-13 (SS.11),,6.7,FR,AMX-10RC,,8.0,FR,AMX-10RC,,8.0,FR,AMX-13 (HOT),,8.7
+GR,Nb.Fz.,,1.3,GR,Panzerjäger I,,1.7,GR,Pz.Kpfw. Churchill (GR),,4.0,GR,Wirbelwind,,3.7,GR,Wirbelwind,,3.7,GR,Flakpanzer 341,,6.7,FR,AMX-13 DCA 40,,4.7,FR,AMX-13-90,,7.0,FR,AMX-13-90,,7.0,FR,AMX-13 (HOT),,8.7,FR,AMX-30,,7.7
+GR,Panzerjäger I,,1.7,GR,Marder III,,2.7,GR,Jagdpanzer 38(t),,4.7,GR,Ostwind II,,5.7,GR,Ostwind II,,5.7,GR,Ostwind II,,5.7,FR,AMX-50,,7.0,FR,AMX-13 DCA 40,,4.7,FR,AMX-13 (HOT),,8.7,FR,AMX-30,,7.7,FR,AMX-30B2,,8.3
+GR,Pz.35(t),,1.0,GR,Marder III H,,3.0,GR,Jagdpanzer IV,,4.7,GR,Pz.Kpfw. Churchill (GR),,4.0,GR,Pz.Bfw.VI (P),,5.7,GR,Panther II,,6.7,FR,AMX-50 Foch,,7.3,FR,AMX-30,,7.7,FR,AMX-30,,7.7,FR,AMX-30B2,,8.3,FR,AMX-30B2 BRENUS,,8.7
+GR,Sd.Kfz. 140/1,,1.3,GR,Pz.III J1,,3.0,GR,KV-IB (GR),,4.3,GR,Jagdpanzer 38(t),,4.7,GR,Bfw. Jagdpanther,,6.7,GR,Bfw. Jagdpanther,,6.7,FR,AMX-50 Surbaissé,,8.0,FR,AMX-30 (1972),,7.7,FR,AMX-30 (1972),,7.7,FR,AMX-30B2 BRENUS,,8.7,FR,AMX-30 DCA,,8.0
+GR,Marder III,,2.7,GR,Pz.III L,,3.0,GR,KV-IB 756(r) (GR),,5.0,GR,Jagdpanzer IV,,4.7,GR,Nashorn,,5.3,GR,Jagdpanther,,6.7,FR,AMX-50 Surblindé,,8.0,FR,AMX-50,,7.0,FR,AMX-30B2,,8.3,FR,AMX-30 DCA,,8.0,FR,AMX-40,,9.7
+GR,Pz.38(t) A,,1.3,GR,Pz.III M,,3.0,GR,KV-II 754(r) (GR),,4.3,GR,KV-IB (GR),,4.3,GR,VFW,,5.3,GR,Jagdtiger,,7.0,FR,Char 25t,,6.7,FR,AMX-50 Foch,,7.3,FR,AMX-30B2 BRENUS,,8.7,FR,AMX-40,,9.7,FR,AMX-10RC,,8.0
+GR,Pz.38(t) F,,2.0,GR,Pz.III N,,3.0,GR,Pz.Bfw.IV,,4.0,GR,KV-IB 756(r) (GR),,5.0,GR,Jagdpanther,,6.7,GR,Ferdinand,,6.7,FR,Lorraine 40t,,7.3,FR,AMX-50 Surbaissé,,8.0,FR,AMX-30 DCA,,8.0,FR,Leclerc,,10.3,FR,Leclerc,,10.3
+GR,Pz.III B,,1.0,GR,Pz.Sfl.Ic,,2.3,GR,15 cm Pz.W.42,,4.3,GR,KV-II 754(r) (GR),,4.3,GR,Ferdinand,,6.7,GR,Tiger II (H),,6.7,GR,Kugelblitz,,7.0,FR,AMX-50 Surblindé,,8.0,FR,AMX-50 Foch,,7.3,FR,AMX-30 Super,,8.7,FR,AMX-30 Super,,8.7
+GR,Pz.III E,,1.7,GR,Pz.IV F1,,2.3,GR,Marder III,,2.7,GR,Pz.Bfw.IV,,4.0,GR,Panzer IV/70(V),,5.3,GR,Tiger II (10.5 cm Kw.K),,6.7,GR,Flakpanzer 341,,6.7,GR,Kugelblitz,,7.0,FR,AMX-50 Surbaissé,,8.0,FR,Roland 1,,10.0,FR,Roland 1,,10.0
+GR,Pz.III F,,2.0,GR,Pz.IV F2,,3.3,GR,Marder III H,,3.0,GR,Nashorn,,5.3,GR,Panzer IV/70(A),,5.0,GR,Tiger II (H) Sla.16,,6.7,GR,mKPz M47 G,,7.7,GR,Flakpanzer 341,,6.7,FR,AMX-50 Surblindé,,8.0,FR,AMX-30 ACRA,,8.3,FR,AMX-30 ACRA,,8.3
+GR,Pz.III J,,2.3,GR,Sd.Kfz.221 (s.Pz.B.41),,1.3,GR,Pz.III L,,3.0,GR,VFW,,5.3,GR,Tiger II (P),,6.7,GR,Tiger II (P),,6.7,GR,M48A2 С,,7.7,GR,JPz 4-5,,6.7,FR,AMX-30 Super,,8.7,GR,Begleitpanzer 57,,8.3,GR,Begleitpanzer 57,,8.3
+GR,Pz.II C,,1.0,GR,Sd.Kfz.234/2,,2.7,GR,Pz.III M,,3.0,GR,Panzer IV/70(V),,5.3,GR,Tiger E,,5.7,GR,Panther F,,6.7,GR,Panther II,,6.7,GR,Leopard I,,7.7,GR,Begleitpanzer 57,,8.3,GR,Gepard,,8.0,GR,Gepard,,8.0
+GR,Pz.II C (DAK),,1.0,GR,Sd.Kfz.234/3,,1.7,GR,Pz.III N,,3.0,GR,Panzer IV/70(A),,5.0,GR,Tiger H1,,5.7,GR,Panther G,,6.0,GR,Jagdtiger,,7.0,GR,mKPz M47 G,,7.7,GR,Gepard,,8.0,GR,KPz-70,,9.0,GR,KPz-70,,9.0
+GR,Pz.II F,,1.3,GR,Sd.Kfz.234/4,,3.0,GR,Pz.Sfl.Ic,,2.3,GR,Pz.IV H,,4.3,GR,animalTiger,,5.7,GR,Sturer Emil,,5.3,GR,Maus,,7.7,GR,M48A2 G A2,,7.7,GR,JPz 4-5,,6.7,GR,Leopard 2A4,,10.0,GR,Leopard 2A4,,10.0
+GR,Pz.Sfl.Ic,,2.3,GR,Sd.Kfz. 6/2,,3.0,GR,Pz.IV F2,,3.3,GR,Pz.IV J,,4.0,GR,VK 45.01 (P),,5.3,GR,Waffenträger,,5.7,GR,E-100,,7.7,GR,M48A2 С,,7.7,GR,Leopard I,,7.7,GR,Leopard 2A5,,10.0,GR,Leopard 2A5,,10.0
+GR,Pz.IV C,,1.3,GR,StuG III F,,3.7,GR,Pz.IV G,,4.0,GR,Tiger E,,5.7,GR,Panther A,,5.7,IT,FIAT 6614,,6.3,IT,AUBL/74,,6.7,GR,RakJPz 2,,8.3,GR,Leopard A1A1,,8.7,GR,Leopard 2K,,9.7,GR,Leopard 2K,,9.7
+GR,Pz.IV E,,2.0,GR,StuH 42 G,,3.0,GR,Pz.IV H,,4.3,GR,Tiger H1,,5.7,GR,Panther D,,5.7,IT,M42 Contraereo,,3.3,IT,M26 «D.C.Ariete»,,6.3,GR,Ru 251,,6.7,GR,Leopard A1A1 (L/44),,8.7,GR,Leopard A1A1,,8.7,GR,Leopard A1A1,,8.7
+GR,Pz.IV F1,,2.3,GR,Sturmpanzer II,,2.0,GR,Pz.IV J,,4.0,GR,animalTiger,,5.7,GR,Panther F,,6.7,IT,R3 T20 FA-HS,,3.7,IT,M26A1,,6.7,IT,AUBL/74,,6.7,GR,M48A2 G A2,,7.7,GR,Leopard A1A1 (L/44),,8.7,GR,Leopard A1A1 (L/44),,8.7
+GR,Sd.Kfz.221 (s.Pz.B.41),,1.3,IT,AB 43,,2.0,GR,Dicker Max,,4.3,GR,VK 45.01 (P),,5.3,GR,Panther G,,6.0,IT,M26 «D.C.Ariete»,,6.3,IT,M47 (105/55),,7.7,IT,M47 (105/55),,7.7,GR,RakJPz 2,,8.3,GR,RakJPz 2 (HOT),,9.3,GR,RakJPz 2 (HOT),,9.3
+GR,Sd.Kfz.234/2,,2.7,IT,AS 42,,1.3,GR,Sd.Kfz.234/4,,3.0,GR,Panther D,,5.7,GR,Ersatz M10,,5.7,IT,M26A1,,6.7,IT,M42 Contraereo,,3.3,IT,M60A1 «D.C.Ariete»,,7.7,GR,RakJPz 2 (HOT),,9.3,GR,TAM,,8.7,GR,TAM,,8.7
+GR,Sd.Kfz.234/3,,1.7,IT,M14/41,,1.7,GR,Sd.Kfz. 6/2,,3.0,GR,Ersatz M10,,5.7,GR,Sturer Emil,,5.3,IT,M36B1,,6.0,IT,R3 T20 FA-HS,,3.7,IT,SIDAM 25,,8.0,GR,БМП-1 (ГДР),,7.3,GR,FlaRakPz 1,,10.0,GR,FlaRakPz 1,,10.0
+GR,StuG III A,,2.3,IT,M15/42,,2.3,GR,"8,8 cm Flak 37 Sfl.",,3.7,GR,Dicker Max,,4.3,GR,Brummbär,,4.7,IT,R3 T106 FA,,7.0,JP,M41A1 (JP),,6.0,JP,M42 (JP),,6.7,GR,VT1-2,,8.3,GR,VT1-2,,8.3,JP,Type 74,,8.7
+GR,Sturmpanzer II,,2.0,IT,P40 «G.C. Leoncello»,,3.3,GR,StuG III G,,4.0,GR,Sd.Kfz.234/4,,3.0,GR,Waffenträger,,5.7,JP,ST-A1,,6.3,JP,M42 (JP),,6.7,JP,Ho-Ri Production,,7.0,IT,Centauro,,8.0,IT,Centauro ROMOR,,9.3,JP,Type 74G,,8.7
+IT,AB 41,,1.0,IT,P40,,3.3,GR,StuH 42 G,,3.0,GR,"8,8 cm Flak 37 Sfl.",,3.7,IT,FIAT 6614,,6.3,JP,ST-A2,,6.3,JP,ST-A1,,6.3,JP,Type 60 ATM,,7.0,IT,AUBL/74 HVG,,8.0,IT,OF-40,,7.7,JP,Type 87,,8.0
+IT,AS 42,,1.3,IT,47/32 L40,,1.7,GR,Brummbär,,4.7,GR,StuG III G,,4.0,IT,M42 Contraereo,,3.3,JP,Ho-Ri Production,,7.0,JP,ST-A2,,6.3,JP,Type 60 SPRG (C),,6.7,IT,AUBL/74,,6.7,IT,OF-40 Mk.2A,,8.7,JP,Type 89,,8.3
+IT,L3/33 CC,,1.0,IT,75/18 M41,,2.0,GR,T-34-747(r) (GR),,4.0,GR,Brummbär,,4.7,IT,R3 T20 FA-HS,,3.7,JP,Ho-Ri Prototype,,6.0,JP,Ho-Ri Production,,7.0,JP,Type 61,,6.7,IT,M113A1 (TOW),,8.3,IT,Ariete,,10.0,JP,Type 90,,10.0
+IT,L6/40,,1.3,IT,75/32 M41,,2.7,IT,M42 Contraereo,,3.3,IT,M42 Contraereo,,3.3,IT,M26A1,,6.7,JP,Type 60 SPRG (C),,6.7,JP,Type 61,,6.7,JP,Type 75 MLRS,,7.0,IT,M47 (105/55),,7.7,IT,OF-40 (MTCA),,8.7,JP,Type 16,,9.3
+IT,M11/39,,1.3,IT,75/34 M42,,3.0,IT,R3 T20 FA-HS,,3.7,IT,R3 T20 FA-HS,,3.7,IT,M26 «D.C.Ariete»,,6.3,JP,Type 61,,6.7,JP,Type 75 MLRS,,7.0,JP,Type 75 SPH,,7.0,IT,M60A1 «D.C.Ariete»,,8.3,IT,Ariete (P),,9.7,US,M163,,8.0
+IT,M13/40 (I),,1.0,JP,Chi-He,,2.3,IT,P40 «G.C. Leoncello»,,3.3,IT,Breda 501,,4.0,IT,M36B1,,6.0,,,,,JP,Type 75 SPH,,7.0,UK,Centurion Mk.10,,7.0,IT,OF-40,,7.7,IT,SIDAM 25,,8.0,US,M1 Abrams,,10.0
+IT,M13/40 (III),,1.0,JP,Ho-I,,2.0,IT,P40,,3.3,IT,75/46 M43,,4.3,IT,R3 T106 FA,,7.0,GR,Bf.109G-10,,5.3,UK,Tortoise,,6.3,UK,Strv 81 (Rb.52),,6.3,IT,OF-40 Mk.2A,,8.7,IT,SIDAM 25 (Mistral),,10.0,US,IPM1,,10.0
+IT,M14/41,,1.7,JP,Chi-Nu,,3.3,IT,Breda 501,,4.0,IT,M4 Tipo IC,,4.7,IT,Breda 501,,4.0,GR,Bf.109G-14,,5.0,UK,Centurion Mk.10,,7.0,UK,Conqueror,,7.7,IT,OF-40 (MTCA),,8.7,IT,Ariete PSO,,10.0,US,M1A1 Abrams,,10.3
+IT,47/32 L40,,1.7,JP,Ho-Ni I,,2.0,IT,90/53 M41M,,3.7,JP,M24 (JP),,3.3,IT,75/46 M43,,4.3,IT,Bf.109G-14/AS (IT),,5.0,UK,Centurion Mk.3,,6.7,UK,Falcon,,7.3,IT,SIDAM 25,,8.0,IT,OTOMATIC,,9.3,US,M1A2 Abrams,,10.3
+JP,Ka-Mi,,1.3,JP,Ho-Ni III,,2.3,IT,75/34 M42,,3.0,JP,M4A3 (76) W (JP),,5.3,IT,M4 Tipo IC,,4.7,GR,Bf.109G-6,,4.7,UK,Conqueror,,7.7,UK,Conway,,7.0,JP,STB-1,,7.7,JP,Type 74,,8.7,US,M247,,8.0
+JP,Ho-Ro,,1.7,JP,So-Ki,,3.3,IT,75/34 M43,,3.3,JP,Heavy Tank No.6 (JP),,5.7,JP,Heavy Tank No.6 (JP),,5.7,GR,Bf.109K-4,,6.3,UK,Crusader AA Mk.I,,4.7,UK,FV4005,,6.7,JP,Type 74,,8.7,JP,Type 74G,,8.7,US,M3 Bradley,,8.0
+JP,I-Go Ko,,1.0,JP,Chi-Ha Kai,,2.0,IT,105/25 M43,,3.3,JP,Chi-Nu II,,3.7,JP,ST-A1,,6.3,GR,Do.335A-1,,5.0,UK,Caernarvon,,6.3,UK,Vickers MBT,,7.0,JP,Type 74G,,8.7,JP,Type 87,,8.0,US,ADATS,,10.3
+JP,Type 94,,1.3,JP,Ta-Se,,1.7,IT,M43 «G.C. Leoncello»,,3.0,JP,Chi-To,,4.3,JP,Chi-Ri II,,5.0,GR,Do.335B-2,,5.7,UK,Conway,,7.0,UK,Centurion Action X,,6.7,JP,Type 87,,8.0,JP,Type 89,,8.3,US,M551,,8.3
+JP,Ha-Go,,1.0,,,,,JP,M24 (JP),,3.3,JP,Chi-To Late,,4.7,JP,Ho-Ri Prototype,,6.0,GR,Fw.190A-5,,4.3,UK,FV4005,,6.7,US,M103,,7.7,JP,Type 89,,8.3,JP,Type 90,,10.0,US,M60A1 RISE (P),,8.7
+JP,Ha-Go Commander,,1.0,JP,A6M3 mod. 22,,4.0,JP,Chi-Nu,,3.3,JP,Chi-Ri II,,5.0,JP,Type 60 SPRG (C),,6.7,GR,Fw.190A-5/U2,,4.7,UK,FV4202,,6.7,US,M42,,6.7,JP,Type 75 SPH,,7.0,JP,Type 16,,9.3,US,MBT-70,,9.0
+JP,Ro-Go,,1.3,JP,A6M3 mod. 22Ко,,4.3,JP,Chi-Nu II,,3.7,JP,Na-To,,3.3,JP,So-Ki,,3.3,GR,Fw.190A-5/U12,,4.7,US,M41A1,,6.0,US,M46,,6.7,UK,Centurion Mk.5 AVRE,,7.0,UK,Centurion Mk.5 AVRE,,7.0,US,XM-1 (GM),,9.0
+JP,Chi-Ha,,1.3,JP,A6M3,,3.7,JP,Ho-Ni III,,2.3,JP,So-Ki,,3.3,,,,,GR,Fw.190A-8,,5.0,US,M42,,6.7,US,M46 «Tiger»,,6.7,UK,Sho’t Kal Dalet (IS),,8.3,UK,Sho’t Kal Dalet (IS),,8.3,US,XM-803,,9.0
+JP,Chi-Ha Short Gun,,1.7,GR,Bf.109F-1,,3.3,JP,Chi-To,,4.3,,,,,JP,A6M5,,4.7,GR,Fw.190F-8,,4.3,US,M46,,6.7,US,M47,,7.3,UK,Chieftain Marksman,,8.0,UK,Vickers Mk.7,,9.7,US,M901,,8.0
+JP,Chi-Ha Kai,,2.0,GR,Bf.109F-2,,3.0,JP,Chi-To Late,,4.7,JP,A6M5,,4.7,JP,A6M5 Ко,,4.7,IT,G.55 серия 1,,4.7,US,M46 «Tiger»,,6.7,US,M48A1,,7.3,UK,Chieftain Mk.3,,8.3,UK,Challenger Mk.2,,9.7,UK,Chieftain Mk.10,,9.0
+JP,Ke-Ni,,1.3,GR,Bf.109F-4,,4.0,JP,Na-To,,3.3,JP,A6M5 Ко,,4.7,JP,A6M5 otsu,,5.0,IT,G.55 подсерия 0,,4.3,US,M47,,7.3,US,M50,,6.7,UK,Chieftain Mk.5,,8.7,UK,Challenger Mk.3,,9.7,UK,Challenger Mk.2,,9.7
+JP,Ta-Se,,1.7,GR,Bf.109F-4/trop,,4.0,JP,So-Ki,,3.3,JP,A6M5 otsu,,5.0,GR,Bf.109G-10,,5.3,IT,G.55S,,4.7,US,M56,,6.7,US,M56,,6.7,UK,Falcon,,7.3,UK,Challenger 2,,10.3,UK,Warrior,,8.0
+,,,,GR,Bf 110 C-7,,2.3,JP,Ta-Se,,1.7,JP,A7M1 (NK9H),,4.0,GR,Bf.109G-14,,5.0,IT,G.56,,5.7,US,T26E1-1,,6.3,US,M60,,7.7,UK,Conway,,7.0,UK,Chieftain Marksman,,8.0,UK,Striker,,8.3
+JP,A6M2 mod. 11,,3.3,GR,Bf 110 C-6,,3.0,GR,M4 748 (a) (GR),,3.7,JP,A7M2,,4.7,IT,Bf.109G-14/AS (IT),,5.0,IT,Re.2005 serie 0,,5.0,US,T28,,6.7,US,Magach 3 (IS),,7.7,UK,FV4005,,6.7,UK,Chieftain Mk.10,,9.0,UK,Swingfire,,7.7
+JP,A6M2,,3.3,IT,Breda 88 (P.XI),,2.0,,,,,GR,Bf.109G-10,,5.3,GR,Bf.109G-6,,4.7,GR,He.219A-7,,4.3,US,T29,,6.7,US,T114,,6.7,UK,Swingfire,,7.7,UK,Striker,,8.3,UK,Chieftain Marksman,,8.0
+JP,A7He1,,2.3,JP,D4Y1,,2.3,JP,A6M3 mod. 22,,4.0,GR,Bf.109G-14,,5.0,GR,Bf.109K-4,,6.3,GR,Ju 388 J,,4.3,US,T30,,6.7,US,T54E1,,8.0,UK,Warrior,,8.0,UK,Swingfire,,7.7,UK,Centurion Mk.5 AVRE,,7.0
+IT,Ba.65 (K.14) L,,1.0,IT,IAR-81C,,2.7,JP,A6M3 mod. 22Ко,,4.3,GR,Bf.109G-2/trop,,4.0,GR,Bf 109 Z,,4.7,GR,Hs.129B-2,,2.7,US,T32,,7.3,US,T92,,6.7,UK,Centurion Action X,,6.7,UK,Warrior,,8.0,UK,Sho’t Kal Dalet (IS),,8.3
+GR,Bf.109B-1,,1.3,GR,Ju.87D-3,,2.7,JP,A6M3,,3.7,GR,Bf.109G-2,,4.0,GR,Bf 110 G-2,,3.7,GR,Hs.129B-2 (Румыния),,2.7,US,T32E1,,7.7,US,T95,,7.0,US,M103,,7.7,UK,Stormer HVM,,10.0,UK,Vickers Mk.7,,9.7
+GR,Bf.109E-1,,2.0,IT,Ju 87 D-3 (IT),,2.7,GR,Bf.109G-2/trop,,4.0,IT,Bf.109G-2 (IT),,4.0,JP,D4Y2,,2.7,GR,Hs.129B-3,,3.0,US,T34,,6.7,,,,,US,M163,,8.0,US,M163,,8.0,UK,Challenger Mk.3,,9.7
+GR,Bf.109E-3,,2.7,GR,Ju.87D-5,,3.3,GR,Bf.109G-2,,4.0,GR,Bf.109G-6,,4.7,JP,D4Y3 Ko,,3.0,JP,J2M3,,5.0,US,T92,,6.7,GR,Ar.234B-2,,6.7,US,M247,,8.0,US,M1 Abrams,,10.0,UK,Challenger 2,,10.3
+JP,Bf.109E-7 (JP),,2.7,GR,Ju.87G-1,,3.0,IT,Bf.109G-2 (IT),,4.0,GR,Bf 110 F-2,,3.3,GR,Do.335A-1,,5.0,JP,J2M4 Kai,,4.3,US,T95,,7.0,GR,Ar.234C-3,,7.0,US,M3 Bradley,,8.0,US,IPM1,,10.0,UK,Stormer HVM,,10.0
+GR,Bf.109E-4,,3.0,GR,Ju.87G-2,,3.0,GR,Bf.109G-6,,4.7,GR,Bf 110 G-2,,3.7,GR,Do.335B-2,,5.7,JP,J2M5,,5.7,,,,,UK,Attacker FB.1,,7.3,US,M551,,8.3,US,M1A1 Abrams,,10.3,IT,Centauro ROMOR,,9.3
+GR,Bf.109E-7/U2,,2.7,IT,Ju 87 R-2 (IT),,1.7,GR,Bf 110 C-7,,3.0,JP,D4Y2,,2.7,GR,Fw.190A-5,,4.3,JP,J2M5,,4.7,IT,Bf.109G-14/AS (IT),,5.0,US,AD-2,,5.7,US,M60,,7.7,US,M1A2 Abrams,,10.3,IT,OF-40 Mk.2A,,8.7
+GR,Fw.189A-1,,1.7,JP,Ki-45 hei,,3.3,GR,Bf 110 C-6,,3.0,JP,D4Y3 Ko,,3.0,JP,Fw.190A-5 (JP),,4.7,GR,Ju.87D-5,,3.3,GR,Bf.109K-4,,6.3,US,AD-4,,5.7,US,M60A1 (AOS),,8.3,US,M247,,8.0,IT,OTOMATIC,,9.3
+GR,He.112A-0,,2.3,JP,Ki-45 ko,,2.7,GR,Bf 110 F-2,,3.3,GR,Fw.190A-5,,4.3,GR,Fw.190A-5/U2,,4.7,GR,Ju.87G-1,,3.0,GR,Bf 109 Z,,4.7,FR,AD-4 (FR),,6.0,US,M60A1 RISE (P),,8.7,US,M3 Bradley,,8.0,IT,SIDAM 25,,8.0
+GR,He.112B-0,,2.3,JP,Ki-45 otsu,,2.7,IT,Breda 88 (P.XI),,2.0,JP,Fw.190A-5 (JP),,4.7,GR,Fw.190A-5/U12,,4.7,GR,Ju.87G-2,,3.0,US,AD-2,,5.7,US,A2D-1,,6.7,US,M60A2,,8.3,US,ADATS,,10.3,IT,Ariete (P),,9.7
+GR,He.112B-1/U2,,2.3,JP,Ki-45 tei,,2.3,JP,D4Y1,,2.3,GR,Fw.190A-5/U2,,4.7,GR,Fw.190A-8,,5.0,JP,Ki-83,,6.0,US,AD-4,,5.7,US,P-59A,,5.3,US,Merkava Mk.1 (IS),,8.7,US,M551,,8.3,IT,Ariete,,10.0
+GR,He.112B-2/U2,,2.3,JP,Ki-100-II,,3.7,JP,D4Y2,,2.7,GR,Fw.190A-5/U12,,4.7,GR,Fw.190F-8,,4.3,JP,Ki-109,,4.3,FR,AD-4 (FR),,6.0,US,F-80C-10,,7.7,US,T114,,6.7,US,M60A1 RISE (P),,8.7,IT,OF-40 (MTCA),,8.7
+GR,He.112V-5,,1.7,JP,Ki-100,,3.7,JP,D4Y3 Ko,,3.0,GR,Hs.129B-2,,2.7,IT,G.55 серия 1,,4.7,JP,J5N1,,5.3,US,A2D-1,,6.7,US,F-80A-5,,7.0,US,T54E1,,8.0,US,MBT-70,,9.0,IT,SIDAM 25 (Mistral),,10.0
+GR,Hs.123A-1,,1.3,JP,Ki-21-I hei,,1.7,GR,Hs.129B-2,,2.7,GR,Hs.129B-2 (Румыния),,2.7,IT,G.55 подсерия 0,,4.3,JP,Ki-84 hei,,6.3,US,AM-1,,5.7,US,F-84B-26,,8.0,US,T95E1,,7.7,US,XM-1 (GM),,9.0,IT,Ariete PSO,,10.0
+GR,Ju.87B-2,,1.3,JP,Ki-44-II otsu,,2.3,GR,Hs.129B-2 (Румыния),,2.7,IT,Hs.129B-2 (Румыния) (IT),,2.7,GR,He.219A-7,,4.3,JP,Ki-84 ko,,5.0,US,F-82E,,5.0,US,F-84G-21-RE,,8.0,US,M901,,8.0,US,XM-803,,9.0,,,,
+IT,Ju 87 R-2 (IT),,1.7,JP,Ki-61-I ko,,2.7,IT,Hs.129B-2 (Румыния) (IT),,2.7,GR,Hs.129B-3,,3.0,GR,Ju 388 J,,4.3,JP,Ki-84 otsu,,6.0,FR,F4U-7,,6.0,FR,F-84G-26-RE (FR),,8.0,,,,,US,M901,,8.0,US,AH-1F,,9.7
+JP,Ki-45 ko,,2.7,JP,Ki-61-I otsu,,3.3,GR,Hs.129B-3,,3.0,IT,Ju 87 D-3 (IT),,2.7,GR,Hs.129B-2,,2.7,JP,Ki-87,,6.0,US,F7F-1,,6.3,FR,F-84G-21-RE (IT),,8.0,US,AH-1G,,8.0,,,,,US,AH-1G,,8.0
+JP,Ki-45 otsu,,2.7,IT,C.202EC,,3.0,IT,IAR-81C,,2.7,GR,Ju.87D-5,,3.3,GR,Hs 129B-2 (Румыния),,2.7,JP,Ki-94-II,,5.7,US,F7F-3,,6.3,US,F-89D,,7.3,GR,Ar.234B-2,,6.7,US,AH-1F,,9.7,US,AH-1Z,,10.0
+JP,Ki-100,,3.7,IT,C.202,,2.3,GR,Ju.87D-3,,2.7,GR,Ju.87G-1,,3.0,IT,Hs 129B-2 (Румыния) (IT),,2.7,IT,C.205N2,,4.7,US,F8F-1,,6.0,US,F-89B,,7.3,GR,Ar.234C-3,,7.0,US,AH-1G,,8.0,JP,AH-1S Kisarazu,,9.7
+JP,Ki-21-I hei,,1.7,GR,Me.410A-1,,3.7,IT,Ju 87 D-3 (IT),,2.7,GR,Ju.87G-2,,3.0,GR,Hs.129B-3,,3.0,GR,Me.410B-1,,4.7,US,F8F-1B,,6.3,US,F3D-1,,7.0,UK,Attacker FB.1,,7.3,US,AH-1Z,,10.0,GR,BO 105 CB-2,,9.7
+JP,Ki-21-Ia,,1.7,,,,,GR,Ju.87D-5,,3.3,JP,Ki-96,,3.7,IT,Ju 87 D-3 (IT),,2.7,GR,Me.410B-1/U2,,5.0,FR,F8F-1B (FR),,6.3,GR,Ho.229 V3,,7.7,GR,BO 105 CB-2,,9.7,JP,AH-1S Kisarazu,,9.7,GR,BO 105 PAH-1,,9.7
+JP,Ki-44-II otsu,,2.3,,,,,GR,Ju.87G-1,,3.0,JP,Ki-102 otsu,,3.3,GR,Ju.87D-5,,3.3,GR,Me.410B-2/U4,,4.7,FR,NC.900,,5.3,GR,He.162A-1,,6.7,US,F-80C-10,,7.7,GR,Ar.234B-2,,6.7,GR,BO 105 PAH-1A1,,9.7
+JP,Ki-61-I ko,,2.7,,,,,GR,Ju.87G-2,,3.0,JP,Ki-109,,4.3,GR,Ju.87G-1,,3.0,GR,Me.410B-6/R3,,5.3,GR,Fw.190D-12,,5.3,GR,He.162A-2,,6.7,US,F-80A-5,,7.0,GR,Ar.234C-3,,7.0,GR,Ми-24П (GR),,9.7
+JP,Ki-61-I otsu,,3.3,,,,,JP,Ki-45 hei,,3.3,JP,Ki-61-I hei,,4.0,GR,Ju.87G-2,,3.0,JP,N1K2-J,,6.0,GR,Fw.190D-13,,5.3,JP,Ki-200,,8.0,US,F-84B-26,,8.0,UK,Attacker FB.1,,7.3,GR,SA.313B Alouette II (GR),,9.0
+GR,C.202 (GR),,2.3,,,,,JP,Ki-45 ko,,2.7,JP,Ki-61-I tei,,4.0,JP,Ki-83,,6.0,JP,N1K2-Ja,,6.3,GR,Fw.190D-9,,5.3,JP,Kikka,,6.7,US,F-84G-21-RE,,8.0,GR,BO 105 CB-2,,9.7,US,UH-1B,,8.7
+IT,C.202EC,,3.0,,,,,JP,Ki-45 otsu,,2.7,JP,Ki-61-II,,4.7,JP,Ki-96,,3.7,JP,P1Y1 mod. 11,,4.7,GR,Fw.190F-8,,4.3,FR,M.D.450B Barougan,,7.7,FR,F-84G-26-RE (FR),,8.0,GR,BO 105 PAH-1,,9.7,US,UH-1C,,9.3
+IT,C.202,,2.3,,,,,JP,Ki-45 tei,,2.3,IT,C.202EC,,3.0,JP,Ki-102 otsu,,3.3,IT,SM.91,,3.7,IT,G.55 серия 1,,4.7,FR,M.D.450B Ouragan,,7.7,IT,F-84G-21-RE (IT),,8.0,GR,BO 105 PAH-1A1,,9.7,US,UH-1C XM-30,,9.3
+IT,Re.2001 CB,,2.3,,,,,JP,Ki-100-II,,3.7,IT,C.202,,2.3,JP,Ki-109,,4.3,IT,SM.92,,4.0,IT,G.55 подсерия 0,,4.3,GR,Me 163B,,8.0,GR,CL-13A Mk.5,,9.0,US,F-100D,,9.7,GR,UH-1D (GR),,9.3
+IT,Re.2001 CN,,2.7,,,,,JP,Ki-100,,3.7,IT,C.205 серия 1,,3.0,JP,Ki-61-I hei,,4.0,GR,Ta.154A-1,,4.0,IT,G.55S,,4.7,GR,Me 163B-0,,8.3,US,F-86A-5,,8.7,US,F-80C-10,,7.7,US,H-34,,8.0
+IT,Re.2001 serie 1,,2.3,,,,,JP,Ki-109,,4.3,IT,C.205 серия 3,,3.7,JP,Ki-61-II,,4.7,,,,,IT,G.56,,5.7,GR,Me.262A-1a,,7.0,US,F-86F-2,,9.0,US,F-80A-5,,7.0,FR,SA.313B Alouette II,,9.0
+,,,,,,,,JP,Ki-21-I hei,,1.7,GR,Me.410B-1,,4.7,JP,Ki-84 hei,,6.3,,,,,IT,Re.2005 serie 0,,5.0,GR,Me 262 A1a/U1,,7.0,US,F-86F-25,,9.0,US,F-84B-26,,8.0,FR,SA.316B Alouette III,,9.3
+,,,,,,,,JP,Ki-44-II otsu,,2.3,GR,Me.410B-1/U2,,5.0,JP,Ki-84 ko,,5.0,,,,,GR,He.219A-7,,4.3,GR,Me.262A-1/U4,,6.7,JP,F-86F-30 (JP),,9.0,US,F-84G-21-RE,,8.0,FR,SA.341F Gazelle,,9.7
+,,,,,,,,JP,Ki-61-I ko,,2.7,GR,Me.410B-2/U4,,4.7,JP,Ki-84 otsu,,6.0,,,,,UK,Hornet Mk.III,,5.7,GR,Me.262A-2a,,6.7,US,F-86F-35,,9.0,FR,F-84G-26-RE (FR),,8.0,FR,SA.342M Gazelle,,9.7
+,,,,,,,,JP,Ki-61-I otsu,,3.3,JP,P1Y1 mod. 11,,4.7,IT,C.205N2,,4.7,,,,,GR,Hs.129B-3,,3.0,GR,Me.262C-1a,,8.0,US,F3D-1,,7.0,IT,F-84G-21-RE (IT),,8.0,FR,H-34 (FR),,9.0
+,,,,,,,,IT,C.202EC,,3.0,IT,P.108A серия 2,,3.0,IT,C.205 серия 1,,3.0,,,,,JP,J2M4 Kai,,4.3,GR,Me.262C-2b,,8.0,US,F2H-2,,8.0,GR,CL-13A Mk.5,,9.0,FR,IAR 316B,,9.3
+,,,,,,,,IT,C.202,,2.3,IT,Spitfire Mk.Vb/trop (IT),,3.3,IT,C.205 серия 3,,3.7,,,,,JP,J2M5,,5.7,UK,Meteor F Mk.3,,7.0,US,F9F-2,,8.3,GR,CL-13B Mk.6,,9.3,FR,EC-665 Tiger HAP,,10.0
+,,,,,,,,IT,C.205 серия 1,,3.0,GR,Ta.154A-1,,4.0,IT,Re.2005 serie 0,,5.0,,,,,JP,J2M5,,4.7,JP,R2Y2 Kai V3,,7.7,US,F9F-5,,8.3,FR,F-86K (FR),,9.0,FR,EC-665 Tiger HAD,,10.0
+,,,,,,,,IT,C.205 серия 3,,3.7,,,,,GR,Me.410B-1,,4.7,,,,,JP,Ki-83,,6.0,JP,R2Y2 Kai V1,,7.0,IT,G.91 pre-serie,,8.3,US,F-86A-5,,8.7,GR,EC-665 Tiger UHT,,10.0
+,,,,,,,,GR,Me.410A-1,,3.7,,,,,GR,Me.410B-1/U2,,5.0,,,,,JP,Ki-109,,4.3,JP,R2Y2 Kai V2,,7.3,IT,G.91 R/1,,9.0,US,F-86F-2,,9.0,GR,Ми-24П HFS 80 (GR),,9.7
+,,,,,,,,IT,P.108A серия 2,,3.0,,,,,GR,Me.410B-2/U4,,4.7,,,,,JP,J5N1,,5.3,FR,S.O.8000 Narval,,5.7,GR,Ho.229 V3,,7.7,US,F-86F-25,,9.0,UK,Wasp HAS.Mk.1,,8.7
+,,,,,,,,IT,Spitfire Mk.Vb/trop (IT),,3.3,,,,,GR,Me.410B-6/R3,,5.3,,,,,JP,Ki-84 hei,,6.3,UK,Vampire FB 5,,7.7,GR,He.162A-1,,6.7,JP,F-86F-30 (JP),,9.0,UK,Scout AH.Mk.1,,8.7
+,,,,,,,,,,,,,,,,JP,P1Y1 mod. 11,,4.7,,,,,JP,Ki-84 otsu,,6.0,UK,Wyvern S.4,,5.0,GR,He.162A-2,,6.7,US,F-86F-35,,9.0,UK,Lynx AH.Mk.1,,9.7
+,,,,,,,,,,,,,,,,IT,P.108A серия 2,,3.0,,,,,JP,Ki-87,,6.0,,,,,UK,Hunter F.1,,9.0,JP,F-86F-40 (JP),,9.3,UK,G-LYNX,,9.7
+,,,,,,,,,,,,,,,,IT,SM.91,,3.7,,,,,JP,Ki-94-II,,5.7,,,,,JP,Ki-200,,8.0,JP,F-86F-40 JASDF (JP),,9.3,IT,A-129 International,,9.7
+,,,,,,,,,,,,,,,,IT,SM.92,,4.0,,,,,IT,C.205N2,,4.7,,,,,JP,Kikka,,6.7,US,F2H-2,,8.0,,,,
+,,,,,,,,,,,,,,,,GR,Ta.154A-1,,4.0,,,,,GR,Me.410B-1,,4.7,,,,,FR,M.D.450B Barougan,,7.7,US,F3D-1,,7.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,GR,Me.410B-1/U2,,5.0,,,,,FR,M.D.450B Ouragan,,7.7,US,F9F-2,,8.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,GR,Me.410B-2/U4,,4.7,,,,,FR,M.D.452 IIC,,9.0,US,F9F-5,,8.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,GR,Me.410B-6/R3,,5.3,,,,,GR,Me 163B,,8.0,US,F9F-8,,8.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,JP,N1K2-J,,6.0,,,,,GR,Me 163B-0,,8.3,IT,G.91 pre-serie,,8.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,JP,N1K2-Ja,,6.3,,,,,GR,Me.262A-1a,,7.0,IT,G.91 R/1,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,US,P-51D-30,,5.3,,,,,GR,Me 262 A1a/U1,,7.0,IT,G.91 R/4,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,US,P-51H-5NA,,6.3,,,,,GR,Me.262A-1/U4,,6.7,IT,G.91 YS,,9.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,JP,P1Y1 mod. 11,,4.7,,,,,GR,Me.262A-2a,,6.7,US,FJ-4B,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Sea Fury FB.11,,5.7,,,,,GR,Me.262C-1a,,8.0,US,FJ-4B VMF-232,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Seafire FR.47,,6.0,,,,,GR,Me.262C-2b,,8.0,FR,H-34 (FR),,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,IT,SM.91,,3.7,,,,,UK,Meteor F Mk.3,,7.0,US,H-34,,8.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,IT,SM.92,,4.0,,,,,UK,Sea Meteor F Mk.3,,7.7,UK,Hunter F.1,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,FR,S.O.8000 Narval,,5.7,,,,,UK,Meteor F Mk.4 G.41F,,8.0,UK,Hunter F.6,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Spitfire F Mk.22,,6.0,,,,,UK,Meteor F Mk.4 G.41G,,8.0,FR,IAR 316B,,9.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Spitfire F Mk.24,,6.3,,,,,UK,Meteor F Mk.8 G.41K,,8.0,UK,Javelin F.(A.W.) Mk.9,,8.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Spitfire FR Mk.XIVe,,5.3,,,,,UK,Meteor F Mk.8 Reaper,,8.0,FR,M.D.450B Barougan,,7.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Spitfire F Mk.XIVc,,5.3,,,,,JP,R2Y2 Kai V3,,7.7,FR,M.D.450B Ouragan,,7.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Spitfire F Mk.XIVe,,5.3,,,,,JP,R2Y2 Kai V1,,7.0,FR,M.D.452 IIA,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Spitfire F Mk.XVIIIe,,5.3,,,,,JP,R2Y2 Kai V2,,7.3,FR,M.D.452 IIC,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,GR,Ta.152C-3,,5.7,,,,,GR,SA.313B Alouette II (GR),,9.0,FR,Super Mystere B2,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,GR,Ta.152H-1,,5.7,,,,,FR,SA.313B Alouette II,,9.0,UK,Meteor F Mk.3,,7.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Tempest Mk.II,,6.3,,,,,FR,SA.316B Alouette III,,9.3,UK,Sea Meteor F Mk.3,,7.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,UK,Wyvern S.4,,5.0,,,,,FR,IAR 316B,,9.3,UK,Meteor F Mk.4 G.41F,,8.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Sea Hawk FGA.6,,7.3,UK,Meteor F Mk.4 G.41G,,8.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Sea Venom FAW 20,,8.0,UK,Meteor F Mk.8 G.41K,,8.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,UH-1B,,8.7,UK,Meteor F Mk.8 Reaper,,8.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,UH-1C XM-30,,9.3,GR,Ми-24П (GR),,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GR,UH-1D (GR),,9.3,GR,МиГ-19С (GR),,10.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,H-34,,8.0,JP,R2Y2 Kai V3,,7.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Vampire FB 5,,7.7,JP,R2Y2 Kai V1,,7.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Venom FB.4,,9.0,JP,R2Y2 Kai V2,,7.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IT,Vampire FB 52A,,7.7,GR,SA.313B Alouette II (GR),,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IT,CL-13A Mk.4,,9.0,FR,SA.313B Alouette II,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Swift F.1,,8.3,FR,SA.316B Alouette III,,9.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Swift F.7,,8.7,FR,SA.341F Gazelle,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,F-89D,,7.3,FR,SA.342M Gazelle,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,F-89B,,7.3,UK,Sea Hawk FGA.6,,7.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Wasp HAS.Mk.1,,8.7,GR,Sea Hawk Mk.100,,7.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Scout AH.Mk.1,,8.7,UK,Sea Venom FAW 20,,8.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FR,S.O.4050 Vautour IIA,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FR,Vautour IIA IDF/AF (IS),,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FR,S.O.4050 Vautour IIB,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,JP,Mitsubishi T-2,,10.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,UH-1B,,8.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,UH-1C,,9.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,UH-1C XM-30,,9.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GR,UH-1D (GR),,9.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Vampire FB 5,,7.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Venom FB.4,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,F-4C Phantom II,,10.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,F-89D,,7.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,US,F-89B,,7.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GR,G.91 R/3,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Swift F.1,,8.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Swift F.7,,8.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IT,F-86K (IT),,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IT,Vampire FB 52A,,7.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IT,CL-13A Mk.4,,9.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FR,F-100D (FR),,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Hunter FGA.9,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Phantom FGR.2,,10.3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Wasp HAS.Mk.1,,8.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Scout AH.Mk.1,,8.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,Lynx AH.Mk.1,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UK,G-LYNX,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FR,EC-665 Tiger HAP,,10.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FR,EC-665 Tiger HAD,,10.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GR,EC-665 Tiger UHT,,10.0,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GR,Ми-24П HFS 80 (GR),,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IT,A-129 International,,9.7,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Бронетехники,,,45,Бронетехники,,,37,Бронетехники,,,47,Бронетехники,,,41,Бронетехники,,,40,Бронетехники,,,29,Бронетехники,,,54,Бронетехники,,,51,Бронетехники,,,64,Бронетехники,,,65,Бронетехники,,,63
+ Авиации,,,33,Авиации,,,31,Авиации,,,42,Авиации,,,44,Авиации,,,54,Авиации,,,48,Авиации,,,63,Авиации,,,39,Авиации,,,69,Авиации,,,99,Авиации,,,29
