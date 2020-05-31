@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.catp.thundersimlineup"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    implementation project(":model")
+    implementation deps.kotlin.stdlib
+
+    implementation deps.json
+    kapt deps.json
+    annotationProcessor deps.json
+
+    implementation deps.android.appcompat
+    implementation deps.android.corektx
+    implementation deps.android.constraintlayout
+    implementation deps.android.navigation_ui_ktx
+    implementation deps.android.navigation_fragment_ktx
+    implementation deps.android.lifecycle
+    implementation deps.android.room
+    implementation deps.android.room_ktx
+    implementation deps.android.room_rx
+    kapt deps.android.room_compiler
+
+    testImplementation deps.test.test
+    testImplementation deps.kotlin.kotlin_test
+    testImplementation deps.test.room
+    androidTestImplementation deps.test.test_junit
+    androidTestImplementation deps.test.espresso
+    testImplementation deps.test.junit5
+
+    implementation deps.material_calendar
+    implementation deps.threetenabp
+
+    implementation deps.rxkotlin
+    implementation deps.rxandroid
+
+    implementation deps.stetho
+
+    kapt deps.di_compiler
+    implementation deps.di
+    implementation deps.di_smoothie
+    implementation deps.di_viewmodel_ktp
+    testImplementation deps.di_test
+
+    testImplementation deps.test.truth
+    testImplementation deps.test.mockk
+    testImplementation deps.test.robolectric
+
+    //implementation 'com.applandeo:material-calendar-view:1.7.0' // можно сделать все что нужно, но текст под датой в виде картинок делается через зад, остальное по кастомизации тоже не очень понятно.
+    //implementation 'com.github.marcohc:robotocalendarview:3.6.1' // Слабая кастомизация под числом нельзя вывести ничего
+    //implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    //implementation 'io.github.inflationx:viewpump:2.0.3'
+}

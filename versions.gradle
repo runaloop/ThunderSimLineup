@@ -1,0 +1,102 @@
+ext.deps = [:]
+def versions = [:]
+
+versions.android_gradle_plugin = "3.5.3"
+versions.kotlin = '1.3.61'
+versions.kotlin_coroutine = '1.3.5'
+
+versions.room = "2.2.3"
+versions.lifecycle = "2.1.0"
+versions.appcompat = "1.0.2"
+versions.corektx = "1.0.2"
+versions.constraintlayout = "1.1.3"
+versions.navigation = "2.0.0"
+versions.testcore = "1.1.0"
+versions.espresso = "3.1.1"
+versions.junit5 = "5.1.0"
+versions.json = "1.9.5"
+versions.truth = "1.0"
+versions.mockk = "1.9.3"
+versions.robolectric = "4.3"
+
+versions.rxkotlin = "2.4.0"
+versions.rxandroid = "2.1.1"
+
+versions.material_calendar = "2.0.1"
+versions.threetenabp = "1.2.2"
+versions.fastcsv = "1.0.3"
+versions.poi_ooxml = "4.1.1"
+
+versions.stetho = "1.5.1"
+
+versions.toothpick = "3.1.0"
+
+ext.versions = versions
+
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+
+def android = [:]
+android.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+android.lifecycle = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+android.corektx = "androidx.core:core-ktx:$versions.corektx"
+android.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+android.navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+android.navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+android.room = "androidx.room:room-runtime:$versions.room"
+android.room_compiler = "androidx.room:room-compiler:$versions.room"
+android.room_ktx = "androidx.room:room-ktx:$versions.room"
+android.room_rx = "androidx.room:room-rxjava2:$versions.room"
+
+deps.android = android
+
+def test = [:]
+test.test = "androidx.test:core:$versions.testcore"
+test.test_junit = "androidx.test.ext:junit:$versions.testcore"
+test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
+test.junit5 = "org.junit.jupiter:junit-jupiter-engine:$versions.junit5"
+test.truth = "com.google.truth:truth:$versions.truth"
+test.mockk = "io.mockk:mockk:$versions.mockk"
+test.robolectric = "org.robolectric:robolectric:$versions.robolectric"
+test.room = "androidx.room:room-testing:$versions.room"
+
+
+deps.test = test
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.kotlin_test = "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+kotlin.script_runtime = "org.jetbrains.kotlin:kotlin-script-runtime:$versions.kotlin"
+kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+kotlin.coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlin_coroutine"
+deps.kotlin = kotlin
+
+deps.json = "com.dslplatform:dsl-json-java8:$versions.json"
+deps.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
+deps.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+deps.material_calendar = "com.github.prolificinteractive:material-calendarview:$versions.material_calendar"
+deps.threetenabp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
+deps.di = "com.github.stephanenicolas.toothpick:ktp:$versions.toothpick"
+deps.di_viewmodel_ktp = "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:$versions.toothpick"
+deps.di_smoothie = "com.github.stephanenicolas.toothpick:smoothie-support:$versions.toothpick"
+deps.di_test = "com.github.stephanenicolas.toothpick:toothpick-testing-junit4:$versions.toothpick"
+deps.di_compiler = "com.github.stephanenicolas.toothpick:toothpick-compiler:$versions.toothpick"
+
+deps.fastcsv = "de.siegmar:fastcsv:$versions.fastcsv"
+deps.poi_ooxml = "org.apache.poi:poi-ooxml:$versions.poi_ooxml"
+deps.stetho = "com.facebook.stetho:stetho:$versions.stetho"
+
+ext.deps = deps
+
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.maven { url 'https://jitpack.io' }
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+ext.addRepos = this.&addRepos

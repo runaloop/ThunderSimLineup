@@ -1,0 +1,227 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "8eca31c9a5f662b92b0d2bc6595a7a9b",
+    "entities": [
+      {
+        "tableName": "TeamWithVehicleCrossRef",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER NOT NULL, `vehicleId` TEXT NOT NULL, PRIMARY KEY(`teamId`, `vehicleId`), FOREIGN KEY(`teamId`) REFERENCES `TeamTable`(`teamId`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`vehicleId`) REFERENCES `Vehicle`(`vehicleId`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vehicleId",
+            "columnName": "vehicleId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "teamId",
+            "vehicleId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_TeamWithVehicleCrossRef_vehicleId",
+            "unique": false,
+            "columnNames": [
+              "vehicleId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamWithVehicleCrossRef_vehicleId` ON `${TABLE_NAME}` (`vehicleId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TeamTable",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamId"
+            ],
+            "referencedColumns": [
+              "teamId"
+            ]
+          },
+          {
+            "table": "Vehicle",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "vehicleId"
+            ],
+            "referencedColumns": [
+              "vehicleId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Vehicle",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`vehicleId` TEXT NOT NULL, `type` TEXT NOT NULL, `nation` TEXT NOT NULL, `title` TEXT NOT NULL, `br` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL, PRIMARY KEY(`vehicleId`))",
+        "fields": [
+          {
+            "fieldPath": "vehicleId",
+            "columnName": "vehicleId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nation",
+            "columnName": "nation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "br",
+            "columnName": "br",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "vehicleId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TeamTable",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lineupName` TEXT NOT NULL, `teamLetter` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lineupName",
+            "columnName": "lineupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamLetter",
+            "columnName": "teamLetter",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "teamId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "LineupTable",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `teamAId` INTEGER NOT NULL, `teamBId` INTEGER NOT NULL, PRIMARY KEY(`name`), FOREIGN KEY(`teamAId`) REFERENCES `TeamTable`(`teamId`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`teamBId`) REFERENCES `TeamTable`(`teamId`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamAId",
+            "columnName": "teamAId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamBId",
+            "columnName": "teamBId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_LineupTable_teamAId",
+            "unique": false,
+            "columnNames": [
+              "teamAId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_LineupTable_teamAId` ON `${TABLE_NAME}` (`teamAId`)"
+          },
+          {
+            "name": "index_LineupTable_teamBId",
+            "unique": false,
+            "columnNames": [
+              "teamBId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_LineupTable_teamBId` ON `${TABLE_NAME}` (`teamBId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TeamTable",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamAId"
+            ],
+            "referencedColumns": [
+              "teamId"
+            ]
+          },
+          {
+            "table": "TeamTable",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamBId"
+            ],
+            "referencedColumns": [
+              "teamId"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8eca31c9a5f662b92b0d2bc6595a7a9b')"
+    ]
+  }
+}

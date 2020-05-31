@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.stephanenicolas.toothpick:ktp:3.1.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/ktp/3.1.0/ac870f91473a393d2ebe1110d746f59a2a98cf/ktp-3.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/ktp/3.1.0/33a25e6aad4b53390a11be32a185f1231fa55430/ktp-3.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/ktp/3.1.0/81d8542bf8c5a96fc5d97a54a1caff1bcbe6b466/ktp-3.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

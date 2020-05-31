@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.stephanenicolas.toothpick:smoothie-support:3.1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d06bf8e2380b2af853ba4abc3a1e26f7/jetified-smoothie-support-3.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d06bf8e2380b2af853ba4abc3a1e26f7/jetified-smoothie-support-3.1.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/smoothie-support/3.1.0/97b745ee236cfef98127d6f935a9a30501d94e68/smoothie-support-3.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/smoothie-support/3.1.0/b26d5b8717e3f8c5c4e3b996a2ddaa95b816f37c/smoothie-support-3.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

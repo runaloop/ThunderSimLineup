@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:3.1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7c72a7a6ad04eeb573cd3bdadf0b07cb/smoothie-lifecycle-viewmodel-ktp-3.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7c72a7a6ad04eeb573cd3bdadf0b07cb/smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/smoothie-lifecycle-viewmodel-ktp/3.1.0/29538de2c630314406c1864533657d4636ae3683/smoothie-lifecycle-viewmodel-ktp-3.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/smoothie-lifecycle-viewmodel-ktp/3.1.0/1b10df2b40fd13154dcb4943524994bb25ef31d9/smoothie-lifecycle-viewmodel-ktp-3.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

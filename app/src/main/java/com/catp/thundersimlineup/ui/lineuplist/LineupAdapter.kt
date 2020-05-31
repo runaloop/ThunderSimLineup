@@ -1,0 +1,136 @@
+package com.catp.thundersimlineup.ui.lineuplist
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.catp.model.VehicleType
+import com.catp.thundersimlineup.R
+import com.catp.thundersimlineup.data.db.entity.Lineup
+import com.catp.thundersimlineup.data.db.entity.Team
+import com.catp.thundersimlineup.data.db.entity.Vehicle
+
+class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
+
+    var dataset: List<ViewItem> = emptyList()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.list_item_title, parent, false
+        )
+        return ViewHolder(view)
+    }
+
+    override fun getItemCount() = dataset.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        dataset[position].apply(holder)
+    }
+
+    fun setNewLineup(context: Context, lineup: Pair<Lineup?, Lineup?>) {
+        dataset = DataSetCreator(context).make(lineup)
+        notifyDataSetChanged()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return dataset[position].itemType()
+    }
+}
+
+class ViewHolder(val title: View) : RecyclerView.ViewHolder(title) {
+    private var titleView: TextView
+    private var brView: TextView
+
+    init {
+        titleView = title.findViewById(R.id.tvItemTitle)
+        brView = title.findViewById(R.id.tvItemBR)
+    }
+
+    fun setText(text: String) {
+        titleView.text = text
+    }
+
+    fun setBR(br: String) {
+        brView.text = "10.3"
+    }
+
+    fun setFavorite(favorite: Boolean, color: Int) {
+
+    }
+}
+
+abstract class ViewItem {
+    abstract fun apply(viewHolder: ViewHolder)
+    abstract fun itemType(): Int
+    enum class TYPE {
+        TITLE, VEHICLE
+    }
+}
+
+class ViewTitle(val title: String) : ViewItem() {
+    override fun apply(viewHolder: ViewHolder) {
+        viewHolder.setText(title)
+    }
+
+    override fun itemType(): Int = TYPE.TITLE.ordinal
+}
+
+class ViewVehicle(val vehicle: Vehicle) : ViewItem() {
+    override fun apply(viewHolder: ViewHolder) {
+        viewHolder.setText("${vehicle.nation} ${vehicle.title}")
+        viewHolder.setBR(vehicle.br)
+        viewHolder.setFavorite(vehicle.isFavorite, 0xff0000)
+    }
+
+    override fun itemType(): Int = TYPE.VEHICLE.ordinal
+}
+
+//Takes list of Lineups, fills it with view items: Titles like commands, vehicle type titles, vehicle sorted by type/favorite mode etc
+class DataSetCreator(val context: Context) {
+    fun make(lineupList: Pair<Lineup?, Lineup?>): List<ViewItem> {
+        val data = mutableListOf<ViewItem>()
+        lineupList.toList().filterNotNull().forEach { fillSet(it, data) }
+        return data
+    }
+
+    private fun fillSet(
+        lineup: Lineup,
+        dataset: MutableList<ViewItem>
+    ) {
+
+        val teams = mapOf(
+            lineup.teamA to context.getString(R.string.team_a_title),
+            lineup.teamB to context.getString(R.string.team_b_title)
+        )
+        teams.keys.forEach { team ->
+            dataset += ViewTitle("${lineup.lineupEntity.name} ${teams[team]}")
+            fillTeam(team, dataset)
+        }
+    }
+
+    private fun fillTeam(team: Team, dataset: MutableList<ViewItem>) {
+        with(team) {
+            val vehicles = mapOf(
+                VehicleType.TANK to context.getString(R.string.tanks_title),
+                VehicleType.PLANE to context.getString(R.string.planes_title),
+                VehicleType.HELI to context.getString(R.string.helis_title)
+            )
+            team.vehicles.groupBy { it.type }.forEach { (type, list) ->
+                if (list.size > 0) {
+                    dataset += ViewTitle("${vehicles[type]}")
+                    fillVehicleList(list, dataset)
+                }
+            }
+        }
+
+
+    }
+
+    private fun fillVehicleList(vehicleList: List<Vehicle>, dataset: MutableList<ViewItem>) {
+        vehicleList.forEach { vehicle ->
+            dataset += ViewVehicle(vehicle)
+        }
+    }
+}

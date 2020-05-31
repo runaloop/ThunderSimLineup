@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <Forms>
+    <UDF1 Class="TCEForm" Encoding="Ascii85">wU$e7,CUJ.^UBaDB,7%PRc^:6Muj^Mky.76SR9N%va24ejlF;tW+4oOBt7:nZ(RtN*DO{RRKE:dLfW[_uXlELe+c.AtQ{1doRRq!I7ZK.Y+zdD!EDzobj#(_r1TLUPq@F[Wrxn=pTgcJ=D2^GTLcE2b4-a6uRkz,j0n$H+OT^baczLe0%!w;Ni:Hj4?uYM[zrRePNMyvBhT5CIwS?_k=knAB??b!+b^mW4*giwRnS6oeZe@.S}f?(NXMxF;2/@{!4([.626Iv2SSfNcBh}bADkZ(PpS@Q88QzsNf3l6N([@bAbFJB$iIX+PG7S*eHRZcOi/9WIm2Weh*T9mD2@3X8}HYej7ypp4lP8,e3E)Vd6/Lb)SF$[=u0TMdnoeTGAQAU]XIG.P78a8)Tbixg8=)bTp*H/Salleo0S)NS@p,vL3/Skt)j/%Mj,WA*R*,$f=Zf/KXK3l=[/Kv5YeDMWdOLo=n8IFVzT*c9_7ey)5dgO3GSS(3d.1VM$dvb$UlEv?Mb.lGChR}xmp#flk#Ppk0owH8A)Sm:s@nlJ{:gKKQuS{u%Z[8]Uo/VQmGq!c6Rx!qFBnvZ(KuOUMmWmMhk@p!wVC$fH(^Z1iL/JcAFf++*B2X^{jM)N]to3G%UCTqdy7eBB]sIxa#dV@;(;fzHia^CuZw%o50+?6]w+Gxd[m6.(HW$^j!q2REA%#wZAK{Qm.ARnSn-WK}9-aSCOCxaZ9f^*oIkJ;@XG9d!!Xt]+qR4YX7wjUpzN7mE@x1oArAs]=[{oYp;d1X-?WEQ}cnBclRF</UDF1>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"No description"</Description>
+      <VariableType>String</VariableType>
+      <Length>31</Length>
+      <Unicode>0</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>2275F97C271</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>--firstVehicleHighTear = "ussr_bmp_1_ico"
+--lastVehicleHighTear = "scout_ah_mk1_ico"
+firstVehicleHighTear = "ussr_asu_85_ico"
+lastVehicleHighTear = "wyvern_s4_ico"
+
+--firstVehicleLowTear = "fr_amx_13_fl_11_ico"
+--lastVehicleLowTear = "us_m4a2_1944_germ_ico"
+firstVehicleLowTear = "fr_amx_13_75_ico"
+lastVehicleLowTear = "jp_type_95_so_ki_ico"
+
+wtProcessName = "aces.exe"
+lineupPrefix = "#ui/gameuiskin#"
+
+resultField = component_findComponentByName(UDF1, "CEMemo1")
+extractButton = component_findComponentByName(UDF1, "CEButton1")
+highStartVehicle = component_findComponentByName(UDF1, "CEEdit1")
+highFinishVehicle = component_findComponentByName(UDF1, "CEEdit2")
+lowStartVehicle = component_findComponentByName(UDF1, "CEEdit4")
+lowFinishVehicle = component_findComponentByName(UDF1, "CEEdit3")
+
+errorCantFindProcess = "Cant find wt process, please run the game"
+errorCantFindLowRegion = "Cant find low region in memory"
+errorCantFindHighRegion = "Cant find high region in memory"
+
+form_show(UDF1)
+function showResult(msg)
+resultField.Lines.Text = msg
+extractButton.Enabled = true
+end
+
+function UDF1_CEButton1Click(sender)
+         --control_setEnabled(extractButton, false)
+         thread = createNativeThread(findProcess)
+end
+
+function findProcess(sender)
+         if(getProcessIDFromProcessName(wtProcessName) == nil) then
+           showResult(errorCantFindProcess)
+         else
+		   openProcess(wtProcessName)
+		   findRegions()
+         return
+         end
+end
+
+function findRegions()
+local result = "High tear command A"..'\n'..findRegion(lineupPrefix..highStartVehicle.Text, lineupPrefix..highFinishVehicle.Text, "high")
+result = result .. '\n' .. "Low tear command A" ..'\n'.. findRegion(lineupPrefix..lowStartVehicle.Text, lineupPrefix..lowFinishVehicle.Text, "high")
+showResult(result)
+end
+
+function findRegion(start, finish, text)
+resultField.Lines.Text = "Looking for "..text.." finish of region"
+local finishAddresses = AOBScan(textToAOB(finish), "")
+resultField.Lines.Text = "Looking for  "..text.." start of region"
+local startAddresses = AOBScan(textToAOB(start), "")
+print(startAddresses)
+print(finishAddresses)
+if(finishAddresses ~= nil) then
+print("Found high finish region: "..finishAddresses.Count)
+else
+return "Cant find finish for "..text
+end
+if(startAddresses ~= nil) then
+print("Found region: "..startAddresses.Count)
+else
+return "Cant find start for "..text
+end
+
+return extractText(startAddresses, finishAddresses)
+
+end
+
+function extractText(start, finish)
+local dataSize = tonumber(finish[0],16) - tonumber(start[0],16)
+local lastItemSize = 1
+local lastItem = readBytes(tonumber(finish[0],16), 300, true)
+for i, v in ipairs(lastItem) do
+  if v == 0x7d then break
+  else
+  lastItemSize = lastItemSize+1
+  end
+end
+print(lastItemSize)
+local data = readBytes(tonumber(start[0],16),dataSize+lastItemSize, true)
+local result = ""
+for i, v in ipairs(data) do
+if v == 0 then result=result.. '\n'
+else
+    result = result .. string.char(v)
+    end
+ end
+return result
+end
+
+function textToAOB(text)
+local bt = stringToByteTable(text)
+local result = ""
+ for i, v in ipairs(bt) do
+   result = result .. string.format('%02X ', v)
+ end
+ print(text.." converted to "..result)
+ return result
+end
+
+function UDF1_FormCreate(sender)
+showResult("")
+end
+
+function UDF1_FormShow(sender)
+highStartVehicle.Text = firstVehicleHighTear
+highFinishVehicle.Text = lastVehicleHighTear
+lowStartVehicle.Text = firstVehicleLowTear
+lowFinishVehicle.Text = lastVehicleLowTear
+end
+
+</LuaScript>
+</CheatTable>

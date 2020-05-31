@@ -1,0 +1,60 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation deps.kotlin.stdlib
+
+    implementation deps.kotlin.script_runtime
+    implementation deps.kotlin.reflect
+    /*implementation("org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin") {
+        force = true
+    }*/
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+buildscript {
+    addRepos(repositories)
+    dependencies {
+        classpath deps.kotlin.plugin
+    }
+}
+repositories {
+    mavenCentral()
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'org.jetbrains.kotlin' && requested.name == 'kotlin-reflect') {
+            details.useVersion versions.kotlin
+        }
+    }
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    dependencies {
+
+        implementation(project(":model")) {
+            exclude("org.jetbrains.kotlin:kotlin-reflect:1.2.60")
+        }
+        implementation('com.beust:klaxon:5.0.1') {
+            exclude("org.jetbrains.kotlin:kotlin-reflect:1.2.60")
+        }
+        implementation("com.github.ajalt:clikt:2.6.0")
+        implementation deps.json
+        kapt deps.json
+        annotationProcessor deps.json
+        implementation deps.kotlin.coroutine
+        implementation deps.fastcsv
+        implementation deps.poi_ooxml
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}

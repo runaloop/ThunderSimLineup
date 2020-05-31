@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.dslplatform:dsl-json:1.9.5@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dslplatform/dsl-json/1.9.5/617d32c34926a734759cbf14c2a0a3915d6d86bd/dsl-json-1.9.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dslplatform/dsl-json/1.9.5/fe911af496ed3beeac0c0ab7e553e5c2e271ef8/dsl-json-1.9.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dslplatform/dsl-json/1.9.5/4a58017b3c96950970390c8cece998664098abe6/dsl-json-1.9.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
