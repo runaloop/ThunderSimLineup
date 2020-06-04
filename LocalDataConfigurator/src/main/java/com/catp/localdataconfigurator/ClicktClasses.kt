@@ -47,7 +47,7 @@ class GenerateJson : CliktCommand() {
         val lineups = SpreedSheetReader(vehicleStore).read()
 
         val baos = ByteArrayOutputStream()
-        json.serialize(JsonLineupConfig(lineups, vehicleStore, JsonRules()), baos)
+        json.serialize(JsonLineupConfig(lineups, vehicleStore, JsonRules(), 1), baos)
 
         ZipOutputStream(FileOutputStream(File("app/src/main/res/raw/actual_lineup.zip"))).use {
             it.putNextEntry(ZipEntry("actual_lineup.json"))
