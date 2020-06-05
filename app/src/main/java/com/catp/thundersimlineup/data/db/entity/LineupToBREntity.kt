@@ -11,4 +11,4 @@ import androidx.room.PrimaryKey
         childColumns = ["lineupId"]
     )]
 )
-data class LineupToBREntity(val lineupId:Long, val supportedBR: Double, @PrimaryKey var id: Long = 0)
+data class LineupToBREntity(val lineupId:Long, val supportedBR: Double, @PrimaryKey(autoGenerate = true) var id: Long = 0)

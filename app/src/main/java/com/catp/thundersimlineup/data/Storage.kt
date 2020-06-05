@@ -5,11 +5,13 @@ import com.catp.model.JsonLineupConfig
 import com.catp.thundersimlineup.R
 import toothpick.InjectConstructor
 import toothpick.ktp.delegate.inject
+import javax.inject.Inject
 
 @InjectConstructor
 class Storage {
 
-    val jsonReader by inject<JsonIO>()
+    @Inject
+    lateinit var  jsonReader :JsonIO
 
     fun loadFromRAW(context: Context): JsonLineupConfig {
         val lineupConfig =

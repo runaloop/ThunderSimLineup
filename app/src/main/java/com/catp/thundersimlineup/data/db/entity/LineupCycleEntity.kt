@@ -15,7 +15,7 @@ data class LineupCycleEntity(
     val lineupName: String,
     val type: LineupType,
     val orderNumber: Int,
-    var planesByBR: Boolean = true, @PrimaryKey var id: Long = 0
+    var planesByBR: Boolean = true, @PrimaryKey(autoGenerate = true) var id: Long = 0
 )
 
 enum class LineupType {

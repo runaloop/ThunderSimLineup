@@ -13,13 +13,14 @@ import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import org.threeten.bp.LocalDate
 import toothpick.ktp.KTP
-import toothpick.ktp.delegate.inject
+import javax.inject.Inject
 
 
 class CalendarFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private val lineupListViewModel by inject<LineupListViewModel>()
+    @Inject
+    lateinit var lineupListViewModel: LineupListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

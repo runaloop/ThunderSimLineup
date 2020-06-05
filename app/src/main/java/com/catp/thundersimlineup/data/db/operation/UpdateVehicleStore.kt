@@ -6,7 +6,9 @@ import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.catp.thundersimlineup.whenNonNull
 import com.catp.thundersimlineup.whenNull
+import toothpick.InjectConstructor
 
+@InjectConstructor
 class UpdateVehicleStore(
     val dao: LineupDao,
     val changeset: Changeset,

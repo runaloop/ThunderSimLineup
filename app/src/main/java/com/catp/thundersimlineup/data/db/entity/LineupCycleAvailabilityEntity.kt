@@ -18,5 +18,5 @@ data class LineupCycleAvailabilityEntity(
     val lineupId: Long,
     val startOfLineup: LocalDate,
     val endOfLineup: LocalDate,
-    @PrimaryKey var id: Long = 0
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
 )

@@ -5,7 +5,9 @@ import com.catp.thundersimlineup.data.db.entity.TeamWithVehicleCrossRef
 import com.catp.thundersimlineup.data.db.entity.VehicleStatus
 import com.catp.thundersimlineup.whenNonNull
 import com.catp.thundersimlineup.whenNull
+import toothpick.InjectConstructor
 
+@InjectConstructor
 class FindNewVehicles {
     fun process(
         jsonTeam: JsonTeam,

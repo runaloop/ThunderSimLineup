@@ -15,5 +15,5 @@ import org.threeten.bp.LocalDate
 )
 data class LineupShiftEntity(
     val lineupId: Long,
-    val shiftDate: LocalDate, @PrimaryKey var id: Long = 0
+    val shiftDate: LocalDate, @PrimaryKey(autoGenerate = true) var id: Long = 0
 )

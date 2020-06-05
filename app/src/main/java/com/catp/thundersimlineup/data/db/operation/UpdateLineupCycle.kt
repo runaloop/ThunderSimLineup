@@ -5,7 +5,9 @@ import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.*
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDate
+import toothpick.InjectConstructor
 
+@InjectConstructor
 class UpdateLineupCycle(val dao: LineupDao) {
     fun process(jsonRule: JsonRules) {
         dao.deleteLineupShift()
@@ -43,6 +45,7 @@ class UpdateLineupCycle(val dao: LineupDao) {
                 val availabilityToInsert = lineupAvailability.keys.map { name ->
                     val lineupCycle = lineupCycleList.find { it.lineupName == name }
                         ?: error("Can't find lineup with such a name in db")
+                    //TODO: Should we crash in such case? or just skip it?
                     LineupCycleAvailabilityEntity(
                         lineupCycle.id,
                         LocalDate.parse(lineupAvailability[name]!!.first),
@@ -78,10 +81,10 @@ class UpdateLineupCycle(val dao: LineupDao) {
         lineupShiftRule: Map<String, String>,
         lineupCycleList: List<LineupCycleEntity>
     ): List<LineupShiftEntity> {
-        return lineupShiftRule.keys.map { name ->
+        return lineupShiftRule.entries.map { (date, name) ->
             val lineupCycle = lineupCycleList.find { it.lineupName == name }
                 ?: error("Can't find lineup with such a name in db")
-            LineupShiftEntity(lineupCycle.id, LocalDate.parse(lineupShiftRule[name]))
+            LineupShiftEntity(lineupCycle.id, LocalDate.parse(date))
         }
 
     }

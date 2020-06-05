@@ -9,11 +9,13 @@ import org.junit.Before
 import org.junit.Test
 import org.threeten.bp.LocalDate
 import toothpick.ktp.delegate.inject
+import javax.inject.Inject
 
 
 class GetShiftedLineupTest : BaseTest() {
 
-    val getShiftedLineup: GetShiftedLineup by inject()
+    @Inject
+    lateinit var getShiftedLineup: GetShiftedLineup
 
     @Before
     override fun setUp() {

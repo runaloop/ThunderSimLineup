@@ -2,8 +2,10 @@ package com.catp.thundersimlineup.data.db.operation
 
 import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.VehicleStatus
+import toothpick.InjectConstructor
 
 //Works on every update data, and deletes vehicles that marked to delete, and drops new status from vehicles to regular
+@InjectConstructor
 class UpdateVehicleCrossRefStatus(val dao: LineupDao) {
     fun process() {
         var currentXrefs = dao.getTeamWithVehicleCrossRef()

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d9c2576bcbd6e015808dcb2d32087678",
+    "identityHash": "8b7fd6d0481fc9108edeeeed24911f8c",
     "entities": [
       {
         "tableName": "TeamWithVehicleCrossRef",
@@ -251,7 +251,7 @@
       },
       {
         "tableName": "LineupCycleEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupName` TEXT NOT NULL, `type` TEXT NOT NULL, `orderNumber` INTEGER NOT NULL, `planesByBR` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lineupName`) REFERENCES `LineupEntity`(`name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupName` TEXT NOT NULL, `type` TEXT NOT NULL, `orderNumber` INTEGER NOT NULL, `planesByBR` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, FOREIGN KEY(`lineupName`) REFERENCES `LineupEntity`(`name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "lineupName",
@@ -288,7 +288,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": [
@@ -307,7 +307,7 @@
       },
       {
         "tableName": "LineupCycleAvailabilityEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupId` INTEGER NOT NULL, `startOfLineup` INTEGER NOT NULL, `endOfLineup` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lineupId`) REFERENCES `LineupCycleEntity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupId` INTEGER NOT NULL, `startOfLineup` INTEGER NOT NULL, `endOfLineup` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, FOREIGN KEY(`lineupId`) REFERENCES `LineupCycleEntity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "lineupId",
@@ -338,7 +338,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": [
@@ -357,7 +357,7 @@
       },
       {
         "tableName": "LineupToBREntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupId` INTEGER NOT NULL, `supportedBR` REAL NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lineupId`) REFERENCES `LineupCycleEntity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupId` INTEGER NOT NULL, `supportedBR` REAL NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, FOREIGN KEY(`lineupId`) REFERENCES `LineupCycleEntity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "lineupId",
@@ -382,7 +382,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": [
@@ -401,7 +401,7 @@
       },
       {
         "tableName": "LineupShiftEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupId` INTEGER NOT NULL, `shiftDate` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lineupId`) REFERENCES `LineupCycleEntity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lineupId` INTEGER NOT NULL, `shiftDate` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, FOREIGN KEY(`lineupId`) REFERENCES `LineupCycleEntity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "lineupId",
@@ -426,7 +426,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": [
@@ -447,7 +447,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9c2576bcbd6e015808dcb2d32087678')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8b7fd6d0481fc9108edeeeed24911f8c')"
     ]
   }
 }

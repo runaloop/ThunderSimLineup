@@ -5,8 +5,10 @@ import com.catp.thundersimlineup.data.db.Changeset
 import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.LineupEntity
 import com.catp.thundersimlineup.data.db.entity.TeamEntity
+import toothpick.InjectConstructor
 
 //Create pair of team for each new lineup, and returns map with teamtable id, for each lineup in JsonLineup
+@InjectConstructor
 class UpdateTeams(val dao: LineupDao, val changeset: Changeset) {
     fun process(jsonLineups: List<JsonLineup>) {
         //Find out what teams and lineups need to be inserted

@@ -7,13 +7,13 @@ class JsonRules(
     val lineupCycleRule1: List<String> = LINEUP_SEQUEQNCE_LOW,
     val lineupCycleRule2: List<String> = LINEUP_SEQUEQNCE_TOP,
     val lineupCycleRuleExcremental: List<String> = emptyList(),
-    val lineupShiftRule1: Map<String, String> = mapOf("26.12.2019" to "1_1"),
-    val lineupShiftRule2: Map<String, String> = mapOf("26.12.2019" to "8_2"),
+    val lineupShiftRule1: Map<String, String> = mapOf("2019-12-26" to "1_1"),
+    val lineupShiftRule2: Map<String, String> = mapOf("2019-12-26" to "8_2"),
     val lineupAvailability: Map<String, Pair<String, String>> = mapOf(
-        "E_1" to Pair(
-            "26.12.2019",
-            "29.12.2019"
-        )
+        /*"E_1" to Pair(
+            "2019-12-26",
+            "2019-12-29"
+        )*/
     ),
     val LINEUP_TO_BR_RELATION: Map<String, List<String>> = mapOf(
         "1_1" to listOf("1.0", "1.3", "1.7", "2.0"),

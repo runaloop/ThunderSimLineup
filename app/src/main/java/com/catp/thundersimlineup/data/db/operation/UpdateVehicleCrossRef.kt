@@ -2,12 +2,15 @@ package com.catp.thundersimlineup.data.db.operation
 
 import com.catp.model.JsonLineup
 import com.catp.thundersimlineup.data.db.LineupDao
+import toothpick.InjectConstructor
 
+@InjectConstructor
 class UpdateVehicleCrossRef(
     private val dao: LineupDao,
     private val findVehiclesToDelete: FindVehiclesToDelete,
     private val findNewVehicles: FindNewVehicles
 ) {
+    //TODO: Does this class need to delete vehicle cross ref, if vehicle was deleted from lineup?
     fun process(jsonLineups: List<JsonLineup>) {
         //query current xrefs
         var currentXrefs = dao.getTeamWithVehicleCrossRef()
