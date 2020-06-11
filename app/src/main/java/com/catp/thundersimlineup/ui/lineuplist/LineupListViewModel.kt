@@ -14,8 +14,10 @@ import io.reactivex.subjects.PublishSubject
 import org.threeten.bp.LocalDate
 import toothpick.InjectConstructor
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
+@Singleton
 @InjectConstructor
 class LineupListViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -32,7 +34,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
 
 
     private val _lineupLoadStatus = MutableLiveData<Boolean>().apply { value = true }
-
 
     val text: LiveData<String> = _refreshResult
     val selectedDay: LiveData<CalendarDay> = _selectedDay
