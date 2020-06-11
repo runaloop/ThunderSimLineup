@@ -2,13 +2,14 @@ package com.catp.model
 
 import com.dslplatform.json.CompiledJson
 
+//Update version field on a any json generation
 @CompiledJson
 class JsonRules(
     val lineupCycleRule1: List<String> = LINEUP_SEQUEQNCE_LOW,
     val lineupCycleRule2: List<String> = LINEUP_SEQUEQNCE_TOP,
     val lineupCycleRuleExcremental: List<String> = emptyList(),
-    val lineupShiftRule1: Map<String, String> = mapOf("2019-12-26" to "1_1"),
-    val lineupShiftRule2: Map<String, String> = mapOf("2019-12-26" to "8_2"),
+    val lineupShiftRule1: Map<String, String> = mapOf("2020-06-10" to "4_1"),
+    val lineupShiftRule2: Map<String, String> = mapOf("2020-06-10" to "9_2"),
     val lineupAvailability: Map<String, Pair<String, String>> = mapOf(
         /*"E_1" to Pair(
             "2019-12-26",
@@ -26,8 +27,9 @@ class JsonRules(
 ) {
     companion object {
         val LINEUP_SEQUEQNCE_LOW = listOf("1_1", "3_1", "2_1", "5_1", "4_1", "6_1")
-        val LINEUP_SEQUEQNCE_TOP = listOf("8_2", "10_2", "9_2", "12_2", "8_2_2", "10_2")
+        val LINEUP_SEQUEQNCE_TOP = listOf("8_2", "10_2", "8_2_2", "9_2")
         val LINEUP_UTC_TIME_OF_CHANGE = 11
+        val VERSION = 2
     }
 
 

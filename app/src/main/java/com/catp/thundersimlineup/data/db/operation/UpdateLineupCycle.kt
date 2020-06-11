@@ -3,7 +3,6 @@ package com.catp.thundersimlineup.data.db.operation
 import com.catp.model.JsonRules
 import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.*
-import org.threeten.bp.Instant
 import org.threeten.bp.LocalDate
 import toothpick.InjectConstructor
 
@@ -20,9 +19,9 @@ class UpdateLineupCycle(val dao: LineupDao) {
         with(jsonRule) {
             dao.insertLineupCycleList(
                 listOf(
-                    jsonLineupToLineupCycle(lineupCycleRule1, LineupType.LOW),
-                    jsonLineupToLineupCycle(lineupCycleRule2, LineupType.TOP),
-                    jsonLineupToLineupCycle(lineupCycleRuleExcremental, LineupType.EXCREMENTAL)
+                    jsonLineupToLineupCycle(lineupCycleRule1, LineupType.LOW, LINEUP_TO_BR_RELATION),
+                    jsonLineupToLineupCycle(lineupCycleRule2, LineupType.TOP, LINEUP_TO_BR_RELATION),
+                    jsonLineupToLineupCycle(lineupCycleRuleExcremental, LineupType.EXCREMENTAL, LINEUP_TO_BR_RELATION)
                 ).flatten()
             )
             val lineupCycleList = dao.getLineupCycleList()
@@ -66,13 +65,15 @@ class UpdateLineupCycle(val dao: LineupDao) {
 
     private fun jsonLineupToLineupCycle(
         lineupCycleRule: List<String>,
-        type: LineupType
+        type: LineupType,
+        lineupToBrRelation: Map<String, List<String>>
     ): List<LineupCycleEntity> {
         return lineupCycleRule.mapIndexed { index: Int, name: String ->
             LineupCycleEntity(
                 name,
                 type,
-                index
+                index,
+                lineupToBrRelation.keys.any { it == name }
             )
         }
     }

@@ -45,14 +45,21 @@ class RegenerateXLSXFile : CliktCommand() {
 class GenerateJson : CliktCommand() {
     override fun run() {
         val lineups = SpreedSheetReader(vehicleStore).read()
-
         val baos = ByteArrayOutputStream()
-        json.serialize(JsonLineupConfig(lineups, vehicleStore, JsonRules(), 1), baos)
-
+        val version = TermUi.prompt(
+            "Enter json version(if you have any changes, and version would be equal to client version, no data update will happen)",
+            default = JsonRules.VERSION.toString(),
+            showDefault = true
+        )!!
+        json.serialize(
+            JsonLineupConfig(lineups, vehicleStore, JsonRules(), version.toInt()),
+            baos
+        )
         ZipOutputStream(FileOutputStream(File("app/src/main/res/raw/actual_lineup.zip"))).use {
             it.putNextEntry(ZipEntry("actual_lineup.json"))
             it.write(baos.toByteArray())
         }
+        TermUi.echo("Done")
     }
 
 }

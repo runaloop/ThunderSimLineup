@@ -400,6 +400,7 @@ Canberra B(I).Mk.6
 Etendard IVM
 #ui/gameuiskin#etndard_4m_ico.svg
 {"id":"etndard_4m","needShopInfo":true,"ttype":"UNIT"}
+F-100D
 #ui/gameuiskin#f-100d_ico.svg
 {"id":"f-100d","needShopInfo":true,"ttype":"UNIT"}
 ▄F-100D
@@ -420,7 +421,6 @@ F-104J
 F-104S
 #ui/gameuiskin#f-104s_ico.svg
 {"id":"f-104s","needShopInfo":true,"ttype":"UNIT"}
-F-4C Phantom II
 #ui/gameuiskin#f-4c_ico.svg
 {"id":"f-4c","needShopInfo":true,"ttype":"UNIT"}
 F-4E Phantom II
@@ -651,406 +651,369 @@ Wasp HAS.Mk.1
 #ui/gameuiskin#wasp_has_mk1_ico.svg
 {"id":"wasp_has_mk1","needShopInfo":true,"ttype":"UNIT"}
 Low tear command A
-#ui/gameuiskin#cn_lvt_4_zis_2_ico
-{"id":"cn_lvt_4_zis_2","needShopInfo":true,"ttype":"UNIT"}
-␗M3A3 Stuart
-#ui/gameuiskin#cn_m3a3_stuart_ico
-{"id":"cn_m3a3_stuart","needShopInfo":true,"ttype":"UNIT"}
-␗M5A1
-#ui/gameuiskin#cn_m5a1_stuart_ico
-{"id":"cn_m5a1_stuart","needShopInfo":true,"ttype":"UNIT"}
-␗M8 LAC
-!#ui/gameuiskin#us_m8_greyhound_ico
-{"id":"cn_m8_greyhound","needShopInfo":true,"ttype":"UNIT"}
-␗M8 HMC
-!#ui/gameuiskin#us_m8_scott_ico
-{"id":"cn_m8_scott","needShopInfo":true,"ttype":"UNIT"}
-␗Т-26
-#ui/gameuiskin#cn_t_26_1940_ico
-{"id":"cn_t_26_1940","needShopInfo":true,"ttype":"UNIT"}
-Т-26 №531
-!#ui/gameuiskin#ussr_t_26_1940_ico
-{"id":"cn_t_26_no531","needShopInfo":true,"ttype":"UNIT"}
-␗Chi-Ha
-#ui/gameuiskin#cn_type_97_chi_ha_ico
-{"id":"cn_type_97_chi_ha","needShopInfo":true,"ttype":"UNIT"}
-␗Chi-Ha Kai
-#ui/gameuiskin#cn_type_97_kai_ico
-{"id":"cn_type_97_kai","needShopInfo":true,"ttype":"UNIT"}
-AMC.34 YR
-#ui/gameuiskin#fr_amc_34_ico
-{"id":"fr_amc_34","needShopInfo":true,"ttype":"UNIT"}
-AMC.35 (ACG.1)
-#ui/gameuiskin#fr_amc_35_ico
-{"id":"fr_amc_35","needShopInfo":true,"ttype":"UNIT"}
-AMD.35
-#ui/gameuiskin#fr_amd_35_ico
-{"id":"fr_amd_35","needShopInfo":true,"ttype":"UNIT"}
-AMR.35 ZT3
-#ui/gameuiskin#fr_amr_35_zt3_ico
-{"id":"fr_amr_35_zt3","needShopInfo":true,"ttype":"UNIT"}
-P.7.T AA
-#ui/gameuiskin#fr_citroen_kegresse_p4t_ico
-{"id":"fr_citroen_kegresse_p4t","needShopInfo":true,"ttype":"UNIT"}
-▄Crusader Mk.II
-#ui/gameuiskin#fr_crusader_mk_2_ico
-{"id":"fr_crusader_mk_2","needShopInfo":true,"ttype":"UNIT"}
-FCM.36
-#ui/gameuiskin#fr_fcm_36_ico
-{"id":"fr_fcm_36","needShopInfo":true,"ttype":"UNIT"}
-H.35
-#ui/gameuiskin#fr_hotchkiss_h35_ico
-{"id":"fr_hotchkiss_h35","needShopInfo":true,"ttype":"UNIT"}
-H.39
-#ui/gameuiskin#fr_hotchkiss_h39_ico
-{"id":"fr_hotchkiss_h39","needShopInfo":true,"ttype":"UNIT"}
-H.39 "Cambronne"
-#ui/gameuiskin#fr_hotchkiss_h39_cambronne_ico
-{"id":"fr_hotchkiss_h39_cambronne","needShopInfo":true,"ttype":"UNIT"}
-▄M3A3 Stuart
-#ui/gameuiskin#fr_m3a3_stuart_ico
-{"id":"fr_m3a3_stuart","needShopInfo":true,"ttype":"UNIT"}
-R.35 (SA38)
-#ui/gameuiskin#fr_renault_r39_ico
-{"id":"fr_renault_r39","needShopInfo":true,"ttype":"UNIT"}
-D2
-#ui/gameuiskin#fr_renault_d2_ico
-{"id":"fr_renault_d2","needShopInfo":true,"ttype":"UNIT"}
-S.35
-#ui/gameuiskin#fr_somua_s35_ico
-{"id":"fr_somua_s35","needShopInfo":true,"ttype":"UNIT"}
-SAu 40
-#ui/gameuiskin#fr_somua_sau40_ico
-{"id":"fr_somua_sau40","needShopInfo":true,"ttype":"UNIT"}
-Ikv 72
-#ui/gameuiskin#sw_ikv_72_ico
-{"id":"sw_ikv_72","needShopInfo":true,"ttype":"UNIT"}
-Pvlvv fm/42
-#ui/gameuiskin#sw_pvlvv_fm42_ico
-{"id":"sw_pvlvv_fm42","needShopInfo":true,"ttype":"UNIT"}
-Spj fm/43-44
-#ui/gameuiskin#sw_stormpjas_fm43_44_ico
-{"id":"sw_stormpjas_fm43_44","needShopInfo":true,"ttype":"UNIT"}
-Strv m/31
-#ui/gameuiskin#sw_strv_m31_ico
-{"id":"sw_strv_m31","needShopInfo":true,"ttype":"UNIT"}
-Strv m/38
-#ui/gameuiskin#sw_strv_m38_ico
-{"id":"sw_strv_m38","needShopInfo":true,"ttype":"UNIT"}
-Strv m/39
-#ui/gameuiskin#sw_strv_m39_ico
-{"id":"sw_strv_m39","needShopInfo":true,"ttype":"UNIT"}
-Strv m/40L
-#ui/gameuiskin#sw_strv_m40l_ico
-{"id":"sw_strv_m40l","needShopInfo":true,"ttype":"UNIT"}
-Tetrarch Mk.I
-#ui/gameuiskin#uk_a17_mk_1_tetrarch_ico
-{"id":"uk_a17_mk_1_tetrarch","needShopInfo":true,"ttype":"UNIT"}
-Independent
-#ui/gameuiskin#uk_a1e1_independent_ico
-{"id":"uk_a1e1_independent","needShopInfo":true,"ttype":"UNIT"}
-A13 Mk.I
-#ui/gameuiskin#uk_a_13_mk1_ico
-{"id":"uk_a_13_mk1","needShopInfo":true,"ttype":"UNIT"}
-A13 Mk.I (3rd RTR)
-#ui/gameuiskin#uk_a_13_mk1_3rd_rtr_ico
-{"id":"uk_a_13_mk1_3rd_rtr","needShopInfo":true,"ttype":"UNIT"}
-A13 Mk.II
-#ui/gameuiskin#uk_a_13_mk2_ico
-{"id":"uk_a_13_mk2","needShopInfo":true,"ttype":"UNIT"}
-A13 Mk.II 1939
-#ui/gameuiskin#uk_a_13_mk2_1939_ico
-{"id":"uk_a_13_mk2_1939","needShopInfo":true,"ttype":"UNIT"}
-Stuart I
-#ui/gameuiskin#uk_m3_stuart_ico
-{"id":"uk_m3_stuart","needShopInfo":true,"ttype":"UNIT"}
-Stuart III
-#ui/gameuiskin#uk_m3a1_stuart_ico
-{"id":"uk_m3a1_stuart","needShopInfo":true,"ttype":"UNIT"}
-Crusader Mk.II
-#ui/gameuiskin#uk_crusader_mk_2_ico
-{"id":"uk_crusader_mk_2","needShopInfo":true,"ttype":"UNIT"}
-Crusader Mk.III
-#ui/gameuiskin#uk_crusader_mk_3_ico
-{"id":"uk_crusader_mk_3","needShopInfo":true,"ttype":"UNIT"}
-Daimler AC Mk.II
-#ui/gameuiskin#uk_daimler_mk_2_ico
-{"id":"uk_daimler_mk_2","needShopInfo":true,"ttype":"UNIT"}
-Grant I
-#ui/gameuiskin#uk_mk1_grant_ico
-{"id":"uk_mk1_grant","needShopInfo":true,"ttype":"UNIT"}
-T17E2
-#ui/gameuiskin#uk_t17e2_ico
-{"id":"uk_t17e2","needShopInfo":true,"ttype":"UNIT"}
-Valentine Mk.I
-#ui/gameuiskin#uk_valentine_mk_1_ico
-{"id":"uk_valentine_mk_1","needShopInfo":true,"ttype":"UNIT"}
-Mk.VIA AA
-#ui/gameuiskin#uk_vickers_mk_6_aa_mk_1_ico
-{"id":"uk_vickers_mk_6_aa_mk_1","needShopInfo":true,"ttype":"UNIT"}
-M13 MGMC
-#ui/gameuiskin#us_halftrack_m13_ico
-{"id":"us_halftrack_m13","needShopInfo":true,"ttype":"UNIT"}
-M3 GMC
-#ui/gameuiskin#us_halftrack_m3_75mm_gmc_ico
-{"id":"us_halftrack_m3_75mm_gmc","needShopInfo":true,"ttype":"UNIT"}
-▃LVT(A)(4) ZIS-2
-#ui/gameuiskin#us_lvt_4_zis_2_ico
-{"id":"us_lvt_4_zis_2","needShopInfo":true,"ttype":"UNIT"}
-LVT(A)(1)
-#ui/gameuiskin#us_lvt_a_1_ico
-{"id":"us_lvt_a_1","needShopInfo":true,"ttype":"UNIT"}
-M2
-#ui/gameuiskin#us_m2_medium_ico
-{"id":"us_m2_medium","needShopInfo":true,"ttype":"UNIT"}
-M2A2
-#ui/gameuiskin#us_m2a2_ico
-{"id":"us_m2a2","needShopInfo":true,"ttype":"UNIT"}
-M2A4
-#ui/gameuiskin#us_m2a4_ico
-{"id":"us_m2a4","needShopInfo":true,"ttype":"UNIT"}
-M2A4 (1st Arm.Div.)
-#ui/gameuiskin#us_m2a4_1st_armor_div_ico
-{"id":"us_m2a4_1st_armor_div","needShopInfo":true,"ttype":"UNIT"}
-M3 Lee
-#ui/gameuiskin#us_m3_lee_ico
-{"id":"us_m3_lee","needShopInfo":true,"ttype":"UNIT"}
-M3 Stuart
-#ui/gameuiskin#us_m3_stuart_ico
-{"id":"us_m3_stuart","needShopInfo":true,"ttype":"UNIT"}
-M3A1 Stuart
-#ui/gameuiskin#us_m3a1_stuart_ico
-{"id":"us_m3a1_stuart","needShopInfo":true,"ttype":"UNIT"}
-M3A1 (USMC)
-#ui/gameuiskin#us_m3a1_stuart_usmc_ico
-{"id":"us_m3a1_stuart_usmc","needShopInfo":true,"ttype":"UNIT"}
-M5A1
-#ui/gameuiskin#us_m5a1_stuart_ico
-{"id":"us_m5a1_stuart","needShopInfo":true,"ttype":"UNIT"}
-M5A1 (5th arm.div.)
-#ui/gameuiskin#us_m5a1_stuart_canadian_5st_arm_ico
-{"id":"us_m5a1_stuart_canadian_5st_arm","needShopInfo":true,"ttype":"UNIT"}
-M8
-#ui/gameuiskin#us_m8_greyhound_ico
-{"id":"us_m8_greyhound","needShopInfo":true,"ttype":"UNIT"}
-M8 HMC
-#ui/gameuiskin#us_m8_scott_ico
-{"id":"us_m8_scott","needShopInfo":true,"ttype":"UNIT"}
-#ui/gameuiskin#us_mk1_grant_ico
-{"id":"us_mk1_grant","needShopInfo":true,"ttype":"UNIT"}
-T18E2
-#ui/gameuiskin#us_t18_e2_ico
-{"id":"us_t18_e2","needShopInfo":true,"ttype":"UNIT"}
-БА-11
-#ui/gameuiskin#ussr_ba_11_ico
-{"id":"ussr_ba_11","needShopInfo":true,"ttype":"UNIT"}
-БТ-5
-#ui/gameuiskin#ussr_bt_5_ico
-{"id":"ussr_bt_5","needShopInfo":true,"ttype":"UNIT"}
-БТ-7
-#ui/gameuiskin#ussr_bt_7_1937_ico
-{"id":"ussr_bt_7_1937","needShopInfo":true,"ttype":"UNIT"}
-ГАЗ-ААА (4М)
-#ui/gameuiskin#ussr_gaz_4m_ico
-{"id":"ussr_gaz_4m","needShopInfo":true,"ttype":"UNIT"}
-ГАЗ-ААА (ДШК)
-#ui/gameuiskin#ussr_gaz_dshk_ico
-{"id":"ussr_gaz_dshk","needShopInfo":true,"ttype":"UNIT"}
-ГАЗ-ММ (72-К)
-#ui/gameuiskin#ussr_gaz_mm_72k_ico
-{"id":"ussr_gaz_mm_72k","needShopInfo":true,"ttype":"UNIT"}
-▂М-3 Средний
-#ui/gameuiskin#ussr_m3c_ico
-{"id":"ussr_m3c","needShopInfo":true,"ttype":"UNIT"}
-▂T-III
-#ui/gameuiskin#ussr_pzkpfw_III_ausf_J_L42_ico
-{"id":"ussr_pzkpfw_III_ausf_J_L42","needShopInfo":true,"ttype":"UNIT"}
-РБТ-5
-#ui/gameuiskin#ussr_rbt_5_ico
-{"id":"ussr_rbt_5","needShopInfo":true,"ttype":"UNIT"}
-СУ-57
-#ui/gameuiskin#ussr_su_57_ico
-{"id":"ussr_su_57","needShopInfo":true,"ttype":"UNIT"}
-СУ-5-1
-#ui/gameuiskin#ussr_su_5_1_ico
-{"id":"ussr_su_5_1","needShopInfo":true,"ttype":"UNIT"}
-Т-126
-#ui/gameuiskin#ussr_t_126sp_ico
-{"id":"ussr_t_126sp","needShopInfo":true,"ttype":"UNIT"}
-Т-26Э
-#ui/gameuiskin#ussr_t_26E_ico
-{"id":"ussr_t_26E","needShopInfo":true,"ttype":"UNIT"}
-Т-26
-#ui/gameuiskin#ussr_t_26_1940_ico
-{"id":"ussr_t_26_1940","needShopInfo":true,"ttype":"UNIT"}
-Т-26 (1 Гв.Т.Бр.)
-#ui/gameuiskin#ussr_t_26_1940_1st_GvTBr_ico
-{"id":"ussr_t_26_1940_1st_GvTBr","needShopInfo":true,"ttype":"UNIT"}
-Т-26-4
-#ui/gameuiskin#ussr_t_26_4_ico
-{"id":"ussr_t_26_4","needShopInfo":true,"ttype":"UNIT"}
-Т-28
-#ui/gameuiskin#ussr_t_28_ico
-{"id":"ussr_t_28","needShopInfo":true,"ttype":"UNIT"}
-Т-28Э
-#ui/gameuiskin#ussr_t_28E_ico
-{"id":"ussr_t_28E","needShopInfo":true,"ttype":"UNIT"}
-Т-35
-#ui/gameuiskin#ussr_t_35_ico
-{"id":"ussr_t_35","needShopInfo":true,"ttype":"UNIT"}
-Т-60
-#ui/gameuiskin#ussr_t_60_1941_ico
-{"id":"ussr_t_60_1941","needShopInfo":true,"ttype":"UNIT"}
-Т-70
-#ui/gameuiskin#ussr_t_70_1942_ico
-{"id":"ussr_t_70_1942","needShopInfo":true,"ttype":"UNIT"}
-Т-80
-#ui/gameuiskin#ussr_t_80_ico
-{"id":"ussr_t_80","needShopInfo":true,"ttype":"UNIT"}
-ЗиС-30
-#ui/gameuiskin#ussr_zis_30_ico
-{"id":"ussr_zis_30","needShopInfo":true,"ttype":"UNIT"}
-Flakpanzer I
-#ui/gameuiskin#germ_flakpanzer_I_ausf_A_ico
-{"id":"germ_flakpanzer_I_ausf_A","needShopInfo":true,"ttype":"UNIT"}
-Nb.Fz.
-#ui/gameuiskin#germ_nbfz_VI_ico
-{"id":"germ_nbfz_VI","needShopInfo":true,"ttype":"UNIT"}
-Panzerjäger I
-#ui/gameuiskin#germ_panzerjager_1_ico
-{"id":"germ_panzerjager_1","needShopInfo":true,"ttype":"UNIT"}
-Pz.35(t)
-#ui/gameuiskin#germ_pzkpfw_35t_ico
-{"id":"germ_pzkpfw_35t","needShopInfo":true,"ttype":"UNIT"}
-Sd.Kfz. 140/1
-#ui/gameuiskin#germ_pzkpfw_38t_Aufklarungspanzer_ico
-{"id":"germ_pzkpfw_38t_Aufklarungspanzer","needShopInfo":true,"ttype":"UNIT"}
-Marder III
-#ui/gameuiskin#germ_pzkpfw_38t_Marder_III_ico
-{"id":"germ_pzkpfw_38t_Marder_III","needShopInfo":true,"ttype":"UNIT"}
-Pz.38(t) A
-#ui/gameuiskin#germ_pzkpfw_38t_ausf_A_ico
-{"id":"germ_pzkpfw_38t_ausf_A","needShopInfo":true,"ttype":"UNIT"}
-Pz.38(t) F
-#ui/gameuiskin#germ_pzkpfw_38t_ausf_F_ico
-{"id":"germ_pzkpfw_38t_ausf_F","needShopInfo":true,"ttype":"UNIT"}
-Pz.III B
-#ui/gameuiskin#germ_pzkpfw_III_ausf_B_ico
-{"id":"germ_pzkpfw_III_ausf_B","needShopInfo":true,"ttype":"UNIT"}
-Pz.III E
-#ui/gameuiskin#germ_pzkpfw_III_ausf_E_ico
-{"id":"germ_pzkpfw_III_ausf_E","needShopInfo":true,"ttype":"UNIT"}
-Pz.III F
-#ui/gameuiskin#germ_pzkpfw_III_ausf_F_ico
-{"id":"germ_pzkpfw_III_ausf_F","needShopInfo":true,"ttype":"UNIT"}
-Pz.III J
-#ui/gameuiskin#germ_pzkpfw_III_ausf_J_L42_ico
-{"id":"germ_pzkpfw_III_ausf_J_L42","needShopInfo":true,"ttype":"UNIT"}
-Pz.II C
-#ui/gameuiskin#germ_pzkpfw_II_ausf_C_ico
-{"id":"germ_pzkpfw_II_ausf_C","needShopInfo":true,"ttype":"UNIT"}
-Pz.II C (DAK)
-#ui/gameuiskin#germ_pzkpfw_II_ausf_C_DAK_ico
-{"id":"germ_pzkpfw_II_ausf_C_DAK","needShopInfo":true,"ttype":"UNIT"}
-Pz.II F
-#ui/gameuiskin#germ_pzkpfw_II_ausf_F_ico
-{"id":"germ_pzkpfw_II_ausf_F","needShopInfo":true,"ttype":"UNIT"}
-Pz.Sfl.Ic
-#ui/gameuiskin#germ_pzkpfw_II_ausf_H_ico
-{"id":"germ_pzkpfw_II_ausf_H","needShopInfo":true,"ttype":"UNIT"}
-Pz.IV C
-#ui/gameuiskin#germ_pzkpfw_IV_ausf_C_ico
-{"id":"germ_pzkpfw_IV_ausf_C","needShopInfo":true,"ttype":"UNIT"}
-Pz.IV E
-#ui/gameuiskin#germ_pzkpfw_IV_ausf_E_ico
-{"id":"germ_pzkpfw_IV_ausf_E","needShopInfo":true,"ttype":"UNIT"}
-Pz.IV F1
-#ui/gameuiskin#germ_pzkpfw_IV_ausf_F_ico
-{"id":"germ_pzkpfw_IV_ausf_F","needShopInfo":true,"ttype":"UNIT"}
-Sd.Kfz.221 (s.Pz.B.41)
-#ui/gameuiskin#germ_sdkfz_221_s_pz_b_41_ico
-{"id":"germ_sdkfz_221_s_pz_b_41","needShopInfo":true,"ttype":"UNIT"}
-Sd.Kfz.234/1
-#ui/gameuiskin#germ_sdkfz_234_1_ico
-{"id":"germ_sdkfz_234_1","needShopInfo":true,"ttype":"UNIT"}
-Sd.Kfz.234/2
-#ui/gameuiskin#germ_sdkfz_234_2_ico
-{"id":"germ_sdkfz_234_2","needShopInfo":true,"ttype":"UNIT"}
-Sd.Kfz.234/3
-#ui/gameuiskin#germ_sdkfz_234_3_ico
-{"id":"germ_sdkfz_234_3","needShopInfo":true,"ttype":"UNIT"}
-StuG III A
-#ui/gameuiskin#germ_stug_III_ausf_A_ico
-{"id":"germ_stug_III_ausf_A","needShopInfo":true,"ttype":"UNIT"}
-15cm sIG 33 B Sfl
-#ui/gameuiskin#germ_sturmpanzer_II_ico
-{"id":"germ_sturmpanzer_II","needShopInfo":true,"ttype":"UNIT"}
-AB 41
-#ui/gameuiskin#it_ab_41_ico
-{"id":"it_ab_41","needShopInfo":true,"ttype":"UNIT"}
-AS 42
-#ui/gameuiskin#it_as_42_metropolitana_ico
-{"id":"it_as_42_metropolitana","needShopInfo":true,"ttype":"UNIT"}
-L3/33 CC
-#ui/gameuiskin#it_l3_cc_ico
-{"id":"it_l3_cc","needShopInfo":true,"ttype":"UNIT"}
-L6/40
-#ui/gameuiskin#it_l6_ico
-{"id":"it_l6","needShopInfo":true,"ttype":"UNIT"}
-M11/39
-#ui/gameuiskin#it_m11_39_ico
-{"id":"it_m11_39","needShopInfo":true,"ttype":"UNIT"}
-▄M3A3
-#ui/gameuiskin#it_m3a3_stuart_ico
-{"id":"it_m3a3_stuart","needShopInfo":true,"ttype":"UNIT"}
-M13/40 (I)
-#ui/gameuiskin#it_m13_40_serie_1_ico
-{"id":"it_m13_40_serie_1","needShopInfo":true,"ttype":"UNIT"}
-M13/40 (II)
-#ui/gameuiskin#it_m13_40_serie_2_ico
-{"id":"it_m13_40_serie_2","needShopInfo":true,"ttype":"UNIT"}
-M13/40 (III)
-#ui/gameuiskin#it_m13_40_serie_3_ico
-{"id":"it_m13_40_serie_3","needShopInfo":true,"ttype":"UNIT"}
-M14/41
-#ui/gameuiskin#it_m14_41_ico
-{"id":"it_m14_41","needShopInfo":true,"ttype":"UNIT"}
-47/32 L40
-#ui/gameuiskin#it_semovente_l40_ico
-{"id":"it_semovente_l40","needShopInfo":true,"ttype":"UNIT"}
-Ka-Mi
-#ui/gameuiskin#jp_type_2_ka_mi_ico
-{"id":"jp_type_2_ka_mi","needShopInfo":true,"ttype":"UNIT"}
-Ho-Ro
-#ui/gameuiskin#jp_type_4_ho_ro_ico
-{"id":"jp_type_4_ho_ro","needShopInfo":true,"ttype":"UNIT"}
-I-Go Ko
-#ui/gameuiskin#jp_type_89b_i_go_otsu_ico
-{"id":"jp_type_89b_i_go_otsu","needShopInfo":true,"ttype":"UNIT"}
-Type 94
-#ui/gameuiskin#jp_type_94_ico
-{"id":"jp_type_94","needShopInfo":true,"ttype":"UNIT"}
-Ha-Go
-#ui/gameuiskin#jp_type_95_ha_go_ico
-{"id":"jp_type_95_ha_go","needShopInfo":true,"ttype":"UNIT"}
-Ha-Go Commander
-#ui/gameuiskin#jp_type_95_ha_go_commander_ico
-{"id":"jp_type_95_ha_go_commander","needShopInfo":true,"ttype":"UNIT"}
-Ro-Go
-#ui/gameuiskin#jp_type_95_heavy_ico
-{"id":"jp_type_95_heavy","needShopInfo":true,"ttype":"UNIT"}
-Chi-Ha
-#ui/gameuiskin#jp_type_97_chi_ha_ico
-{"id":"jp_type_97_chi_ha","needShopInfo":true,"ttype":"UNIT"}
-Chi-Ha Short Gun
-#ui/gameuiskin#jp_type_97_chi_ha_12cm_ico
-{"id":"jp_type_97_chi_ha_12cm","needShopInfo":true,"ttype":"UNIT"}
-Chi-Ha Kai
-#ui/gameuiskin#jp_type_97_kai_ico
-{"id":"jp_type_97_kai","needShopInfo":true,"ttype":"UNIT"}
-Ke-Ni
-#ui/gameuiskin#jp_type_98_ke_ni_ico
-{"id":"jp_type_98_ke_ni","needShopInfo":true,"ttype":"UNIT"}
-Ta-Se
-#ui/gameuiskin#jp_type_98_ta_se_ico
-{"id":"jp_type_98_ta_se","needShopInfo":true,"ttype":"UNIT"}
+#ui/gameuiskin#us_m10_ico
+{"id":"cn_m10","needShopInfo":true,"ttype":"UNIT"}
+␗M18
+!#ui/gameuiskin#us_m18_hellcat_ico
+{"id":"cn_m18_hellcat","needShopInfo":true,"ttype":"UNIT"}
+␗M24
+!#ui/gameuiskin#us_m24_chaffee_ico
+{"id":"cn_m24_chaffee","needShopInfo":true,"ttype":"UNIT"}
+␗M4A1 (75) W
+#ui/gameuiskin#cn_m4a1_76w_sherman_ico
+{"id":"cn_m4a1_76w_sherman","needShopInfo":true,"ttype":"UNIT"}
+␗M4A4
+#ui/gameuiskin#cn_m4a4_sherman_ico
+{"id":"cn_m4a4_sherman","needShopInfo":true,"ttype":"UNIT"}
+M4A4 (1st PTG)
+#ui/gameuiskin#cn_m4a4_sherman_1st_ptg_ico
+{"id":"cn_m4a4_sherman_1st_ptg","needShopInfo":true,"ttype":"UNIT"}
+␗Т-34 (1943)
+#ui/gameuiskin#cn_t_34_1942_ico
+{"id":"cn_t_34_1942","needShopInfo":true,"ttype":"UNIT"}
+␗Т-34-85 (S-53)
+!#ui/gameuiskin#ussr_t_34_85_zis_53_ico
+{"id":"cn_t_34_85_d_5t","needShopInfo":true,"ttype":"UNIT"}
+Т-34-85 №215
+{"id":"cn_t_34_85_zis_53_no215","needShopInfo":true,"ttype":"UNIT"}
+Т-34-85 Gai
+#ui/gameuiskin#cn_type_58_ico
+{"id":"cn_type_58","needShopInfo":true,"ttype":"UNIT"}
+ZSD63
+#ui/gameuiskin#cn_zsd63_pg87_ico
+{"id":"cn_zsd63_pg87","needShopInfo":true,"ttype":"UNIT"}
+Phòng không T-34
+#ui/gameuiskin#cn_type_65_aa_ico
+{"id":"cn_type_65_aa","needShopInfo":true,"ttype":"UNIT"}
+AMX-13 (FL11)
+#ui/gameuiskin#fr_amx_13_fl_11_ico
+{"id":"fr_amx_13_fl_11","needShopInfo":true,"ttype":"UNIT"}
+ARL-44
+#ui/gameuiskin#fr_arl_44_ico
+{"id":"fr_arl_44","needShopInfo":true,"ttype":"UNIT"}
+CCKW 353 AA
+#ui/gameuiskin#fr_cckw_353_bofors_ico
+{"id":"fr_cckw_353_bofors","needShopInfo":true,"ttype":"UNIT"}
+Lorraine 155 Mle.50
+#ui/gameuiskin#fr_lorraine_155_ico
+{"id":"fr_lorraine_155","needShopInfo":true,"ttype":"UNIT"}
+M4A1 (FL10)
+#ui/gameuiskin#fr_m4a1_sherman_fl_10_ico
+{"id":"fr_m4a1_sherman_fl_10","needShopInfo":true,"ttype":"UNIT"}
+▄M4A3E2
+#ui/gameuiskin#fr_m4a3e2_sherman_jumbo_ico
+{"id":"fr_m4a3e2_sherman_jumbo","needShopInfo":true,"ttype":"UNIT"}
+M4A4 (SA50)
+#ui/gameuiskin#fr_m4a4_cn_75_50_ico
+{"id":"fr_m4a4_cn_75_50","needShopInfo":true,"ttype":"UNIT"}
+AMX-13-M24
+#ui/gameuiskin#fr_amx_13_chaffee_ico
+{"id":"fr_amx_13_chaffee","needShopInfo":true,"ttype":"UNIT"}
+▄M4A4
+#ui/gameuiskin#fr_m4a4_sherman_ico
+{"id":"fr_m4a4_sherman","needShopInfo":true,"ttype":"UNIT"}
+L-62 ANTI II
+#ui/gameuiskin#sw_l_62_anti_II_ico
+{"id":"sw_l_62_anti_II","needShopInfo":true,"ttype":"UNIT"}
+Pvkv m/43 (1946)
+#ui/gameuiskin#sw_pvkv_m43_1946_ico
+{"id":"sw_pvkv_m43_1946","needShopInfo":true,"ttype":"UNIT"}
+Pvkv m/43 (1963)
+#ui/gameuiskin#sw_pvkv_m43_1963_ico
+{"id":"sw_pvkv_m43_1963","needShopInfo":true,"ttype":"UNIT"}
+Strv m/42 DT
+#ui/gameuiskin#sw_strv_m42_delat_torn_ico
+{"id":"sw_strv_m42_delat_torn","needShopInfo":true,"ttype":"UNIT"}
+Pvkv II
+#ui/gameuiskin#sw_pvkv_II_ico
+{"id":"sw_pvkv_II","needShopInfo":true,"ttype":"UNIT"}
+Achilles
+#ui/gameuiskin#uk_17_pdr_m10_achilles_ico
+{"id":"uk_17_pdr_m10_achilles","needShopInfo":true,"ttype":"UNIT"}
+Achilles (65 Rg.)
+#ui/gameuiskin#uk_17_pdr_m10_achilles_norfolk_yeomanry_ico
+{"id":"uk_17_pdr_m10_achilles_norfolk_yeomanry","needShopInfo":true,"ttype":"UNIT"}
+Cromwell Mk.V (RP-3)
+#ui/gameuiskin#uk_a27m_cromwell_5_rp3_ico
+{"id":"uk_a27m_cromwell_5_rp3","needShopInfo":true,"ttype":"UNIT"}
+Avenger
+#ui/gameuiskin#uk_a30_sp_avenger_ico
+{"id":"uk_a30_sp_avenger","needShopInfo":true,"ttype":"UNIT"}
+Churchill Mk.VII
+#ui/gameuiskin#uk_a_22f_mk_7_churchill_1944_ico
+{"id":"uk_a_22f_mk_7_churchill_1944","needShopInfo":true,"ttype":"UNIT"}
+Comet I
+#ui/gameuiskin#uk_a_34_comet_ico
+{"id":"uk_a_34_comet","needShopInfo":true,"ttype":"UNIT"}
+Iron Duke IV
+#ui/gameuiskin#uk_a_34_comet_iron_duke_ico
+{"id":"uk_a_34_comet_iron_duke","needShopInfo":true,"ttype":"UNIT"}
+A.C.IV
+#ui/gameuiskin#uk_ac4_thunderbolt_ico
+{"id":"uk_ac4_thunderbolt","needShopInfo":true,"ttype":"UNIT"}
+Crusader AA Mk.I
+#ui/gameuiskin#uk_crusader_aa_mk_1_ico
+{"id":"uk_crusader_aa_mk_1","needShopInfo":true,"ttype":"UNIT"}
+Crusader AA Mk.II
+#ui/gameuiskin#uk_crusader_aa_mk_2_ico
+{"id":"uk_crusader_aa_mk_2","needShopInfo":true,"ttype":"UNIT"}
+QF 3.7 Ram
+#ui/gameuiskin#uk_ram_90mm_aa_ico
+{"id":"uk_ram_90mm_aa","needShopInfo":true,"ttype":"UNIT"}
+Sherman IC "Trzyniec"
+#ui/gameuiskin#uk_sherman_ic_firefly_ico
+{"id":"uk_sherman_ic_firefly","needShopInfo":true,"ttype":"UNIT"}
+Sherman Firefly
+#ui/gameuiskin#uk_sherman_vc_firefly_ico
+{"id":"uk_sherman_vc_firefly","needShopInfo":true,"ttype":"UNIT"}
+M15A1 CGMC
+#ui/gameuiskin#us_halftrack_m15_ico
+{"id":"us_halftrack_m15","needShopInfo":true,"ttype":"UNIT"}
+M16 MGMC
+#ui/gameuiskin#us_halftrack_m16_ico
+{"id":"us_halftrack_m16","needShopInfo":true,"ttype":"UNIT"}
+M18 GMC
+#ui/gameuiskin#us_m18_hellcat_ico
+{"id":"us_m18_hellcat","needShopInfo":true,"ttype":"UNIT"}
+M18 "Black Cat"
+#ui/gameuiskin#us_m18_hellcat_black_cat_ico
+{"id":"us_m18_hellcat_black_cat","needShopInfo":true,"ttype":"UNIT"}
+M24
+#ui/gameuiskin#us_m24_chaffee_ico
+{"id":"us_m24_chaffee","needShopInfo":true,"ttype":"UNIT"}
+M24 (TL)
+#ui/gameuiskin#us_m24_chaffee_tl_ico
+{"id":"us_m24_chaffee_tl","needShopInfo":true,"ttype":"UNIT"}
+Calliope
+#ui/gameuiskin#us_m4_sherman_calliope_ico
+{"id":"us_m4_sherman_calliope","needShopInfo":true,"ttype":"UNIT"}
+M4A1 (76) W
+#ui/gameuiskin#us_m4a1_76w_sherman_ico
+{"id":"us_m4a1_76w_sherman","needShopInfo":true,"ttype":"UNIT"}
+M4A2 (76) W
+#ui/gameuiskin#us_m4a2_76w_sherman_ico
+{"id":"us_m4a2_76w_sherman","needShopInfo":true,"ttype":"UNIT"}
+M4A3E2
+#ui/gameuiskin#us_m4a3e2_sherman_jumbo_ico
+{"id":"us_m4a3e2_sherman_jumbo","needShopInfo":true,"ttype":"UNIT"}
+Cobra King
+#ui/gameuiskin#us_m4a3e2_sherman_jumbo_cobra_king_ico
+{"id":"us_m4a3e2_sherman_jumbo_cobra_king","needShopInfo":true,"ttype":"UNIT"}
+M4A3 (76) W
+#ui/gameuiskin#us_m4a3e8_76w_sherman_ico
+{"id":"us_m4a3e8_76w_sherman","needShopInfo":true,"ttype":"UNIT"}
+M6A1
+#ui/gameuiskin#us_m6a1_ico
+{"id":"us_m6a1","needShopInfo":true,"ttype":"UNIT"}
+T20
+#ui/gameuiskin#us_t20_ico
+{"id":"us_t20","needShopInfo":true,"ttype":"UNIT"}
+АСУ-57
+#ui/gameuiskin#ussr_asu_57_ico
+{"id":"ussr_asu_57","needShopInfo":true,"ttype":"UNIT"}
+ИС-1
+#ui/gameuiskin#ussr_is_1_ico
+{"id":"ussr_is_1","needShopInfo":true,"ttype":"UNIT"}
+КВ-122
+#ui/gameuiskin#ussr_kv_122_ico
+{"id":"ussr_kv_122","needShopInfo":true,"ttype":"UNIT"}
+КВ-1С
+#ui/gameuiskin#ussr_kv_1s_ico
+{"id":"ussr_kv_1s","needShopInfo":true,"ttype":"UNIT"}
+КВ-220
+#ui/gameuiskin#ussr_kv_220_ico
+{"id":"ussr_kv_220","needShopInfo":true,"ttype":"UNIT"}
+КВ-2 (1939)
+#ui/gameuiskin#ussr_kv_2_1939_ico
+{"id":"ussr_kv_2_1939","needShopInfo":true,"ttype":"UNIT"}
+КВ-2 (1940)
+#ui/gameuiskin#ussr_kv_2_1940_ico
+{"id":"ussr_kv_2_1940","needShopInfo":true,"ttype":"UNIT"}
+КВ-2 (ЗиС-6)
+#ui/gameuiskin#ussr_kv_2_zis_6_ico
+{"id":"ussr_kv_2_zis_6","needShopInfo":true,"ttype":"UNIT"}
+КВ-85
+#ui/gameuiskin#ussr_kv_85_ico
+{"id":"ussr_kv_85","needShopInfo":true,"ttype":"UNIT"}
+▂M4A2
+#ui/gameuiskin#ussr_m4a2_76w_sherman_ico
+{"id":"ussr_m4a2_76w_sherman","needShopInfo":true,"ttype":"UNIT"}
+СУ-100Y
+#ui/gameuiskin#ussr_su_100Y_ico
+{"id":"ussr_su_100Y","needShopInfo":true,"ttype":"UNIT"}
+СУ-152
+#ui/gameuiskin#ussr_su_152_ico
+{"id":"ussr_su_152","needShopInfo":true,"ttype":"UNIT"}
+СУ-85
+#ui/gameuiskin#ussr_su_85_1943_ico
+{"id":"ussr_su_85_1943","needShopInfo":true,"ttype":"UNIT"}
+СУ-85А
+#ui/gameuiskin#ussr_su_85a_ico
+{"id":"ussr_su_85a","needShopInfo":true,"ttype":"UNIT"}
+СУ-85М
+#ui/gameuiskin#ussr_su_85m_ico
+{"id":"ussr_su_85m","needShopInfo":true,"ttype":"UNIT"}
+Т-34-57 (1943)
+#ui/gameuiskin#ussr_t_34_57_1943_ico
+{"id":"ussr_t_34_57_1943","needShopInfo":true,"ttype":"UNIT"}
+Т-34-85Э
+#ui/gameuiskin#ussr_t_34_85E_ico
+{"id":"ussr_t_34_85E","needShopInfo":true,"ttype":"UNIT"}
+Т-34-85 (Д-5Т)
+#ui/gameuiskin#ussr_t_34_85_d_5t_ico
+{"id":"ussr_t_34_85_d_5t","needShopInfo":true,"ttype":"UNIT"}
+Т-34-85
+#ui/gameuiskin#ussr_t_34_85_zis_53_ico
+{"id":"ussr_t_34_85_zis_53","needShopInfo":true,"ttype":"UNIT"}
+▂Phòng không T-34
+#ui/gameuiskin#ussr_type_65_aa_ico
+{"id":"ussr_type_65_aa","needShopInfo":true,"ttype":"UNIT"}
+ЗиС-12 (94-КМ)
+#ui/gameuiskin#ussr_zis_12_94KM_1945_ico
+{"id":"ussr_zis_12_94KM_1945","needShopInfo":true,"ttype":"UNIT"}
+ЗиС-43
+#ui/gameuiskin#ussr_zis_43_ico
+{"id":"ussr_zis_43","needShopInfo":true,"ttype":"UNIT"}
+ЯГ-10 (29-К)
+#ui/gameuiskin#ussr_zsu_29k_ico
+{"id":"ussr_zsu_29k","needShopInfo":true,"ttype":"UNIT"}
+ЗСУ-37
+#ui/gameuiskin#ussr_zsu_37_ico
+{"id":"ussr_zsu_37","needShopInfo":true,"ttype":"UNIT"}
+ЗУТ-37
+#ui/gameuiskin#ussr_zut_37_ico
+{"id":"ussr_zut_37","needShopInfo":true,"ttype":"UNIT"}
+Ostwind
+#ui/gameuiskin#germ_flakpanzer_IV_Ostwind_ico
+{"id":"germ_flakpanzer_IV_Ostwind","needShopInfo":true,"ttype":"UNIT"}
+Ostwind II
+#ui/gameuiskin#germ_flakpanzer_IV_Ostwind_2_ico
+{"id":"germ_flakpanzer_IV_Ostwind_2","needShopInfo":true,"ttype":"UNIT"}
+Wirbelwind
+#ui/gameuiskin#germ_flakpanzer_IV_Wirbelwind_ico
+{"id":"germ_flakpanzer_IV_Wirbelwind","needShopInfo":true,"ttype":"UNIT"}
+▀Pz.Kpfw. Churchill
+#ui/gameuiskin#germ_infanterie_kampfpanzer_churchill_ico
+{"id":"germ_infanterie_kampfpanzer_churchill","needShopInfo":true,"ttype":"UNIT"}
+Jagdpanzer 38(t)
+#ui/gameuiskin#germ_jgdpz_38t_ico
+{"id":"germ_jgdpz_38t","needShopInfo":true,"ttype":"UNIT"}
+Jagdpanzer IV
+#ui/gameuiskin#germ_jgdpz_IV_L48_ico
+{"id":"germ_jgdpz_IV_L48","needShopInfo":true,"ttype":"UNIT"}
+▀KV-IB
+#ui/gameuiskin#germ_kv_1B_finland_ico
+{"id":"germ_kv_1B_finland","needShopInfo":true,"ttype":"UNIT"}
+▀KV I C 756 (r)
+#ui/gameuiskin#germ_kv_1_kwk_40_ico
+{"id":"germ_kv_1_kwk_40","needShopInfo":true,"ttype":"UNIT"}
+▀KV II 754 (r)
+#ui/gameuiskin#germ_kv_2_754r_ico
+{"id":"germ_kv_2_754r","needShopInfo":true,"ttype":"UNIT"}
+Pz.Bef.Wg.IV J
+#ui/gameuiskin#germ_panzerbefelhswagen_IV_ausf_J_ico
+{"id":"germ_panzerbefelhswagen_IV_ausf_J","needShopInfo":true,"ttype":"UNIT"}
+Nashorn
+#ui/gameuiskin#germ_panzerjager_nashorn_ico
+{"id":"germ_panzerjager_nashorn","needShopInfo":true,"ttype":"UNIT"}
+Panzer IV/70(V)
+#ui/gameuiskin#germ_pz_IV_L70_ico
+{"id":"germ_pz_IV_L70","needShopInfo":true,"ttype":"UNIT"}
+Panzer IV/70(A)
+#ui/gameuiskin#germ_pz_IV_L70_A_ico
+{"id":"germ_pz_IV_L70_A","needShopInfo":true,"ttype":"UNIT"}
+Pz.IV H
+#ui/gameuiskin#germ_pzkpfw_IV_ausf_H_ico
+{"id":"germ_pzkpfw_IV_ausf_H","needShopInfo":true,"ttype":"UNIT"}
+Pz.IV J
+#ui/gameuiskin#germ_pzkpfw_IV_ausf_J_ico
+{"id":"germ_pzkpfw_IV_ausf_J","needShopInfo":true,"ttype":"UNIT"}
+Tiger E
+#ui/gameuiskin#germ_pzkpfw_VI_ausf_e_tiger_ico
+{"id":"germ_pzkpfw_VI_ausf_e_tiger","needShopInfo":true,"ttype":"UNIT"}
+Tiger H1
+#ui/gameuiskin#germ_pzkpfw_VI_ausf_h1_tiger_ico
+{"id":"germ_pzkpfw_VI_ausf_h1_tiger","needShopInfo":true,"ttype":"UNIT"}
+␠Tiger
+#ui/gameuiskin#germ_pzkpfw_VI_ausf_h1_tiger_animal_version_ico
+{"id":"germ_pzkpfw_VI_ausf_h1_tiger_animal_version","needShopInfo":true,"ttype":"UNIT"}
+VK 45.01 (P)
+#ui/gameuiskin#germ_pzkpfw_VI_tiger_P_ico
+{"id":"germ_pzkpfw_VI_tiger_P","needShopInfo":true,"ttype":"UNIT"}
+Panther D
+#ui/gameuiskin#germ_pzkpfw_V_ausf_d_panther_ico
+{"id":"germ_pzkpfw_V_ausf_d_panther","needShopInfo":true,"ttype":"UNIT"}
+Dicker Max
+#ui/gameuiskin#germ_pzsfl_IVa_dickermax_ico
+{"id":"germ_pzsfl_IVa_dickermax","needShopInfo":true,"ttype":"UNIT"}
+Sd.Kfz.234/4
+#ui/gameuiskin#germ_sdkfz_234_4_ico
+{"id":"germ_sdkfz_234_4","needShopInfo":true,"ttype":"UNIT"}
+8,8 cm Flak 37 Sfl.
+#ui/gameuiskin#germ_sdkfz_9_flak37_ico
+{"id":"germ_sdkfz_9_flak37","needShopInfo":true,"ttype":"UNIT"}
+StuG III G
+#ui/gameuiskin#germ_stug_III_ausf_G_ico
+{"id":"germ_stug_III_ausf_G","needShopInfo":true,"ttype":"UNIT"}
+Brummbär
+#ui/gameuiskin#germ_sturmpanzer_IV_brummbar_ico
+{"id":"germ_sturmpanzer_IV_brummbar","needShopInfo":true,"ttype":"UNIT"}
+VFW
+#ui/gameuiskin#germ_vsw_flak_41_ico
+{"id":"germ_vsw_flak_41","needShopInfo":true,"ttype":"UNIT"}
+M42 Contraereo
+#ui/gameuiskin#it_m15_42_contraereo_ico
+{"id":"it_m15_42_contraereo","needShopInfo":true,"ttype":"UNIT"}
+R3 T20 FA-HS
+#ui/gameuiskin#it_oto_r3_t20_fa_ico
+{"id":"it_oto_r3_t20_fa","needShopInfo":true,"ttype":"UNIT"}
+Breda 501
+#ui/gameuiskin#it_semovente_breda_501_ico
+{"id":"it_semovente_breda_501","needShopInfo":true,"ttype":"UNIT"}
+75/46 M43
+#ui/gameuiskin#it_semovente_m43_75_46_ico
+{"id":"it_semovente_m43_75_46","needShopInfo":true,"ttype":"UNIT"}
+M4 Tipo IC
+#ui/gameuiskin#it_sherman_VII_ico
+{"id":"it_sherman_VII","needShopInfo":true,"ttype":"UNIT"}
+▄M18
+#ui/gameuiskin#it_m18_hellcat_ico
+{"id":"it_m18_hellcat","needShopInfo":true,"ttype":"UNIT"}
+▄M24
+#ui/gameuiskin#it_m24_chaffee_ico
+{"id":"it_m24_chaffee","needShopInfo":true,"ttype":"UNIT"}
+#ui/gameuiskin#it_m4a4_sherman_ico
+{"id":"it_m4a4_sherman","needShopInfo":true,"ttype":"UNIT"}
+▄Sherman Vc
+#ui/gameuiskin#it_sherman_vc_firefly_ico
+{"id":"it_sherman_vc_firefly","needShopInfo":true,"ttype":"UNIT"}
+▄M4 Hybrid
+#ui/gameuiskin#it_sherman_75_37_ico
+{"id":"it_sherman_75_37","needShopInfo":true,"ttype":"UNIT"}
+▅M24
+#ui/gameuiskin#jp_m24_chaffee_ico
+{"id":"jp_m24_chaffee","needShopInfo":true,"ttype":"UNIT"}
+▅M4A3 (76) W
+#ui/gameuiskin#jp_m4a3e8_76w_sherman_ico
+{"id":"jp_m4a3e8_76w_sherman","needShopInfo":true,"ttype":"UNIT"}
+▅Heavy Tank No.6
+#ui/gameuiskin#jp_pzkpfw_VI_ausf_e_tiger_ico
+{"id":"jp_pzkpfw_VI_ausf_e_tiger","needShopInfo":true,"ttype":"UNIT"}
+Chi-Nu II
+#ui/gameuiskin#jp_type_3_chi_nu_75cm_type_5_ico
+{"id":"jp_type_3_chi_nu_75cm_type_5","needShopInfo":true,"ttype":"UNIT"}
+Chi-To
+#ui/gameuiskin#jp_type_4_chi_to_ico
+{"id":"jp_type_4_chi_to","needShopInfo":true,"ttype":"UNIT"}
+Chi-To Late
+#ui/gameuiskin#jp_type_4_chi_to_late_ico
+{"id":"jp_type_4_chi_to_late","needShopInfo":true,"ttype":"UNIT"}
+Chi-Ri II
+#ui/gameuiskin#jp_type_5_chi_ri_ico
+{"id":"jp_type_5_chi_ri","needShopInfo":true,"ttype":"UNIT"}
+Na-To
+#ui/gameuiskin#jp_type_5_na_to_ico
+{"id":"jp_type_5_na_to","needShopInfo":true,"ttype":"UNIT"}
+So-Ki
+#ui/gameuiskin#jp_type_95_so_ki_ico
+{"id":"jp_type_95_so_ki","needShopInfo":true,"ttype":"UNIT"}
