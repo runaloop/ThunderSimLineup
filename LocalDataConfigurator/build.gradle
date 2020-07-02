@@ -51,6 +51,11 @@ compileKotlin {
         implementation deps.kotlin.coroutine
         implementation deps.fastcsv
         implementation deps.poi_ooxml
+        testImplementation deps.test.mockk
+        testImplementation deps.test.junit5
+        testImplementation deps.test.test
+        testImplementation deps.test.truth
+        testImplementation deps.kotlin.kotlin_test
     }
 }
 compileTestKotlin {

@@ -63,3 +63,13 @@ class GenerateJson : CliktCommand() {
     }
 
 }
+
+
+@ExperimentalStdlibApi
+class ReadWTDump: CliktCommand(){
+    val fileToParse by argument().default("LocalDataConfigurator/aces.exe_200614_161756_small.dmp")
+
+    override fun run() {
+        WTDumpReader(fileToParse).parseFile()
+    }
+}
