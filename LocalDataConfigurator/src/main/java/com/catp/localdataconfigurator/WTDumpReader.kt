@@ -45,9 +45,12 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
             val progress = currentChunk*100/chunks.toFloat()
             TermUi.echo("Parsed: ${"%.2f".format(progress)}%\r", trailingNewline = false)
         }
+        if(readStatus == FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL)
+            strings.removeLast()
         TermUi.echo("Parsing complete")
         if (strings.isNotEmpty()) {
             val lineups = splitLineups()
+
             guessLineups(lineups)
         }
     }
@@ -68,7 +71,16 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
     }
 
     fun guessLineups(lineups: List<List<String>>) {
-        ThunderLineupTxtGuesser().parse(lineups)
+        val list =
+        if(lineups.size > 2){
+            TermUi.echo("Found ${lineups.size} lists of a vehicles")
+            lineups.filter {
+                TermUi.echo("$it")
+                "y" == TermUi.prompt("🙉Would you like to process the list above?")
+            }
+        }else
+            lineups
+        ThunderLineupTxtGuesser().parse(list)
     }
 
     fun readNextChunk(): Boolean {
@@ -131,6 +143,9 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
     ) {
         //TODO: Test to make sure index calculated correctly
         val str = if (endAt == -1) data.substring(startAt) else data.substring(startAt, endAt)
+        if(str.contains("jp_type_98_ta_se")){
+            println()
+        }
         strings += Pair(str, startAt + bufferSize * currentChunk + indexOffset)
     }
 

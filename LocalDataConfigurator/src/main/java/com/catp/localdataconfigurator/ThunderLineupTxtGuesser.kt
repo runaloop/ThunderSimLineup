@@ -16,6 +16,8 @@ class ThunderLineupTxtGuesser {
     fun parse(data: List<List<String>>) {
         val lineupsFromSpreedSheet = SpreedSheetReader(vehicleStore).read()
         data.forEach { list->
+            TermUi.echo("🐷List of items")
+            TermUi.echo(list)
             guessAndMerge(lineupsFromSpreedSheet, parseJson(list)!!)
         }
         if (TermUi.confirm("Would you like to generate new xlsx?") == true) {
