@@ -67,7 +67,7 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
             currentList.add(item)
             lastPosition = position
         }
-        return result
+        return result.filter { it.size > 20 }//skip small lists
     }
 
     fun guessLineups(lineups: List<List<String>>) {
@@ -143,9 +143,6 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
     ) {
         //TODO: Test to make sure index calculated correctly
         val str = if (endAt == -1) data.substring(startAt) else data.substring(startAt, endAt)
-        if(str.contains("jp_type_98_ta_se")){
-            println()
-        }
         strings += Pair(str, startAt + bufferSize * currentChunk + indexOffset)
     }
 

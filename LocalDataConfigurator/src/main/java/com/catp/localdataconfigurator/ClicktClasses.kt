@@ -59,10 +59,19 @@ class GenerateJson : CliktCommand() {
 @ExperimentalStdlibApi
 class ReadWTDump: CliktCommand(){
     val verbose by option().flag(default = false)
-    //val fileToParse by argument().default("LocalDataConfigurator/aces.exe_200614_161756_small.dmp")
-    val fileToParse by argument().default("LocalDataConfigurator/aces.exe_200614_161756.dmp")
+    val fileToParse by argument().default("LocalDataConfigurator/")
 
     override fun run() {
-        WTDumpReader(fileToParse, verbose).parseFile()
+        with(File(fileToParse)){
+            if(isDirectory) {
+                listFiles().filter { it.length() > 1000000 }.forEach { file->
+                    if("y" == TermUi.prompt("Would you like to parse file: $file"))
+                        WTDumpReader(file.absolutePath, verbose).parseFile()
+                }
+            }else{
+                WTDumpReader(fileToParse, verbose).parseFile()
+            }
+        }
+
     }
 }
