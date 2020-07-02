@@ -9,38 +9,15 @@ import com.github.ajalt.clikt.output.TermUi
 
 //
 /**
- * Comments would be in a [ ]
- * file structure should be like:
- * [MARKER OF A HIGH/LOW TEAR] High tear command A [OR] Low tear command A
- * [GARBAGE STRING] #ui/gameuiskin#cn_m42_duster_ico
- * [STRING WITH ID, TO PARSE] {"id":"cn_m42_duster","needShopInfo":true,"ttype":"UNIT"}
- * [ANOTHER GARBAGE STRING] ␗PT-76
+ Getting list of list of strings, and tries to guess what is lineup low/high and the name of a lineup, than modify lineup
  */
 
-class ThunderLineupTxtParser {
-    fun parse(path: String) {
-        val data = Loader().load(path, true)
-        val highLow = mutableMapOf<String, MutableList<String>>()
-        var currentTear = ""
-        data.split("\r\n").forEach { item ->
-            if (item in listOf(HIGH_TEAR_MARKER, LOW_TEAR_MARKER)) {
-                currentTear = item
-            } else if (item.startsWith("{") && item.endsWith("}")) {
-                if (highLow[currentTear].isNullOrEmpty()) {
-                    highLow[currentTear] = mutableListOf()
-                }
-                highLow[currentTear]!!.add(item)
-            }
-        }
-
-        val highTear = parseJson(highLow[HIGH_TEAR_MARKER]!!)!!
-        val lowTear = parseJson(highLow[LOW_TEAR_MARKER]!!)!!
-
+class ThunderLineupTxtGuesser {
+    fun parse(data: List<List<String>>) {
         val lineupsFromSpreedSheet = SpreedSheetReader(vehicleStore).read()
-
-        guessAndMerge(lineupsFromSpreedSheet, highTear)
-        guessAndMerge(lineupsFromSpreedSheet, lowTear, false)
-
+        data.forEach { list->
+            guessAndMerge(lineupsFromSpreedSheet, parseJson(list)!!)
+        }
         if (TermUi.confirm("Would you like to generate new xlsx?") == true) {
             SpreedSheetGenerator(lineupsFromSpreedSheet, vehicleStore).make()
         }
@@ -48,12 +25,11 @@ class ThunderLineupTxtParser {
 
     private fun guessAndMerge(
         lineupsFromSpreedSheet: List<JsonLineup>,
-        highTear: List<TxtLineupItem>,
-        isHighTear: Boolean = true
+        tear: List<TxtLineupItem>
     ) {
-        val lineupName = guessLineup(lineupsFromSpreedSheet, highTear, isHighTear)
+        val lineupName = guessLineup(lineupsFromSpreedSheet, tear)
         if (lineupName.isNotEmpty() && lineupName != "-") {
-            mergeVehicleToLineup(lineupsFromSpreedSheet, lineupName, highTear, isHighTear)
+            mergeVehicleToLineup(lineupsFromSpreedSheet, lineupName, tear)
         } else {
             TermUi.echo("Lineup will not be changed")
         }
@@ -62,8 +38,7 @@ class ThunderLineupTxtParser {
     private fun mergeVehicleToLineup(
         lineupsFromSpreedSheet: List<JsonLineup>,
         lineupName: String,
-        listOfVehicles: List<TxtLineupItem>,
-        isHighTear: Boolean
+        listOfVehicles: List<TxtLineupItem>
     ) {
         val vehiclesFromVehicleStore =
             listOfVehicles.map { item ->
@@ -75,7 +50,7 @@ class ThunderLineupTxtParser {
                     return@map vehicle!!
             }
         val lineup = lineupsFromSpreedSheet.find { it.name == lineupName }!!
-        var middle = findMiddleTeam(isHighTear, vehiclesFromVehicleStore)
+        var middle = findMiddleTeam(lineupName, vehiclesFromVehicleStore)
         //Find middle item to separate A team from B team(this need to be added, cause of some time experement lineups, when nato contry like germany added to A team)
         if (TermUi.confirm("Confirm first vehicle of B team is: ${listOfVehicles[middle]}") == false) {
             val id = TermUi.prompt("Enter the first vehicle of B team ID:")!!
@@ -142,10 +117,10 @@ class ThunderLineupTxtParser {
     }
 
     private fun findMiddleTeam(
-        highTear: Boolean,
+        lineupName: String,
         listOfVehicles: List<JsonVehicle>
     ): Int {
-        val teamACountries = if (highTear) HIGH_TEAR_A_TEAM_COUNTRIES else LOW_TEAR_A_TEAM_COUNTRIES
+        val teamACountries = if (lineupName.endsWith("_2")) HIGH_TEAR_A_TEAM_COUNTRIES else LOW_TEAR_A_TEAM_COUNTRIES
         listOfVehicles.forEachIndexed { index, jsonVehicle ->
             if (!teamACountries.contains(jsonVehicle.nation))
                 return index
@@ -154,15 +129,15 @@ class ThunderLineupTxtParser {
     }
 
 
+
     private fun guessLineup(
         lineupsFromSpreedSheet: List<JsonLineup>,
-        tear: List<TxtLineupItem>,
-        isHighTear: Boolean = true
+        tear: List<TxtLineupItem>
     ): String {
         val lineupToChange = mutableMapOf<String, Int>()
         val lineupToRemoved = mutableMapOf<String, Set<String>>()
         val lineupToAdded = mutableMapOf<String, Set<String>>()
-        lineupsFromSpreedSheet.filter { it.isLineupHighTear() == isHighTear }.forEach { lineup ->
+        lineupsFromSpreedSheet.forEach { lineup ->
             val wasRemoved = getRemovedItems(tear, lineup)
             val wasAdded = getAddedItems(tear, lineup)
             lineupToChange[lineup.name] = wasRemoved.size + wasAdded.size

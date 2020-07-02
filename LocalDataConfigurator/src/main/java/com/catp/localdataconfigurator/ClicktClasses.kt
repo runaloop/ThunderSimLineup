@@ -19,15 +19,6 @@ class MainParser : CliktCommand() {
     override fun run() = Unit
 }
 
-class ParseGameLineupData : CliktCommand() {
-    val fileToParse by argument().default("CEData/lineup.txt")
-
-    override fun run() {
-        TermUi.echo("Will parse: $fileToParse")
-        ThunderLineupTxtParser().parse("file:$fileToParse")
-    }
-}
-
 /**
  * Get data from local xlsx, an wpcost+unitIDlocale(can be local, or from net), and regenerate xlsx with new data
  */
@@ -67,9 +58,11 @@ class GenerateJson : CliktCommand() {
 
 @ExperimentalStdlibApi
 class ReadWTDump: CliktCommand(){
-    val fileToParse by argument().default("LocalDataConfigurator/aces.exe_200614_161756_small.dmp")
+    val verbose by option().flag(default = false)
+    //val fileToParse by argument().default("LocalDataConfigurator/aces.exe_200614_161756_small.dmp")
+    val fileToParse by argument().default("LocalDataConfigurator/aces.exe_200614_161756.dmp")
 
     override fun run() {
-        WTDumpReader(fileToParse).parseFile()
+        WTDumpReader(fileToParse, verbose).parseFile()
     }
 }

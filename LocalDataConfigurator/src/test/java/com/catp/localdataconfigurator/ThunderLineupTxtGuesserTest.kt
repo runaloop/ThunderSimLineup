@@ -1,0 +1,306 @@
+package com.catp.localdataconfigurator
+
+import com.google.common.truth.Truth.assertThat
+import io.mockk.MockKAnnotations
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+
+@ExperimentalStdlibApi
+internal class ThunderLineupTxtGuesserTest{
+    val lineups = "{\"id\":\"ussr_asu_85\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_is_6\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_object_268\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_object_906\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_pt_76b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_su_122_54\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_10m\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_54_1947\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_54_1949\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_54_1951\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_type_62\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_type_65_aa\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_zsu_57_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_pt_76\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_type_63_I\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_type_62\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m48a1_patton_III\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_type_59\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m42_duster\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_wz_305\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"il-10\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"il-10_1946\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"mig-9\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"mig-9_ussr\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"pe-2-205\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"pe-2-359\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"su-6_am42\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"su-6_m71\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"tu-2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"tu-2_postwar\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"tu-2_postwar_late\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"tu-2_postwar_china\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"yak-15\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"yak-15_early\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"yak-17\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"yak-23\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"mig-9_china\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"mig-9_late_china\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"il-10_1946_china\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-84g_china\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_13_75_ss11\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_13_90\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_13_dca_40\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_30\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_30_1972\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_50\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_50_foch\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_50_surbaisse\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_50_surblinde\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_flakpanzer_IV_Kugelblitz\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_flakpanzer_V_Coelian\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_kanonenjagdpanzer\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_leopard_I\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_mkpz_m47\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_mkpz_m48a2c\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_raketenjagdpanzer_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_ru251\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_fiat_6616_cockerill\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_oto_r3_106sr\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_m47_105\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_m60a1_ariete\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_otobreda_sidam_25\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_m42_duster\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_5_ho_ri_production\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_60_atm\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_60_sprg\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_61\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_75\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_75_mlrs\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_ikv_91\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_landsverk_ush_405\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_lvkv_42\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_strv_101\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_strv_103_0\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_strv_103a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_centurion_action_x\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_centurion_mk_10\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_centurion_mk_3_ss11\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_conqueror_mk_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_falcon\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_fv4004_conway\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_fv4005\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_vickers_mbt_mk_1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m103\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m42_duster\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m46_patton\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m46_patton_73_armor_bat\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m47_patton_II\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m48a1_patton_III\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m50_ontos\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m56_scorpion\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m60\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_magach_3\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_t114\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_t54e1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_t92\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_t95\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"a2d\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"arado-234\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"arado-234c-3\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"attaker_fb1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"douglas_ad_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"douglas_ad_4\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"douglas_ad_4_france\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f4u-6_au-1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f4u-7\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-80\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-80a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-84b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-84g\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-84g_france\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-84g_italy\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-89b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f-89d\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"f3d_1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"go229_v3\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"he-162a-1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"he-162a-2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"j8m1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"kitsuka\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"md_450b_barougan\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"md_450b_ouragan\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-163b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-163b-0\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-262a-1a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-262a-1a_u4\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-262a-2a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-262a1_u1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-262c-1a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"me-262c-2b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"meteor_fmk3\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"p-59a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"r2y2_kai\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"r2y2_v1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"r2y2_v2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"saab_a21rb\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"saab_j21ra\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"so_8000_narval\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"vampire_fb5\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"vampire_fb5_j28b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"wyvern_s4\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "\uD83D\uDD25\n" +
+            "{\"id\":\"cn_m10\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m18_hellcat\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m24_chaffee\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m4a1_76w_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m4a4_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_m4a4_sherman_1st_ptg\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_su_76m_1943\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_t_34_1942\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"cn_zsd63_pg87\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_13_fl_11\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_arl_44_acl1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_cckw_353_bofors\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_lorraine_155\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_m10\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_m4a1_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_m4a3_105_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_amx_13_chaffee\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"fr_m4a4_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_l_62_anti_II\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_pvkv_II\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_pvkv_m43_1946\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_strv_m42_delat_torn\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_strv_m42_eh\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"sw_sav_fm48\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_17_pdr_m10_achilles\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_17_pdr_m10_achilles_norfolk_yeomanry\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_a27m_cromwell_1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_a27m_cromwell_5\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_a27m_cromwell_5_rp3\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_a_22b_mk_3_churchill_1942\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_a_22f_mk_7_churchill_1944\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_a_33_excelsior\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_ac4_thunderbolt\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_armored_car_aec_mk_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_crusader_aa_mk_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_ram_90mm_aa\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_sherman_II\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"uk_sp_17_pdr_valentine\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_halftrack_m13\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_halftrack_m15\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_halftrack_m16\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m10\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m18_hellcat\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m18_hellcat_black_cat\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m22_locust\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m24_chaffee\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m24_chaffee_tl\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m4_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m4a1_76w_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m4a2_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m4a3_105_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m4a5_ram_2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m8a1\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_t14\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_asu_57\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_bm_13n\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_bt_7a_f32\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_btr_152a\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_kv_1_zis_5\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_kv_1e\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_kv_1s\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_kv_2_1939\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_kv_2_1940\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_m4a2_76w_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_rbt_5\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_smk\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_su_122\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_su_57b\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_su_76m_5st_kav_corps\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_su_85_1943\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_126sp\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_34E\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_34E_STZ\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_34_1941_57\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_34_1942\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_34_57_1943\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_t_50\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_zis_12_94KM_1945\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_zsu_29k\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"ussr_zut_37\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"us_m4a2_1944_germ\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_flakpanzer_IV_Wirbelwind\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_infanterie_kampfpanzer_churchill\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_jgdpz_38t\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_jgdpz_IV_L48\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_kv_1B_finland\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_kv_1_kwk_40\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_kv_2_754r\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_panzerbefelhswagen_IV_ausf_J\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_panzerwerfer_42\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_38t_Marder_III\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_38t_Marder_III_ausf_H\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_III_ausf_L\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_III_ausf_M\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_III_ausf_N\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_II_ausf_H\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_IV_ausf_F2\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_IV_ausf_G\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_IV_ausf_H\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzkpfw_IV_ausf_J\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_pzsfl_IVa_dickermax\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_sdkfz_234_4\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_sdkfz_6_2_flak36\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_sdkfz_9_flak37\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_stug_III_ausf_G\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_stuh_III_ausf_G\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_sturmpanzer_IV_brummbar\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"germ_t_34_747\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_m15_42_contraereo\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_oto_r3_t20_fa\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_p_26_40\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_p_40\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_semovente_breda_501\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_semovente_m41m_90\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_semovente_m42_75_34\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_semovente_m43_105\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_semovente_m43_105_leoncello\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_semovente_m43_75_34\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_m18_hellcat\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_m24_chaffee\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_m4a4_sherman\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"it_sherman_75_37\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_m24_chaffee\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_3_chi_nu\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_3_chi_nu_75cm_type_5\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_3_ho_ni_III\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_4_chi_to\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_4_chi_to_late\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_5_na_to\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_95_so_ki\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+            "{\"id\":\"jp_type_98_ta_se\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},"
+
+    lateinit var lineupGuesser: ThunderLineupTxtGuesser
+    @BeforeEach
+    fun setUp() {
+        lineupGuesser = ThunderLineupTxtGuesser()
+        MockKAnnotations.init(this)
+    }
+    @Test
+    fun injectedCorrectly() {
+        assertThat(lineupGuesser).isNotNull()
+        //assertThat(reader).isEqualTo(dumpReader.reader)
+    }
+
+    @Test
+    fun test() {
+        //GIVEN
+        val (one, two) = lineups.split("\uD83D\uDD25\n")
+        val ddd = one.split(",\n")
+        println(ddd)
+        //WHEN
+        //THEN
+    }
+}

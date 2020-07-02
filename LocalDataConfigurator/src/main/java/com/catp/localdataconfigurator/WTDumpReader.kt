@@ -1,16 +1,19 @@
 package com.catp.localdataconfigurator
 
+import com.github.ajalt.clikt.output.TermUi
 import java.io.BufferedReader
 import java.io.File
 
 @ExperimentalStdlibApi
-class WTDumpReader(val fileName: String) {
+class WTDumpReader(val fileName: String, val verbose: Boolean) {
     lateinit var reader: BufferedReader
-    var buffer: CharArray = CharArray(DEFAULT_BUFFER_SIZE)
+    var bufferSize = DEFAULT_BUFFER_SIZE*1000
+    var buffer: CharArray = CharArray(bufferSize)
     val jsonRegex = Regex(ITEM_JSON)
     val strings = mutableListOf<Pair<String, Int>>()
     var currentChunk = 0
     var indexOffset = 0 // Used if prev item was partial
+    lateinit var file: File
 
     enum class FILE_PARSE_STATE {
         CHUNK_PARSED,
@@ -28,16 +31,21 @@ class WTDumpReader(val fileName: String) {
     //find lineup - is it full?
 
     fun openFile(): BufferedReader {
-        return File(fileName).bufferedReader()
+        file = File(fileName)
+        return file.bufferedReader()
     }
 
     fun parseFile() {
         reader = openFile()
         var readStatus = FILE_PARSE_STATE.CHUNK_PARSED
+        val chunks = file.length() / bufferSize
         while (readNextChunk()) {
             readStatus = parseNextChunk(readStatus)
             currentChunk++
+            val progress = currentChunk*100/chunks.toFloat()
+            TermUi.echo("Parsed: ${"%.2f".format(progress)}%\r", trailingNewline = false)
         }
+        TermUi.echo("Parsing complete")
         if (strings.isNotEmpty()) {
             val lineups = splitLineups()
             guessLineups(lineups)
@@ -60,7 +68,7 @@ class WTDumpReader(val fileName: String) {
     }
 
     fun guessLineups(lineups: List<List<String>>) {
-        println(strings.joinToString("\n"))
+        ThunderLineupTxtGuesser().parse(lineups)
     }
 
     fun readNextChunk(): Boolean {
@@ -93,7 +101,9 @@ class WTDumpReader(val fileName: String) {
                         return FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL
                     }
                     CHUNK_PARSE_STATE.ITEM_PARSED -> {
-                        println("🦄Found item: " + strings.last())
+                        if (verbose) {
+                            TermUi.echo("🦄Found item: " + strings.last())
+                        }
                     }
                     CHUNK_PARSE_STATE.ITEM_SKIPPED -> {
 
@@ -108,6 +118,8 @@ class WTDumpReader(val fileName: String) {
         data: String,
         startAt: Int
     ): CHUNK_PARSE_STATE {
+        if(data.length - startAt > JSON_MAX_LENGTH)
+            return CHUNK_PARSE_STATE.ITEM_SKIPPED
         addResultString(data, startAt)
         return CHUNK_PARSE_STATE.ITEM_PARSED_PARTIALY
     }
@@ -119,7 +131,7 @@ class WTDumpReader(val fileName: String) {
     ) {
         //TODO: Test to make sure index calculated correctly
         val str = if (endAt == -1) data.substring(startAt) else data.substring(startAt, endAt)
-        strings += Pair(str, startAt + DEFAULT_BUFFER_SIZE * currentChunk + indexOffset)
+        strings += Pair(str, startAt + bufferSize * currentChunk + indexOffset)
     }
 
 
@@ -153,7 +165,7 @@ class WTDumpReader(val fileName: String) {
         startAt: Int
     ): VehicleJsonItem {
         val jsonFinish = data.indexOf("}", startAt)
-        val nextItemStart = data.indexOf(ITEM_START, startAt+1)
+        val nextItemStart = data.indexOf(ITEM_START, startAt + 1)
         if (
             (jsonFinish != -1 && (jsonFinish - startAt > JSON_MAX_LENGTH || jsonFinish - startAt < JSON_MINIMUM_LENGTH)) ||
             (nextItemStart != -1 && nextItemStart < jsonFinish)
@@ -199,7 +211,9 @@ class WTDumpReader(val fileName: String) {
 
 
     fun reportPosition(position: Int, text: String) {
-        println("Report at position: ${position + DEFAULT_BUFFER_SIZE * currentChunk + indexOffset} $text")
+        if (verbose) {
+            TermUi.echo("Report at position: ${position + bufferSize * currentChunk + indexOffset} $text")
+        }
     }
 
 
@@ -213,7 +227,8 @@ class WTDumpReader(val fileName: String) {
     companion object {
         val ITEM_START = "{"
         val ITEM_FINISH = ",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
-        val ITEM_JSON = "\\{\"id\":\"([a-zA-Z_\\-0-9]+)\",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
+        val ITEM_JSON =
+            "\\{\"id\":\"([a-zA-Z_\\-0-9]+)\",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
         val JSON_MAX_LENGTH = 300
         val JSON_MINIMUM_LENGTH = 44// id with empty filed and needShopInfo ttype fields
         val NEXT_ITEM_MAX_DISTANCE = 10

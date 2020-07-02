@@ -37,10 +37,11 @@ class WTDumpReaderTest {
         "\\{{{{\"id\":\"$itemVehicleId\",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
 
     val listItem = itemJsonValid
+    
 
     @BeforeEach
     fun setUp() {
-        dumpReader = WTDumpReader("fakefile")
+        dumpReader = WTDumpReader("fakefile", true)
         MockKAnnotations.init(this)
     }
 
@@ -374,6 +375,16 @@ class WTDumpReaderTest {
         assertThat(result).hasSize(2)
         assertThat(result.first()).hasSize(2)
         assertThat(result.last()).hasSize(1)
+    }
+
+    @Test
+    fun `If partial item is too long, than just skip it`() {
+        //GIVEN
+        val data = "{" + String(CharArray(5000))
+        //WHEN
+        val result = dumpReader.readPartialItem(data, 0)
+        //THEN
+        assertThat(result).isEqualTo(ITEM_SKIPPED)
     }
 
 
