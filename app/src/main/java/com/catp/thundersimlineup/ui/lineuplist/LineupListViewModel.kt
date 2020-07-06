@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
 import com.catp.thundersimlineup.data.db.entity.Lineup
-import com.catp.thundersimlineup.data.db.entity.LineupType
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import org.threeten.bp.Duration
 import org.threeten.bp.LocalDate
 import toothpick.InjectConstructor
 import javax.inject.Inject
@@ -27,6 +27,10 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     @Inject
     lateinit var lineupStorage: LineupStorage
 
+    @Inject
+    lateinit var lineupRequestInteractor: LineupRequestInteractor
+
+
     private val _refreshResult = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
@@ -38,23 +42,16 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     val text: LiveData<String> = _refreshResult
     val selectedDay: LiveData<CalendarDay> = _selectedDay
     val daySubject: PublishSubject<LocalDate> = PublishSubject.create()
-    val currentLineup = MutableLiveData<Pair<Lineup?, Lineup?>>()
+    private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
+    val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
     val subscription = daySubject
         .doOnError { _lineupLoadStatus.postValue(false) }
         .observeOn(Schedulers.io())
         //.subscribeOn(Schedulers.io())
-        .subscribe {
+        .subscribe { day ->
             _lineupLoadStatus.postValue(true)
-            with(lineupSchedule) {
-                try {
-                    updateRule()
-                    val low = lineupSchedule.getLineupForDate(it, LineupType.LOW)
-                    val top = lineupSchedule.getLineupForDate(it, LineupType.TOP)
-                    currentLineup.postValue(Pair(low, top))
-                } catch (e: Exception) {
-                    //TODO: correct error handling
-                }
-            }
+            val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
+            _currentLineup.postValue(lineupForToday)
             _lineupLoadStatus.postValue(false)
         }
 

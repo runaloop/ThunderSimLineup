@@ -11,7 +11,7 @@
     <fragment
         android:id="@+id/calendar_fragment"
         android:name="com.catp.thundersimlineup.ui.calendar.CalendarFragment"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/lineup_list_fragment"
         android:name="com.catp.thundersimlineup.ui.lineuplist.LineupListFragment"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"

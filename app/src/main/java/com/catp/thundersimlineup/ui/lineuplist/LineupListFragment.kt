@@ -11,18 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
-import com.catp.thundersimlineup.data.Schedule
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
-import toothpick.ktp.delegate.inject
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
 import javax.inject.Inject
 
 class LineupListFragment : Fragment() {
 
     @Inject
-    lateinit var  lineupListViewModel :LineupListViewModel
+    lateinit var lineupListViewModel: LineupListViewModel
 
     private val lineupAdapter = LineupAdapter()
 
@@ -51,14 +49,46 @@ class LineupListFragment : Fragment() {
         rvLineupList.layoutManager = LinearLayoutManager(context)
         rvLineupList.adapter = lineupAdapter
 
-        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
+        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->/**/
             lineupAdapter.setNewLineup(requireContext(), lineup)
+            updateLineupText(lineup)
         })
+
 
         lineupListViewModel.refreshData(false)
 
         super.onViewCreated(view, savedInstanceState)
     }
+
+    private fun updateLineupText(lineup: LineupRequestInteractor.LineupForToday) {
+        val currentLineupLow = lineup.lineupNow.first!!.lineupEntity.name
+        val currentLineupTop = lineup.lineupNow.second!!.lineupEntity.name
+        val nextLineupLow = lineup.lineupThen.first!!.lineupEntity.name
+        val nextLineupTop = lineup.lineupThen.second!!.lineupEntity.name
+        val hoursToChange = lineup.timeToChange.toHours().toString()
+        val minutesToChange = lineup.timeToChange.toMinutes().toString()
+        if (lineup.timeToChange.isZero) {
+            //hide
+            tvCurrentLineup.setText(
+                getString(
+                    R.string.selected_day_lineup_text,
+                    currentLineupLow,
+                    currentLineupTop
+                )
+            )
+        } else {
+            tvCurrentLineup.setText(
+                getString(
+                    R.string.today_active_lineups,
+                    currentLineupLow,
+                    currentLineupTop,
+                    hoursToChange, minutesToChange,
+                    nextLineupLow, nextLineupTop
+                )
+            )
+        }
+    }
+
 
     @VisibleForTesting
     private fun injectDependencies() {

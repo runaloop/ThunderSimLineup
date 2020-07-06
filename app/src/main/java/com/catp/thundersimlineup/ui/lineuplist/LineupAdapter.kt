@@ -29,7 +29,7 @@ class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
         dataset[position].apply(holder)
     }
 
-    fun setNewLineup(context: Context, lineup: Pair<Lineup?, Lineup?>) {
+    fun setNewLineup(context: Context, lineup: LineupRequestInteractor.LineupForToday) {
         dataset = DataSetCreator(context).make(lineup)
         notifyDataSetChanged()
     }
@@ -89,9 +89,14 @@ class ViewVehicle(val vehicle: Vehicle) : ViewItem() {
 
 //Takes list of Lineups, fills it with view items: Titles like commands, vehicle type titles, vehicle sorted by type/favorite mode etc
 class DataSetCreator(val context: Context) {
-    fun make(lineupList: Pair<Lineup?, Lineup?>): List<ViewItem> {
+    fun make(lineup: LineupRequestInteractor.LineupForToday): List<ViewItem> {
         val data = mutableListOf<ViewItem>()
-        lineupList.toList().filterNotNull().forEach { fillSet(it, data) }
+        val list = mutableListOf(lineup.lineupNow.first, lineup.lineupNow.first)
+        if(lineup.timeToChange.isZero){
+            list+=lineup.lineupThen.first
+            list+=lineup.lineupThen.second
+        }
+        list.filterNotNull().forEach { fillSet(it, data) }
         return data
     }
 
