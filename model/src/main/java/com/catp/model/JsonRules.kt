@@ -17,7 +17,7 @@ class JsonRules(
         )*/
     ),
     val LINEUP_TO_BR_RELATION: Map<String, List<String>> = mapOf(
-        "1_1" to listOf("1.0", "1.3", "1.7", "2.0"),
+        "1_1" to listOf("1.0", "1.3", "1.7", "2.0"), // actual
         "2_1" to listOf("1.7", "2.0", "2.3", "2.7"),
         "3_1" to listOf("2.3", "2.7", "3.0", "3.3"),
         "4_1" to listOf("3.0", "3.3", "3.7", "4.0"),

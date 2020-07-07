@@ -29,6 +29,8 @@ class RegenerateXLSXFile : CliktCommand() {
         val wpCost = WPCost().apply { loadData(useLocalFiles) }
         val lineups = SpreedSheetReader(vehicleStore).read()
         LineupToLocaleMatcher(lineups, wpCost, unitIDLocale, vehicleStore).process()
+        //Remove from _1 lineups all planes, and add it with BR value
+        LineupMatchPlanesWithBR(lineups, vehicleStore).process()
         SpreedSheetGenerator(lineups, vehicleStore).make()
     }
 }
