@@ -29,7 +29,7 @@ class JsonRules(
         val LINEUP_SEQUEQNCE_LOW = listOf("1_1", "3_1", "2_1", "5_1", "4_1", "6_1")
         val LINEUP_SEQUEQNCE_TOP = listOf("8_2", "10_2", "8_2_2", "9_2")
         val LINEUP_UTC_TIME_OF_CHANGE = 11
-        val VERSION = 3
+        val VERSION = 4
     }
 
 

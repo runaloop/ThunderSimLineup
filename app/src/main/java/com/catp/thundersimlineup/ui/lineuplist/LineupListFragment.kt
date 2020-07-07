@@ -49,10 +49,12 @@ class LineupListFragment : Fragment() {
         rvLineupList.layoutManager = LinearLayoutManager(context)
         rvLineupList.adapter = lineupAdapter
 
+
         lineupListViewModel.currentLineup.observe(this, Observer { lineup ->/**/
             lineupAdapter.setNewLineup(requireContext(), lineup)
             updateLineupText(lineup)
         })
+
 
 
         lineupListViewModel.refreshData(false)
@@ -66,7 +68,7 @@ class LineupListFragment : Fragment() {
         val nextLineupLow = lineup.lineupThen.first!!.lineupEntity.name
         val nextLineupTop = lineup.lineupThen.second!!.lineupEntity.name
         val hoursToChange = lineup.timeToChange.toHours().toString()
-        val minutesToChange = lineup.timeToChange.toMinutes().toString()
+        val minutesToChange = (lineup.timeToChange.toMinutes()%60).toString()
         if (lineup.timeToChange.isZero) {
             //hide
             tvCurrentLineup.setText(
