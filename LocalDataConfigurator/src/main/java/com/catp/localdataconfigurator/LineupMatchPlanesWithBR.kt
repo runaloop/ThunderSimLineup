@@ -27,7 +27,7 @@ class LineupMatchPlanesWithBR(val lineups: List<JsonLineup>, val vehicleStore: J
     private fun listNations(team: JsonTeam) =
         team.vehicles.map { it.nation }.distinct()
 
-    private fun removePlanes(team: JsonTeam) {
+    fun removePlanes(team: JsonTeam) {
         val planes = team.planes.map { it.name }
         team.vehicleIdList.removeIf { it in planes }
     }

@@ -9,19 +9,25 @@ import com.github.ajalt.clikt.output.TermUi
 
 //
 /**
- Getting list of list of strings, and tries to guess what is lineup low/high and the name of a lineup, than modify lineup
+Getting list of list of strings, and tries to guess what is lineup low/high and the name of a lineup, than modify lineup
  */
 
 class ThunderLineupTxtGuesser {
     fun parse(data: List<List<String>>) {
-        val lineupsFromSpreedSheet = SpreedSheetReader(vehicleStore).read()
-        data.forEach { list->
+        val lineups = SpreedSheetReader(vehicleStore).read()
+        val lineupMatchPlanesWithBR = LineupMatchPlanesWithBR(lineups, vehicleStore)
+        lineups.filter { it.name.endsWith("_1") }.forEach { lineup ->
+            lineupMatchPlanesWithBR.removePlanes(lineup.jsonTeamA)
+            lineupMatchPlanesWithBR.removePlanes(lineup.jsonTeamB)
+        }
+        data.forEach { list ->
             TermUi.echo("🐷List of items")
             TermUi.echo(list)
-            guessAndMerge(lineupsFromSpreedSheet, parseJson(list)!!)
+            guessAndMerge(lineups, parseJson(list)!!)
         }
         if (TermUi.confirm("Would you like to generate new xlsx?") == true) {
-            SpreedSheetGenerator(lineupsFromSpreedSheet, vehicleStore).make()
+            lineupMatchPlanesWithBR.process()
+            SpreedSheetGenerator(lineups, vehicleStore).make()
         }
     }
 
@@ -96,7 +102,7 @@ class ThunderLineupTxtGuesser {
                 }
             }
         }
-        if(toAdd.isNotEmpty()){
+        if (toAdd.isNotEmpty()) {
             if (TermUi.confirm(
                     "\u001b[37mConfirm items to add to team $teamLetter \u001b[32m${toAdd.joinToString(
                         "\n",
@@ -122,14 +128,14 @@ class ThunderLineupTxtGuesser {
         lineupName: String,
         listOfVehicles: List<JsonVehicle>
     ): Int {
-        val teamACountries = if (lineupName.endsWith("_2")) HIGH_TEAR_A_TEAM_COUNTRIES else LOW_TEAR_A_TEAM_COUNTRIES
+        val teamACountries =
+            if (lineupName.endsWith("_2")) HIGH_TEAR_A_TEAM_COUNTRIES else LOW_TEAR_A_TEAM_COUNTRIES
         listOfVehicles.forEachIndexed { index, jsonVehicle ->
             if (!teamACountries.contains(jsonVehicle.nation))
                 return index
         }
         return 0
     }
-
 
 
     private fun guessLineup(
