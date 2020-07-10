@@ -11,5 +11,17 @@
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dslplatform/dsl-json-java8/1.9.5/aab9c8facc66d4ce1a786ba01ca813c2ae8bde5a/dsl-json-java8-1.9.5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dslplatform/dsl-json/1.9.5/617d32c34926a734759cbf14c2a0a3915d6d86bd/dsl-json-1.9.5.jar" />
+        </processorPath>
+        <module name="ThunderSimLineup.LocalDataConfigurator" />
+        <module name="ThunderSimLineup.model" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>
