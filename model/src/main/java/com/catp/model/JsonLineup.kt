@@ -54,68 +54,6 @@ data class JsonLineup(val name: String, val jsonTeamA: JsonTeam = JsonTeam(), va
         return !equals(previousLineup)
     }
 
-    //TODO: mark methods must be moved to room pojo files but now will comment it only
-    /*
-    fun compareWithPrevious(previousLineup: Lineup) {
-        removeDeletedAndNewMarks(previousLineup)
-        markNew(previousLineup)
-        markDeleted(previousLineup)
-    }
-
-
-    fun removeDeletedAndNewMarks(previousLineup: Lineup) {
-        for (team in listOf(previousLineup.teamA, previousLineup.teamB)) {
-            with(team) {
-                //TODO: need to fix this behaviour
-                /*for (list in vehicleList) {
-                    list.removeAll { vehicle -> vehicle.state == VehicleState.DELETED }
-                    list.filter { vehicle -> vehicle.state == VehicleState.NEW }
-                        .forEach { vehicle -> vehicle.state = VehicleState.REGULAR }
-                }*/
-            }
-        }
-
-    }
-
-    fun markDeleted(previousLineup: Lineup) {
-        for ((teamNew, teamOld) in mapOf(
-            teamA to previousLineup.teamA,
-            teamB to previousLineup.teamB
-        )) {
-            for ((oldList, newList) in mapOf(
-                teamOld.vehicles to teamNew.vehicles
-            )) {
-                subtractAndMarkState(oldList, newList, VehicleState.DELETED)
-                oldList
-                    .filter { vehicle -> vehicle.state == VehicleState.DELETED }
-                    .forEach { newList.add(it) }
-            }
-        }
-    }
-
-    fun markNew(previousLineup: Lineup) {
-        for ((teamNew, teamOld) in mapOf(
-            teamA to previousLineup.teamA,
-            teamB to previousLineup.teamB
-        )) {
-            for ((oldList, newList) in mapOf(
-                teamOld.tanks to teamNew.tanks,
-                teamOld.planes to teamNew.planes,
-                teamOld.helis to teamNew.helis
-            )) {
-                subtractAndMarkState(newList, oldList)
-            }
-        }
-
-    }
-
-    private fun subtractAndMarkState(
-        first: Collection<Vehicle>,
-        second: Collection<Vehicle>,
-        state: VehicleState = VehicleState.NEW
-    ) {
-        first.subtract(second).forEach { vehicle -> vehicle.state = state }
-    }*/
 
     override fun toString(): String {
         return "Lineup(name='$name', teamA=$jsonTeamA, teamB=$jsonTeamB)"

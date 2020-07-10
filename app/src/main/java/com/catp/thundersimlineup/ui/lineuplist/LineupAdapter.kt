@@ -17,11 +17,17 @@ class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     var dataset: List<ViewItem> = emptyList()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val id = when (viewType) {
+            ViewItem.TYPE.TITLE.ordinal -> R.layout.list_item_title
+            ViewItem.TYPE.VEHICLE.ordinal -> R.layout.list_item_title
+            ViewItem.TYPE.VEHICLE_FAVORITE.ordinal -> R.layout.list_item_title
+            else -> error("No layout specified for a type: $viewType")
+        }
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.list_item_title, parent, false
         )
+
         return ViewHolder(view)
     }
 
@@ -56,7 +62,7 @@ class ViewHolder(val title: View) : RecyclerView.ViewHolder(title) {
 
     @SuppressLint("ResourceAsColor")
     fun setTitle() {
-        titleView.setBackgroundColor(R.color.colorPrimaryDark)
+
     }
 
     fun setBR(br: String) {
@@ -66,7 +72,6 @@ class ViewHolder(val title: View) : RecyclerView.ViewHolder(title) {
     @SuppressLint("ResourceAsColor")
     fun setFavorite(favorite: Boolean, color: Int) {
         if (favorite) {
-            titleView.setBackgroundColor(R.color.colorAccent)
 
         }
     }
@@ -76,7 +81,7 @@ abstract class ViewItem {
     abstract fun apply(viewHolder: ViewHolder)
     abstract fun itemType(): Int
     enum class TYPE {
-        TITLE, VEHICLE
+        TITLE, VEHICLE, VEHICLE_FAVORITE
     }
 }
 
@@ -149,6 +154,7 @@ class DataSetCreator(val context: Context) {
     //Fav, A, B, Tank, Plane, Heli
     private fun fillVehicleList(vehicleList: List<Vehicle>, dataset: MutableList<ViewItem>) {
         vehicleList
+            .sortedBy { it.isFavorite }
             .sortedBy { it.nation }
             .forEach { vehicle ->
                 dataset += ViewVehicle(vehicle)

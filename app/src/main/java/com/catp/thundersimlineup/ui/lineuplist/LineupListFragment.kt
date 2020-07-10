@@ -37,9 +37,6 @@ class LineupListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        lineupListViewModel.selectedDay.observe(this, Observer {
-            tvSelectedDate.text = it.day.toString()
-        })
         lineupListViewModel.text.observe(this, Observer {
             if (it.isNotEmpty()) {
                 Snackbar.make(view, it, Snackbar.LENGTH_LONG).show()
