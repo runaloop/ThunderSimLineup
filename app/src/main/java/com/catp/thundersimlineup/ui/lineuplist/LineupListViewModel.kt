@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
 import com.catp.thundersimlineup.data.db.entity.Lineup
+import com.catp.thundersimlineup.whenNonNull
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -76,6 +77,11 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                     LineupStorage.REFRESH_RESULT.NEW_DATA -> _refreshResult.postValue("Lineups have been updated")
                     LineupStorage.REFRESH_RESULT.NO_NEW_DATA -> _refreshResult.postValue("Lineups loaded and ready to work")
                 }
+                /*lineupStorage.lineupDao.getVehicles().find { it.vehicleId == "hawk_iii" }.whenNonNull {
+                    isFavorite = true
+                    lineupStorage.lineupDao.updateVehicles(listOf(this))
+                }*/
+
             }
     }
 

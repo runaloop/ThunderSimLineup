@@ -3,7 +3,6 @@ package com.catp.localdataconfigurator
 import com.catp.model.JsonLocaleItem
 import de.siegmar.fastcsv.reader.CsvReader
 import java.io.StringReader
-import kotlin.text.Typography.nbsp
 
 class UnitIDLocale {
     val localeData = mutableMapOf<String, JsonLocaleItem>()
@@ -36,15 +35,6 @@ class UnitIDLocale {
                             }
                             val localeItem = JsonLocaleItem(
                                 ID,
-                                it.getField(ENGLISH_COLUMN_NAME).replace(nbsp, ' ').replace(
-                                    '»',
-                                    '\"'
-                                ).replace('«', '\"'),
-                                it.getField(RUSSIAN_COLUMN_NAME).replace(nbsp, ' ').replace(
-                                    '»',
-                                    '\"'
-                                ).replace('«', '\"'),
-                                "",
                                 ""
                             )
 
@@ -75,26 +65,18 @@ class UnitIDLocale {
                         fullLocaleData[id] = if (ending == "shop") {
                             JsonLocaleItem(
                                 id,
-                                item.englishTitle,
-                                item.russianTitle,
-                                "",
                                 ""
                             )
                         } else
                             JsonLocaleItem(
                                 id,
-                                "",
-                                "",
-                                item.englishTitle,
-                                item.russianTitle
+                                item.title
                             )
                     } else {
                         if (ending == "shop") {
-                            localeItem.englishTitle = item.englishTitle
-                            localeItem.russianTitle = item.russianTitle
+                            localeItem.title = item.title
                         } else {
-                            localeItem.fullEnglishTitle = item.englishTitle
-                            localeItem.fullRussianTitle = item.russianTitle
+                            localeItem.title = item.title
                         }
                     }
                 }

@@ -5,10 +5,7 @@ import com.dslplatform.json.CompiledJson
 @CompiledJson(formats = [CompiledJson.Format.ARRAY])
 data class JsonLocaleItem(
     val id: String,
-    var englishTitle: String,
-    var russianTitle: String,
-    var fullEnglishTitle: String,
-    var fullRussianTitle: String,
+    var title: String,
     var nation: String = "UNKNOWN"
 ) {
 
@@ -23,17 +20,14 @@ data class JsonLocaleItem(
 
         return listOf(
             id,
-            fullEnglishTitle,
-            fullRussianTitle,
-            englishTitle,
-            russianTitle
+            title
         ).any {
             convertedName == it
         }
     }
 
     fun similarMatch(name: String) =
-        listOf(englishTitle, russianTitle, fullEnglishTitle, fullRussianTitle).any {
+        listOf( title ).any {
             it.contains(name)
         }
 

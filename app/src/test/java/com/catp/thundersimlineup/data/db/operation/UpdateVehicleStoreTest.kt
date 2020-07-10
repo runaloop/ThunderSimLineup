@@ -44,7 +44,7 @@ internal class UpdateVehicleStoreTest {
         MockKAnnotations.init(this)
         jsonVehicle = JsonVehicle(
             vehicleId, vehicleType, nation, br,
-            JsonLocaleItem(vehicleId, "", "", fullEnglishTitle, "", nation)
+            JsonLocaleItem(vehicleId, fullEnglishTitle, nation)
         )
         vehicleInDB = Vehicle.fromJson(jsonVehicle)
     }
@@ -85,7 +85,7 @@ internal class UpdateVehicleStoreTest {
         every { checkAndUpdateTitle.process(any(), any()) } returns false
         val newJsonVehicle = JsonVehicle(
             "newname", VehicleType.HELI, "ru", "2.2",
-            JsonLocaleItem("newname", "", "", "fulltitle2", "", "ru")
+            JsonLocaleItem("newname", "fulltitle2", "ru")
         )
         val newVehicle = Vehicle.fromJson(newJsonVehicle)
 

@@ -41,10 +41,7 @@ class SpreedSheetReader(val vehicleStore: JsonVehicleStore) {
         val type = row.getCell(HEADER.Type)?.stringCellValue!!
         val nation = row.getCell(HEADER.Nation)?.stringCellValue!!
         val br = row.getCell(HEADER.BR)?.stringCellValue!!
-        val englishTitle = row.getCell(HEADER.EnglishTitle)?.stringCellValue!!
-        val russianTitle = row.getCell(HEADER.RussianTitle)?.stringCellValue!!
         val fullEnglishTitle = row.getCell(HEADER.FullEnglishTitle)?.stringCellValue!!
-        val fullRussianTitle = row.getCell(HEADER.FullRussianTitle)?.stringCellValue!!
 
         val vehicle = JsonVehicle(
             id,
@@ -53,10 +50,7 @@ class SpreedSheetReader(val vehicleStore: JsonVehicleStore) {
             br,
             JsonLocaleItem(
                 id,
-                englishTitle,
-                russianTitle,
                 fullEnglishTitle,
-                fullRussianTitle,
                 nation
             )
         )

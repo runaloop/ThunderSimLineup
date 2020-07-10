@@ -33,7 +33,7 @@ class CheckAndUpdateTitleTest{
             Vehicle("", VehicleType.HELI, "", title, "", false),
             JsonVehicle(
                 "", VehicleType.HELI, "", "",
-                JsonLocaleItem("", "", "", title, "")
+                JsonLocaleItem("", title)
             )
         )
 
@@ -48,7 +48,7 @@ class CheckAndUpdateTitleTest{
         val newtitle = "sometitle2"
         val jsonVehicle = JsonVehicle(
             "", VehicleType.HELI, "", "",
-            JsonLocaleItem("", "", "", newtitle, "")
+            JsonLocaleItem("", newtitle)
         )
         val result = checkAndUpdateTitle.process(
             vehicle,

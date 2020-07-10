@@ -120,6 +120,19 @@ class JsonVehicleStore(val vehicleList: MutableList<JsonVehicle> = mutableListOf
     fun getTanks(br: String): List<JsonVehicle> {
         return vehicleList.filter { it.br == br && it.type == VehicleType.TANK }
     }
+
+    fun removeUglySymbolsFromTitles(){
+        //full list - [ , ", ', (, ), *, ,, -, ., /, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, :, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, ª, ä, è, é, ö, ü, К, М, С, Т, а, —, №, ⋠, ␗, ␙, ␠, ▀, ▂, ▃, ▄, ▅, ]
+        val toDelete = Regex("[⋠␗␙␠▀▂▃▄▅\uF059]")
+        vehicleList.forEach { item->
+            if( item.locale?.title?.contains(toDelete) == true){
+                val old = item.locale!!.title
+                val new = item.locale!!.title.replace(toDelete, "")
+                println("Old: ${old}\nNew: ${new}")
+                item.locale!!.title = new
+            }
+        }
+    }
 }
 
 

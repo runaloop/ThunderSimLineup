@@ -19,7 +19,7 @@ data class Vehicle(
                 jsonVehicle.name,
                 jsonVehicle.type,
                 jsonVehicle.nation,
-                jsonVehicle.locale!!.fullEnglishTitle,
+                jsonVehicle.locale!!.title,
                 jsonVehicle.br,
                 false
             )

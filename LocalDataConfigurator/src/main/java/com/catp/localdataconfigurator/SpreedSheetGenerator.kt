@@ -33,10 +33,7 @@ class SpreedSheetGenerator(
             "Type",
             "Nation",
             "BR",
-            "EnglishTitle",
-            "RussianTitle",
-            "FullEnglishTitle",
-            "FullRussianTitle"
+            "FullEnglishTitle"
         )
 
         enum class HEADER {
@@ -44,17 +41,14 @@ class SpreedSheetGenerator(
             Type,
             Nation,
             BR,
-            EnglishTitle,
-            RussianTitle,
-            FullEnglishTitle,
-            FullRussianTitle,
-
+            FullEnglishTitle
         }
 
 
     }
 
     fun make() {
+        vehicleStore.removeUglySymbolsFromTitles()
         createFile()
         createTopHeader()
         createSubHeader()
@@ -144,10 +138,7 @@ class SpreedSheetGenerator(
         row.createCell(HEADER.Type).setCellValue(vehicle.type.name)
         row.createCell(HEADER.Nation).setCellValue(vehicle.nation)
         row.createCell(HEADER.BR).setCellValue(vehicle.br)
-        row.createCell(HEADER.EnglishTitle).setCellValue(vehicle.locale!!.englishTitle)
-        row.createCell(HEADER.RussianTitle).setCellValue(vehicle.locale!!.russianTitle)
-        row.createCell(HEADER.FullEnglishTitle).setCellValue(vehicle.locale!!.fullEnglishTitle)
-        row.createCell(HEADER.FullRussianTitle).setCellValue(vehicle.locale!!.fullRussianTitle)
+        row.createCell(HEADER.FullEnglishTitle).setCellValue(vehicle.locale!!.title)
         return row
     }
 
