@@ -15,6 +15,8 @@ import com.catp.thundersimlineup.data.db.entity.Vehicle
 
 class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
 
+    var originalData: List<Lineup> = emptyList()
+    lateinit var filters: LineupListViewModel.FilterState
     var dataset: List<ViewItem> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,12 +40,24 @@ class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     fun setNewLineup(context: Context, lineup: LineupRequestInteractor.LineupForToday) {
-        dataset = DataSetCreator(context).make(lineup)
+        originalData = listOfNotNull(
+            lineup.lineupNow.first,
+            lineup.lineupNow.second,
+            lineup.lineupThen.first,
+            lineup.lineupThen.second
+        )
+        dataset = DataSetCreator(context).make(originalData, filters)
         notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
         return dataset[position].itemType()
+    }
+
+    fun setFilterState(context: Context, filters: LineupListViewModel.FilterState) {
+        this.filters = filters
+        dataset = DataSetCreator(context).make(originalData, filters)
+        notifyDataSetChanged()
     }
 }
 
@@ -77,7 +91,7 @@ class ViewHolder(val title: View) : RecyclerView.ViewHolder(title) {
     }
 }
 
-abstract class ViewItem {
+abstract class ViewItem() {
     abstract fun apply(viewHolder: ViewHolder)
     abstract fun itemType(): Int
     enum class TYPE {
@@ -85,7 +99,8 @@ abstract class ViewItem {
     }
 }
 
-class ViewTitle(val title: String) : ViewItem() {
+class ViewTitle(val title: String) :
+    ViewItem() {
     override fun apply(viewHolder: ViewHolder) {
         viewHolder.setText(title)
         viewHolder.setTitle()
@@ -94,7 +109,8 @@ class ViewTitle(val title: String) : ViewItem() {
     override fun itemType(): Int = TYPE.TITLE.ordinal
 }
 
-class ViewVehicle(val vehicle: Vehicle) : ViewItem() {
+class ViewVehicle(val vehicle: Vehicle) :
+    ViewItem() {
     override fun apply(viewHolder: ViewHolder) {
         viewHolder.setText("${vehicle.nation} ${vehicle.title}")
         viewHolder.setBR(vehicle.br)
@@ -106,53 +122,57 @@ class ViewVehicle(val vehicle: Vehicle) : ViewItem() {
 
 //Takes list of Lineups, fills it with view items: Titles like commands, vehicle type titles, vehicle sorted by type/favorite mode etc
 class DataSetCreator(val context: Context) {
-    fun make(lineup: LineupRequestInteractor.LineupForToday): List<ViewItem> {
+    fun make(lineups: List<Lineup>, filters: LineupListViewModel.FilterState): List<ViewItem> {
         val data = mutableListOf<ViewItem>()
-        val list = mutableListOf(lineup.lineupNow.first, lineup.lineupNow.second)
-        if (lineup.timeToChange.isZero) {
-            list += lineup.lineupThen.first
-            list += lineup.lineupThen.second
-        }
-        list.filterNotNull().forEach { fillSet(it, data) }
+        lineups.forEach { fillSet(it, data, filters) }
         return data
     }
 
     private fun fillSet(
         lineup: Lineup,
-        dataset: MutableList<ViewItem>
+        dataset: MutableList<ViewItem>,
+        filters: LineupListViewModel.FilterState
     ) {
 
         val teams = mapOf(
-            lineup.teamA to context.getString(R.string.team_a_title),
-            lineup.teamB to context.getString(R.string.team_b_title)
+            lineup.teamA to if (filters.teamAShow) context.getString(R.string.team_a_title) else null,
+            lineup.teamB to if (filters.teamBShow) context.getString(R.string.team_b_title) else null
         )
         teams.keys.forEach { team ->
-            fillTeam(team, dataset, "${lineup.lineupEntity.name} ${teams[team]}")
+            if (teams[team] != null)
+                fillTeam(team, dataset, filters, "${lineup.lineupEntity.name} ${teams[team]}")
         }
     }
 
     private fun fillTeam(
         team: Team,
         dataset: MutableList<ViewItem>,
+        filters: LineupListViewModel.FilterState,
         title: String
     ) {
         with(team) {
             val vehicles = mapOf(
-                VehicleType.TANK to context.getString(R.string.tanks_title),
-                VehicleType.PLANE to context.getString(R.string.planes_title),
-                VehicleType.HELI to context.getString(R.string.helis_title)
+                VehicleType.TANK to if (filters.tanksShow) context.getString(R.string.tanks_title) else null,
+                VehicleType.PLANE to if (filters.planesShow) context.getString(R.string.planes_title) else null,
+                VehicleType.HELI to if (filters.helisShow) context.getString(R.string.helis_title) else null
             )
             team.vehicles.groupBy { it.type }.forEach { (type, list) ->
-                if (list.isNotEmpty()) {
-                    dataset += ViewTitle("$title ${vehicles[type]}")
-                    fillVehicleList(list, dataset)
+                if (list.isNotEmpty() && vehicles[type] != null) {
+                    val isLowLineup = title.indexOf("_1") != -1
+                    if (isLowLineup && filters.lowLineupShow || (!isLowLineup && filters.highLineupShow)) {
+                        dataset += ViewTitle("$title ${vehicles[type]}")
+                        fillVehicleList(list, dataset)
+                    }
                 }
             }
         }
     }
 
-    //Fav, A, B, Tank, Plane, Heli
-    private fun fillVehicleList(vehicleList: List<Vehicle>, dataset: MutableList<ViewItem>) {
+
+    private fun fillVehicleList(
+        vehicleList: List<Vehicle>,
+        dataset: MutableList<ViewItem>
+    ) {
         vehicleList
             .sortedBy { it.isFavorite }
             .sortedBy { it.nation }

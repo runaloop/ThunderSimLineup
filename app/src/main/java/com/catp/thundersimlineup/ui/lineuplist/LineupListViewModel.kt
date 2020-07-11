@@ -6,12 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
-import com.catp.thundersimlineup.data.db.entity.Lineup
-import com.catp.thundersimlineup.whenNonNull
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import org.threeten.bp.Duration
 import org.threeten.bp.LocalDate
 import toothpick.InjectConstructor
 import javax.inject.Inject
@@ -37,7 +34,9 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     }
     private val _selectedDay = MutableLiveData<CalendarDay>().apply { value = CalendarDay.today() }
 
-
+    private val _filterStatus = MutableLiveData<FilterState>().apply {
+        value = FilterState("", true, true, true, true, true, true, true)
+    }
     private val _lineupLoadStatus = MutableLiveData<Boolean>().apply { value = true }
 
     val text: LiveData<String> = _refreshResult
@@ -45,6 +44,8 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     val daySubject: PublishSubject<LocalDate> = PublishSubject.create()
     private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
     val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
+    val filterStatus: LiveData<FilterState> = _filterStatus
+
     val subscription = daySubject
         .doOnError { _lineupLoadStatus.postValue(false) }
         .observeOn(Schedulers.io())
@@ -59,6 +60,28 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     override fun onCleared() {
         super.onCleared()
         subscription.dispose()
+    }
+
+    fun filterChange(
+        filterText: String,
+        teamAShow: Boolean,
+        teamBShow: Boolean,
+        tanksShow: Boolean,
+        planesShow: Boolean,
+        helisShow: Boolean,
+        lowLineupShow: Boolean,
+        highLineupShow: Boolean
+    ) {
+        _filterStatus.value = FilterState(
+            filterText,
+            teamAShow,
+            teamBShow,
+            tanksShow,
+            planesShow,
+            helisShow,
+            lowLineupShow,
+            highLineupShow
+        )
     }
 
     fun onDateChanged(date: CalendarDay) {
@@ -85,4 +108,15 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
             }
     }
 
+    data class FilterState(
+        val text: String,
+        val teamAShow: Boolean,
+        val teamBShow: Boolean,
+        val tanksShow: Boolean,
+        val planesShow: Boolean,
+        val helisShow: Boolean,
+        val lowLineupShow: Boolean,
+        val highLineupShow: Boolean
+
+    )
 }

@@ -46,13 +46,20 @@ class LineupListFragment : Fragment() {
         rvLineupList.layoutManager = LinearLayoutManager(context)
         rvLineupList.adapter = lineupAdapter
 
+        lineupListViewModel.filterStatus.observe(this, Observer { filter->
+            lineupAdapter.setFilterState(requireContext(), filter)
+        })
 
         lineupListViewModel.currentLineup.observe(this, Observer { lineup ->/**/
             lineupAdapter.setNewLineup(requireContext(), lineup)
             updateLineupText(lineup)
         })
 
-
+        listOf(teamAChip, teamBChip, tanksChip, planesChip, helisChip, lowLineupChip, highLineupChip).forEach {
+            it.setOnCheckedChangeListener { buttonView, isChecked ->
+                lineupListViewModel.filterChange("", teamAChip.isChecked, teamBChip.isChecked, tanksChip.isChecked, planesChip.isChecked, helisChip.isChecked, lowLineupChip.isChecked, highLineupChip.isChecked)
+            }
+        }
 
         lineupListViewModel.refreshData(false)
 
