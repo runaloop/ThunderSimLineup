@@ -21,10 +21,6 @@ class ScheduleTest : BaseTest() {
     @MockK(relaxed = true)
     lateinit var dao: LineupDao
 
-    @MockKForToothpick
-    @MockK(relaxed = true)
-    lateinit var getShiftedLineup: GetShiftedLineup
-
     val schedule: Schedule by inject()
 
     @Before
@@ -52,7 +48,7 @@ class ScheduleTest : BaseTest() {
         every { dao.getLineupCycleList() } returns (0..5).map { LineupCycleEntity(it.toString(), LineupType.LOW, it, true, it+1L) }
         every { dao.getLineupShift() } returns listOf(LineupShiftEntity(1, LocalDate.now(), 723L))
         every { dao.getLineups() } returns listOf(Lineup(LineupEntity("1")))
-        every { getShiftedLineup.process(any(), any(), any()) } returns dao.getLineupCycleList()[1]
+        //every { getShiftedLineup.process(any(), any(), any()) } returns dao.getLineupCycleList()[1]
         schedule.updateRule()
 
         //WHEN
@@ -115,5 +111,35 @@ class ScheduleTest : BaseTest() {
         val result = schedule.getExperimentalLineupForDate(date)
         //THEN
         assertThat(result).isEqualTo(experimentalLineup)
+    }
+
+    @Test
+    fun `100720 should return 10_2, day-1 8_2_2, day-2 9_2`() {
+        //I/System.out: LineupCycleEntity(lineupName=9_2, type=TOP, orderNumber=3, planesByBR=false, id=10)
+        //I/System.out: LineupShiftEntity(lineupId=10, shiftDate=2020-06-10, id=2)
+
+        //GIVEN
+        val today_10 = LocalDate.of(2020, 7, 10)
+        val shift_date = LocalDate.of(2020, 6, 10)
+        every { dao.getLineupCycleList() } returns listOf("8_2", "10_2", "8_2_2", "9_2").mapIndexed { index, s ->
+            LineupCycleEntity(
+                s,
+                LineupType.TOP,
+                index,
+                true,
+                index.toLong()
+            )
+        }
+        every { dao.getLineupShift() } returns listOf(LineupShiftEntity(3, shift_date, 723L))
+        every { dao.getLineups() } returns listOf(Lineup(LineupEntity("8_2")), Lineup(LineupEntity("10_2")),Lineup(LineupEntity("8_2_2") ), Lineup(LineupEntity("9_2")) )
+        schedule.updateRule()
+
+
+
+        //THEN
+        assertThat(schedule.getLineupForDate(today_10, LineupType.TOP)!!.lineupEntity.name).isEqualTo("10_2")
+        assertThat(schedule.getLineupForDate(today_10.minusDays(1), LineupType.TOP)!!.lineupEntity.name).isEqualTo("8_2")
+        assertThat(schedule.getLineupForDate(today_10.minusDays(2), LineupType.TOP)!!.lineupEntity.name).isEqualTo("9_2")
+        assertThat(schedule.getLineupForDate(today_10.minusDays(3), LineupType.TOP)!!.lineupEntity.name).isEqualTo("8_2_2")
     }
 }

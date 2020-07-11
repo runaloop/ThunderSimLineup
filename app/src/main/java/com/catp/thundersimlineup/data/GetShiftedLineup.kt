@@ -4,9 +4,8 @@ import com.catp.thundersimlineup.data.db.entity.LineupCycleEntity
 import com.catp.thundersimlineup.data.db.entity.LineupShiftEntity
 import com.catp.thundersimlineup.lShift
 import org.threeten.bp.LocalDate
-import org.threeten.bp.Period
+import org.threeten.bp.temporal.ChronoUnit
 import toothpick.InjectConstructor
-import kotlin.math.absoluteValue
 
 @InjectConstructor
 class GetShiftedLineup {
@@ -15,11 +14,13 @@ class GetShiftedLineup {
         date: LocalDate,
         lineups: List<LineupCycleEntity>
     ): LineupCycleEntity {
-        val between = Period.between(shift.shiftDate, date)
-        val daysToShift = between.days.absoluteValue
-        val order = lineups.find { it.id == shift.lineupId }?.orderNumber
-            ?: error("Cant find correct shift lineup id: $shift in $lineups")
-        val data = lineups.lShift(order + daysToShift)
+
+        val between = ChronoUnit.DAYS.between(shift.shiftDate, date).toInt()
+
+        val order = lineups.indexOfFirst { it.id == shift.lineupId }
+        if (order == -1) error("Cant find correct shift lineup id: $shift in $lineups")
+
+        val data = lineups.lShift(order + between)
         return data.first()
     }
 }

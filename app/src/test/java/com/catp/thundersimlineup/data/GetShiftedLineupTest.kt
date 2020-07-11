@@ -9,13 +9,12 @@ import org.junit.Before
 import org.junit.Test
 import org.threeten.bp.LocalDate
 import toothpick.ktp.delegate.inject
-import javax.inject.Inject
 
 
 class GetShiftedLineupTest : BaseTest() {
 
-    @Inject
-    lateinit var getShiftedLineup: GetShiftedLineup
+
+    val  getShiftedLineup: GetShiftedLineup by inject()
 
     @Before
     override fun setUp() {
@@ -65,5 +64,26 @@ class GetShiftedLineupTest : BaseTest() {
 
         //THEN
         assertThat(result.lineupName).isEqualTo("2")
+    }
+
+    @Test
+    fun `9_2 8_2 10_2 order is not worked anymore`() {
+        val today_10 = LocalDate.of(2020, 7, 10)
+        //val shift_date = LocalDate.of(2020, 6, 10)
+        val shift_date = LocalDate.of(2020, 7, 7)
+        val shiftEntity = LineupShiftEntity(3, shift_date)
+        val lineups = listOf("8_2", "10_2", "8_2_2", "9_2").mapIndexed { index, s ->
+            LineupCycleEntity(
+                s,
+                LineupType.TOP,
+                index,
+                true,
+                index.toLong()
+            )
+        }
+        println(getShiftedLineup.process(shiftEntity, today_10, lineups))
+        println(getShiftedLineup.process(shiftEntity, today_10.minusDays(1), lineups))
+        println(getShiftedLineup.process(shiftEntity, today_10.minusDays(2), lineups))
+        println(getShiftedLineup.process(shiftEntity, today_10.minusDays(3), lineups))
     }
 }

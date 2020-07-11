@@ -43,7 +43,7 @@ class Schedule {
     fun getLineupForDate(date: LocalDate, lineupType: LineupType): Lineup? {
         val lineups = dao.getLineups()
         val lineupCycle =
-            lineupsMap[lineupType]!!.find { lineup -> lineupShift.any { it.lineupId == lineup.id } }
+            lineupsMap[lineupType]!!.find { lineupCycleEntity -> lineupShift.any { it.lineupId == lineupCycleEntity.id } }
                 ?: error("Can't find lineup by shift id $lineupShift at $lineups")
         val shift = lineupShift.find { it.lineupId == lineupCycle.id }!!
         val shiftedLineup = getShiftedLineup.process(shift, date, lineupsMap[lineupType]!!)
