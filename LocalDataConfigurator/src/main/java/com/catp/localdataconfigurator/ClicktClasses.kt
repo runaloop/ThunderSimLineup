@@ -61,7 +61,8 @@ class GenerateJson : CliktCommand() {
 @ExperimentalStdlibApi
 class ReadWTDump: CliktCommand(){
     val verbose by option().flag(default = false)
-    val fileToParse by argument().default("LocalDataConfigurator/")
+    //val fileToParse by argument().default("LocalDataConfigurator/")
+    val fileToParse by argument().default("/Volumes/Users/Arkaha/IdeaProjects/ThunderSimLineup/LocalDataConfigurator/")
 
     override fun run() {
         with(File(fileToParse)){
@@ -76,4 +77,6 @@ class ReadWTDump: CliktCommand(){
         }
 
     }
+
+
 }

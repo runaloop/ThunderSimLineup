@@ -100,11 +100,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                     LineupStorage.REFRESH_RESULT.NEW_DATA -> _refreshResult.postValue("Lineups have been updated")
                     LineupStorage.REFRESH_RESULT.NO_NEW_DATA -> _refreshResult.postValue("Lineups loaded and ready to work")
                 }
-                /*lineupStorage.lineupDao.getVehicles().find { it.vehicleId == "hawk_iii" }.whenNonNull {
-                    isFavorite = true
-                    lineupStorage.lineupDao.updateVehicles(listOf(this))
-                }*/
-
             }
     }
 

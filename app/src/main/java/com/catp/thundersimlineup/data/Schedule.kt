@@ -17,15 +17,17 @@ class Schedule {
     internal lateinit var lineupsMap: MutableMap<LineupType, List<LineupCycleEntity>>
     internal var lineupAvailability: LineupCycleAvailabilityEntity? = null
     internal lateinit var lineupShift: List<LineupShiftEntity>
+    internal lateinit var lineups: List<Lineup>
 
     fun updateRule() {
-        val lineups = dao.getLineupCycleList()
+        val lineupsCycleList = dao.getLineupCycleList()
         lineupsMap = mutableMapOf()
         LineupType.values().forEach { type ->
-            lineupsMap[type] = lineups.filter { it.type == type }
+            lineupsMap[type] = lineupsCycleList.filter { it.type == type }
         }
         lineupShift = dao.getLineupShift()
         lineupAvailability = dao.getLineupAvailability()
+        lineups = dao.getLineups()
     }
 
     //Assume we have only one experimental lineup
@@ -41,7 +43,6 @@ class Schedule {
     }
 
     fun getLineupForDate(date: LocalDate, lineupType: LineupType): Lineup? {
-        val lineups = dao.getLineups()
         val lineupCycle =
             lineupsMap[lineupType]!!.find { lineupCycleEntity -> lineupShift.any { it.lineupId == lineupCycleEntity.id } }
                 ?: error("Can't find lineup by shift id $lineupShift at $lineups")
