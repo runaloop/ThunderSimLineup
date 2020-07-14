@@ -4,8 +4,6 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c513855940f7a2a711d55d29a49fd6e1/room-runtime-2.2.3/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5ed4242ce0a2d931a97d8ec5f656dc4a/room-runtime-2.2.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/79d414592ba44c096e521d023d80d3c6/room-runtime-2.2.3/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c513855940f7a2a711d55d29a49fd6e1/room-runtime-2.2.3/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c513855940f7a2a711d55d29a49fd6e1/room-runtime-2.2.3/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c513855940f7a2a711d55d29a49fd6e1/room-runtime-2.2.3/AndroidManifest.xml" />

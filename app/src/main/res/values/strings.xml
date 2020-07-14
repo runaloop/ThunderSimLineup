@@ -10,4 +10,5 @@
     <string name="team_b_title">Team B</string>
     <string name="today_active_lineups">Now active %s and %s, time until change - %sh%sm, next lineups: %s and %s</string>
     <string name="selected_day_lineup_text">Lineups for selected date: %s and %s would be available since 11 UTC</string>
+    <string name="fab_search">Search</string>
 </resources>

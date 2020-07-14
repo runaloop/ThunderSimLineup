@@ -1,7 +1,7 @@
 ext.deps = [:]
 def versions = [:]
 
-versions.android_gradle_plugin = "3.5.3"
+versions.android_gradle_plugin = "4.1.0-beta03"
 versions.kotlin = '1.3.70'
 versions.kotlin_coroutine = '1.3.5'
 
@@ -26,6 +26,8 @@ versions.material_calendar = "2.0.1"
 versions.threetenabp = "1.2.2"
 versions.fastcsv = "1.0.3"
 versions.poi_ooxml = "4.1.1"
+
+versions.latestFastAdapterRelease = "5.2.0"
 
 versions.stetho = "1.5.1"
 
@@ -83,6 +85,8 @@ deps.di_viewmodel_ktp = "com.github.stephanenicolas.toothpick:smoothie-lifecycle
 deps.di_smoothie = "com.github.stephanenicolas.toothpick:smoothie-support:$versions.toothpick"
 deps.di_test = "com.github.stephanenicolas.toothpick:toothpick-testing-junit4:$versions.toothpick"
 deps.di_compiler = "com.github.stephanenicolas.toothpick:toothpick-compiler:$versions.toothpick"
+
+deps.fast_adapter = "com.mikepenz:fastadapter:${versions.latestFastAdapterRelease}"
 
 deps.fastcsv = "de.siegmar:fastcsv:$versions.fastcsv"
 deps.poi_ooxml = "org.apache.poi:poi-ooxml:$versions.poi_ooxml"

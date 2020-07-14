@@ -73,6 +73,8 @@ dependencies {
     implementation deps.rxkotlin
     implementation deps.rxandroid
 
+    implementation deps.fast_adapter
+
     implementation deps.stetho
 
     kapt deps.di_compiler
