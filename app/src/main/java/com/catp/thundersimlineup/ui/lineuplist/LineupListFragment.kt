@@ -8,16 +8,18 @@ import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.catp.model.VehicleType
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
-import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
 import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.fastadapter.FastAdapter
-import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
+import com.timehop.stickyheadersrecyclerview.caching.HeaderViewCache
+import com.timehop.stickyheadersrecyclerview.calculation.DimensionCalculator
+import com.timehop.stickyheadersrecyclerview.rendering.HeaderRenderer
+import com.timehop.stickyheadersrecyclerview.util.LinearLayoutOrientationProvider
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -55,10 +57,28 @@ class LineupListFragment : Fragment() {
 
         rvLineupList.layoutManager = LinearLayoutManager(context)
         //TODO: Check the diff
-        //rvLineupList.itemAnimator = DefaultItemAnimator()
+        rvLineupList.itemAnimator = DefaultItemAnimator()
         rvLineupList.adapter = stickyHeaderAdapter.wrap(fastAdapter)
 
-        val decoration = StickyRecyclerHeadersDecoration(stickyHeaderAdapter)
+
+        val orientationProvider = LinearLayoutOrientationProvider()
+        val headerProvider = HeaderViewCache(stickyHeaderAdapter, orientationProvider)
+        val dimensionCalculator = DimensionCalculator()
+
+        val decoration = StickyRecyclerHeadersDecorationWithOpenConstructor(
+            stickyHeaderAdapter,
+            HeaderRenderer(orientationProvider),
+            orientationProvider,
+            dimensionCalculator,
+            headerProvider,
+            HeaderPositionCalculatorWoErrorSpam(
+                stickyHeaderAdapter,
+                headerProvider,
+                orientationProvider,
+                dimensionCalculator
+            ),
+            null
+        )
         rvLineupList.addItemDecoration(decoration)
 
 
