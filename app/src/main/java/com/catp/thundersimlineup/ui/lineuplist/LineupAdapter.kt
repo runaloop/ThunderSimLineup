@@ -1,43 +1,18 @@
 package com.catp.thundersimlineup.ui.lineuplist
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.catp.model.VehicleType
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.data.db.entity.Lineup
 import com.catp.thundersimlineup.data.db.entity.Team
 import com.catp.thundersimlineup.data.db.entity.Vehicle
+import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
+import com.mikepenz.fastadapter.adapters.ItemAdapter
 
-class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
+class LineupAdapter : ItemAdapter<VehicleItem>() {
 
     var originalData: List<Lineup> = emptyList()
     lateinit var filters: LineupListViewModel.FilterState
-    var dataset: List<ViewItem> = emptyList()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val id = when (viewType) {
-            ViewItem.TYPE.TITLE.ordinal -> R.layout.list_item_title
-            ViewItem.TYPE.VEHICLE.ordinal -> R.layout.list_item_title
-            ViewItem.TYPE.VEHICLE_FAVORITE.ordinal -> R.layout.list_item_title
-            else -> error("No layout specified for a type: $viewType")
-        }
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.list_item_title, parent, false
-        )
-
-        return ViewHolder(view)
-    }
-
-    override fun getItemCount() = dataset.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        dataset[position].apply(holder)
-    }
 
     fun setNewLineup(context: Context, lineup: LineupRequestInteractor.LineupForToday) {
         originalData = listOfNotNull(
@@ -46,91 +21,28 @@ class LineupAdapter : RecyclerView.Adapter<ViewHolder>() {
             lineup.lineupThen.first,
             lineup.lineupThen.second
         )
-        dataset = DataSetCreator(context).make(originalData, filters)
-        notifyDataSetChanged()
-    }
+        val dataset = DataSetCreator(context).make(originalData, filters)
+        set(dataset)
 
-    override fun getItemViewType(position: Int): Int {
-        return dataset[position].itemType()
     }
 
     fun setFilterState(context: Context, filters: LineupListViewModel.FilterState) {
         this.filters = filters
-        dataset = DataSetCreator(context).make(originalData, filters)
-        notifyDataSetChanged()
+        set(DataSetCreator(context).make(originalData, filters))
     }
-}
-
-class ViewHolder(val title: View) : RecyclerView.ViewHolder(title) {
-    private var titleView: TextView
-    private var brView: TextView
-
-    init {
-        titleView = title.findViewById(R.id.tvItemTitle)
-        brView = title.findViewById(R.id.tvItemBR)
-    }
-
-    fun setText(text: String) {
-        titleView.text = text
-    }
-
-    @SuppressLint("ResourceAsColor")
-    fun setTitle() {
-
-    }
-
-    fun setBR(br: String) {
-        brView.text = br
-    }
-
-    @SuppressLint("ResourceAsColor")
-    fun setFavorite(favorite: Boolean, color: Int) {
-        if (favorite) {
-
-        }
-    }
-}
-
-abstract class ViewItem() {
-    abstract fun apply(viewHolder: ViewHolder)
-    abstract fun itemType(): Int
-    enum class TYPE {
-        TITLE, VEHICLE, VEHICLE_FAVORITE
-    }
-}
-
-class ViewTitle(val title: String) :
-    ViewItem() {
-    override fun apply(viewHolder: ViewHolder) {
-        viewHolder.setText(title)
-        viewHolder.setTitle()
-    }
-
-    override fun itemType(): Int = TYPE.TITLE.ordinal
-}
-
-class ViewVehicle(val vehicle: Vehicle) :
-    ViewItem() {
-    override fun apply(viewHolder: ViewHolder) {
-        viewHolder.setText("${vehicle.nation} ${vehicle.title}")
-        viewHolder.setBR(vehicle.br)
-        viewHolder.setFavorite(vehicle.isFavorite, 0xff0000)
-    }
-
-    override fun itemType(): Int = TYPE.VEHICLE.ordinal
 }
 
 //Takes list of Lineups, fills it with view items: Titles like commands, vehicle type titles, vehicle sorted by type/favorite mode etc
 class DataSetCreator(val context: Context) {
-    fun make(lineups: List<Lineup>, filters: LineupListViewModel.FilterState): List<ViewItem> {
-        val data = mutableListOf<ViewItem>()
+    fun make(lineups: List<Lineup>, filters: LineupListViewModel.FilterState): List<VehicleItem> {
+        val data = mutableListOf<VehicleItem>()
         lineups.forEach { fillSet(it, data, filters) }
         return data
     }
 
     private fun fillSet(
         lineup: Lineup,
-        dataset: MutableList<ViewItem>,
+        dataset: MutableList<VehicleItem>,
         filters: LineupListViewModel.FilterState
     ) {
 
@@ -146,7 +58,7 @@ class DataSetCreator(val context: Context) {
 
     private fun fillTeam(
         team: Team,
-        dataset: MutableList<ViewItem>,
+        dataset: MutableList<VehicleItem>,
         filters: LineupListViewModel.FilterState,
         title: String
     ) {
@@ -158,10 +70,11 @@ class DataSetCreator(val context: Context) {
             )
             team.vehicles.groupBy { it.type }.forEach { (type, list) ->
                 if (list.isNotEmpty() && vehicles[type] != null) {
+
                     val isLowLineup = title.indexOf("_1") != -1
                     if (isLowLineup && filters.lowLineupShow || (!isLowLineup && filters.highLineupShow)) {
-                        dataset += ViewTitle("$title ${vehicles[type]}")
-                        fillVehicleList(list, dataset)
+                        val header = "$title ${vehicles[type]}"
+                        fillVehicleList(list, dataset, header)
                     }
                 }
             }
@@ -171,13 +84,14 @@ class DataSetCreator(val context: Context) {
 
     private fun fillVehicleList(
         vehicleList: List<Vehicle>,
-        dataset: MutableList<ViewItem>
+        dataset: MutableList<VehicleItem>,
+        header: String
     ) {
         vehicleList
             .sortedBy { it.isFavorite }
             .sortedBy { it.nation }
             .forEach { vehicle ->
-                dataset += ViewVehicle(vehicle)
+                dataset += VehicleItem(vehicle, header)
             }
     }
 }

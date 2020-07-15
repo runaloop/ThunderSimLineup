@@ -28,7 +28,7 @@ versions.fastcsv = "1.0.3"
 versions.poi_ooxml = "4.1.1"
 
 versions.latestFastAdapterRelease = "5.2.0"
-
+versions.stickyheadersrecyclerview = "0.5.1-SNAPSHOT"
 versions.stetho = "1.5.1"
 
 versions.toothpick = "3.1.0"
@@ -87,6 +87,7 @@ deps.di_test = "com.github.stephanenicolas.toothpick:toothpick-testing-junit4:$v
 deps.di_compiler = "com.github.stephanenicolas.toothpick:toothpick-compiler:$versions.toothpick"
 
 deps.fast_adapter = "com.mikepenz:fastadapter:${versions.latestFastAdapterRelease}"
+deps.stickyheadersrecyclerview = "com.mikepenz.thirdparty:stickyheadersrecyclerview:${versions.stickyheadersrecyclerview}@aar"
 
 deps.fastcsv = "de.siegmar:fastcsv:$versions.fastcsv"
 deps.poi_ooxml = "org.apache.poi:poi-ooxml:$versions.poi_ooxml"

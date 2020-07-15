@@ -32,15 +32,12 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     private val _refreshResult = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
-    private val _selectedDay = MutableLiveData<CalendarDay>().apply { value = CalendarDay.today() }
-
     private val _filterStatus = MutableLiveData<FilterState>().apply {
         value = FilterState("", true, true, true, true, true, true, true)
     }
     private val _lineupLoadStatus = MutableLiveData<Boolean>().apply { value = true }
 
     val text: LiveData<String> = _refreshResult
-    val selectedDay: LiveData<CalendarDay> = _selectedDay
     val daySubject: PublishSubject<LocalDate> = PublishSubject.create()
     private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
     val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
@@ -85,7 +82,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun onDateChanged(date: CalendarDay) {
-        _selectedDay.value = date
         daySubject.onNext(date.date)
     }
 

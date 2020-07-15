@@ -8,7 +8,7 @@ import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 
-class VehicleItem(val vehicle: Vehicle) : AbstractItem<VehicleItem.ViewHolder>() {
+class VehicleItem(val vehicle: Vehicle, val header: String?=null) : AbstractItem<VehicleItem.ViewHolder>() {
     override val layoutRes: Int
         get() = R.layout.vehicle_list_item
     override val type: Int

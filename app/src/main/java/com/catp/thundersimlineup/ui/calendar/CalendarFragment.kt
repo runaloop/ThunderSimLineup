@@ -10,6 +10,7 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import org.threeten.bp.LocalDate
 import toothpick.ktp.KTP
@@ -34,12 +35,14 @@ class CalendarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         calendarView.setDayFormatter { day -> day.day.toString() }
-        calendarView.setSelectedDate(LocalDate.now())
+        val now = LocalDate.now()
+        calendarView.setSelectedDate(now)
         calendarView.setOnDateChangedListener { widget, date, selected ->
             if (selected) {
                 lineupListViewModel.onDateChanged(date)
             }
         }
+        lineupListViewModel.onDateChanged(CalendarDay.from(now))//dispatch today, to a viewmodel
         super.onViewCreated(view, savedInstanceState)
     }
 

@@ -74,6 +74,7 @@ dependencies {
     implementation deps.rxandroid
 
     implementation deps.fast_adapter
+    implementation deps.stickyheadersrecyclerview
 
     implementation deps.stetho
 

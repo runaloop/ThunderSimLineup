@@ -7,13 +7,17 @@ import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.catp.model.VehicleType
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.data.db.entity.Vehicle
+import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
 import com.google.android.material.snackbar.Snackbar
+import com.mikepenz.fastadapter.FastAdapter
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -25,7 +29,8 @@ class LineupListFragment : Fragment() {
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
 
-    private val lineupAdapter = LineupAdapter()
+    val lineupAdapter = LineupAdapter()
+    val stickyHeaderAdapter = StickyHeaderAdapter<VehicleItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,14 +51,22 @@ class LineupListFragment : Fragment() {
             }
         })
 
+        val fastAdapter = FastAdapter.with(lineupAdapter)
+
         rvLineupList.layoutManager = LinearLayoutManager(context)
-        rvLineupList.adapter = lineupAdapter
+        //TODO: Check the diff
+        //rvLineupList.itemAnimator = DefaultItemAnimator()
+        rvLineupList.adapter = stickyHeaderAdapter.wrap(fastAdapter)
+
+        val decoration = StickyRecyclerHeadersDecoration(stickyHeaderAdapter)
+        rvLineupList.addItemDecoration(decoration)
+
 
         lineupListViewModel.filterStatus.observe(this, Observer { filter ->
             lineupAdapter.setFilterState(requireContext(), filter)
         })
 
-        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->/**/
+        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
             lineupAdapter.setNewLineup(requireContext(), lineup)
             updateLineupText(lineup)
         })
@@ -84,14 +97,6 @@ class LineupListFragment : Fragment() {
         lineupListViewModel.refreshData(false)
 
         fab.setOnClickListener {
-
-
-            val options = NavOptions.Builder()
-                .setEnterAnim(R.anim.nav_default_enter_anim)
-                .setExitAnim(R.anim.nav_default_exit_anim)
-                .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
-                .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
-                .build()
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
         }
 
