@@ -28,13 +28,28 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     @Inject
     lateinit var lineupRequestInteractor: LineupRequestInteractor
 
+    @Inject
+    lateinit var lineupFilterByLineup: LineupFilterByLineup
+
 
     private val _refreshResult = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
     private val _filterStatus = MutableLiveData<FilterState>().apply {
-        value = FilterState("", true, true, true, true, true, true, true)
+        value = FilterState(
+            "",
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        )
     }
+    private val _filterAvailable = MutableLiveData<FilterState>()
     private val _lineupLoadStatus = MutableLiveData<Boolean>().apply { value = true }
 
     val text: LiveData<String> = _refreshResult
@@ -42,6 +57,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
     val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
     val filterStatus: LiveData<FilterState> = _filterStatus
+    val filterAvailable: LiveData<FilterState> = _filterAvailable
 
     val subscription = daySubject
         .doOnError { _lineupLoadStatus.postValue(false) }
@@ -50,6 +66,8 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         .subscribe { day ->
             _lineupLoadStatus.postValue(true)
             val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
+            val lineupAvailableFilters = lineupFilterByLineup.getFilters(lineupForToday)
+            _filterAvailable.postValue(lineupAvailableFilters)
             _currentLineup.postValue(lineupForToday)
             _lineupLoadStatus.postValue(false)
         }
@@ -67,7 +85,9 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         planesShow: Boolean,
         helisShow: Boolean,
         lowLineupShow: Boolean,
-        highLineupShow: Boolean
+        highLineupShow: Boolean,
+        nowLineupShow: Boolean,
+        laterLineupShow: Boolean
     ) {
         _filterStatus.value = FilterState(
             filterText,
@@ -77,7 +97,9 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
             planesShow,
             helisShow,
             lowLineupShow,
-            highLineupShow
+            highLineupShow,
+            nowLineupShow,
+            laterLineupShow
         )
     }
 
@@ -101,13 +123,28 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
 
     data class FilterState(
         val text: String,
-        val teamAShow: Boolean,
-        val teamBShow: Boolean,
-        val tanksShow: Boolean,
-        val planesShow: Boolean,
-        val helisShow: Boolean,
-        val lowLineupShow: Boolean,
-        val highLineupShow: Boolean
+        var teamAShow: Boolean,
+        var teamBShow: Boolean,
+        var tanksShow: Boolean,
+        var planesShow: Boolean,
+        var helisShow: Boolean,
+        var lowLineupShow: Boolean,
+        var highLineupShow: Boolean,
+        var nowLineupShow: Boolean,
+        var laterLineupShow: Boolean
+    ) {
+        val data = listOf(
+            teamAShow,
+            teamBShow,
+            tanksShow,
+            planesShow,
+            helisShow,
+            lowLineupShow,
+            highLineupShow,
+            nowLineupShow,
+            laterLineupShow
+        )
 
-    )
+        operator fun get(n: Int): Boolean = data[n]
+    }
 }

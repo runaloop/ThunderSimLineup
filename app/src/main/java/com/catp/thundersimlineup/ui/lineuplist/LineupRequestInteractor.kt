@@ -7,10 +7,7 @@ import com.catp.thundersimlineup.data.db.entity.Lineup
 import com.catp.thundersimlineup.data.db.entity.LineupType
 import org.threeten.bp.Duration
 import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
 import toothpick.InjectConstructor
-import toothpick.InternalProvider
 import javax.inject.Inject
 
 @InjectConstructor
@@ -18,6 +15,7 @@ class LineupRequestInteractor {
 
     @Inject
     lateinit var lineupSchedule: Schedule
+
     @Inject
     lateinit var localDateTimeProvider: LocalDateTimeProvider
 
@@ -40,20 +38,27 @@ class LineupRequestInteractor {
                 diff = Duration.between(currentUTC, nextLineupUTC)
             } else {
                 dayToLoad = day
-                diff = if(currentUTC.toLocalDate() != day) Duration.ZERO else Duration.between(currentUTC, nextLineupUTC.plusDays(1))
+                diff = if (currentUTC.toLocalDate() != day) Duration.ZERO else Duration.between(
+                    currentUTC,
+                    nextLineupUTC.plusDays(1)
+                )
             }
 
 
+            val isLineupForToday = !diff.isZero
             return LineupForToday(
                 Pair(
                     lineupSchedule.getLineupForDate(dayToLoad, LineupType.LOW),
                     lineupSchedule.getLineupForDate(dayToLoad, LineupType.TOP)
                 ),
-                Pair(
-                    lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.LOW),
-                    lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.TOP)
-                ),
-                diff
+                if (isLineupForToday)
+                    Pair(
+                        lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.LOW),
+                        lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.TOP)
+                    ) else Pair(null, null)
+                ,
+                diff,
+                isLineupForToday
             )
 
 
@@ -63,6 +68,7 @@ class LineupRequestInteractor {
     data class LineupForToday(
         val lineupNow: Pair<Lineup?, Lineup?>,
         val lineupThen: Pair<Lineup?, Lineup?>,
-        val timeToChange: Duration
+        val timeToChange: Duration,
+        val isLineupForNow: Boolean = false
     )
 }

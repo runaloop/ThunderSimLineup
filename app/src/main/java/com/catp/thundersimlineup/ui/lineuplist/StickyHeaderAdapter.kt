@@ -21,12 +21,16 @@ import kotlin.math.absoluteValue
 class StickyHeaderAdapter<Item : GenericItem> : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     StickyRecyclerHeadersAdapter<RecyclerView.ViewHolder> {
 
-    //just to prettify things a bit
-    private val randomColor: Int
-        get() {
-            val rgen = SecureRandom()
-            return Color.HSVToColor(150, floatArrayOf(rgen.nextInt(359).toFloat(), 1f, 1f))
-        }
+    val rgen = SecureRandom()
+    val alpha = 150
+    val headersColor = listOf(
+        Color.argb(alpha, 0xD3, 0x2F, 0x2F),
+        Color.argb(alpha, 0x30, 0x3F, 0x9F),
+        Color.argb(alpha, 0x38, 0x8E, 0x3C),
+        Color.argb(alpha, 0xF5, 0x7C, 0x00),
+        Color.argb(alpha, 0x5D, 0x40, 0x37),
+        Color.argb(alpha, 0x45, 0x5A, 0x64)
+    )
 
     /*
      * GENERAL CODE NEEDED TO WRAP AN ADAPTER
@@ -62,7 +66,7 @@ class StickyHeaderAdapter<Item : GenericItem> : RecyclerView.Adapter<RecyclerVie
             // Fallback to same value
             else -> textView.text
         }
-        holder.itemView.setBackgroundColor(randomColor)
+        holder.itemView.setBackgroundColor(headersColor.random())
     }
 
     /**

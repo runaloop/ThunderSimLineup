@@ -4,7 +4,11 @@ import com.dslplatform.json.CompiledJson
 
 //formats = arrayOf(CompiledJson.Format.ARRAY)
 @CompiledJson(formats = [CompiledJson.Format.ARRAY])
-data class JsonLineup(val name: String, val jsonTeamA: JsonTeam = JsonTeam(), val jsonTeamB: JsonTeam = JsonTeam()) {
+data class JsonLineup(
+    val name: String,
+    val jsonTeamA: JsonTeam = JsonTeam(),
+    val jsonTeamB: JsonTeam = JsonTeam()
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is JsonLineup) return false
@@ -28,7 +32,8 @@ data class JsonLineup(val name: String, val jsonTeamA: JsonTeam = JsonTeam(), va
     val fullVehicleList: List<JsonVehicle>
         get() = listOf(jsonTeamA.vehicles, jsonTeamB.vehicles).flatten()
 
-    fun hasVehicle(vehicle: JsonVehicle) = jsonTeamA.hasVehicle(vehicle) || jsonTeamB.hasVehicle(vehicle)
+    fun hasVehicle(vehicle: JsonVehicle) =
+        jsonTeamA.hasVehicle(vehicle) || jsonTeamB.hasVehicle(vehicle)
 
 
     /**
@@ -121,16 +126,24 @@ class JsonVehicleStore(val vehicleList: MutableList<JsonVehicle> = mutableListOf
         return vehicleList.filter { it.br == br && it.type == VehicleType.TANK }
     }
 
-    fun removeUglySymbolsFromTitles(){
+    fun removeUglySymbolsFromTitles() {
         //full list - [ , ", ', (, ), *, ,, -, ., /, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, :, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, ª, ä, è, é, ö, ü, К, М, С, Т, а, —, №, ⋠, ␗, ␙, ␠, ▀, ▂, ▃, ▄, ▅, ]
         val toDelete = Regex("[⋠␗␙␠▀▂▃▄▅\uF059]")
-        vehicleList.forEach { item->
-            if( item.locale?.title?.contains(toDelete) == true){
+        vehicleList.forEach { item ->
+            if (item.locale?.title?.contains(toDelete) == true) {
                 val old = item.locale!!.title
                 val new = item.locale!!.title.replace(toDelete, "")
                 println("Old: ${old}\nNew: ${new}")
                 item.locale!!.title = new
             }
+        }
+    }
+
+    fun removeForbidenIds() {
+        val forbidenIds_endings = listOf("_football", "us_amx_13_75")
+        val forbidenTypes = listOf(VehicleType.SHIP)
+        vehicleList.removeAll { vehicle ->
+            vehicle.type in forbidenTypes || forbidenIds_endings.any { vehicle.name.contains(it) }
         }
     }
 }
@@ -176,6 +189,7 @@ data class JsonVehicle(
 enum class VehicleType {
     TANK, PLANE, HELI, SHIP;
 }
+
 enum class VehicleState {
     REGULAR, DELETED, NEW
 }

@@ -15,6 +15,7 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.fastadapter.FastAdapter
 import com.timehop.stickyheadersrecyclerview.caching.HeaderViewCache
@@ -47,6 +48,12 @@ class LineupListFragment : Fragment() {
         return root
     }
 
+    private var chips: List<Chip> = emptyList()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        chips = emptyList()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         lineupListViewModel.text.observe(this, Observer {
             if (it.isNotEmpty() && getView() != null) {
@@ -57,7 +64,6 @@ class LineupListFragment : Fragment() {
         val fastAdapter = FastAdapter.with(lineupAdapter)
 
         rvLineupList.layoutManager = LinearLayoutManager(context)
-        //TODO: Check the diff
         rvLineupList.itemAnimator = DefaultItemAnimator()
         rvLineupList.adapter = stickyHeaderAdapter.wrap(fastAdapter)
 
@@ -92,15 +98,23 @@ class LineupListFragment : Fragment() {
             updateLineupText(lineup)
         })
 
-        listOf(
+        lineupListViewModel.filterAvailable.observe(this, Observer { filter ->
+            updateFilterVisibility(filter)
+        })
+
+        chips = listOf(
             teamAChip,
             teamBChip,
             tanksChip,
             planesChip,
             helisChip,
             lowLineupChip,
-            highLineupChip
-        ).forEach {
+            highLineupChip,
+            nowLineupChip,
+            laterLineupChip
+        )
+
+        chips.forEach {
             it.setOnCheckedChangeListener { buttonView, isChecked ->
                 lineupListViewModel.filterChange(
                     "",
@@ -110,7 +124,9 @@ class LineupListFragment : Fragment() {
                     planesChip.isChecked,
                     helisChip.isChecked,
                     lowLineupChip.isChecked,
-                    highLineupChip.isChecked
+                    highLineupChip.isChecked,
+                    nowLineupChip.isChecked,
+                    laterLineupChip.isChecked
                 )
             }
         }
@@ -121,7 +137,15 @@ class LineupListFragment : Fragment() {
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
         }
 
+
+
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun updateFilterVisibility(filter: LineupListViewModel.FilterState) {
+        chips.forEachIndexed { index, chip ->
+            chip.visibility = if (filter[index]) View.VISIBLE else View.GONE
+        }
     }
 
     override fun onResume() {
@@ -137,8 +161,6 @@ class LineupListFragment : Fragment() {
     private fun updateLineupText(lineup: LineupRequestInteractor.LineupForToday) {
         val currentLineupLow = lineup.lineupNow.first!!.lineupEntity.name
         val currentLineupTop = lineup.lineupNow.second!!.lineupEntity.name
-        val nextLineupLow = lineup.lineupThen.first!!.lineupEntity.name
-        val nextLineupTop = lineup.lineupThen.second!!.lineupEntity.name
         val hoursToChange = lineup.timeToChange.toHours().toString()
         val minutesToChange = (lineup.timeToChange.toMinutes() % 60).toString()
         if (lineup.timeToChange.isZero) {
@@ -151,6 +173,8 @@ class LineupListFragment : Fragment() {
                 )
             )
         } else {
+            val nextLineupLow = lineup.lineupThen.first!!.lineupEntity.name
+            val nextLineupTop = lineup.lineupThen.second!!.lineupEntity.name
             tvCurrentLineup.setText(
                 getString(
                     R.string.today_active_lineups,

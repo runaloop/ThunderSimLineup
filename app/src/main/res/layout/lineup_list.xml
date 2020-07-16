@@ -78,6 +78,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Top" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/nowLineupChip"
+                style="@style/TSLFilterChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Now" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/laterLineupChip"
+                style="@style/TSLFilterChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Later" />
         </LinearLayout>
     </HorizontalScrollView>
 

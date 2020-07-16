@@ -36,7 +36,11 @@ class LineupAdapter : ItemAdapter<VehicleItem>() {
 class DataSetCreator(val context: Context) {
     fun make(lineups: List<Lineup>, filters: LineupListViewModel.FilterState): List<VehicleItem> {
         val data = mutableListOf<VehicleItem>()
-        lineups.forEach { fillSet(it, data, filters) }
+
+        lineups.forEachIndexed { index, lineup ->
+            if (index < 2 && filters.nowLineupShow || index > 1 && filters.laterLineupShow || lineups.size == 2)
+                fillSet(lineup, data, filters)
+        }
         return data
     }
 

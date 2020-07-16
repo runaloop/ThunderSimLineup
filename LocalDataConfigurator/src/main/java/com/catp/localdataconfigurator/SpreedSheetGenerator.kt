@@ -48,6 +48,7 @@ class SpreedSheetGenerator(
     }
 
     fun make() {
+        vehicleStore.removeForbidenIds()
         vehicleStore.removeUglySymbolsFromTitles()
         createFile()
         createTopHeader()
