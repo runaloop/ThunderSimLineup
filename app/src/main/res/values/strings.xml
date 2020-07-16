@@ -4,6 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="team_a_title">Team A</string>
+    <string name="favorites">favorites</string>
     <string name="tanks_title">Tanks</string>
     <string name="planes_title">Planes</string>
     <string name="helis_title">Helicopters</string>

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.catp.thundersimlineup.data.db.entity.Vehicle
-import io.reactivex.android.schedulers.AndroidSchedulers
 import toothpick.InjectConstructor
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,6 +15,7 @@ class VehicleListViewModel : ViewModel() {
 
     @Inject
     lateinit var vehicleRequestInteractor: VehicleRequestInteractor
+
 
     private val _vehicles = MutableLiveData<List<Vehicle>>().apply {
         //
@@ -34,4 +34,6 @@ class VehicleListViewModel : ViewModel() {
                 _vehicles.postValue(it)
             }
     }
+
+
 }

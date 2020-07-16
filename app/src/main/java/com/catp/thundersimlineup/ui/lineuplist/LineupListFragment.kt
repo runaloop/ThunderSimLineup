@@ -137,6 +137,11 @@ class LineupListFragment : Fragment() {
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
         }
 
+        fastAdapter.onClickListener = { view, adapter, item, position ->
+            lineupListViewModel.onClick(item.vehicle)
+            fastAdapter.notifyItemChanged(position)
+            false
+        }
 
 
         super.onViewCreated(view, savedInstanceState)

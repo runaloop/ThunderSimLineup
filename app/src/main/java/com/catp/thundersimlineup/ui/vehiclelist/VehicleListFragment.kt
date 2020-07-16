@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
-import com.mikepenz.fastadapter.select.getSelectExtension
 import kotlinx.android.synthetic.main.fragment_vehicle_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -23,6 +23,9 @@ class VehicleListFragment : Fragment() {
 
     @Inject
     lateinit var vehicleListViewModel: VehicleListViewModel
+
+    @Inject
+    lateinit var lineupListViewModel: LineupListViewModel
 
     val itemAdapter = ItemAdapter<VehicleItem>()
 
@@ -60,13 +63,16 @@ class VehicleListFragment : Fragment() {
         rvVehicleList.layoutManager = LinearLayoutManager(context)
 
         vehicleListViewModel.vehicles.observe(this, Observer { list ->
-            itemAdapter.set(list.map { VehicleItem(it) })
+            itemAdapter.set(list.sortedBy { !it.isFavorite }.map { VehicleItem(it) })
         })
 
         val fastAdapter = FastAdapter.with(itemAdapter)
-        val selectExtension = fastAdapter.getSelectExtension()
-        selectExtension.isSelectable = true
-        selectExtension.selectOnLongClick = false
+        fastAdapter.onClickListener = { view, adapter, item, position ->
+            lineupListViewModel.onClick(item.vehicle)
+            fastAdapter.notifyItemChanged(position)
+            false
+        }
+
         itemAdapter.itemFilter.filterPredicate = { item: VehicleItem, constraint: CharSequence? ->
             item.vehicle.title.toLowerCase(Locale.getDefault())
                 .contains(
@@ -79,9 +85,12 @@ class VehicleListFragment : Fragment() {
 
         vehicleListViewModel.viewCreated()
 
-
-
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDetach() {
+        lineupListViewModel.pushFavorites()
+        super.onDetach()
     }
 
     @VisibleForTesting

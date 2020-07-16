@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
+import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -30,6 +31,11 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
 
     @Inject
     lateinit var lineupFilterByLineup: LineupFilterByLineup
+
+    @Inject
+    lateinit var pushFavoriteVehicleInteractor: PushFavoriteVehicleInteractor
+
+    val selectedItems = mutableSetOf<Vehicle>()
 
 
     private val _refreshResult = MutableLiveData<String>().apply {
@@ -104,6 +110,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun onDateChanged(date: CalendarDay) {
+        pushFavorites()
         daySubject.onNext(date.date)
     }
 
@@ -119,6 +126,25 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                     LineupStorage.REFRESH_RESULT.NO_NEW_DATA -> _refreshResult.postValue("Lineups loaded and ready to work")
                 }
             }
+    }
+
+    fun favoriteUpdated() {
+
+    }
+
+    fun onClick(vehicle: Vehicle) {
+        vehicle.isFavorite = !vehicle.isFavorite
+        selectedItems += vehicle
+    }
+
+    fun pushFavorites(){
+        if(selectedItems.isNotEmpty()){
+            val items = selectedItems.toList()
+            selectedItems.clear()
+            pushFavoriteVehicleInteractor.push(items).subscribe {
+                favoriteUpdated()
+            }
+        }
     }
 
     data class FilterState(

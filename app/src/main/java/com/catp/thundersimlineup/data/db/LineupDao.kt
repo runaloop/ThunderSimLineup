@@ -29,16 +29,16 @@ interface LineupDao {
 
     @Update
     @Transaction
-    fun updateVehicles(vehicles: List<Vehicle>)
+    fun updateVehicles(vehicles: List<Vehicle>): Int
 
     @Transaction
-    fun upsertVehicles(vehicles: List<Vehicle>) {
+    fun upsertVehicles(vehicles: List<Vehicle>): Int {
         val updateList = mutableListOf<Vehicle>()
         insertVehicles(vehicles).forEachIndexed { index, insertResult ->
             if (insertResult == -1L)
                 updateList.add(vehicles[index])
         }
-        updateVehicles(updateList)
+        return updateVehicles(updateList)
     }
 
     @Insert

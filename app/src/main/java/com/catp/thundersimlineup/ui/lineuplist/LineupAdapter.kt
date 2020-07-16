@@ -50,6 +50,10 @@ class DataSetCreator(val context: Context) {
         filters: LineupListViewModel.FilterState
     ) {
 
+        val favorite = listOf(lineup.teamA.vehicles, lineup.teamB.vehicles).flatten().filter { it.isFavorite }
+
+        fillFavorite(lineup, dataset, favorite)
+
         val teams = mapOf(
             lineup.teamA to if (filters.teamAShow) context.getString(R.string.team_a_title) else null,
             lineup.teamB to if (filters.teamBShow) context.getString(R.string.team_b_title) else null
@@ -57,6 +61,13 @@ class DataSetCreator(val context: Context) {
         teams.keys.forEach { team ->
             if (teams[team] != null)
                 fillTeam(team, dataset, filters, "${lineup.lineupEntity.name} ${teams[team]}")
+        }
+    }
+
+    private fun fillFavorite(lineup: Lineup, dataset: MutableList<VehicleItem>, favorite: List<Vehicle>) {
+        val header = "${lineup.lineupEntity.name} ${context.getString(R.string.favorites)}"
+        favorite.forEach {
+            dataset += VehicleItem(it, header)
         }
     }
 
