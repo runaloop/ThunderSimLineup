@@ -42,7 +42,7 @@ class CalendarFragment : Fragment() {
                 lineupListViewModel.onDateChanged(date)
             }
         }
-        lineupListViewModel.onDateChanged(CalendarDay.from(now))//dispatch today, to a viewmodel
+        //lineupListViewModel.onDateChanged(CalendarDay.from(now))//dispatch today, to a viewmodel
         super.onViewCreated(view, savedInstanceState)
     }
 

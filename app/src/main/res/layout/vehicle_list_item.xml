@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/ListItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,29 +10,34 @@
 
     <TextView
         android:id="@+id/tvNation"
-        android:paddingRight="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="8dp"
         android:text=""
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="RU" />
 
     <TextView
         android:id="@+id/tvTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tvNation"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:singleLine="true"
         android:text=""
-        tools:text="BMP1" />
+        app:layout_constraintLeft_toRightOf="@id/tvNation"
+        app:layout_constraintRight_toLeftOf="@id/tvBR"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="BMP 1 asdasd sadasdsad asd sadas das da sasdasd sadasdsad asd sadas das da s" />
 
     <TextView
         android:id="@+id/tvBR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:text=""
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="3.7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
