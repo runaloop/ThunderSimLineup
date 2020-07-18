@@ -13,6 +13,8 @@ class VehicleRequestInteractor {
     lateinit var lineupDao: LineupDao
 
     fun getVehicles(): Observable<List<Vehicle>> {
-        return Observable.just(lineupDao).observeOn(Schedulers.io()).map { lineupDao.getVehicles() }
+        return Observable.just(lineupDao)
+            .observeOn(Schedulers.io())
+            .map { lineupDao.getVehicles()}
     }
 }

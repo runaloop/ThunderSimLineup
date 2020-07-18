@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.initRecyclerView
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
+import com.catp.thundersimlineup.ui.lineuplist.StickyHeaderAdapter
 import com.mikepenz.fastadapter.FastAdapter
-import com.mikepenz.fastadapter.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.fragment_vehicle_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -27,7 +28,8 @@ class VehicleListFragment : Fragment() {
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
 
-    val itemAdapter = ItemAdapter<VehicleItem>()
+    val itemAdapter = VehicleAdapter()
+    val stickyHeaderAdapter = StickyHeaderAdapter<VehicleItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +65,7 @@ class VehicleListFragment : Fragment() {
         rvVehicleList.layoutManager = LinearLayoutManager(context)
 
         vehicleListViewModel.vehicles.observe(this, Observer { list ->
-            itemAdapter.set(list.sortedBy { !it.isFavorite }.map { VehicleItem(it) })
+            itemAdapter.setData(list)
         })
 
         val fastAdapter = FastAdapter.with(itemAdapter)
@@ -80,13 +82,13 @@ class VehicleListFragment : Fragment() {
                 )
         }
 
-
-        rvVehicleList.adapter = fastAdapter
+        initRecyclerView(fastAdapter, rvVehicleList, stickyHeaderAdapter)
 
         vehicleListViewModel.viewCreated()
 
         super.onViewCreated(view, savedInstanceState)
     }
+
 
     override fun onDetach() {
         lineupListViewModel.pushFavorites()

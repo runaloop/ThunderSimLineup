@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.initRecyclerView
 import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
@@ -61,33 +62,10 @@ class LineupListFragment : Fragment() {
             }
         })
 
+        rvLineupList.layoutManager = LinearLayoutManager(context)
         val fastAdapter = FastAdapter.with(lineupAdapter)
 
-        rvLineupList.layoutManager = LinearLayoutManager(context)
-        rvLineupList.itemAnimator = DefaultItemAnimator()
-        rvLineupList.adapter = stickyHeaderAdapter.wrap(fastAdapter)
-
-
-        val orientationProvider = LinearLayoutOrientationProvider()
-        val headerProvider = HeaderViewCache(stickyHeaderAdapter, orientationProvider)
-        val dimensionCalculator = DimensionCalculator()
-
-        val decoration = StickyRecyclerHeadersDecorationWithOpenConstructor(
-            stickyHeaderAdapter,
-            HeaderRenderer(orientationProvider),
-            orientationProvider,
-            dimensionCalculator,
-            headerProvider,
-            HeaderPositionCalculatorWoErrorSpam(
-                stickyHeaderAdapter,
-                headerProvider,
-                orientationProvider,
-                dimensionCalculator
-            ),
-            null
-        )
-        rvLineupList.addItemDecoration(decoration)
-
+        initRecyclerView(fastAdapter, rvLineupList, stickyHeaderAdapter)
 
         lineupListViewModel.filterStatus.observe(this, Observer { filter ->
             lineupAdapter.setFilterState(requireContext(), filter)
