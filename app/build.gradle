@@ -34,6 +34,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
     testOptions {
         unitTests {
             includeAndroidResources = true
@@ -49,6 +52,7 @@ dependencies {
     kapt deps.json
     annotationProcessor deps.json
 
+
     implementation deps.android.appcompat
     implementation deps.android.corektx
     implementation deps.android.constraintlayout
@@ -58,6 +62,9 @@ dependencies {
     implementation deps.android.room
     implementation deps.android.room_ktx
     implementation deps.android.room_rx
+    implementation deps.android.work
+
+
     kapt deps.android.room_compiler
 
     testImplementation deps.test.test

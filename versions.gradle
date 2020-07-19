@@ -1,11 +1,12 @@
 ext.deps = [:]
 def versions = [:]
 
-versions.android_gradle_plugin = "4.1.0-beta03"
+versions.android_gradle_plugin = "4.1.0-beta04"
 versions.kotlin = '1.3.70'
 versions.kotlin_coroutine = '1.3.5'
 
 versions.room = "2.2.3"
+versions.work_version = "2.3.4"
 versions.lifecycle = "2.1.0"
 versions.appcompat = "1.0.2"
 versions.corektx = "1.0.2"
@@ -48,7 +49,7 @@ android.room = "androidx.room:room-runtime:$versions.room"
 android.room_compiler = "androidx.room:room-compiler:$versions.room"
 android.room_ktx = "androidx.room:room-ktx:$versions.room"
 android.room_rx = "androidx.room:room-rxjava2:$versions.room"
-
+android.work = "androidx.work:work-runtime-ktx:$versions.work_version"
 deps.android = android
 
 def test = [:]
@@ -73,6 +74,7 @@ kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
 kotlin.script_runtime = "org.jetbrains.kotlin:kotlin-script-runtime:$versions.kotlin"
 kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 kotlin.coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlin_coroutine"
+
 deps.kotlin = kotlin
 
 deps.json = "com.dslplatform:dsl-json-java8:$versions.json"

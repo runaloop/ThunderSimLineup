@@ -136,6 +136,11 @@ class LineupListFragment : Fragment() {
         (activity as AppCompatActivity).getSupportActionBar()?.hide()
     }
 
+    override fun onDetach() {
+        lineupListViewModel.pushFavorites()
+        super.onDetach()
+    }
+
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).getSupportActionBar()?.show()

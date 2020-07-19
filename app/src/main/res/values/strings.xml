@@ -12,4 +12,6 @@
     <string name="today_active_lineups">Now active %s and %s, time until change - %sh%sm, next lineups: %s and %s</string>
     <string name="selected_day_lineup_text">Lineups for selected date: %s and %s would be available since 11 UTC</string>
     <string name="fab_search">Search</string>
+    <string name="channel_name">favorite_vehicle_availability_notify</string>
+    <string name="channel_description">shows once a day, when lineups are changed</string>
 </resources>
