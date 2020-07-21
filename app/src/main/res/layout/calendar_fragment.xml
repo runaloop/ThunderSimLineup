@@ -12,5 +12,6 @@
         app:mcv_firstDayOfWeek="monday"
         app:mcv_selectionColor="@color/colorAccent"
         app:mcv_showOtherDates="none"
+        app:mcv_calendarMode="week"
         app:mcv_tileHeight="24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

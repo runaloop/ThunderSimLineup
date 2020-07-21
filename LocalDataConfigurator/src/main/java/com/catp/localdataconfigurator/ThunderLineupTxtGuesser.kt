@@ -83,18 +83,19 @@ class ThunderLineupTxtGuesser {
         val toAdd = teamNewList.minus(jsonTeam.vehicles)
 
         if (toDelete.isNotEmpty()) {
-            if (TermUi.confirm(
-                    "Confirm items to remove from team ${teamLetter}: \u001b[31m${toDelete.joinToString(
-                        "\n",
-                        "\n",
-                        "\n"
-                    )} \u001B[37m(If not, you will be asked about every listed items separetly)"
-                ) == true
+            val removePromt = TermUi.prompt(
+                "Confirm items to remove from team ${teamLetter}: \u001b[31m${toDelete.joinToString(
+                    "\n",
+                    "\n",
+                    "\n"
+                )} \u001B[37m(If not, you will be asked about every listed items separetly, if you want to skip this changes type -)"
+            )
+            if (removePromt == "y"
             ) {
                 toDelete.forEach { item ->
                     jsonTeam.vehicleIdList.remove(item.name)
                 }
-            } else {
+            } else if (removePromt == "n") {
                 toDelete.forEach { item ->
                     if (TermUi.confirm("\u001b[37mConfirm remove from team ${teamLetter}: \u001b[31m${item.name} \u001B[37m(If not, it will just be skipped)") == true) {
                         jsonTeam.vehicleIdList.remove(item.name)
@@ -103,18 +104,19 @@ class ThunderLineupTxtGuesser {
             }
         }
         if (toAdd.isNotEmpty()) {
-            if (TermUi.confirm(
-                    "\u001b[37mConfirm items to add to team $teamLetter \u001b[32m${toAdd.joinToString(
-                        "\n",
-                        "\n",
-                        "\n"
-                    )} \u001B[37m(If not, you will be asked about every listed items separetly)"
-                ) == true
+            val confirm = TermUi.prompt(
+                "\u001b[37mConfirm items to add to team $teamLetter \u001b[32m${toAdd.joinToString(
+                    "\n",
+                    "\n",
+                    "\n"
+                )} \u001B[37m(If not, you will be asked about every listed items separetly, if you want to skip this changes type -)"
+            )
+            if (confirm == "y"
             ) {
                 toAdd.forEach { item ->
                     jsonTeam.vehicleIdList.add(item.name)
                 }
-            } else {
+            } else if (confirm == "n") {
                 toAdd.forEach { item ->
                     if (TermUi.confirm("\u001b[37mConfirm add to team ${teamLetter}: \u001b[32m${item.name} \u001b[37m(If not, it will just be skipped)") == true) {
                         jsonTeam.vehicleIdList.add(item.name)

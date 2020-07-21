@@ -8,10 +8,13 @@ import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
 import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import org.threeten.bp.LocalDate
 import toothpick.InjectConstructor
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -56,31 +59,40 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         )
     }
     private val _filterAvailable = MutableLiveData<FilterState>()
-    private val _lineupLoadStatus = MutableLiveData<Boolean>().apply { value = true }
+    private val _lineupLoadStatus = MutableLiveData<Boolean>()
 
     val text: LiveData<String> = _refreshResult
-    val daySubject: PublishSubject<LocalDate> = PublishSubject.create()
+    val daySubject: PublishSubject<LocalDate> = PublishSubject.create<LocalDate>()
     private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
     val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
     val filterStatus: LiveData<FilterState> = _filterStatus
     val filterAvailable: LiveData<FilterState> = _filterAvailable
+    val lineupLoadStatus: LiveData<Boolean> = _lineupLoadStatus
+    val dbUpdates = AtomicBoolean()
 
-    val subscription = daySubject
-        .doOnError { _lineupLoadStatus.postValue(false) }
+    val cs = CompositeDisposable()
+    val subscribtion = daySubject
+        .doOnError {
+            _lineupLoadStatus.postValue(false)
+        }
         .observeOn(Schedulers.io())
         //.subscribeOn(Schedulers.io())
         .subscribe { day ->
-            _lineupLoadStatus.postValue(true)
-            val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
-            val lineupAvailableFilters = lineupFilterByLineup.getFilters(lineupForToday)
-            _filterAvailable.postValue(lineupAvailableFilters)
-            _currentLineup.postValue(lineupForToday)
-            _lineupLoadStatus.postValue(false)
-        }
+            if (!dbUpdates.get()) {
+                Thread.sleep(3000L)
+                val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
+                val lineupAvailableFilters = lineupFilterByLineup.getFilters(lineupForToday)
+                _filterAvailable.postValue(lineupAvailableFilters)
+                _currentLineup.postValue(lineupForToday)
+                _lineupLoadStatus.postValue(false)
+            } else {
+                //println("☠️ db is being updated, skip lineup requset")
+            }
+        }.apply { cs.add(this) }
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
+        cs.dispose()
     }
 
     fun filterChange(
@@ -109,23 +121,48 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         )
     }
 
-    fun onDateChanged(date: CalendarDay) {
+    fun onDateChanged(date: CalendarDay, updateLoadingStatus: Boolean = true) {
+        if (updateLoadingStatus)
+            _lineupLoadStatus.value = true
         pushFavorites()
         daySubject.onNext(date.date)
     }
 
     fun refreshData(force: Boolean) {
-        lineupStorage
+        startDBRefresh()
+        cs.add(lineupStorage
             .refresh(this.getApplication(), force)
-            .doOnSubscribe { _lineupLoadStatus.postValue(true) }
-            .doOnError { _lineupLoadStatus.postValue(false) }
-            .doOnComplete { _lineupLoadStatus.postValue(false) }
+            .doOnError {
+                refreshDBError()
+            }
+            .map { result ->
+                result
+            }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result ->
                 when (result) {
-                    LineupStorage.REFRESH_RESULT.NEW_DATA -> _refreshResult.postValue("Lineups have been updated")
-                    LineupStorage.REFRESH_RESULT.NO_NEW_DATA -> _refreshResult.postValue("Lineups loaded and ready to work")
+                    LineupStorage.REFRESH_RESULT.NEW_DATA -> _refreshResult.value =
+                        "Lineups have been updated"
+                    LineupStorage.REFRESH_RESULT.NO_NEW_DATA -> _refreshResult.value =
+                        "Lineups loaded and ready to work"
                 }
-            }
+                refreshDBFinished()
+            })
+    }
+
+    private fun startDBRefresh() {
+        dbUpdates.set(true)
+        _lineupLoadStatus.value = true
+    }
+
+    private fun refreshDBError() {
+        _lineupLoadStatus.postValue(false)
+        dbUpdates.set(false)
+    }
+
+    fun refreshDBFinished() {
+        dbUpdates.set(false)
+        onDateChanged(CalendarDay.from(LocalDate.now()), false)
     }
 
     fun favoriteUpdated() {
@@ -137,8 +174,8 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         selectedItems += vehicle
     }
 
-    fun pushFavorites(){
-        if(selectedItems.isNotEmpty()){
+    fun pushFavorites() {
+        if (selectedItems.isNotEmpty()) {
             val items = selectedItems.toList()
             selectedItems.clear()
             pushFavoriteVehicleInteractor.push(items).subscribe {

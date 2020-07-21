@@ -35,7 +35,6 @@ class LineupStorage {
         return Observable.just(context)
             .observeOn(Schedulers.io())
             .map { ctx ->
-                //TODO: If force, don't load local json, or load it only if no network data
                 val localJsonConfig = storage.loadFromRAW(ctx)
                 val localUpdateResult = updateDBIfNeeded(localJsonConfig, ctx)
                 if (localUpdateResult == REFRESH_RESULT.NO_NEW_DATA

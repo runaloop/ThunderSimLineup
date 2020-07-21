@@ -55,7 +55,7 @@ class DailyNotificator {
     }
 
     private fun initialDelay(hour: Int, minute: Int): Duration {
-        return if (dateTimeProvider.now().hour <= hour) {
+        return if (dateTimeProvider.now().hour < hour) {
             Duration.between(
                 dateTimeProvider.now(),
                 dateTimeProvider.now()

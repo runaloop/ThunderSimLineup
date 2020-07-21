@@ -10,7 +10,6 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
-import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import org.threeten.bp.LocalDate
 import toothpick.ktp.KTP
@@ -20,6 +19,7 @@ import javax.inject.Inject
 class CalendarFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
 
@@ -42,7 +42,6 @@ class CalendarFragment : Fragment() {
                 lineupListViewModel.onDateChanged(date)
             }
         }
-        //lineupListViewModel.onDateChanged(CalendarDay.from(now))//dispatch today, to a viewmodel
         super.onViewCreated(view, savedInstanceState)
     }
 

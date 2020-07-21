@@ -6,9 +6,7 @@ import java.net.URL
 import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 
-const val LINEUP_URL = "https://raw.githubusercontent.com/runaloop/ThunderSimLineup/master/lineup"
-const val LINEUP_SHIFT_URL =
-    "https://raw.githubusercontent.com/runaloop/ThunderSimLineup/master/lineup"
+const val LINEUP_URL = "https://github.com/runaloop/ThunderSimLineup/raw/master/app/src/main/res/raw/actual_lineup.zip"
 
 class NetLoader {
     @Inject

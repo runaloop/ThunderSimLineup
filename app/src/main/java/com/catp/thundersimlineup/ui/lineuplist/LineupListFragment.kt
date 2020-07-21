@@ -9,20 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.initRecyclerView
+import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.fastadapter.FastAdapter
-import com.timehop.stickyheadersrecyclerview.caching.HeaderViewCache
-import com.timehop.stickyheadersrecyclerview.calculation.DimensionCalculator
-import com.timehop.stickyheadersrecyclerview.rendering.HeaderRenderer
-import com.timehop.stickyheadersrecyclerview.util.LinearLayoutOrientationProvider
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -109,7 +105,7 @@ class LineupListFragment : Fragment() {
             }
         }
 
-        lineupListViewModel.refreshData(false)
+
 
         fab.setOnClickListener {
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
@@ -121,6 +117,11 @@ class LineupListFragment : Fragment() {
             false
         }
 
+        lineupListViewModel.lineupLoadStatus.observe(this, Observer { value->
+            progressBarStatus(value, pbLineup)
+        })
+
+        lineupListViewModel.refreshData(false)
 
         super.onViewCreated(view, savedInstanceState)
     }
