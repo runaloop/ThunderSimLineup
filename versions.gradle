@@ -33,6 +33,9 @@ versions.stickyheadersrecyclerview = "0.5.1-SNAPSHOT"
 versions.stetho = "1.5.1"
 
 versions.toothpick = "3.1.0"
+versions.flexible_adapter="5.1.0"
+versions.flexible_adapter_ui="1.0.0"
+
 
 ext.versions = versions
 
@@ -77,6 +80,8 @@ kotlin.coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotl
 
 deps.kotlin = kotlin
 
+deps.flexible_adapter = "eu.davidea:flexible-adapter:$versions.flexible_adapter"
+deps.flexible_adapter_ui = "eu.davidea:flexible-adapter-ui:$versions.flexible_adapter_ui"
 deps.json = "com.dslplatform:dsl-json-java8:$versions.json"
 deps.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
 deps.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"

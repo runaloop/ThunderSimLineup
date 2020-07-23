@@ -10,14 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
-import com.catp.thundersimlineup.initRecyclerView
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
-import com.catp.thundersimlineup.ui.lineuplist.StickyHeaderAdapter
-import com.mikepenz.fastadapter.FastAdapter
 import kotlinx.android.synthetic.main.fragment_vehicle_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
-import java.util.*
 import javax.inject.Inject
 
 class VehicleListFragment : Fragment() {
@@ -29,7 +25,6 @@ class VehicleListFragment : Fragment() {
     lateinit var lineupListViewModel: LineupListViewModel
 
     val itemAdapter = VehicleAdapter()
-    val stickyHeaderAdapter = StickyHeaderAdapter<VehicleItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,12 +42,12 @@ class VehicleListFragment : Fragment() {
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
-                itemAdapter.filter(s)
+                //itemAdapter.filter(s)
                 return true
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                itemAdapter.filter(s)
+                //itemAdapter.filter(s)
                 return true
             }
         })
@@ -68,7 +63,7 @@ class VehicleListFragment : Fragment() {
             itemAdapter.setData(list)
         })
 
-        val fastAdapter = FastAdapter.with(itemAdapter)
+        /*val fastAdapter = FastAdapter.with(itemAdapter)
         fastAdapter.onClickListener = { view, adapter, item, position ->
             lineupListViewModel.onClick(item.vehicle)
             fastAdapter.notifyItemChanged(position)
@@ -82,7 +77,7 @@ class VehicleListFragment : Fragment() {
                 )
         }
 
-        initRecyclerView(fastAdapter, rvVehicleList, stickyHeaderAdapter)
+        initRecyclerView(fastAdapter, rvVehicleList, stickyHeaderAdapter)*/
 
         vehicleListViewModel.viewCreated()
 

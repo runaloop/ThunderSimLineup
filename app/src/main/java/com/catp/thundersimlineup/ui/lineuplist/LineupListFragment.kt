@@ -9,16 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
-import com.catp.thundersimlineup.initRecyclerView
 import com.catp.thundersimlineup.progressBarStatus
-import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
-import com.mikepenz.fastadapter.FastAdapter
+import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
+import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -31,7 +30,6 @@ class LineupListFragment : Fragment() {
     lateinit var lineupListViewModel: LineupListViewModel
 
     val lineupAdapter = LineupAdapter()
-    val stickyHeaderAdapter = StickyHeaderAdapter<VehicleItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,18 +56,78 @@ class LineupListFragment : Fragment() {
             }
         })
 
-        rvLineupList.layoutManager = LinearLayoutManager(context)
-        val fastAdapter = FastAdapter.with(lineupAdapter)
 
-        initRecyclerView(fastAdapter, rvLineupList, stickyHeaderAdapter)
 
-        lineupListViewModel.filterStatus.observe(this, Observer { filter ->
-            lineupAdapter.setFilterState(requireContext(), filter)
+        configureFilter()
+
+
+
+        fab.setOnClickListener {
+            findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
+        }
+
+
+        lineupListViewModel.lineupLoadStatus.observe(this, Observer { value ->
+            progressBarStatus(value, pbLineup)
         })
+
+        lineupListViewModel.refreshData(false)
+
+        configureRecyclerView()
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun configureRecyclerView() {
+
+        lineupAdapter.expandItemsAtStartUp()
+            .setAutoCollapseOnExpand(false)
+            .setAutoScrollOnExpand(true)
+            .setNotifyMoveOfFilteredItems(true)
+            .setAnimationOnForwardScrolling(true)
+            .setAnimationOnReverseScrolling(true)
+
+        rvLineupList.layoutManager = SmoothScrollLinearLayoutManager(context)
+        rvLineupList.adapter = lineupAdapter
+        rvLineupList.addItemDecoration(
+            FlexibleItemDecoration(activity!!)
+                .addItemViewType(R.layout.list_header)
+                .withOffset(4)
+        )
 
         lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
             lineupAdapter.setNewLineup(requireContext(), lineup)
             updateLineupText(lineup)
+        })
+
+        lineupAdapter.addListener(FlexibleAdapter.OnItemClickListener { view, position ->
+
+            /*val item: AbstractFlexibleItem<FlexibleViewHolder> = lineupAdapter.getItem(position)
+            if(item != null){
+                println("🐷$position $item ")
+                //lineupListViewModel.onClick(item.vehicle)
+                lineupAdapter.notifyItemChanged(position)
+                false
+            }*/
+            true
+        })
+        /*lineupAdapter.click = { view, adapter, item, position ->
+            lineupListViewModel.onClick(item.vehicle)
+            fastAdapter.notifyItemChanged(position)
+            false
+        }*/
+
+
+
+        lineupAdapter
+            //.setLongPressDragEnabled(true)
+            //.setHandleDragEnabled(true)
+            .setStickyHeaders(true)
+    }
+
+    private fun configureFilter() {
+        lineupListViewModel.filterStatus.observe(this, Observer { filter ->
+            lineupAdapter.setFilterState(requireContext(), filter)
         })
 
         lineupListViewModel.filterAvailable.observe(this, Observer { filter ->
@@ -104,26 +162,6 @@ class LineupListFragment : Fragment() {
                 )
             }
         }
-
-
-
-        fab.setOnClickListener {
-            findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
-        }
-
-        fastAdapter.onClickListener = { view, adapter, item, position ->
-            lineupListViewModel.onClick(item.vehicle)
-            fastAdapter.notifyItemChanged(position)
-            false
-        }
-
-        lineupListViewModel.lineupLoadStatus.observe(this, Observer { value->
-            progressBarStatus(value, pbLineup)
-        })
-
-        lineupListViewModel.refreshData(false)
-
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun updateFilterVisibility(filter: LineupListViewModel.FilterState) {

@@ -6,10 +6,13 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.data.db.entity.Lineup
 import com.catp.thundersimlineup.data.db.entity.Team
 import com.catp.thundersimlineup.data.db.entity.Vehicle
-import com.catp.thundersimlineup.ui.vehiclelist.VehicleItem
-import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.catp.thundersimlineup.ui.list.ExpandableHeaderItem
+import com.catp.thundersimlineup.ui.list.HeadersColors
+import com.catp.thundersimlineup.ui.list.VehicleItem
+import eu.davidea.flexibleadapter.FlexibleAdapter
 
-class LineupAdapter : ItemAdapter<VehicleItem>() {
+class LineupAdapter() :
+    FlexibleAdapter<ExpandableHeaderItem>(null) {
 
     var originalData: List<Lineup> = emptyList()
     lateinit var filters: LineupListViewModel.FilterState
@@ -21,21 +24,31 @@ class LineupAdapter : ItemAdapter<VehicleItem>() {
             lineup.lineupThen.first,
             lineup.lineupThen.second
         )
-        val dataset = DataSetCreator(context).make(originalData, filters)
-        set(dataset)
-
+        updateDataSet(DataSetCreator(context).make(originalData, filters), true)
     }
 
     fun setFilterState(context: Context, filters: LineupListViewModel.FilterState) {
         this.filters = filters
-        set(DataSetCreator(context).make(originalData, filters))
+        updateDataSet(DataSetCreator(context).make(originalData, filters), true)
     }
 }
 
-//Takes list of Lineups, fills it with view items: Titles like commands, vehicle type titles, vehicle sorted by type/favorite mode etc
 class DataSetCreator(val context: Context) {
-    fun make(lineups: List<Lineup>, filters: LineupListViewModel.FilterState): List<VehicleItem> {
-        val data = mutableListOf<VehicleItem>()
+    fun make(
+        lineups: List<Lineup>,
+        filters: LineupListViewModel.FilterState
+    ): List<ExpandableHeaderItem> {
+        val data = mutableListOf<ExpandableHeaderItem>()
+
+        lineups.associateBy({ it }) { lineup ->
+            listOf(lineup.teamA.vehicles, lineup.teamB.vehicles)
+                .flatten()
+                .filter { it.isFavorite }
+        }.entries
+            .forEach { (lineup, favorites) ->
+                fillFavorite(lineup, data, favorites)
+            }
+
 
         lineups.forEachIndexed { index, lineup ->
             if (index < 2 && filters.nowLineupShow || index > 1 && filters.laterLineupShow || lineups.size == 2)
@@ -46,14 +59,9 @@ class DataSetCreator(val context: Context) {
 
     private fun fillSet(
         lineup: Lineup,
-        dataset: MutableList<VehicleItem>,
+        dataset: MutableList<ExpandableHeaderItem>,
         filters: LineupListViewModel.FilterState
     ) {
-
-        val favorite = listOf(lineup.teamA.vehicles, lineup.teamB.vehicles).flatten().filter { it.isFavorite }
-
-        fillFavorite(lineup, dataset, favorite)
-
         val teams = mapOf(
             lineup.teamA to if (filters.teamAShow) context.getString(R.string.team_a_title) else null,
             lineup.teamB to if (filters.teamBShow) context.getString(R.string.team_b_title) else null
@@ -64,16 +72,29 @@ class DataSetCreator(val context: Context) {
         }
     }
 
-    private fun fillFavorite(lineup: Lineup, dataset: MutableList<VehicleItem>, favorite: List<Vehicle>) {
-        val header = "${lineup.lineupEntity.name} ${context.getString(R.string.favorites)}"
-        favorite.forEach {
-            dataset += VehicleItem(it, header)
+    private fun fillFavorite(
+        lineup: Lineup,
+        dataset: MutableList<ExpandableHeaderItem>,
+        favorite: List<Vehicle>
+    ) {
+        if (favorite.isNotEmpty()) {
+            val header = "${lineup.lineupEntity.name} ${context.getString(R.string.favorites)}"
+            val headerItem =
+                ExpandableHeaderItem(
+                    header.hashCode().toString(), header, HeadersColors.getByVehicleType()
+                )
+            dataset += headerItem
+            headerItem.items.addAll(favorite.map {
+                VehicleItem(
+                    it
+                )
+            })
         }
     }
 
     private fun fillTeam(
         team: Team,
-        dataset: MutableList<VehicleItem>,
+        dataset: MutableList<ExpandableHeaderItem>,
         filters: LineupListViewModel.FilterState,
         title: String
     ) {
@@ -89,7 +110,14 @@ class DataSetCreator(val context: Context) {
                     val isLowLineup = title.indexOf("_1") != -1
                     if (isLowLineup && filters.lowLineupShow || (!isLowLineup && filters.highLineupShow)) {
                         val header = "$title ${vehicles[type]}"
-                        fillVehicleList(list, dataset, header)
+                        val headerItem =
+                            ExpandableHeaderItem(
+                                header.hashCode().toString(),
+                                header,
+                                HeadersColors.getByVehicleType(team.teamEntity.teamLetter == "A", type)
+                            )
+                        dataset += headerItem
+                        fillVehicleList(list, headerItem)
                     }
                 }
             }
@@ -99,14 +127,14 @@ class DataSetCreator(val context: Context) {
 
     private fun fillVehicleList(
         vehicleList: List<Vehicle>,
-        dataset: MutableList<VehicleItem>,
-        header: String
+        headerItem: ExpandableHeaderItem
     ) {
-        vehicleList
-            .sortedBy { it.isFavorite }
-            .sortedBy { it.nation }
-            .forEach { vehicle ->
-                dataset += VehicleItem(vehicle, header)
-            }
+        headerItem.items.addAll(
+            vehicleList
+                .sortedBy { it.isFavorite }
+                .sortedBy { it.nation }
+                .map { vehicle ->
+                    VehicleItem(vehicle)
+                })
     }
 }

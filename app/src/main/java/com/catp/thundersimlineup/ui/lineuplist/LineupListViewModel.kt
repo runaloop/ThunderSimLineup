@@ -79,7 +79,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         //.subscribeOn(Schedulers.io())
         .subscribe { day ->
             if (!dbUpdates.get()) {
-                Thread.sleep(3000L)
+                //Thread.sleep(3000L)
                 val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
                 val lineupAvailableFilters = lineupFilterByLineup.getFilters(lineupForToday)
                 _filterAvailable.postValue(lineupAvailableFilters)

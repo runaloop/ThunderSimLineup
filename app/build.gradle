@@ -80,8 +80,8 @@ dependencies {
     implementation deps.rxkotlin
     implementation deps.rxandroid
 
-    implementation deps.fast_adapter
-    implementation deps.stickyheadersrecyclerview
+    implementation deps.flexible_adapter
+    implementation deps.flexible_adapter_ui
 
     implementation deps.stetho
 
