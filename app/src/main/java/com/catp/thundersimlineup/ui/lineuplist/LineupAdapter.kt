@@ -26,12 +26,12 @@ class LineupAdapter :
             lineup.lineupThen.second
         )
         val make = DataSetCreator(context).make(originalData, filters)
-        updateDataSet(make, true)
+        updateDataSet(make, false)
     }
 
     fun setFilterState(context: Context, filters: LineupListViewModel.FilterState) {
         this.filters = filters
-        updateDataSet(DataSetCreator(context).make(originalData, filters), true)
+        updateDataSet(DataSetCreator(context).make(originalData, filters), false)
     }
 }
 

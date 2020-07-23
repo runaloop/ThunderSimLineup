@@ -38,9 +38,8 @@ fun configureRecyclerView(
         val item: IFlexible<*>? = adapter.getItem(position)
         if (item != null && item is VehicleItem) {
             lineupListViewModel.onClick(item.vehicle)
-            adapter.notifyItemChanged(position)
-            false
         }
+        adapter.notifyItemChanged(position)
         true
     })
 

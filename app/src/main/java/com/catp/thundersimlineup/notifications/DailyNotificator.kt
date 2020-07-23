@@ -1,7 +1,10 @@
 package com.catp.thundersimlineup.notifications
 
 import android.content.Context
-import androidx.work.*
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.await
 import com.catp.model.JsonRules
 import com.catp.thundersimlineup.LocalDateTimeProvider
 import kotlinx.coroutines.GlobalScope
@@ -26,9 +29,9 @@ class DailyNotificator {
             val workManager = WorkManager.getInstance(context)
             cancelCurrentTask(workManager)
             createNewTask(
-                workManager,
+                workManager/*,
                 dateTimeProvider.now().hour,
-                dateTimeProvider.now().plusMinutes(1).minute
+                dateTimeProvider.now().plusMinutes(1).minute*/
             )
         }
     }
@@ -55,17 +58,22 @@ class DailyNotificator {
     }
 
     private fun initialDelay(hour: Int, minute: Int): Duration {
-        return if (dateTimeProvider.now().hour < hour) {
+
+        val now = dateTimeProvider.now()
+        return if (!Duration.between(
+                now, now.withHour(hour).withMinute(minute).withSecond(0)
+            ).isNegative
+        ) {
             Duration.between(
-                dateTimeProvider.now(),
-                dateTimeProvider.now()
+                now,
+                now
                     .withHour(hour)
                     .withMinute(minute)
             )
         } else
             Duration.between(
-                dateTimeProvider.now(),
-                dateTimeProvider.now()
+                now,
+                now
                     .plusDays(1)
                     .withHour(hour)
                     .withMinute(minute)
