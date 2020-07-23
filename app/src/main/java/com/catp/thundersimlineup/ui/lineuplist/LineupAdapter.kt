@@ -7,12 +7,13 @@ import com.catp.thundersimlineup.data.db.entity.Lineup
 import com.catp.thundersimlineup.data.db.entity.Team
 import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.catp.thundersimlineup.ui.list.ExpandableHeaderItem
-import com.catp.thundersimlineup.ui.list.HeadersColors
+import com.catp.thundersimlineup.ui.list.HeaderColors
 import com.catp.thundersimlineup.ui.list.VehicleItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 
-class LineupAdapter() :
-    FlexibleAdapter<ExpandableHeaderItem>(null) {
+class LineupAdapter :
+    FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true) {
 
     var originalData: List<Lineup> = emptyList()
     lateinit var filters: LineupListViewModel.FilterState
@@ -24,7 +25,8 @@ class LineupAdapter() :
             lineup.lineupThen.first,
             lineup.lineupThen.second
         )
-        updateDataSet(DataSetCreator(context).make(originalData, filters), true)
+        val make = DataSetCreator(context).make(originalData, filters)
+        updateDataSet(make, true)
     }
 
     fun setFilterState(context: Context, filters: LineupListViewModel.FilterState) {
@@ -81,12 +83,12 @@ class DataSetCreator(val context: Context) {
             val header = "${lineup.lineupEntity.name} ${context.getString(R.string.favorites)}"
             val headerItem =
                 ExpandableHeaderItem(
-                    header.hashCode().toString(), header, HeadersColors.getByVehicleType()
+                    header.hashCode(), header, HeaderColors.getRandom()
                 )
             dataset += headerItem
             headerItem.items.addAll(favorite.map {
                 VehicleItem(
-                    it
+                    it, headerItem.title
                 )
             })
         }
@@ -112,9 +114,9 @@ class DataSetCreator(val context: Context) {
                         val header = "$title ${vehicles[type]}"
                         val headerItem =
                             ExpandableHeaderItem(
-                                header.hashCode().toString(),
+                                header.hashCode(),
                                 header,
-                                HeadersColors.getByVehicleType(team.teamEntity.teamLetter == "A", type)
+                                HeaderColors.getByVehicleType(team.teamEntity.teamLetter == "A", type)
                             )
                         dataset += headerItem
                         fillVehicleList(list, headerItem)
@@ -134,7 +136,7 @@ class DataSetCreator(val context: Context) {
                 .sortedBy { it.isFavorite }
                 .sortedBy { it.nation }
                 .map { vehicle ->
-                    VehicleItem(vehicle)
+                    VehicleItem(vehicle, headerItem.title)
                 })
     }
 }

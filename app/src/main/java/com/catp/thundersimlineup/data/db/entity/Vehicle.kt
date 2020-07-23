@@ -25,4 +25,18 @@ data class Vehicle(
             )
 
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Vehicle) return false
+
+        if (vehicleId != other.vehicleId) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return vehicleId.hashCode()
+    }
+
 }

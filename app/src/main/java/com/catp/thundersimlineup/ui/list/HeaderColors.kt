@@ -8,7 +8,7 @@ import com.catp.model.VehicleType
  * This is a FastAdapter adapter implementation for the awesome Sticky-Headers lib by timehop
  * https://github.com/timehop/sticky-headers-recyclerview
  */
-object HeadersColors{
+object HeaderColors{
 
     val alpha = 150
     val headersColor = listOf(
@@ -26,9 +26,9 @@ object HeadersColors{
     }
 
     fun getCountry(country: String): Int{
-        return 0
+        return getRandom()
     }
-    fun getByVehicleType(): Int{
+    fun getRandom(): Int{
         return headersColor.random()
     }
 

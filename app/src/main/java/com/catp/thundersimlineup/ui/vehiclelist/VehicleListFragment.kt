@@ -11,6 +11,7 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
+import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import kotlinx.android.synthetic.main.fragment_vehicle_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -39,15 +40,17 @@ class VehicleListFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val searchView = menu.findItem(R.id.search).actionView as SearchView
+        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
-                //itemAdapter.filter(s)
-                return true
+                return onQueryTextChange(s)
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                //itemAdapter.filter(s)
+                if (itemAdapter.hasNewFilter(s)) {
+                    itemAdapter.setFilter(s);
+                    itemAdapter.filterItems()
+                }
                 return true
             }
         })
@@ -60,24 +63,10 @@ class VehicleListFragment : Fragment() {
         rvVehicleList.layoutManager = LinearLayoutManager(context)
 
         vehicleListViewModel.vehicles.observe(this, Observer { list ->
-            itemAdapter.setData(list)
+            itemAdapter.setData(requireContext(), list)
         })
 
-        /*val fastAdapter = FastAdapter.with(itemAdapter)
-        fastAdapter.onClickListener = { view, adapter, item, position ->
-            lineupListViewModel.onClick(item.vehicle)
-            fastAdapter.notifyItemChanged(position)
-            false
-        }
-
-        itemAdapter.itemFilter.filterPredicate = { item: VehicleItem, constraint: CharSequence? ->
-            item.vehicle.title.toLowerCase(Locale.getDefault())
-                .contains(
-                    constraint.toString().toLowerCase(Locale.getDefault())
-                )
-        }
-
-        initRecyclerView(fastAdapter, rvVehicleList, stickyHeaderAdapter)*/
+        configureRecyclerView(itemAdapter, rvVehicleList, this, lineupListViewModel)
 
         vehicleListViewModel.viewCreated()
 

@@ -12,10 +12,11 @@ import eu.davidea.flexibleadapter.items.IFilterable
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 
-class VehicleItem(val vehicle: Vehicle) :
+class VehicleItem(val vehicle: Vehicle, val header: String) :
     AbstractFlexibleItem<VehicleItem.ViewHolder>(), IFilterable<String> {
 
-    class ViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>) : FlexibleViewHolder(view, adapter) {
+    class ViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>) :
+        FlexibleViewHolder(view, adapter) {
         val nation = view.findViewById<TextView>(R.id.tvNation)
         val title = view.findViewById<TextView>(R.id.tvTitle)
         val br = view.findViewById<TextView>(R.id.tvBR)
@@ -44,7 +45,6 @@ class VehicleItem(val vehicle: Vehicle) :
     override fun getLayoutRes(): Int = R.layout.vehicle_list_item
 
 
-
     override fun createViewHolder(
         view: View,
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
@@ -59,17 +59,20 @@ class VehicleItem(val vehicle: Vehicle) :
         return vehicle.title.contains(constraint)
     }
 
-    override fun hashCode(): Int {
-        return vehicle.hashCode()
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is VehicleItem) return false
 
         if (vehicle != other.vehicle) return false
+        if (header != other.header) return false
 
         return true
+    }
+
+    override fun hashCode(): Int {
+        var result = vehicle.hashCode()
+        result = 31 * result + header.hashCode()
+        return result
     }
 
 

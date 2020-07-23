@@ -1,65 +1,36 @@
 package com.catp.thundersimlineup.ui.vehiclelist
 
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import android.content.Context
+import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.data.db.entity.Vehicle
+import com.catp.thundersimlineup.ui.list.ExpandableHeaderItem
+import com.catp.thundersimlineup.ui.list.HeaderColors
 import com.catp.thundersimlineup.ui.list.VehicleItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
-import eu.davidea.flexibleadapter.items.IFlexible
-import eu.davidea.viewholders.FlexibleViewHolder
 
-class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<FlexibleViewHolder>>(null) {
+class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true) {
 
-    fun setData(items: List<Vehicle>) {
+    fun setData(context: Context, items: List<Vehicle>) {
+        val favorites = items.filter { it.isFavorite }.sortedBy { it.nation }
+        context
+        val favHeader = ExpandableHeaderItem(
+            0,
+            context.getString(R.string.favorites),
+            HeaderColors.getRandom()
+        )
+        favHeader.items += favorites.map { VehicleItem(it, favHeader.title) }
 
-//        val list = mutableListOf<AbstractFlexibleItem<FlexibleViewHolder>>(Expandable(), SubItem())
-//        updateDataSet(list)
+        val rest = items.groupBy { it.nation }.map { (nation, list) ->
+            val header =
+                ExpandableHeaderItem(nation.hashCode(), nation, HeaderColors.getCountry(nation))
+            header.items += list.map { VehicleItem(it, header.title) }
+            header
+        }.toMutableList()
+        rest.add(0, favHeader)
 
-        val sorted = items.sortedWith(compareBy({ !it.isFavorite }, { it.nation }))
-            .map {
-                if (it.isFavorite)
-                    VehicleItem(it)
-                else
-                    VehicleItem(it)
-            }
-    }
-}
-
-class SubItem : AbstractFlexibleItem<FlexibleViewHolder>() {
-    override fun bindViewHolder(
-        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>?,
-        holder: FlexibleViewHolder?,
-        position: Int,
-        payloads: MutableList<Any>?
-    ) {
-        TODO("Not yet implemented")
-    }
-
-    override fun equals(other: Any?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun createViewHolder(
-        view: View?,
-        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>?
-    ): FlexibleViewHolder {
-        TODO("Not yet implemented")
-    }
-
-    override fun getLayoutRes(): Int {
-        TODO("Not yet implemented")
+        updateDataSet(rest.toList(), true)
     }
 
 }
 
-/*
-class Expandable : AbstractExpandableHeaderItem<Expandable.EViewHolder, >() {
-
-    class EViewHolder(view: View, adapter: FlexibleAdapter<out IFlexible<*>>) :
-        ExpandableViewHolder(view, adapter) {
-
-    }
-
-
-}*/

@@ -13,11 +13,9 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.progressBarStatus
+import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
-import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
-import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -73,57 +71,15 @@ class LineupListFragment : Fragment() {
 
         lineupListViewModel.refreshData(false)
 
-        configureRecyclerView()
+        configureRecyclerView(lineupAdapter, rvLineupList, this, lineupListViewModel)
 
+        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
+            lineupAdapter.setNewLineup(this.requireContext(), lineup)
+            updateLineupText(lineup)
+        })
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun configureRecyclerView() {
-
-        lineupAdapter.expandItemsAtStartUp()
-            .setAutoCollapseOnExpand(false)
-            .setAutoScrollOnExpand(true)
-            .setNotifyMoveOfFilteredItems(true)
-            .setAnimationOnForwardScrolling(true)
-            .setAnimationOnReverseScrolling(true)
-
-        rvLineupList.layoutManager = SmoothScrollLinearLayoutManager(context)
-        rvLineupList.adapter = lineupAdapter
-        rvLineupList.addItemDecoration(
-            FlexibleItemDecoration(activity!!)
-                .addItemViewType(R.layout.list_header)
-                .withOffset(4)
-        )
-
-        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
-            lineupAdapter.setNewLineup(requireContext(), lineup)
-            updateLineupText(lineup)
-        })
-
-        lineupAdapter.addListener(FlexibleAdapter.OnItemClickListener { view, position ->
-
-            /*val item: AbstractFlexibleItem<FlexibleViewHolder> = lineupAdapter.getItem(position)
-            if(item != null){
-                println("🐷$position $item ")
-                //lineupListViewModel.onClick(item.vehicle)
-                lineupAdapter.notifyItemChanged(position)
-                false
-            }*/
-            true
-        })
-        /*lineupAdapter.click = { view, adapter, item, position ->
-            lineupListViewModel.onClick(item.vehicle)
-            fastAdapter.notifyItemChanged(position)
-            false
-        }*/
-
-
-
-        lineupAdapter
-            //.setLongPressDragEnabled(true)
-            //.setHandleDragEnabled(true)
-            .setStickyHeaders(true)
-    }
 
     private fun configureFilter() {
         lineupListViewModel.filterStatus.observe(this, Observer { filter ->

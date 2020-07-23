@@ -13,7 +13,7 @@ import eu.davidea.flexibleadapter.items.IHeader
 import eu.davidea.viewholders.ExpandableViewHolder
 
 class ExpandableHeaderItem(
-    val id: String,
+    val id: Int,
     val title: String,
     val headerColor: Int
 ) :
