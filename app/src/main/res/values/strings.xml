@@ -7,7 +7,7 @@
     <string name="favorites">favorites</string>
     <string name="tanks_title">Tanks</string>
     <string name="planes_title">Planes</string>
-    <string name="helis_title">Helicopters</string>
+    <string name="helis_title">Helis</string>
     <string name="team_b_title">Team B</string>
     <string name="today_active_lineups">Now active %s and %s, time until change - %sh%sm, next lineups: %s and %s</string>
     <string name="selected_day_lineup_text">Lineups for selected date: %s and %s would be available since 11 UTC</string>
