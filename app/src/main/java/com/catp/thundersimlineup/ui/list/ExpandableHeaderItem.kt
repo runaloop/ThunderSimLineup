@@ -1,5 +1,6 @@
 package com.catp.thundersimlineup.ui.list
 
+import android.graphics.Typeface
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,7 +17,8 @@ import eu.davidea.viewholders.ExpandableViewHolder
 class ExpandableHeaderItem<SubItem: AbstractFlexibleItem<*>>(
     val id: Int,
     val title: String,
-    val headerColor: Int
+    val headerColor: Int,
+    val isHighlighted: Boolean = false
 )
     :    AbstractFlexibleItem<ExpandableHeaderItem.ExpandableHeaderViewHolder>(),
     IExpandable<ExpandableHeaderItem.ExpandableHeaderViewHolder, SubItem>,
@@ -53,6 +55,14 @@ class ExpandableHeaderItem<SubItem: AbstractFlexibleItem<*>>(
         val degree = if (isExpanded && !subItems.isEmpty()) 0 else -90
         holder.imgCollapse.rotation = degree.toFloat()
         holder.background.setBackgroundColor(headerColor)
+        if(isHighlighted){
+            holder.textView.alpha = 1f
+            holder.textView.typeface= Typeface.DEFAULT_BOLD
+        }else{
+            holder.textView.alpha = .7f
+            holder.textView.typeface= Typeface.DEFAULT
+        }
+
     }
 
 
