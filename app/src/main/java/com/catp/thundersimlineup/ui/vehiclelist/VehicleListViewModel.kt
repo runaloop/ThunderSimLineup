@@ -21,12 +21,8 @@ class VehicleListViewModel : ViewModel() {
         //
     }
 
-    private val _text = MutableLiveData<String>().apply {
-
-    }
 
     val vehicles: LiveData<List<Vehicle>> = _vehicles
-    val text: LiveData<String> = _text
 
     fun viewCreated() {
         vehicleRequestInteractor.getVehicles()

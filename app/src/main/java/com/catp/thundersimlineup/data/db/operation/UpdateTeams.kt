@@ -25,7 +25,6 @@ class UpdateTeams(val dao: LineupDao, val changeset: Changeset) {
             //prepare lineups to add
             val allTeams = dao.getTeamTable()
             val newLineups = lineupsToAdd.map { jsonLineup ->
-                changeset.reportLineupAdded(jsonLineup.name)
                 LineupEntity(
                     jsonLineup.name,
                     allTeams.find { it.teamLetter == "A" && it.lineupName == jsonLineup.name }!!.teamId,

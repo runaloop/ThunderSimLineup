@@ -12,13 +12,14 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.flexibleadapter.items.IHeader
 import eu.davidea.viewholders.ExpandableViewHolder
 
-class ExpandableHeaderItem(
+
+class ExpandableHeaderItem<SubItem: AbstractFlexibleItem<*>>(
     val id: Int,
     val title: String,
     val headerColor: Int
-) :
-    AbstractFlexibleItem<ExpandableHeaderItem.ExpandableHeaderViewHolder>(),
-    IExpandable<ExpandableHeaderItem.ExpandableHeaderViewHolder, VehicleItem>,
+)
+    :    AbstractFlexibleItem<ExpandableHeaderItem.ExpandableHeaderViewHolder>(),
+    IExpandable<ExpandableHeaderItem.ExpandableHeaderViewHolder, SubItem>,
     IHeader<ExpandableHeaderItem.ExpandableHeaderViewHolder> {
     var _expanded = true
 
@@ -28,7 +29,7 @@ class ExpandableHeaderItem(
         isSelectable = false
     }
 
-    val items = mutableListOf<VehicleItem>()
+    val items = mutableListOf<SubItem>()
 
     class ExpandableHeaderViewHolder(
         view: View,
@@ -41,12 +42,14 @@ class ExpandableHeaderItem(
     }
 
     override fun bindViewHolder(
-        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>?,
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
         holder: ExpandableHeaderViewHolder,
         position: Int,
         payloads: MutableList<Any>?
     ) {
-        holder.textView.text = "$title(${items.size})"
+
+        val count = if(adapter.hasFilter()) items.size-subItems.count { it.isHidden } else items.size
+        holder.textView.text = "$title(${count})"
         val degree = if (isExpanded && !subItems.isEmpty()) 0 else -90
         holder.imgCollapse.rotation = degree.toFloat()
         holder.background.setBackgroundColor(headerColor)
@@ -68,10 +71,10 @@ class ExpandableHeaderItem(
         _expanded = expanded
     }
 
-    override fun getSubItems(): MutableList<VehicleItem> = items
+    override fun getSubItems(): MutableList<SubItem> = items
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is ExpandableHeaderItem) return false
+        if (other !is ExpandableHeaderItem<*>) return false
 
         if (id != other.id) return false
 

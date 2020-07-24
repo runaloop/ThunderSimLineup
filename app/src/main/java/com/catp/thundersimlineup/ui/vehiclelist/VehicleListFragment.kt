@@ -40,6 +40,7 @@ class VehicleListFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.vehicle_list_menu, menu)
         val searchView = menu.findItem(R.id.action_search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
@@ -59,8 +60,6 @@ class VehicleListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        rvVehicleList.layoutManager = LinearLayoutManager(context)
 
         vehicleListViewModel.vehicles.observe(this, Observer { list ->
             itemAdapter.setData(requireContext(), list)

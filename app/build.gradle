@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.catp.thundersimlineup"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -94,6 +94,10 @@ dependencies {
     testImplementation deps.test.truth
     testImplementation deps.test.mockk
     testImplementation deps.test.robolectric
+
+
+    implementation deps.google_firebase_anal
+    implementation deps.google_firebase_crashlytics
 
     //implementation 'com.applandeo:material-calendar-view:1.7.0' // можно сделать все что нужно, но текст под датой в виде картинок делается через зад, остальное по кастомизации тоже не очень понятно.
     //implementation 'com.github.marcohc:robotocalendarview:3.6.1' // Слабая кастомизация под числом нельзя вывести ничего

@@ -95,7 +95,7 @@ interface LineupDao {
 
     @Query("SELECT * FROM Vehicle")
     fun getVehicles(): List<Vehicle>
-    @Query("SELECT * FROM Vehicle WHERE isFavorite==true")
+    @Query("SELECT * FROM Vehicle WHERE isFavorite==1")
     fun getFavoriteVehicles(): List<Vehicle>
 
     @Query("SELECT * FROM LineupCycleEntity ORDER BY orderNumber")

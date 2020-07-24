@@ -33,6 +33,6 @@ class DBPopulate(
 
             }
         }
-
+        changeset.writeChanges()
     }
 }

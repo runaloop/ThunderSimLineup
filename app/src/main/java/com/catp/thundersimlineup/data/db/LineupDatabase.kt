@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.catp.thundersimlineup.data.db.entity.*
-import com.catp.thundersimlineup.data.db.entity.converter.InstantConverter
+import com.catp.thundersimlineup.data.db.entity.converter.DateAndTimeConverter
 import com.catp.thundersimlineup.data.db.entity.converter.LineupTypeConverter
 import com.catp.thundersimlineup.data.db.entity.converter.VehicleStatusConverter
 import com.catp.thundersimlineup.data.db.entity.converter.VehicleTypeConverter
+import com.catp.thundersimlineup.data.db.migration.Migration_1_2
 
 @Database(
     entities = [
@@ -21,18 +22,20 @@ import com.catp.thundersimlineup.data.db.entity.converter.VehicleTypeConverter
         LineupCycleEntity::class,
         LineupCycleAvailabilityEntity::class,
         LineupToBREntity::class,
-        LineupShiftEntity::class
+        LineupShiftEntity::class,
+        Change::class
     ],
-    version = 1
+    version = 2
 )
 @TypeConverters(
     VehicleTypeConverter::class,
     VehicleStatusConverter::class,
     LineupTypeConverter::class,
-    InstantConverter::class
+    DateAndTimeConverter::class
 )
 abstract class LineupDatabase : RoomDatabase() {
     abstract fun getLineupDao(): LineupDao
+    abstract fun getChangeDao(): ChangeDao
 
     companion object {
         @Volatile
@@ -48,6 +51,7 @@ abstract class LineupDatabase : RoomDatabase() {
                 context.applicationContext,
                 LineupDatabase::class.java, "Lineups.db"
             )
+                .addMigrations(Migration_1_2())
                 .build()
 
     }

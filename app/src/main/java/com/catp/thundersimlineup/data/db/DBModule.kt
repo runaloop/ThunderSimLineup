@@ -10,6 +10,7 @@ class DBModule(context: Context) : Module() {
         val db = LineupDatabase.getInstance(context)
         bind<LineupDatabase>().toInstance(db)
         bind<LineupDao>().toInstance(db.getLineupDao())
+        bind<ChangeDao>().toInstance(db.getChangeDao())
 
         bind<Changeset>().singleton()
         bind<CheckAndUpdateBR>().singleton()

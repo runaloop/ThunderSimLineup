@@ -13,19 +13,26 @@
         <action
             android:id="@+id/action_lineup_list_fragment_to_vehicle_list"
             app:destination="@id/vehicle_list" />
-        <action
-            android:id="@+id/action_lineup_list_fragment_to_options"
-            app:destination="@id/options" />
     </fragment>
 
     <fragment
         android:id="@+id/vehicle_list"
         android:name="com.catp.thundersimlineup.ui.vehiclelist.VehicleListFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_vehicle_list" />
+        tools:layout="@layout/fragment_vehicle_list" >
+        <action
+            android:id="@+id/action_preferences"
+            app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_whats_new"
+            app:destination="@id/whatsNewFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/options"
-        android:name="com.catp.thundersimlineup.ui.calendar.CalendarFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/calendar_fragment" />
+        android:id="@+id/whatsNewFragment"
+        android:name="com.catp.thundersimlineup.ui.calendar.WhatsNewFragment"
+        android:label="WhatsNewFragment" />
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.catp.thundersimlineup.ui.calendar.PreferencesFragment"
+        android:label="PreferencesFragment" />
 </navigation>

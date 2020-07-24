@@ -14,4 +14,7 @@
     <string name="fab_search">Search</string>
     <string name="channel_name">favorite_vehicle_availability_notify</string>
     <string name="channel_description">shows once a day, when lineups are changed</string>
+    <string name="change_log_add">%s is added to %s</string>
+    <string name="change_log_del">%s is deleted to %s</string>
+
 </resources>

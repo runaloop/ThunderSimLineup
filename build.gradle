@@ -6,6 +6,8 @@ buildscript {
     dependencies {
         classpath deps.android_gradle_plugin
         classpath deps.kotlin.plugin
+        classpath deps.google_gms
+        classpath deps.google_firebase_crashlytics_gradle
     }
     repositories {
         google()

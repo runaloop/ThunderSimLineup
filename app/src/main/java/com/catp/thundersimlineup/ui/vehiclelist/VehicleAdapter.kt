@@ -13,21 +13,28 @@ class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true
 
     fun setData(context: Context, items: List<Vehicle>) {
         val favorites = items.filter { it.isFavorite }.sortedBy { it.nation }
-        context
-        val favHeader = ExpandableHeaderItem(
-            0,
-            context.getString(R.string.favorites),
-            HeaderColors.getRandom()
-        )
-        favHeader.items += favorites.map { VehicleItem(it, favHeader.title) }
+
+        val favHeader = if(favorites.isNotEmpty()){
+            val favHeader = ExpandableHeaderItem<VehicleItem>(
+                0,
+                context.getString(R.string.favorites),
+                HeaderColors.getRandom()
+            )
+            favHeader.items += favorites.map { VehicleItem(it, favHeader.title) }
+            favHeader
+        }else null
+
 
         val rest = items.groupBy { it.nation }.map { (nation, list) ->
             val header =
-                ExpandableHeaderItem(nation.hashCode(), nation, HeaderColors.getCountry(nation))
+                ExpandableHeaderItem<VehicleItem>(nation.hashCode(), nation, HeaderColors.getCountry(nation))
             header.items += list.map { VehicleItem(it, header.title) }
             header
         }.toMutableList()
-        rest.add(0, favHeader)
+
+        favHeader?.let{
+            rest.add(0, favHeader)
+        }
 
         updateDataSet(rest.toList(), true)
     }

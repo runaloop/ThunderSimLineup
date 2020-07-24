@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.view.View
+import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
 import toothpick.InjectConstructor
@@ -27,6 +28,11 @@ fun <T> List<T>.rShift(n: Int) =
 @InjectConstructor
 class LocalDateTimeProvider {
     fun now(): LocalDateTime = LocalDateTime.now(ZoneId.of("Z"))
+}
+
+@InjectConstructor
+class LocalDateProvider {
+    fun now(): LocalDate = LocalDate.now(ZoneId.of("Z"))
 }
 
 fun progressBarStatus(value: Boolean, progressBar: View) {

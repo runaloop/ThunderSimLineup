@@ -11,8 +11,7 @@ import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import toothpick.Scope
 import toothpick.ktp.KTP
-import toothpick.ktp.binding.bind
-import toothpick.ktp.binding.module
+import toothpick.smoothie.module.SmoothieApplicationModule
 import javax.inject.Inject
 
 
@@ -21,6 +20,7 @@ class App : Application(), Configuration.Provider {
 
     @Inject
     lateinit var dailyNotificator: DailyNotificator
+
     @Inject
     lateinit var workerFactory: WorkerFactory
 
@@ -33,9 +33,7 @@ class App : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         scope = KTP.openScope(ApplicationScope::class.java)
-            .installModules(module {
-                bind<Application>().toInstance { this@App }
-            }, DBModule(this), DataModule())
+            .installModules(SmoothieApplicationModule(this), DBModule(this), DataModule())
         scope.inject(this)
         AndroidThreeTen.init(this)
         Stetho.initializeWithDefaults(this)

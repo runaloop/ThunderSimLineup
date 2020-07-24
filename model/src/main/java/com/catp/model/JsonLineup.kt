@@ -140,7 +140,7 @@ class JsonVehicleStore(val vehicleList: MutableList<JsonVehicle> = mutableListOf
     }
 
     fun removeForbidenIds() {
-        val forbidenIds_endings = listOf("_football", "us_amx_13_75")
+        val forbidenIds_endings = listOf("_football", "us_amx_13_75", "yt_cup_2019", "us_amx_13_90", "yt_cup_2019")
         val forbidenTypes = listOf(VehicleType.SHIP)
         vehicleList.removeAll { vehicle ->
             vehicle.type in forbidenTypes || forbidenIds_endings.any { vehicle.name.contains(it) }

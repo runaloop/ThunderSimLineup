@@ -56,7 +56,7 @@ class VehicleItem(val vehicle: Vehicle, val header: String) :
     }
 
     override fun filter(constraint: String): Boolean {
-        return vehicle.title.contains(constraint)
+        return vehicle.title.contains(constraint, true)
     }
 
     override fun equals(other: Any?): Boolean {

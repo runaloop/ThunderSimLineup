@@ -18,10 +18,12 @@ import javax.inject.Inject
 
 class CalendarFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
 
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
+
+    @Inject
+    lateinit var currentDayDecorator: CurrentDayDecorator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,12 +38,14 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         calendarView.setDayFormatter { day -> day.day.toString() }
         val now = LocalDate.now()
+
         calendarView.setSelectedDate(now)
         calendarView.setOnDateChangedListener { widget, date, selected ->
             if (selected) {
                 lineupListViewModel.onDateChanged(date)
             }
         }
+        calendarView.addDecorators(currentDayDecorator)
         super.onViewCreated(view, savedInstanceState)
     }
 

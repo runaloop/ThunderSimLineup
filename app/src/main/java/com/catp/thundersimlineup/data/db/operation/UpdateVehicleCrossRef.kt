@@ -28,12 +28,14 @@ class UpdateVehicleCrossRef(
                 findNewVehicles.process(
                     jsonLineup.jsonTeamA,
                     teamAVehicleIds,
-                    lineupEntity.teamAId
+                    lineupEntity.teamAId,
+                    lineupEntity.name
                 ),
                 findNewVehicles.process(
                     jsonLineup.jsonTeamB,
                     teamBVehicleIds,
-                    lineupEntity.teamBId
+                    lineupEntity.teamBId,
+                    lineupEntity.name
                 )
             ).flatten()
 
@@ -41,11 +43,13 @@ class UpdateVehicleCrossRef(
             val toUpdate = listOf(
                 findVehiclesToDelete.process(
                     jsonLineup.jsonTeamA,
-                    teamAVehicleIds
+                    teamAVehicleIds,
+                    lineupEntity.name
                 ),
                 findVehiclesToDelete.process(
                     jsonLineup.jsonTeamB,
-                    teamBVehicleIds
+                    teamBVehicleIds,
+                    lineupEntity.name
                 )
             ).flatten()
             if (toInsert.isNotEmpty())

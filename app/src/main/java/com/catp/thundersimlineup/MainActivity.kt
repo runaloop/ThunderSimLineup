@@ -5,7 +5,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
@@ -36,18 +37,21 @@ class MainActivity : AppCompatActivity() {
                     })
             }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //handle the click on the back arrow click
-        return when (item.itemId) {
+        when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
-                true
+                return true
             }
-            else -> super.onOptionsItemSelected(item)
         }
+        val navController = findNavController(R.id.nav_host_fragment)
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.search, menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 }

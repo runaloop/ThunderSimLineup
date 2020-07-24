@@ -6,7 +6,7 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneOffset
 
-class InstantConverter {
+class DateAndTimeConverter {
 
     @TypeConverter
     fun toInstant(date: Long): Instant {
@@ -24,7 +24,7 @@ class InstantConverter {
     }
 
     @TypeConverter
-    fun localDateToString(date: LocalDate): Long {
+    fun localDateToLong(date: LocalDate): Long {
         return date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
     }
     /*@TypeConverter

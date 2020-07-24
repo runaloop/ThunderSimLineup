@@ -18,7 +18,7 @@ class RefreshIntervalChecker(val netLoader: NetLoader) {
         val lastTime =
             context.getSharedPreferences(REFRESH_PREFERENCE, Context.MODE_PRIVATE).getString(
                 REFRESH_LAST_TIME, ""
-            )
+            )!!
         if (lastTime.isEmpty())
             return checkETag(context)
         else {

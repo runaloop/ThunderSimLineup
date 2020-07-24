@@ -14,7 +14,6 @@ class CheckAndUpdateTitle(val changeset: Changeset) {
         if (jsonVehicle.locale!!.title != vehicle.title) {
             val oldTitle = vehicle.title
             vehicle.title = jsonVehicle.locale!!.title
-            changeset.reportVehicleTitleChange(vehicle, oldTitle)
             return true
         }
         return false
