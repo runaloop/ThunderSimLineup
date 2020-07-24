@@ -4,6 +4,8 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
@@ -71,4 +73,9 @@ fun progressBarStatus(value: Boolean, progressBar: View) {
         })
         animator.start()
     }
+}
+
+
+fun Fragment.setToolbarText(text: Int){
+    (activity as AppCompatActivity)?.supportActionBar?.setTitle(text)
 }

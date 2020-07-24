@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.setToolbarText
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.catp.thundersimlineup.ui.whatsnew.ChangesAdapter
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -70,6 +71,7 @@ class WhatsNewFragment : Fragment() {
         })
 
         whatsNewViewModel.viewCreated()
+        setToolbarText(R.string.title_event_log)
     }
 
     @VisibleForTesting

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ThunderSimLineup</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_vehicles">Vehicles</string>
+    <string name="title_event_log">Event log</string>
+    <string name="title_preferences">Preferences</string>
     <string name="team_a_title">Team A</string>
     <string name="favorites">favorites</string>
     <string name="tanks_title">Tanks</string>

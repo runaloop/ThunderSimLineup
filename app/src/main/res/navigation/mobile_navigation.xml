@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/lineup_list_fragment"
         android:name="com.catp.thundersimlineup.ui.lineuplist.LineupListAndCalendarFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_event_log"
         tools:layout="@layout/lineup_fragment_container" >
         <action
             android:id="@+id/action_lineup_list_fragment_to_vehicle_list"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/vehicle_list"
         android:name="com.catp.thundersimlineup.ui.vehiclelist.VehicleListFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_preferences"
         tools:layout="@layout/fragment_vehicle_list" >
         <action
             android:id="@+id/action_preferences"

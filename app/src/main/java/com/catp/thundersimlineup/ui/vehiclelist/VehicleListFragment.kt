@@ -6,10 +6,10 @@ import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.setToolbarText
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import kotlinx.android.synthetic.main.fragment_vehicle_list.*
@@ -69,6 +69,7 @@ class VehicleListFragment : Fragment() {
 
         vehicleListViewModel.viewCreated()
 
+        setToolbarText(R.string.title_vehicles)
         super.onViewCreated(view, savedInstanceState)
     }
 
