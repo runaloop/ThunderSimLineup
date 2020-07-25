@@ -7,6 +7,7 @@ import androidx.work.WorkManager
 import androidx.work.await
 import com.catp.model.JsonRules
 import com.catp.thundersimlineup.LocalDateTimeProvider
+import com.catp.thundersimlineup.data.Preferences
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.threeten.bp.Duration
@@ -21,6 +22,8 @@ class DailyNotificator {
     @Inject
     lateinit var dateTimeProvider: LocalDateTimeProvider
 
+    @Inject
+    lateinit var preferences: Preferences
 
     private val TASK_TAG = "send_reminder_periodic"
 
@@ -28,11 +31,12 @@ class DailyNotificator {
         GlobalScope.launch {
             val workManager = WorkManager.getInstance(context)
             cancelCurrentTask(workManager)
-            createNewTask(
-                workManager/*,
+            if (preferences.showDailyNotification)
+                createNewTask(
+                    workManager/*,
                 dateTimeProvider.now().hour,
                 dateTimeProvider.now().plusMinutes(1).minute*/
-            )
+                )
         }
     }
 

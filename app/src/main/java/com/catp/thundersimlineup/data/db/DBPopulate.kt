@@ -2,6 +2,7 @@ package com.catp.thundersimlineup.data.db
 
 import android.content.Context
 import com.catp.model.JsonLineupConfig
+import com.catp.thundersimlineup.data.Preferences
 import com.catp.thundersimlineup.data.db.operation.*
 import toothpick.InjectConstructor
 
@@ -13,7 +14,8 @@ class DBPopulate(
     val updateVehicleCrossRef: UpdateVehicleCrossRef,
     val updateVehicleCrossRefStatus: UpdateVehicleCrossRefStatus,
     val updateLineupCycle: UpdateLineupCycle,
-    val lineupDao: LineupDao
+    val lineupDao: LineupDao,
+    val preferences: Preferences
 ) {
     fun updateData(jsonLineupConfig: JsonLineupConfig, context: Context) {
         val db = LineupDatabase.getInstance(context)
@@ -33,6 +35,7 @@ class DBPopulate(
 
             }
         }
-        changeset.writeChanges()
+        if (preferences.logVehicleEvents)
+            changeset.writeChanges()
     }
 }

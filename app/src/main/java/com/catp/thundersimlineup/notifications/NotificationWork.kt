@@ -27,11 +27,8 @@ class NotificationWork(
     val localDateTimeProvider: LocalDateTimeProvider
 ) :
     Worker(appContext, workerParams) {
-
-
     val CHANNEL_ID = this.javaClass.name
     override fun doWork(): Result {
-
         val favorites = getFavoritesForToday()
         showNotification(favorites)
         reschedule()
