@@ -15,11 +15,12 @@ class Preferences {
     lateinit var context: Application
 
     private fun getBoolean(res: Int): Boolean {
-        return PreferenceManager
+        val boolean = PreferenceManager
             .getDefaultSharedPreferences(context)
             .getBoolean(
                 context.resources.getString(res), true
             )
+        return boolean
     }
 
     private fun getSet(res: Int): MutableSet<String> {
@@ -42,6 +43,8 @@ class Preferences {
     val lineupListFilter: FilterState
         get() {
             val pref = getSet(R.string.pref_filter_key_show)
+            if(pref.isEmpty())
+                return FilterState()
             return FilterState("", true, true,
                 pref.contains("tanksShow"), pref.contains("planesShow"), pref.contains("helisShow"),
                 pref.contains("lowLineupShow"), pref.contains("highLineupShow"), pref.contains("nowLineupShow"), pref.contains("laterLineupShow")

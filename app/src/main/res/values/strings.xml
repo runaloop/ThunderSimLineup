@@ -12,16 +12,29 @@
     <string name="today_active_lineups">Now active %s and %s, time until change - %sh%sm, next lineups: %s and %s</string>
     <string name="selected_day_lineup_text">Lineups for selected date: %s and %s would be available since 11 UTC</string>
     <string name="fab_search">Search</string>
-    <string name="channel_name">favorite_vehicle_availability_notify</string>
+    <string name="channel_name" translatable="false">favorite_vehicle_availability_notify</string>
     <string name="channel_description">shows once a day, when lineups are changed</string>
     <string name="change_log_add">%s is added to %s</string>
     <string name="change_log_del">%s is deleted to %s</string>
     <string name="empty_rv_text">No items for now</string>
-    <string name="pref_send_crash_logs">send_crash_logs</string>
-    <string name="pref_filter_key_show">filter_key_show</string>
-    <string name="pref_show_daily_notify">show_daily_favorite_notify</string>
-    <string name="pref_log_events">log_events_switch</string>
-    <string name="pref_clear_event_log">clear_event_log</string>
+    <string name="pref_send_crash_logs" translatable="false">send_crash_logs</string>
+    <string name="pref_filter_key_show" translatable="false">filter_key_show</string>
+    <string name="pref_show_daily_notify" translatable="false">show_daily_favorite_notify</string>
+    <string name="pref_log_events" translatable="false">log_events_switch</string>
+    <string name="pref_clear_event_log" translatable="false">clear_event_log</string>
+    <string name="chip_title_team_a">A</string>
+    <string name="chip_title_team_b">B</string>
+    <string name="chip_title_tanks">Tanks</string>
+    <string name="chip_title_planes">Planes</string>
+    <string name="chip_title_helis">Helis</string>
+    <string name="chip_title_low_lineup">Low</string>
+    <string name="chip_title_top_lineup">Top</string>
+    <string name="chip_title_active_lineup">Now</string>
+    <string name="chip_title_later_lineup">Later</string>
+    <string name="pref_title_send_crash_log">Send crash logs to the developer</string>
+    <string name="pref_title_show_daily_notify">Show daily notification for favorite vehicles</string>
+    <string name="pref_title_lineup_list_filter">Lineup list filter</string>
+    <string name="pref_title_log_vehicle_event">Log vehicle addition to a lineups</string>
 
     <string-array name="filterShowList">
         <item>Tanks</item>

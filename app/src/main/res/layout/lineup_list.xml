@@ -37,63 +37,63 @@
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A" />
+                android:text="@string/chip_title_team_a" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/teamBChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="B" />
+                android:text="@string/chip_title_team_b" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/tanksChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tanks" />
+                android:text="@string/chip_title_tanks" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/planesChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Planes" />
+                android:text="@string/chip_title_planes" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/helisChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Helis" />
+                android:text="@string/chip_title_helis" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/lowLineupChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Low" />
+                android:text="@string/chip_title_low_lineup" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/highLineupChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Top" />
+                android:text="@string/chip_title_top_lineup" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/nowLineupChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Now" />
+                android:text="@string/chip_title_active_lineup" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/laterLineupChip"
                 style="@style/TSLFilterChips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Later" />
+                android:text="@string/chip_title_later_lineup" />
         </LinearLayout>
     </HorizontalScrollView>
 

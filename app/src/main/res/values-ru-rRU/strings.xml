@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ThunderSimLineup</string>
+    <string name="title_vehicles">Техника</string>
+    <string name="title_event_log">События</string>
+    <string name="title_preferences">Настройки</string>
+    <string name="team_a_title">Команда А</string>
+    <string name="favorites">Избранное</string>
+    <string name="tanks_title">Танки</string>
+    <string name="planes_title">Самолеты</string>
+    <string name="helis_title">Вертолеты</string>
+    <string name="team_b_title">Команда Б</string>
+    <string name="today_active_lineups">Сейчас доступен %s и %s, сменится через - %sч%sм, будут доступны: %s и %s</string>
+    <string name="selected_day_lineup_text">Лайнапы для выбранной даты: %s и %s будут доступны после 14-00 по Москве</string>
+    <string name="fab_search">Поиск</string>
+    <string name="channel_description">показывает один раз в день, когда лайнапы меняются</string>
+    <string name="change_log_add">%s добавлен в %s</string>
+    <string name="change_log_del">%s удален из %s</string>
+    <string name="empty_rv_text">Пока список пуст</string>
+    <string-array name="filterShowList">
+        <item>Танки</item>
+        <item>Самолеты</item>
+        <item>Вертолеты</item>
+        <item>Младший лайнап</item>
+        <item>Старший лайнап</item>
+        <item>Текущий лайнап(сегодня)</item>
+        <item>Следующий лайнап(сегодня)</item>
+    </string-array>
+    <string name="chip_title_team_a">А</string>
+    <string name="chip_title_team_b">Б</string>
+    <string name="chip_title_tanks">Танки</string>
+    <string name="chip_title_planes">Самолеты</string>
+    <string name="chip_title_helis">Вертолеты</string>
+    <string name="chip_title_low_lineup">Младший</string>
+    <string name="chip_title_top_lineup">Старший</string>
+    <string name="chip_title_active_lineup">Сейчас</string>
+    <string name="chip_title_later_lineup">Следующий</string>
+    <string name="pref_title_send_crash_log">Отправлять логи ошибок разработчику</string>
+    <string name="pref_title_show_daily_notify">Показывать ежедневное напоминание если доступна избранная техника</string>
+    <string name="pref_title_lineup_list_filter">Настройка фильтров</string>
+    <string name="pref_title_log_vehicle_event">Записывать изменения техники в журнал</string>
+</resources>

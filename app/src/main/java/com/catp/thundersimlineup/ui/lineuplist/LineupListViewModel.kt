@@ -46,18 +46,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         value = "This is dashboard Fragment"
     }
     private val _filterStatus = MutableLiveData<FilterState>().apply {
-        value = FilterState(
-            "",
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true
-        )
+        value = FilterState()
     }
     private val _filterAvailable = MutableLiveData<FilterState>()
     private val _lineupLoadStatus = MutableLiveData<Boolean>()
@@ -80,14 +69,12 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         //.subscribeOn(Schedulers.io())
         .subscribe { day ->
             if (!dbUpdates.get()) {
-                //Thread.sleep(3000L)
                 val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
                 val lineupAvailableFilters = lineupFilterByLineup.getFilters(lineupForToday)
                 _filterAvailable.postValue(lineupAvailableFilters)
                 _currentLineup.postValue(lineupForToday)
                 _lineupLoadStatus.postValue(false)
             } else {
-                //println("☠️ db is being updated, skip lineup requset")
             }
         }.apply { cs.add(this) }
 

@@ -4,23 +4,19 @@
     <SwitchPreference
         android:defaultValue="true"
         android:key="@string/pref_send_crash_logs"
-        android:title="Send crash logs to the developer" />
+        android:title="@string/pref_title_send_crash_log" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="@string/pref_show_daily_notify"
-        android:title="Show daily notification for favorite vehicles" />
+        android:title="@string/pref_title_show_daily_notify" />
     <MultiSelectListPreference
         android:defaultValue="@array/filterShowListValues"
         android:entries="@array/filterShowList"
         android:entryValues="@array/filterShowListValues"
         android:key="@string/pref_filter_key_show"
-        android:title="Lineup list filter" />
+        android:title="@string/pref_title_lineup_list_filter" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="@string/pref_log_events"
-        android:title="Log vehicle addition to a lineups" />
-    <Preference
-        android:key="@string/pref_clear_event_log"
-        android:persistent="false"
-        android:title="Click here to clear vehicle log" />
+        android:title="@string/pref_title_log_vehicle_event" />
 </PreferenceScreen>

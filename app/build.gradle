@@ -100,6 +100,8 @@ dependencies {
     implementation deps.google_firebase_anal
     implementation deps.google_firebase_crashlytics
 
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
     //implementation 'com.applandeo:material-calendar-view:1.7.0' // можно сделать все что нужно, но текст под датой в виде картинок делается через зад, остальное по кастомизации тоже не очень понятно.
     //implementation 'com.github.marcohc:robotocalendarview:3.6.1' // Слабая кастомизация под числом нельзя вывести ничего
     //implementation 'io.github.inflationx:calligraphy3:3.1.1'
