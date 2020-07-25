@@ -1,5 +1,6 @@
 package com.catp.thundersimlineup.ui.lineuplist
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.data.FilterState
 import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
@@ -47,7 +49,7 @@ class LineupListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        lineupListViewModel.text.observe(this, Observer {
+        lineupListViewModel.text.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty() && getView() != null) {
                 //Snackbar.make(getView()!!, it, Snackbar.LENGTH_LONG).show()
             }
@@ -61,7 +63,7 @@ class LineupListFragment : Fragment() {
         }
         fab.isEnabled = true
 
-        lineupListViewModel.lineupLoadStatus.observe(this, Observer { value ->
+        lineupListViewModel.lineupLoadStatus.observe(viewLifecycleOwner, Observer { value ->
             progressBarStatus(value, pbLineup)
         })
 
@@ -69,7 +71,7 @@ class LineupListFragment : Fragment() {
 
         configureRecyclerView(lineupAdapter, rvLineupList, this, lineupListViewModel)
 
-        lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
+        lineupListViewModel.currentLineup.observe(viewLifecycleOwner, Observer { lineup ->
             lineupAdapter.setNewLineup(this.requireContext(), lineup)
             updateLineupText(lineup)
             rvLineupList.scrollToPosition(0)
@@ -79,6 +81,7 @@ class LineupListFragment : Fragment() {
     }
 
 
+    @SuppressLint("FragmentLiveDataObserve")
     private fun configureFilter() {
         lineupListViewModel.filterStatus.observe(this, Observer { filter ->
             lineupAdapter.setFilterState(requireContext(), filter)
@@ -118,9 +121,10 @@ class LineupListFragment : Fragment() {
         }
     }
 
-    private fun updateFilterVisibility(filter: LineupListViewModel.FilterState) {
+    private fun updateFilterVisibility(filter: FilterState) {
         chips.forEachIndexed { index, chip ->
             chip.visibility = if (filter[index]) View.VISIBLE else View.GONE
+            chip.isChecked = filter[index]
         }
     }
 

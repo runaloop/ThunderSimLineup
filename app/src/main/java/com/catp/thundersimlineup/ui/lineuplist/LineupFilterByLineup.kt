@@ -1,24 +1,31 @@
 package com.catp.thundersimlineup.ui.lineuplist
 
 import com.catp.model.VehicleType
+import com.catp.thundersimlineup.data.FilterState
+import com.catp.thundersimlineup.data.Preferences
 import toothpick.InjectConstructor
+import javax.inject.Inject
 
 @InjectConstructor
 class LineupFilterByLineup {
-    fun getFilters(lineupForToday: LineupRequestInteractor.LineupForToday): LineupListViewModel.FilterState {
+    @Inject
+    lateinit var preferences: Preferences
+
+    fun getFilters(lineupForToday: LineupRequestInteractor.LineupForToday): FilterState {
         val vehicles =
             listOf(lineupForToday.lineupNow.toList(), lineupForToday.lineupThen.toList()).flatten()
                 .filterNotNull().map { listOf(it.teamA.vehicles, it.teamB.vehicles).flatten() }
                 .flatten()
-        return LineupListViewModel.FilterState(
+        val prefFilter = preferences.lineupListFilter
+        return FilterState(
             "",
             true,
             true,
-            vehicles.any { it.type == VehicleType.TANK },
-            vehicles.any { it.type == VehicleType.PLANE },
-            vehicles.any { it.type == VehicleType.HELI },
-            true, true,
-            lineupForToday.isLineupForNow, lineupForToday.isLineupForNow
+            vehicles.any { it.type == VehicleType.TANK } && prefFilter.tanksShow,
+            vehicles.any { it.type == VehicleType.PLANE } && prefFilter.planesShow,
+            vehicles.any { it.type == VehicleType.HELI } &&   prefFilter.helisShow,
+            prefFilter.lowLineupShow, prefFilter.highLineupShow,
+            lineupForToday.isLineupForNow && prefFilter.nowLineupShow, lineupForToday.isLineupForNow && prefFilter.laterLineupShow
         )
     }
 

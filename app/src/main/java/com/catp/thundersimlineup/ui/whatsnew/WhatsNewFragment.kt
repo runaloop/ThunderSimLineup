@@ -59,7 +59,7 @@ class WhatsNewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        whatsNewViewModel.changes.observe(this, Observer { list ->
+        whatsNewViewModel.changes.observe(viewLifecycleOwner, Observer { list ->
             changesAdapter.setData(requireContext(), list)
         })
 

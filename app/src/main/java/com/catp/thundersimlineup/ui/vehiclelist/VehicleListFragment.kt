@@ -67,7 +67,7 @@ class VehicleListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        vehicleListViewModel.vehicles.observe(this, Observer { list ->
+        vehicleListViewModel.vehicles.observe(viewLifecycleOwner, Observer { list ->
             itemAdapter.setData(requireContext(), list)
         })
 

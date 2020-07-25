@@ -63,6 +63,7 @@ dependencies {
     implementation deps.android.room_ktx
     implementation deps.android.room_rx
     implementation deps.android.work
+    implementation deps.android.preferences
 
 
     kapt deps.android.room_compiler

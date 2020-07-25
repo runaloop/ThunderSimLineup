@@ -3,6 +3,7 @@ package com.catp.thundersimlineup.ui.lineuplist
 import android.content.Context
 import com.catp.model.VehicleType
 import com.catp.thundersimlineup.R
+import com.catp.thundersimlineup.data.FilterState
 import com.catp.thundersimlineup.data.db.entity.Lineup
 import com.catp.thundersimlineup.data.db.entity.Team
 import com.catp.thundersimlineup.data.db.entity.Vehicle
@@ -16,7 +17,7 @@ class LineupAdapter :
     FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true) {
 
     var originalData: List<Lineup> = emptyList()
-    lateinit var filters: LineupListViewModel.FilterState
+    lateinit var filters: FilterState
 
     fun setNewLineup(context: Context, lineup: LineupRequestInteractor.LineupForToday) {
         originalData = listOfNotNull(
@@ -29,7 +30,7 @@ class LineupAdapter :
         updateDataSet(make, false)
     }
 
-    fun setFilterState(context: Context, filters: LineupListViewModel.FilterState) {
+    fun setFilterState(context: Context, filters: FilterState) {
         this.filters = filters
         updateDataSet(DataSetCreator(context).make(originalData, filters), false)
     }
@@ -38,7 +39,7 @@ class LineupAdapter :
 class DataSetCreator(val context: Context) {
     fun make(
         lineups: List<Lineup>,
-        filters: LineupListViewModel.FilterState
+        filters: FilterState
     ): List<ExpandableHeaderItem<VehicleItem>> {
         val data = mutableListOf<ExpandableHeaderItem<VehicleItem>>()
 
@@ -67,7 +68,7 @@ class DataSetCreator(val context: Context) {
 
     private fun matchForLater_NowFilter(
         index: Int,
-        filters: LineupListViewModel.FilterState,
+        filters: FilterState,
         lineups: List<Lineup>
     ) =
         index < 2 && filters.nowLineupShow || index > 1 && filters.laterLineupShow || lineups.size == 2
@@ -75,7 +76,7 @@ class DataSetCreator(val context: Context) {
     private fun fillSet(
         lineup: Lineup,
         dataset: MutableList<ExpandableHeaderItem<VehicleItem>>,
-        filters: LineupListViewModel.FilterState
+        filters: FilterState
     ) {
         val teams = mapOf(
             lineup.teamA to if (filters.teamAShow) context.getString(R.string.team_a_title) else null,
@@ -111,7 +112,7 @@ class DataSetCreator(val context: Context) {
     private fun fillTeam(
         team: Team,
         dataset: MutableList<ExpandableHeaderItem<VehicleItem>>,
-        filters: LineupListViewModel.FilterState,
+        filters: FilterState,
         title: String
     ) {
         with(team) {

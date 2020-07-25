@@ -17,5 +17,30 @@
     <string name="change_log_add">%s is added to %s</string>
     <string name="change_log_del">%s is deleted to %s</string>
     <string name="empty_rv_text">No items for now</string>
+    <string name="pref_send_crash_logs">send_crash_logs</string>
+    <string name="pref_filter_key_show">filter_key_show</string>
+    <string name="pref_show_daily_notify">show_daily_favorite_notify</string>
+    <string name="pref_log_events">log_events_switch</string>
+    <string name="pref_clear_event_log">clear_event_log</string>
+
+    <string-array name="filterShowList">
+        <item>Tanks</item>
+        <item>Planes</item>
+        <item>Helis</item>
+        <item>Low lineup</item>
+        <item>High lineup</item>
+        <item>Now lineup(for today)</item>
+        <item>Later lineup(for today)</item>
+    </string-array>
+
+    <string-array name="filterShowListValues">
+        <item>tanksShow</item>
+        <item>planesShow</item>
+        <item>helisShow</item>
+        <item>lowLineupShow</item>
+        <item>highLineupShow</item>
+        <item>nowLineupShow</item>
+        <item>laterLineupShow</item>
+    </string-array>
 
 </resources>
