@@ -4,7 +4,7 @@
         android:id="@+id/action_search"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_search_black_18dp"
-        android:iconTint="@color/colorIcons"
+        app:iconTint="@color/colorIcons"
         android:title="@string/fab_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always" />
@@ -12,7 +12,7 @@
         android:id="@+id/action_whats_new"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_baseline_fiber_new_24"
-        android:iconTint="@color/colorIcons"
+        app:iconTint="@color/colorIcons"
         android:title="@string/fab_search"
         app:showAsAction="ifRoom" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/action_preferences"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_tune_black_18dp"
-        android:iconTint="@color/colorIcons"
+        app:iconTint="@color/colorIcons"
         android:title="@string/fab_search"
         app:showAsAction="ifRoom" />
 </menu>

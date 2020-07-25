@@ -16,5 +16,6 @@
     <string name="channel_description">shows once a day, when lineups are changed</string>
     <string name="change_log_add">%s is added to %s</string>
     <string name="change_log_del">%s is deleted to %s</string>
+    <string name="empty_rv_text">No items for now</string>
 
 </resources>

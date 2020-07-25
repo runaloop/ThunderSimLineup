@@ -8,6 +8,7 @@ import com.catp.thundersimlineup.whenNonNull
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
 import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
+import eu.davidea.flexibleadapter.helpers.EmptyViewHelper
 import eu.davidea.flexibleadapter.items.IFlexible
 
 
@@ -47,5 +48,12 @@ fun configureRecyclerView(
 
     }
 
+    fragment.view?.let {
+        EmptyViewHelper.create(
+            adapter,
+            it.findViewById(R.id.empty_rv),
+            it.findViewById(R.id.empty_rv_filter)
+        )
+    }
     adapter.setStickyHeaders(true)
 }

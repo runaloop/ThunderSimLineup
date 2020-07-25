@@ -50,7 +50,7 @@ class LineupListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         lineupListViewModel.text.observe(this, Observer {
             if (it.isNotEmpty() && getView() != null) {
-                Snackbar.make(getView()!!, it, Snackbar.LENGTH_LONG).show()
+                //Snackbar.make(getView()!!, it, Snackbar.LENGTH_LONG).show()
             }
         })
 
@@ -61,8 +61,11 @@ class LineupListFragment : Fragment() {
 
 
         fab.setOnClickListener {
+            fab.isEnabled = false
+            lineupListViewModel.pushFavorites()
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
         }
+        fab.isEnabled = true
 
 
         lineupListViewModel.lineupLoadStatus.observe(this, Observer { value ->
@@ -76,7 +79,9 @@ class LineupListFragment : Fragment() {
         lineupListViewModel.currentLineup.observe(this, Observer { lineup ->
             lineupAdapter.setNewLineup(this.requireContext(), lineup)
             updateLineupText(lineup)
+            rvLineupList.scrollToPosition(0)
         })
+
         super.onViewCreated(view, savedInstanceState)
     }
 

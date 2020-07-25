@@ -50,7 +50,7 @@ class VehicleListFragment : Fragment() {
             override fun onQueryTextChange(s: String): Boolean {
                 if (itemAdapter.hasNewFilter(s)) {
                     itemAdapter.setFilter(s);
-                    itemAdapter.filterItems()
+                    itemAdapter.filterItems(1000L)
                 }
                 return true
             }
@@ -66,6 +66,7 @@ class VehicleListFragment : Fragment() {
         })
 
         configureRecyclerView(itemAdapter, rvVehicleList, this, lineupListViewModel)
+
 
         vehicleListViewModel.viewCreated()
 
