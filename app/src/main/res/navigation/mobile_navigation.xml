@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/lineup_list_fragment">
+    app:startDestination="@id/lineup_and_calendar_fragment">
 
     <fragment
-        android:id="@+id/lineup_list_fragment"
+        android:id="@+id/lineup_and_calendar_fragment"
         android:name="com.catp.thundersimlineup.ui.lineuplist.LineupListAndCalendarFragment"
         android:label="@string/title_event_log"
         tools:layout="@layout/lineup_fragment_container" >
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/vehicle_list"
         android:name="com.catp.thundersimlineup.ui.vehiclelist.VehicleListFragment"
-        android:label="@string/title_preferences"
+        android:label="@string/title_vehicles"
         tools:layout="@layout/fragment_vehicle_list" >
         <action
             android:id="@+id/action_preferences"
@@ -30,9 +30,9 @@
     <fragment
         android:id="@+id/whatsNewFragment"
         android:name="com.catp.thundersimlineup.ui.calendar.WhatsNewFragment"
-        android:label="WhatsNewFragment" />
+        android:label="@string/title_event_log" />
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.catp.thundersimlineup.ui.calendar.PreferencesFragment"
-        android:label="PreferencesFragment" />
+        android:label="@string/title_preferences" />
 </navigation>

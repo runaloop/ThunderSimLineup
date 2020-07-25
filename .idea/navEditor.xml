@@ -8,13 +8,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="lineup_list_fragment">
+                  <entry key="lineup_and_calendar_fragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-197" />
-                            <option name="y" value="21" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -52,12 +52,12 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_vehicle_list_to_preferencesFragment">
+                            <entry key="action_preferences">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_vehicle_list_to_whatsNewFragment">
+                            <entry key="action_whats_new">
                               <value>
                                 <LayoutPositions />
                               </value>

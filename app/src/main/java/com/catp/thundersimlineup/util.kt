@@ -74,8 +74,3 @@ fun progressBarStatus(value: Boolean, progressBar: View) {
         animator.start()
     }
 }
-
-
-fun Fragment.setToolbarText(text: Int){
-    (activity as AppCompatActivity)?.supportActionBar?.setTitle(text)
-}

@@ -15,7 +15,6 @@ import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -53,12 +52,7 @@ class LineupListFragment : Fragment() {
                 //Snackbar.make(getView()!!, it, Snackbar.LENGTH_LONG).show()
             }
         })
-
-
-
         configureFilter()
-
-
 
         fab.setOnClickListener {
             fab.isEnabled = false
@@ -66,7 +60,6 @@ class LineupListFragment : Fragment() {
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
         }
         fab.isEnabled = true
-
 
         lineupListViewModel.lineupLoadStatus.observe(this, Observer { value ->
             progressBarStatus(value, pbLineup)

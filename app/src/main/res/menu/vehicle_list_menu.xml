@@ -4,23 +4,26 @@
         android:id="@+id/action_search"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_search_black_18dp"
-        app:iconTint="@color/colorIcons"
+        android:menuCategory="secondary"
         android:title="@string/fab_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:iconTint="@color/colorIcons"
         app:showAsAction="collapseActionView|always" />
     <item
         android:id="@+id/action_whats_new"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_baseline_fiber_new_24"
+        android:menuCategory="secondary"
+        android:title="@string/title_event_log"
         app:iconTint="@color/colorIcons"
-        android:title="@string/fab_search"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_preferences"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_tune_black_18dp"
+        android:menuCategory="secondary"
+        android:title="@string/title_preferences"
         app:iconTint="@color/colorIcons"
-        android:title="@string/fab_search"
         app:showAsAction="ifRoom" />
 </menu>
