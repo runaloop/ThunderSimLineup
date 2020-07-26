@@ -161,7 +161,7 @@ data class JsonVehicle(
     val name: String,
     val type: VehicleType,
     val nation: String = "",
-    val br: String = "",
+    var br: String = "",
     var locale: JsonLocaleItem? = null
 ) {
     constructor() : this("", VehicleType.TANK, "", "", null)

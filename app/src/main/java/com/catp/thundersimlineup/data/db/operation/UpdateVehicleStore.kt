@@ -39,6 +39,6 @@ class UpdateVehicleStore(
         }.filterNotNull()
         // upsert different and new
         if (updatedVehicleList.isNotEmpty())
-            dao.upsertVehicles(updatedVehicleList)
+            dao.insertVehicles(updatedVehicleList)
     }
 }

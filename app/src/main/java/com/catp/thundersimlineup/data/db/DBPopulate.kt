@@ -30,7 +30,7 @@ class DBPopulate(
                     lineupDao.setVersion(jsonLineupConfig.version)
                 } catch (e: Exception) {
                     //TODO: Correct exception handling, report to a server, delete of local data(except favorite list), and try to repopulate data
-                    e.printStackTrace()
+                    throw e
                 }
 
             }

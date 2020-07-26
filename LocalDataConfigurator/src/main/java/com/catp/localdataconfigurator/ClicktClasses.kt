@@ -24,12 +24,13 @@ class MainParser : CliktCommand() {
  * Get data from local xlsx, an wpcost+unitIDlocale(can be local, or from net), and regenerate xlsx with new data
  */
 class RegenerateXLSXFile : CliktCommand() {
-    val useLocalFiles: Boolean by option().flag(default = false)
+    val useLocalFiles: Boolean by option().flag(default = true)
     override fun run() {
         val unitIDLocale = UnitIDLocale().apply { loadData(useLocalFiles) }
         val wpCost = WPCost().apply { loadData(useLocalFiles) }
         val lineups = SpreedSheetReader(vehicleStore).read()
         LineupToLocaleMatcher(lineups, wpCost, unitIDLocale, vehicleStore).process()
+        UpdateBRFromWPCost(lineups, wpCost, vehicleStore).process()
         //Remove from _1 lineups all planes, and add it with BR value
         LineupMatchPlanesWithBR(lineups, vehicleStore).process()
         SpreedSheetGenerator(lineups, vehicleStore).make()

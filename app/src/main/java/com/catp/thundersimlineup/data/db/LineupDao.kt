@@ -20,26 +20,16 @@ interface LineupDao {
     @Insert
     fun insertTeam(team: TeamEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVehicle(vehicle: Vehicle): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Transaction
     fun insertVehicles(vehicles: List<Vehicle>): List<Long>
 
     @Update
     @Transaction
     fun updateVehicles(vehicles: List<Vehicle>): Int
-
-    @Transaction
-    fun upsertVehicles(vehicles: List<Vehicle>): Int {
-        val updateList = mutableListOf<Vehicle>()
-        insertVehicles(vehicles).forEachIndexed { index, insertResult ->
-            if (insertResult == -1L)
-                updateList.add(vehicles[index])
-        }
-        return updateVehicles(updateList)
-    }
 
     @Insert
     @Transaction
