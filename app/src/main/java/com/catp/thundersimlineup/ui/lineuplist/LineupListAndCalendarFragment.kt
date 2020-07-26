@@ -26,8 +26,6 @@ class LineupListAndCalendarFragment : Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    }
 
 
     @VisibleForTesting

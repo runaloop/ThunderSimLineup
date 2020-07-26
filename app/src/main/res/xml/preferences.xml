@@ -23,4 +23,8 @@
         android:defaultValue="true"
         android:key="@string/pref_log_events"
         android:title="@string/pref_title_log_vehicle_event" />
+    <Preference
+        android:key="@string/pref_refresh_lineup_list"
+        android:title="@string/pref_title_refresh_lineup_list"
+        />
 </PreferenceScreen>

@@ -38,6 +38,9 @@
     <string name="pref_title_log_vehicle_event">Log vehicle addition to a lineups</string>
     <string name="no_items_found_on_your_request">No items found on your request</string>
     <string name="pref_title_send_anonym_stat">Send anonymous statistics</string>
+    <string name="pref_refresh_lineup_list" translatable="false">pref_refresh_lineup_list</string>
+    <string name="pref_title_refresh_lineup_list">Refresh lineup list</string>
+    <string name="refresh_started">Refresh started</string>
 
     <string-array name="filterShowList">
         <item>Tanks</item>

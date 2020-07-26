@@ -41,8 +41,9 @@ class LineupStorage {
                     && (force || refreshIntervalChecker.isRefreshNeeded(context))
                 ) {
                     return@map updateDBIfNeeded(netLoader.getData(), ctx)
-                } else
+                } else {
                     localUpdateResult
+                }
             }
     }
 
