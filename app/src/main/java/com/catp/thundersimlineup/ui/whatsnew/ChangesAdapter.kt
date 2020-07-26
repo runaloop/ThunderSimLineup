@@ -9,7 +9,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 
 
-class ChangesAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true) {
+class ChangesAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, false) {
 
     fun setData(context: Context, items: List<Change>) {
         val s = items.groupBy { it.date }.map { (date, list) ->

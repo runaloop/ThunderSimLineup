@@ -9,7 +9,7 @@ import com.catp.thundersimlineup.ui.list.VehicleItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 
-class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true) {
+class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, false) {
 
     fun setData(context: Context, items: List<Vehicle>) {
         val favorites = items.filter { it.isFavorite }.sortedBy { it.nation }
