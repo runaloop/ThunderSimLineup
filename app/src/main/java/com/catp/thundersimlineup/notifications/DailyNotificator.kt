@@ -48,7 +48,6 @@ class DailyNotificator {
     ) {
         val initialDelay = initialDelay(hour, minute)
 
-        println("🌈${initialDelay}")
         val workRequest = OneTimeWorkRequestBuilder<NotificationWork>()
             .setInitialDelay(initialDelay.toMillis(), TimeUnit.MILLISECONDS)
             .addTag(TASK_TAG)

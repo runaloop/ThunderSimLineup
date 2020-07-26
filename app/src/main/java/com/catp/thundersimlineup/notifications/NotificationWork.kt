@@ -65,7 +65,6 @@ class NotificationWork(
     }
 
     private fun showNotification(favorites: List<Vehicle>) {
-        println("🌈 $favorites")
         if (favorites.isNotEmpty()) {
             createNotificationChannel()
             val intent = Intent(applicationContext, MainActivity::class.java).apply {

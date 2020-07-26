@@ -16,10 +16,8 @@ class JsonIO {
 
     fun read(inputStream: InputStream): JsonLineupConfig {
         inputStream.use { stream ->
-            println("LineupIO starts parsing")
             val dslJson = JsonLib.JSON()
             val lineupConfig = dslJson.deserialize(JsonLineupConfig::class.java, stream)
-            println("LineupIO finished parsing")
             return lineupConfig
             throw error("Can't load local config")
         }
