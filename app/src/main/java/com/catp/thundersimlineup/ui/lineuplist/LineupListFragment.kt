@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.catp.thundersimlineup.R
+import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.data.FilterState
@@ -27,6 +28,10 @@ class LineupListFragment : Fragment() {
 
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
+
+    @Inject
+    lateinit var statUtil: StatUtil
+
 
     val lineupAdapter = LineupAdapter()
 
@@ -49,6 +54,7 @@ class LineupListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         lineupListViewModel.text.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty() && getView() != null) {
                 //Snackbar.make(getView()!!, it, Snackbar.LENGTH_LONG).show()
@@ -77,7 +83,7 @@ class LineupListFragment : Fragment() {
             rvLineupList.scrollToPosition(0)
         })
 
-        super.onViewCreated(view, savedInstanceState)
+        statUtil.sendViewStat(this, "LineupList")
     }
 
 

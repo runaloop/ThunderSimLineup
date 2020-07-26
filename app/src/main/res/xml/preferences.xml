@@ -7,6 +7,10 @@
         android:title="@string/pref_title_send_crash_log" />
     <SwitchPreference
         android:defaultValue="true"
+        android:key="@string/pref_send_statistics"
+        android:title="@string/pref_title_send_anonym_stat" />
+    <SwitchPreference
+        android:defaultValue="true"
         android:key="@string/pref_show_daily_notify"
         android:title="@string/pref_title_show_daily_notify" />
     <MultiSelectListPreference

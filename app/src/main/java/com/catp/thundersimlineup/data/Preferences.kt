@@ -31,6 +31,8 @@ class Preferences {
             )!!
     }
 
+    val sendStat: Boolean
+    get() = getBoolean(R.string.pref_send_statistics)
     val sendCrashLogs: Boolean
         get() = getBoolean(R.string.pref_send_crash_logs)
 

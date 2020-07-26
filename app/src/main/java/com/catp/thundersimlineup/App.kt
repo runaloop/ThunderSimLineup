@@ -1,6 +1,7 @@
 package com.catp.thundersimlineup
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.data.DataModule
@@ -8,7 +9,6 @@ import com.catp.thundersimlineup.data.Preferences
 import com.catp.thundersimlineup.data.db.DBModule
 import com.catp.thundersimlineup.notifications.DailyNotificator
 import com.catp.thundersimlineup.notifications.WorkerFactory
-import com.facebook.stetho.Stetho
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jakewharton.threetenabp.AndroidThreeTen
 import toothpick.Scope
@@ -17,7 +17,7 @@ import toothpick.smoothie.module.SmoothieApplicationModule
 import javax.inject.Inject
 
 
-class App : Application(), Configuration.Provider {
+class App : MultiDexApplication(), Configuration.Provider {
     lateinit var scope: Scope
 
     @Inject
@@ -41,7 +41,6 @@ class App : Application(), Configuration.Provider {
             .installModules(SmoothieApplicationModule(this), DBModule(this), DataModule())
         scope.inject(this)
         AndroidThreeTen.init(this)
-        Stetho.initializeWithDefaults(this)
 
         dailyNotificator.createNotificationTask(this)
 

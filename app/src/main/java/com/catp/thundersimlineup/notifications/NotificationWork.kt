@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.work.WorkManager
 import androidx.work.Worker
@@ -17,6 +18,8 @@ import com.catp.thundersimlineup.data.Schedule
 import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.LineupType
 import com.catp.thundersimlineup.data.db.entity.Vehicle
+import com.google.firebase.analytics.FirebaseAnalytics
+
 
 class NotificationWork(
     appContext: Context,
@@ -30,9 +33,16 @@ class NotificationWork(
     val CHANNEL_ID = this.javaClass.name
     override fun doWork(): Result {
         val favorites = getFavoritesForToday()
+        logFavorites()
         showNotification(favorites)
         reschedule()
         return Result.success()
+    }
+
+    private fun logFavorites() {
+        val params = Bundle()
+        params.putInt("count", lineupDao.getFavoriteVehicles().size)
+        FirebaseAnalytics.getInstance(applicationContext).logEvent("DailyFavorite", params)
     }
 
     private fun createNotificationChannel() {
@@ -61,7 +71,8 @@ class NotificationWork(
             val intent = Intent(applicationContext, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
-            val pendingIntent: PendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
+            val pendingIntent: PendingIntent =
+                PendingIntent.getActivity(applicationContext, 0, intent, 0)
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Favorite vehicles ready to roll")

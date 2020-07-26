@@ -39,4 +39,6 @@
     <string name="pref_title_show_daily_notify">Показывать ежедневное напоминание если доступна избранная техника</string>
     <string name="pref_title_lineup_list_filter">Настройка фильтров</string>
     <string name="pref_title_log_vehicle_event">Записывать изменения техники в журнал</string>
+    <string name="no_items_found_on_your_request">По вашему запросу ничего не найдено</string>
+    <string name="pref_title_send_anonym_stat">Отправлять анонимную статистику использования приложения</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.catp.thundersimlineup.R
+import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
@@ -25,6 +26,9 @@ class VehicleListFragment : Fragment() {
 
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
+
+    @Inject
+    lateinit var statUtil: StatUtil
 
     val itemAdapter = VehicleAdapter()
 
@@ -66,6 +70,7 @@ class VehicleListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         vehicleListViewModel.vehicles.observe(viewLifecycleOwner, Observer { list ->
             itemAdapter.setData(requireContext(), list)
@@ -76,7 +81,8 @@ class VehicleListFragment : Fragment() {
 
         vehicleListViewModel.viewCreated()
 
-        super.onViewCreated(view, savedInstanceState)
+
+        statUtil.sendViewStat(this, "VehicleList")
     }
 
 

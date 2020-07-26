@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.catp.thundersimlineup.R
+import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
@@ -21,6 +22,10 @@ class WhatsNewFragment : Fragment() {
 
     @Inject
     lateinit var whatsNewViewModel: WhatsNewViewModel
+
+    @Inject
+    lateinit var statUtil: StatUtil
+
 
     val changesAdapter = ChangesAdapter()
 
@@ -70,6 +75,7 @@ class WhatsNewFragment : Fragment() {
         })
 
         whatsNewViewModel.viewCreated()
+        statUtil.sendViewStat(this, "WhatsNew")
     }
 
     @VisibleForTesting
