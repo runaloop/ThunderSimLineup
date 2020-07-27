@@ -19,13 +19,15 @@ class LineupFilterByLineup {
         val prefFilter = preferences.lineupListFilter
         return FilterState(
             "",
-            true,
-            true,
-            vehicles.any { it.type == VehicleType.TANK } && prefFilter.tanksShow,
-            vehicles.any { it.type == VehicleType.PLANE } && prefFilter.planesShow,
-            vehicles.any { it.type == VehicleType.HELI } &&   prefFilter.helisShow,
-            prefFilter.lowLineupShow, prefFilter.highLineupShow,
-            lineupForToday.isLineupForNow && prefFilter.nowLineupShow, lineupForToday.isLineupForNow && prefFilter.laterLineupShow
+            teamAShow = true,
+            teamBShow = true,
+            tanksShow = vehicles.any { it.type == VehicleType.TANK } && prefFilter.tanksShow,
+            planesShow = vehicles.any { it.type == VehicleType.PLANE } && prefFilter.planesShow,
+            helisShow = vehicles.any { it.type == VehicleType.HELI } && prefFilter.helisShow,
+            lowLineupShow = prefFilter.lowLineupShow,
+            highLineupShow = prefFilter.highLineupShow,
+            nowLineupShow = lineupForToday.isLineupForNow && prefFilter.nowLineupShow,
+            laterLineupShow = lineupForToday.isLineupForNow && prefFilter.laterLineupShow
         )
     }
 

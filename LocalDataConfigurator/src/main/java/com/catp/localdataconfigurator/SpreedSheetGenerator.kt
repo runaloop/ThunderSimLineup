@@ -18,11 +18,11 @@ import java.io.FileOutputStream
 
 class SpreedSheetGenerator(
     val lineups: List<JsonLineup>,
-    val vehicleStore: JsonVehicleStore
+    private val vehicleStore: JsonVehicleStore
 ) {
-    lateinit var workBook: XSSFWorkbook
-    lateinit var sheet: XSSFSheet
-    var rowIndex = 1
+    private lateinit var workBook: XSSFWorkbook
+    private lateinit var sheet: XSSFSheet
+    private var rowIndex = 1
 
     companion object {
         const val SPREED_SHEET_FILENAME = "actual_lineups.xlsx"
@@ -118,7 +118,7 @@ class SpreedSheetGenerator(
             lineupTitles.forEachIndexed { index, lineupTitle ->
                 val lineup =
                     lineups.find { it.name == lineupTitle }
-                        ?: error("Can't find $lineupTitle in ${lineups}")
+                        ?: error("Can't find $lineupTitle in $lineups")
                 if (lineup.hasVehicle(vehicle)) {
                     val team = if (lineup.jsonTeamA.hasVehicle(vehicle)) TeamType.A else TeamType.B
                     row.createCell(HEADER.values().size + index).setCellValue(team.name)

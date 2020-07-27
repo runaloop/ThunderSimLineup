@@ -3,6 +3,7 @@ package com.catp.thundersimlineup
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -27,7 +28,7 @@ fun <T> List<T>.lShift(n: Int) =
     let { slice(n % size until size) + slice(0 until n % size) }
 
 fun <T> List<T>.rShift(n: Int) =
-    let { lShift(size - n % size) }
+    lShift(size - n % size)
 
 @InjectConstructor
 class LocalDateTimeProvider {
@@ -39,6 +40,7 @@ class LocalDateProvider {
     fun now(): LocalDate = LocalDate.now(ZoneId.of("Z"))
 }
 
+@SuppressLint("ClickableViewAccessibility")
 fun progressBarStatus(value: Boolean, progressBar: View) {
     val loadingOpacity = 0.5f
     if (value) {
@@ -51,10 +53,11 @@ fun progressBarStatus(value: Boolean, progressBar: View) {
             }
         })
         animator.start()
-        progressBar.setOnTouchListener { view, event ->
+
+        progressBar.setOnTouchListener { _, _ ->
             true
         }
-        progressBar.setOnClickListener { view ->
+        progressBar.setOnClickListener {
             true
         }
     } else {

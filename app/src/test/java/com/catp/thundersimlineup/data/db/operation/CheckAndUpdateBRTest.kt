@@ -16,6 +16,7 @@ import org.junit.Test
 class CheckAndUpdateBRTest {
     @MockK(relaxed = true)
     lateinit var changeset: Changeset
+
     @InjectMockKs
     lateinit var checkAndUpdateBR: CheckAndUpdateBR
 
@@ -49,6 +50,6 @@ class CheckAndUpdateBRTest {
 
         assertThat(result).isTrue()
         assertThat(vehicle.br).isEqualTo(newBR)
-        verify { changeset.reportVehicleBRChange(vehicle, oldBR,) }
+        verify { changeset.reportVehicleBRChange(vehicle, oldBR) }
     }
 }

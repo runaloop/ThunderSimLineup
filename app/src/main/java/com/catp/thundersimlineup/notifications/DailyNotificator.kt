@@ -25,7 +25,7 @@ class DailyNotificator {
     @Inject
     lateinit var preferences: Preferences
 
-    private val TASK_TAG = "send_reminder_periodic"
+    private val tag = "send_reminder_periodic"
 
     fun createNotificationTask(context: Context) {
         GlobalScope.launch {
@@ -50,11 +50,11 @@ class DailyNotificator {
 
         val workRequest = OneTimeWorkRequestBuilder<NotificationWork>()
             .setInitialDelay(initialDelay.toMillis(), TimeUnit.MILLISECONDS)
-            .addTag(TASK_TAG)
+            .addTag(tag)
             .build()
 
         workManager.enqueueUniqueWork(
-            TASK_TAG,
+            tag,
             ExistingWorkPolicy.REPLACE,
             workRequest
         )
@@ -84,7 +84,7 @@ class DailyNotificator {
     }
 
     private suspend fun cancelCurrentTask(workManager: WorkManager) {
-        workManager.cancelAllWorkByTag(TASK_TAG).await()
+        workManager.cancelAllWorkByTag(tag).await()
         workManager.pruneWork().await()
     }
 }

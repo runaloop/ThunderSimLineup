@@ -23,21 +23,23 @@ internal class UpdateVehicleStoreTest {
 
     @MockK(relaxed = true)
     lateinit var changeset: Changeset
+
     @MockK(relaxed = true)
     lateinit var checkAndUpdateBR: CheckAndUpdateBR
+
     @MockK(relaxed = true)
     lateinit var checkAndUpdateTitle: CheckAndUpdateTitle
 
     @InjectMockKs
     lateinit var updateVehicleStore: UpdateVehicleStore
 
-    lateinit var vehicleInDB: Vehicle
-    lateinit var jsonVehicle: JsonVehicle
-    val vehicleId = "first"
-    val vehicleType = VehicleType.HELI
-    val nation = "ru"
-    val br = "1.1"
-    val fullEnglishTitle = "fulltitle"
+    private lateinit var vehicleInDB: Vehicle
+    private lateinit var jsonVehicle: JsonVehicle
+    private val vehicleId = "first"
+    private val vehicleType = VehicleType.HELI
+    private val nation = "ru"
+    private val br = "1.1"
+    private val fullEnglishTitle = "fulltitle"
 
     @Before
     fun setUp() {
@@ -60,7 +62,7 @@ internal class UpdateVehicleStoreTest {
 
         //THEN
         verify { listOf(checkAndUpdateBR, checkAndUpdateTitle) wasNot Called }
-        verify { dao.upsertVehicles(eq(listOf(vehicleInDB))) }
+        verify { dao.insertVehicles(eq(listOf(vehicleInDB))) }
     }
 
     @Test
@@ -74,7 +76,7 @@ internal class UpdateVehicleStoreTest {
         updateVehicleStore.process(JsonVehicleStore(mutableListOf(jsonVehicle)))
 
         //THEN
-        verify(exactly = 0) { dao.upsertVehicles(any()) }
+        verify(exactly = 0) { dao.insertVehicles(any()) }
     }
 
     @Test
@@ -93,7 +95,7 @@ internal class UpdateVehicleStoreTest {
         updateVehicleStore.process(JsonVehicleStore(mutableListOf(jsonVehicle, newJsonVehicle)))
 
         //THEN
-        verify { dao.upsertVehicles(eq(listOf(newVehicle))) }
+        verify { dao.insertVehicles(eq(listOf(newVehicle))) }
     }
 
     @Test
@@ -107,6 +109,6 @@ internal class UpdateVehicleStoreTest {
         updateVehicleStore.process(JsonVehicleStore(mutableListOf(jsonVehicle)))
 
         //THEN
-        verify { dao.upsertVehicles(eq(listOf(vehicleInDB))) }
+        verify { dao.insertVehicles(eq(listOf(vehicleInDB))) }
     }
 }

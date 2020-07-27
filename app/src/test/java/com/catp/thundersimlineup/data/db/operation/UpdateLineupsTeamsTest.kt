@@ -17,13 +17,16 @@ import org.junit.Test
 class UpdateLineupsTeamsTest {
     @MockK(relaxed = true)
     lateinit var dao: LineupDao
+
     @MockK(relaxed = true)
     lateinit var changeset: Changeset
+
     @InjectMockKs
     lateinit var updateLineups: UpdateTeams
 
-    lateinit var jsonLineups: List<JsonLineup>
-    lateinit var newTeams: List<TeamEntity>
+    private lateinit var jsonLineups: List<JsonLineup>
+    private lateinit var newTeams: List<TeamEntity>
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
@@ -47,10 +50,6 @@ class UpdateLineupsTeamsTest {
         //THEN
         verify { dao.insertTeams(eq(newTeams)) }
         verify {
-            changeset.reportLineupAdded(jsonLineups[0].name)
-            changeset.reportLineupAdded(jsonLineups[1].name)
-        }
-        verify {
             dao.insertLineups(
                 eq(
                     listOf(
@@ -73,9 +72,7 @@ class UpdateLineupsTeamsTest {
 
         //THEN
         verify { dao.insertTeams(eq(newTeams.filter { it.lineupName != jsonLineups[0].name })) }
-        verify {
-            changeset.reportLineupAdded(jsonLineups[1].name)
-        }
+
         verify {
             dao.insertLineups(
                 eq(
@@ -101,9 +98,8 @@ class UpdateLineupsTeamsTest {
         updateLineups.process(jsonLineups)
 
         //THEN
-        verify(exactly = 0) { dao.insertTeams(any())}
-        verify(exactly = 0) { dao.insertLineups(any())  }
-        verify(exactly = 0) { changeset.reportLineupAdded(any())}
+        verify(exactly = 0) { dao.insertTeams(any()) }
+        verify(exactly = 0) { dao.insertLineups(any()) }
     }
 
     private fun daoGetTeamTableAfterInsert() {

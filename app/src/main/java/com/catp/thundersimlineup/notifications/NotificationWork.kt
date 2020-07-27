@@ -25,12 +25,12 @@ class NotificationWork(
     appContext: Context,
     workerParams: WorkerParameters,
     val lineupDao: LineupDao,
-    val dailyNotificator: DailyNotificator,
+    private val dailyNotificator: DailyNotificator,
     val schedule: Schedule,
-    val localDateTimeProvider: LocalDateTimeProvider
+    private val localDateTimeProvider: LocalDateTimeProvider
 ) :
     Worker(appContext, workerParams) {
-    val CHANNEL_ID = this.javaClass.name
+    private val channelId = this.javaClass.name
     override fun doWork(): Result {
         val favorites = getFavoritesForToday()
         logFavorites()
@@ -53,7 +53,7 @@ class NotificationWork(
                 val name = getString(R.string.channel_name)
                 val descriptionText = getString(R.string.channel_description)
                 val importance = NotificationManager.IMPORTANCE_DEFAULT
-                val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                val channel = NotificationChannel(channelId, name, importance).apply {
                     description = descriptionText
                 }
                 // Register the channel with the system
@@ -72,10 +72,10 @@ class NotificationWork(
             }
             val pendingIntent: PendingIntent =
                 PendingIntent.getActivity(applicationContext, 0, intent, 0)
-            val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+            val notification = NotificationCompat.Builder(applicationContext, channelId)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Favorite vehicles ready to roll")
-                .setContentText(favorites.map { it.title }.joinToString("\n"))
+                .setContentText(favorites.joinToString("\n") { it.title })
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)

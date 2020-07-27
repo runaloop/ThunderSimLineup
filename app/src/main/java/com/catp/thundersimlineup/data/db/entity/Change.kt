@@ -9,5 +9,4 @@ data class Change(
     @PrimaryKey(autoGenerate = true) var changeId: Long = 0,
     val text: String,
     val date: LocalDate
-) {
-}
+)

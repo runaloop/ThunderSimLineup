@@ -2,7 +2,6 @@ package com.catp.thundersimlineup.data.db.entity.converter
 
 import androidx.room.TypeConverter
 import com.catp.thundersimlineup.data.db.entity.LineupType
-import com.catp.thundersimlineup.data.db.entity.VehicleStatus
 
 class LineupTypeConverter {
     @TypeConverter

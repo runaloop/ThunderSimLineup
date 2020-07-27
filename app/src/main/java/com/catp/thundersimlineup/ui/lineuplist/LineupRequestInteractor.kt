@@ -20,49 +20,45 @@ class LineupRequestInteractor {
     lateinit var localDateTimeProvider: LocalDateTimeProvider
 
     fun getLineupForADay(day: LocalDate): LineupForToday {
-        with(lineupSchedule) {
-            //Get current time, if its before lineup change, asks previous day lineups
-            //If its after lineup change, asks today lineup
-            //If the day is not today, returns exact day
-            updateRule()
+        //Get current time, if its before lineup change, asks previous day lineups
+        //If its after lineup change, asks today lineup
+        //If the day is not today, returns exact day
+        lineupSchedule.updateRule()
 
-            val currentUTC = localDateTimeProvider.now()
-            val nextLineupUTC =
-                localDateTimeProvider.now().withHour(LINEUP_UTC_TIME_OF_CHANGE)
-                    .withMinute(0).withSecond(0)
+        val currentUTC = localDateTimeProvider.now()
+        val nextLineupUTC =
+            localDateTimeProvider.now().withHour(LINEUP_UTC_TIME_OF_CHANGE)
+                .withMinute(0).withSecond(0)
 
-            val dayToLoad: LocalDate
-            val diff: Duration
-            if (currentUTC.hour < LINEUP_UTC_TIME_OF_CHANGE && currentUTC.toLocalDate() == day) {
-                dayToLoad = currentUTC.toLocalDate().minusDays(1)
-                diff = Duration.between(currentUTC, nextLineupUTC)
-            } else {
-                dayToLoad = day
-                diff = if (currentUTC.toLocalDate() != day) Duration.ZERO else Duration.between(
-                    currentUTC,
-                    nextLineupUTC.plusDays(1)
-                )
-            }
-
-
-            val isLineupForToday = !diff.isZero
-            return LineupForToday(
-                Pair(
-                    lineupSchedule.getLineupForDate(dayToLoad, LineupType.LOW),
-                    lineupSchedule.getLineupForDate(dayToLoad, LineupType.TOP)
-                ),
-                if (isLineupForToday)
-                    Pair(
-                        lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.LOW),
-                        lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.TOP)
-                    ) else Pair(null, null)
-                ,
-                diff,
-                isLineupForToday
+        val dayToLoad: LocalDate
+        val diff: Duration
+        if (currentUTC.hour < LINEUP_UTC_TIME_OF_CHANGE && currentUTC.toLocalDate() == day) {
+            dayToLoad = currentUTC.toLocalDate().minusDays(1)
+            diff = Duration.between(currentUTC, nextLineupUTC)
+        } else {
+            dayToLoad = day
+            diff = if (currentUTC.toLocalDate() != day) Duration.ZERO else Duration.between(
+                currentUTC,
+                nextLineupUTC.plusDays(1)
             )
-
-
         }
+
+
+        val isLineupForToday = !diff.isZero
+        return LineupForToday(
+            Pair(
+                lineupSchedule.getLineupForDate(dayToLoad, LineupType.LOW),
+                lineupSchedule.getLineupForDate(dayToLoad, LineupType.TOP)
+            ),
+            if (isLineupForToday)
+                Pair(
+                    lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.LOW),
+                    lineupSchedule.getLineupForDate(dayToLoad.plusDays(1), LineupType.TOP)
+                ) else Pair(null, null)
+            ,
+            diff,
+            isLineupForToday
+        )
     }
 
     data class LineupForToday(

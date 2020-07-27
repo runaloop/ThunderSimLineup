@@ -3,10 +3,9 @@ package com.catp.thundersimlineup.data.db.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import org.threeten.bp.Instant
 import org.threeten.bp.LocalDate
 
-//Used only with experemental lineups, which are available for short period of time
+//Used only with experimental lineups, which are available for short period of time
 @Entity(
     foreignKeys = [ForeignKey(
         entity = LineupCycleEntity::class,

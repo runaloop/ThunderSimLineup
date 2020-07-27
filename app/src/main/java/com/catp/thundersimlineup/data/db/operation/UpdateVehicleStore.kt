@@ -12,8 +12,8 @@ import toothpick.InjectConstructor
 class UpdateVehicleStore(
     val dao: LineupDao,
     val changeset: Changeset,
-    val checkAndUpdateTitle: CheckAndUpdateTitle,
-    val checkAndUpdateBR: CheckAndUpdateBR
+    private val checkAndUpdateTitle: CheckAndUpdateTitle,
+    private val checkAndUpdateBR: CheckAndUpdateBR
 ) {
 
     fun process(vehicleStore: JsonVehicleStore) {

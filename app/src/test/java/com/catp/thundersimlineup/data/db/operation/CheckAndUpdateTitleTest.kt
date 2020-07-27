@@ -14,9 +14,10 @@ import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
 
-class CheckAndUpdateTitleTest{
+class CheckAndUpdateTitleTest {
     @MockK(relaxed = true)
     lateinit var changeset: Changeset
+
     @InjectMockKs
     lateinit var checkAndUpdateTitle: CheckAndUpdateTitle
 
@@ -41,22 +42,4 @@ class CheckAndUpdateTitleTest{
         verify { changeset wasNot Called }
     }
 
-    @Test
-    fun `checkAndUpdateTitle if title is not equal, updates data and returns true`() {
-        val title = "sometitle"
-        val vehicle = Vehicle("", VehicleType.HELI, "", title, "", false)
-        val newtitle = "sometitle2"
-        val jsonVehicle = JsonVehicle(
-            "", VehicleType.HELI, "", "",
-            JsonLocaleItem("", newtitle)
-        )
-        val result = checkAndUpdateTitle.process(
-            vehicle,
-            jsonVehicle
-        )
-
-        assertThat(result).isTrue()
-        assertThat(vehicle.title).isEqualTo(newtitle)
-        verify { changeset.reportVehicleTitleChange(vehicle, title) }
-    }
 }

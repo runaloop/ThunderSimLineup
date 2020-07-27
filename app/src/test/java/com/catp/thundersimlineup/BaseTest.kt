@@ -7,11 +7,12 @@ import org.threeten.bp.zone.TzdbZoneRulesProvider
 import org.threeten.bp.zone.ZoneRulesProvider
 import toothpick.testing.ToothPickRule
 
+@Suppress("LeakingThis")
 open class BaseTest {
     @get:Rule
     var toothPickRule = ToothPickRule(this, "test scope")
 
-    fun initThreeTen() {
+    private fun initThreeTen() {
         if (ZoneRulesProvider.getAvailableZoneIds().isEmpty()) {
             val stream = this.javaClass.classLoader!!.getResourceAsStream("TZDB.dat")
             stream.use(::TzdbZoneRulesProvider).apply {

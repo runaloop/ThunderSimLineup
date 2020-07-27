@@ -10,7 +10,7 @@ class DateAndTimeConverter {
 
     @TypeConverter
     fun toInstant(date: Long): Instant {
-        return Instant.ofEpochMilli(date);
+        return Instant.ofEpochMilli(date)
     }
 
     @TypeConverter

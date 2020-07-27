@@ -8,7 +8,8 @@ import org.junit.Test
 
 class FindVehiclesToDeleteTest {
 
-    val findVehiclesToDelete = FindVehiclesToDelete()
+    private val findVehiclesToDelete = FindVehiclesToDelete()
+
     @Before
     fun setUp() {
     }
@@ -30,7 +31,7 @@ class FindVehiclesToDeleteTest {
     fun `Filled db, and filled json, data is the same, do  nothing`() {
         //GIVEN
         val jsonTeam = JsonTeam(mutableListOf("1", "2", "3"))
-        val crossRefList = listOf<TeamWithVehicleCrossRef>(
+        val crossRefList = listOf(
             TeamWithVehicleCrossRef(1, "1"),
             TeamWithVehicleCrossRef(1, "2"),
             TeamWithVehicleCrossRef(1, "3")
@@ -48,7 +49,7 @@ class FindVehiclesToDeleteTest {
         //GIVEN
         val jsonTeam = JsonTeam(mutableListOf("2", "3"))
         val toDelete = TeamWithVehicleCrossRef(1, "1")
-        val crossRefList = listOf<TeamWithVehicleCrossRef>(
+        val crossRefList = listOf(
             toDelete,
             TeamWithVehicleCrossRef(1, "2"),
             TeamWithVehicleCrossRef(1, "3")

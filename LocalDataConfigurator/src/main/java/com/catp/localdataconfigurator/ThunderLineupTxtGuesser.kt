@@ -55,8 +55,8 @@ class ThunderLineupTxtGuesser {
                     TermUi.echo("\u001B[31mVehicle with id ${item.id} not found in vehicle store!!!!, make sure, you have updated spreedsheet with all new vehicles in a txt file using \u001B[32mRegenerateXLSXFile command")
                     return
                 } else
-                    return@map vehicle!!
-            }
+                    return@map vehicle
+            }.filterNotNull()
         val lineup = lineupsFromSpreedSheet.find { it.name == lineupName }!!
         var middle = findMiddleTeam(lineupName, vehiclesFromVehicleStore)
         //Find middle item to separate A team from B team(this need to be added, cause of some time experement lineups, when nato contry like germany added to A team)
@@ -69,12 +69,12 @@ class ThunderLineupTxtGuesser {
         val teamANewList = vehiclesFromVehicleStore.subList(0, middle)
         val teamBNewList = vehiclesFromVehicleStore.subList(middle, vehiclesFromVehicleStore.size)
 
-        AddAndRemoveFromTeam(teamANewList, lineup.jsonTeamA, "A")
-        AddAndRemoveFromTeam(teamBNewList, lineup.jsonTeamB, "B")
+        addAndRemoveFromTeam(teamANewList, lineup.jsonTeamA, "A")
+        addAndRemoveFromTeam(teamBNewList, lineup.jsonTeamB, "B")
         TermUi.echo("Lineup ${lineup.name} has been changed")
     }
 
-    private fun AddAndRemoveFromTeam(
+    private fun addAndRemoveFromTeam(
         teamNewList: List<JsonVehicle>,
         jsonTeam: JsonTeam,
         teamLetter: String
@@ -177,26 +177,21 @@ class ThunderLineupTxtGuesser {
         tear: List<TxtLineupItem>,
         lineup: JsonLineup
     ): Set<String> {
-        val wasAdded = tear.map { it.id }.toSet().minus(lineup.fullVehicleList.map { it.name })
-        return wasAdded
+        return tear.map { it.id }.toSet().minus(lineup.fullVehicleList.map { it.name })
     }
 
     private fun getRemovedItems(
         tear: List<TxtLineupItem>,
         lineup: JsonLineup
     ): Set<String> {
-        val wasRemoved =
-            lineup.fullVehicleList.map { it.name }.toSet().minus(tear.map { it.id })
-        return wasRemoved
+        return lineup.fullVehicleList.map { it.name }.toSet().minus(tear.map { it.id })
     }
 
-    fun parseJson(jsonArray: List<String>): List<TxtLineupItem>? {
-        return Klaxon().parseArray<TxtLineupItem>(jsonArray.joinToString(",", "[", "]"))
+    private fun parseJson(jsonArray: List<String>): List<TxtLineupItem>? {
+        return Klaxon().parseArray(jsonArray.joinToString(",", "[", "]"))
     }
 
     companion object {
-        val HIGH_TEAR_MARKER = "High tear command A"
-        val LOW_TEAR_MARKER = "Low tear command A"
         val HIGH_TEAR_A_TEAM_COUNTRIES = listOf("RU", "CH")
         val LOW_TEAR_A_TEAM_COUNTRIES = listOf("RU", "CH", "FR", "UK", "US", "SW")
     }

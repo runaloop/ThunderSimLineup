@@ -3,7 +3,6 @@ package com.catp.thundersimlineup.data.db.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import org.threeten.bp.Instant
 import org.threeten.bp.LocalDate
 
 @Entity(

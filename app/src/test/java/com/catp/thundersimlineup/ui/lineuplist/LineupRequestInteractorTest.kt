@@ -16,11 +16,10 @@ import org.junit.Test
 import org.threeten.bp.Duration
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
 import toothpick.ktp.delegate.inject
 
 class LineupRequestInteractorTest : BaseTest() {
-    val interactor: LineupRequestInteractor by inject()
+    private val interactor: LineupRequestInteractor by inject()
 
     @MockKForToothpick
     @MockK(relaxed = true)
@@ -36,7 +35,7 @@ class LineupRequestInteractorTest : BaseTest() {
     }
 
     @Test
-    fun `everythingInjected`() {
+    fun everythingInjected() {
         assertThat(interactor).isNotNull()
         assertThat(interactor.lineupSchedule).isNotNull()
         assertThat(interactor.lineupSchedule).isEqualTo(lineupSchedule)
@@ -75,10 +74,15 @@ class LineupRequestInteractorTest : BaseTest() {
         val lowLineup2 = mockk<Lineup>()
         val topLineup2 = mockk<Lineup>()
         val date = LocalDate.now()
-        every { localDateTimeProvider.now() } returns LocalDateTime.now().withHour(LINEUP_UTC_TIME_OF_CHANGE-1).withMinute(0).withSecond(0)
+        every { localDateTimeProvider.now() } returns LocalDateTime.now()
+            .withHour(LINEUP_UTC_TIME_OF_CHANGE - 1).withMinute(0).withSecond(0)
         every { lineupSchedule.getLineupForDate(any(), any()) } returns null
-        every { lineupSchedule.getLineupForDate(eq(date.minusDays(1)), LineupType.LOW) }.returns(lowLineup)
-        every { lineupSchedule.getLineupForDate(eq(date.minusDays(1)), LineupType.TOP) }.returns(topLineup)
+        every { lineupSchedule.getLineupForDate(eq(date.minusDays(1)), LineupType.LOW) }.returns(
+            lowLineup
+        )
+        every { lineupSchedule.getLineupForDate(eq(date.minusDays(1)), LineupType.TOP) }.returns(
+            topLineup
+        )
         every { lineupSchedule.getLineupForDate(eq(date), LineupType.LOW) }.returns(lowLineup2)
         every { lineupSchedule.getLineupForDate(eq(date), LineupType.TOP) }.returns(topLineup2)
         //WHEN
@@ -100,12 +104,17 @@ class LineupRequestInteractorTest : BaseTest() {
         val lowLineup2 = mockk<Lineup>()
         val topLineup2 = mockk<Lineup>()
         val date = LocalDate.now()
-        every { localDateTimeProvider.now() } returns LocalDateTime.now().withHour(LINEUP_UTC_TIME_OF_CHANGE+1).withMinute(0).withSecond(0)
+        every { localDateTimeProvider.now() } returns LocalDateTime.now()
+            .withHour(LINEUP_UTC_TIME_OF_CHANGE + 1).withMinute(0).withSecond(0)
         every { lineupSchedule.getLineupForDate(any(), any()) } returns null
         every { lineupSchedule.getLineupForDate(eq(date), LineupType.LOW) }.returns(lowLineup)
         every { lineupSchedule.getLineupForDate(eq(date), LineupType.TOP) }.returns(topLineup)
-        every { lineupSchedule.getLineupForDate(eq(date.plusDays(1)), LineupType.LOW) }.returns(lowLineup2)
-        every { lineupSchedule.getLineupForDate(eq(date.plusDays(1)), LineupType.TOP) }.returns(topLineup2)
+        every { lineupSchedule.getLineupForDate(eq(date.plusDays(1)), LineupType.LOW) }.returns(
+            lowLineup2
+        )
+        every { lineupSchedule.getLineupForDate(eq(date.plusDays(1)), LineupType.TOP) }.returns(
+            topLineup2
+        )
         //WHEN
         val (day, after, diff) = interactor.getLineupForADay(LocalDate.now())
 
@@ -116,7 +125,6 @@ class LineupRequestInteractorTest : BaseTest() {
         assertThat(after.second).isEqualTo(topLineup2)
         assertThat(diff).isEqualTo(Duration.ofHours(23))
     }
-
 
 
 }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 @ExperimentalStdlibApi
 internal class ThunderLineupTxtGuesserTest{
-    val lineups = "{\"id\":\"ussr_asu_85\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
+    private val lineups = "{\"id\":\"ussr_asu_85\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
             "{\"id\":\"ussr_is_6\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
             "{\"id\":\"ussr_object_268\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
             "{\"id\":\"ussr_object_906\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
@@ -282,7 +282,7 @@ internal class ThunderLineupTxtGuesserTest{
             "{\"id\":\"jp_type_95_so_ki\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},\n" +
             "{\"id\":\"jp_type_98_ta_se\",\"needShopInfo\":true,\"ttype\":\"UNIT\"},"
 
-    lateinit var lineupGuesser: ThunderLineupTxtGuesser
+    private lateinit var lineupGuesser: ThunderLineupTxtGuesser
     @BeforeEach
     fun setUp() {
         lineupGuesser = ThunderLineupTxtGuesser()

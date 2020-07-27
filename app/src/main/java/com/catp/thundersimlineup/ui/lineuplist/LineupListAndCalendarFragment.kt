@@ -26,8 +26,6 @@ class LineupListAndCalendarFragment : Fragment() {
     }
 
 
-
-
     @VisibleForTesting
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)

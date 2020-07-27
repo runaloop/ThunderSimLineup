@@ -1,5 +1,6 @@
 package com.catp.thundersimlineup.ui.list
 
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.view.View
 import android.widget.ImageView
@@ -14,16 +15,15 @@ import eu.davidea.flexibleadapter.items.IHeader
 import eu.davidea.viewholders.ExpandableViewHolder
 
 
-class ExpandableHeaderItem<SubItem: AbstractFlexibleItem<*>>(
+class ExpandableHeaderItem<SubItem : AbstractFlexibleItem<*>>(
     val id: Int,
     val title: String,
-    val headerColor: Int,
-    val isHighlighted: Boolean = false
-)
-    :    AbstractFlexibleItem<ExpandableHeaderItem.ExpandableHeaderViewHolder>(),
+    private val headerColor: Int,
+    private val isHighlighted: Boolean = false
+) : AbstractFlexibleItem<ExpandableHeaderItem.ExpandableHeaderViewHolder>(),
     IExpandable<ExpandableHeaderItem.ExpandableHeaderViewHolder, SubItem>,
     IHeader<ExpandableHeaderItem.ExpandableHeaderViewHolder> {
-    var _expanded = true
+    private var _expanded = true
 
     init {
         isDraggable = false
@@ -38,11 +38,12 @@ class ExpandableHeaderItem<SubItem: AbstractFlexibleItem<*>>(
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
     ) :
         ExpandableViewHolder(view, adapter, true) {
-        val textView = view.findViewById<TextView>(R.id.tvTitle)
-        val imgCollapse = view.findViewById<ImageView>(R.id.ivCollapse)
+        val textView: TextView = view.findViewById(R.id.tvTitle)
+        val imgCollapse: ImageView = view.findViewById(R.id.ivCollapse)
         val background: View = view
     }
 
+    @SuppressLint("SetTextI18n")
     override fun bindViewHolder(
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
         holder: ExpandableHeaderViewHolder,
@@ -50,23 +51,21 @@ class ExpandableHeaderItem<SubItem: AbstractFlexibleItem<*>>(
         payloads: MutableList<Any>?
     ) {
 
-        val count = if(adapter.hasFilter()) items.size-subItems.count { it.isHidden } else items.size
+        val count =
+            if (adapter.hasFilter()) items.size - subItems.count { it.isHidden } else items.size
         holder.textView.text = "$title(${count})"
-        val degree = if (isExpanded && !subItems.isEmpty()) 0 else -90
+        val degree = if (isExpanded && subItems.isNotEmpty()) 0 else -90
         holder.imgCollapse.rotation = degree.toFloat()
         holder.background.setBackgroundColor(headerColor)
-        if(isHighlighted){
+        if (isHighlighted) {
             holder.textView.alpha = 1f
-            holder.textView.typeface= Typeface.DEFAULT_BOLD
-        }else{
+            holder.textView.typeface = Typeface.DEFAULT_BOLD
+        } else {
             holder.textView.alpha = .7f
-            holder.textView.typeface= Typeface.DEFAULT
+            holder.textView.typeface = Typeface.DEFAULT
         }
 
     }
-
-
-
 
 
     override fun getLayoutRes(): Int = R.layout.list_header

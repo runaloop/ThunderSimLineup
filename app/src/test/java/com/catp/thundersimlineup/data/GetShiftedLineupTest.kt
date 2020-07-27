@@ -14,7 +14,7 @@ import toothpick.ktp.delegate.inject
 class GetShiftedLineupTest : BaseTest() {
 
 
-    val  getShiftedLineup: GetShiftedLineup by inject()
+    private val getShiftedLineup: GetShiftedLineup by inject()
 
     @Before
     override fun setUp() {
@@ -68,10 +68,10 @@ class GetShiftedLineupTest : BaseTest() {
 
     @Test
     fun `9_2 8_2 10_2 order is not worked anymore`() {
-        val today_10 = LocalDate.of(2020, 7, 10)
+        val today10 = LocalDate.of(2020, 7, 10)
         //val shift_date = LocalDate.of(2020, 6, 10)
-        val shift_date = LocalDate.of(2020, 7, 7)
-        val shiftEntity = LineupShiftEntity(3, shift_date)
+        val shiftDate = LocalDate.of(2020, 7, 7)
+        val shiftEntity = LineupShiftEntity(3, shiftDate)
         val lineups = listOf("8_2", "10_2", "8_2_2", "9_2").mapIndexed { index, s ->
             LineupCycleEntity(
                 s,
@@ -81,9 +81,9 @@ class GetShiftedLineupTest : BaseTest() {
                 index.toLong()
             )
         }
-        println(getShiftedLineup.process(shiftEntity, today_10, lineups))
-        println(getShiftedLineup.process(shiftEntity, today_10.minusDays(1), lineups))
-        println(getShiftedLineup.process(shiftEntity, today_10.minusDays(2), lineups))
-        println(getShiftedLineup.process(shiftEntity, today_10.minusDays(3), lineups))
+        println(getShiftedLineup.process(shiftEntity, today10, lineups))
+        println(getShiftedLineup.process(shiftEntity, today10.minusDays(1), lineups))
+        println(getShiftedLineup.process(shiftEntity, today10.minusDays(2), lineups))
+        println(getShiftedLineup.process(shiftEntity, today10.minusDays(3), lineups))
     }
 }

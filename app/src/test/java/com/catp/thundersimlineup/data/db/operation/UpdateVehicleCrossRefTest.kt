@@ -19,12 +19,16 @@ import kotlin.test.assertFailsWith
 class UpdateVehicleCrossRefTest {
     @MockK(relaxed = true)
     lateinit var dao: LineupDao
+
     @MockK(relaxed = true)
     lateinit var changeset: Changeset
+
     @MockK(relaxed = true)
     lateinit var findNewVehicles: FindNewVehicles
+
     @MockK(relaxed = true)
     lateinit var findVehiclesToDelete: FindVehiclesToDelete
+
     @InjectMockKs
     lateinit var updateVehicleCrossRef: UpdateVehicleCrossRef
 

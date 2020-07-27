@@ -2,9 +2,12 @@ package com.catp.thundersimlineup.data
 
 import android.content.Context
 import com.catp.model.JsonLineupConfig
-import io.mockk.*
+import io.mockk.Called
+import io.mockk.MockKAnnotations
+import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
+import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
 
@@ -12,13 +15,16 @@ class LineupEntityStorageTest {
 
     @MockK
     lateinit var netJsonLineupConfig: JsonLineupConfig
+
     @MockK
     lateinit var diskJsonLineupConfig: JsonLineupConfig
+
     @MockK
     lateinit var netLoader: NetLoader
 
     @MockK
     lateinit var context: Context
+
     @MockK
     lateinit var storage: Storage
 
@@ -160,11 +166,9 @@ class LineupEntityStorageTest {
 
     @Test
     fun `refresh with filled local db, and modified local json merges data to db`() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Test
     fun `refresh with filled local db, and same version in local json, do nothing`() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

@@ -10,10 +10,9 @@ class UpdateVehicleCrossRef(
     private val findVehiclesToDelete: FindVehiclesToDelete,
     private val findNewVehicles: FindNewVehicles
 ) {
-    //TODO: Does this class need to delete vehicle cross ref, if vehicle was deleted from lineup?
     fun process(jsonLineups: List<JsonLineup>) {
         //query current xrefs
-        var currentXrefs = dao.getTeamWithVehicleCrossRef()
+        val currentXrefs = dao.getTeamWithVehicleCrossRef()
         val currentLineups = dao.getLineupsEntity()
 
         //find xrefs needs to be deleted

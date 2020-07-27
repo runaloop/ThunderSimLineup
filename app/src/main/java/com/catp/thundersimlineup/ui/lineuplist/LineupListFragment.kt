@@ -18,6 +18,7 @@ import com.catp.thundersimlineup.data.FilterState
 import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -33,7 +34,7 @@ class LineupListFragment : Fragment() {
     lateinit var statUtil: StatUtil
 
 
-    val lineupAdapter = LineupAdapter()
+    private val lineupAdapter = LineupAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +58,7 @@ class LineupListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         lineupListViewModel.text.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty() && getView() != null) {
-                //Snackbar.make(getView()!!, it, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
             }
         })
         configureFilter()
@@ -136,7 +137,7 @@ class LineupListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).getSupportActionBar()?.hide()
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun onDetach() {
@@ -146,7 +147,7 @@ class LineupListFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        (activity as AppCompatActivity).getSupportActionBar()?.show()
+        (activity as AppCompatActivity).supportActionBar?.show()
     }
 
     private fun updateLineupText(lineup: LineupRequestInteractor.LineupForToday) {
@@ -156,24 +157,20 @@ class LineupListFragment : Fragment() {
         val minutesToChange = (lineup.timeToChange.toMinutes() % 60).toString()
         if (lineup.timeToChange.isZero) {
             //hide
-            tvCurrentLineup.setText(
-                getString(
-                    R.string.selected_day_lineup_text,
-                    currentLineupLow,
-                    currentLineupTop
-                )
+            tvCurrentLineup.text = getString(
+                R.string.selected_day_lineup_text,
+                currentLineupLow,
+                currentLineupTop
             )
         } else {
             val nextLineupLow = lineup.lineupThen.first!!.lineupEntity.name
             val nextLineupTop = lineup.lineupThen.second!!.lineupEntity.name
-            tvCurrentLineup.setText(
-                getString(
-                    R.string.today_active_lineups,
-                    currentLineupLow,
-                    currentLineupTop,
-                    hoursToChange, minutesToChange,
-                    nextLineupLow, nextLineupTop
-                )
+            tvCurrentLineup.text = getString(
+                R.string.today_active_lineups,
+                currentLineupLow,
+                currentLineupTop,
+                hoursToChange, minutesToChange,
+                nextLineupLow, nextLineupTop
             )
         }
     }

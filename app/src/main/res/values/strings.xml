@@ -41,6 +41,9 @@
     <string name="pref_refresh_lineup_list" translatable="false">pref_refresh_lineup_list</string>
     <string name="pref_title_refresh_lineup_list">Refresh lineup list</string>
     <string name="refresh_started">Refresh started</string>
+    <string name="header_collapse_expand_state" translatable="false">Header collapse/expand state</string>
+    <string name="vehicle_without_favorite_status" translatable="false">Vehicle without favorite status</string>
+    <string name="vehicle_with_favorite_status" translatable="false">Vehicle with favorite status</string>
 
     <string-array name="filterShowList">
         <item>Tanks</item>

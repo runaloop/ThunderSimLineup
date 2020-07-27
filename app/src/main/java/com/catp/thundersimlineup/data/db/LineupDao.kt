@@ -6,9 +6,6 @@ import com.catp.thundersimlineup.data.db.entity.*
 @Dao
 interface LineupDao {
 
-    /*@Query("SELECT * FROM TEAMTABLE")
-    @Transaction
-    fun getTeams(): List<Team>*/
 
     @Query("SELECT * FROM LineupEntity")
     @Transaction
@@ -74,9 +71,9 @@ interface LineupDao {
     @Transaction
     fun upsertVersion(version: DataVersion): Long {
         val result = insertVersion(version)
-        if (result == -1L)
-            return updateVersion(version)
-        else return result
+        return if (result == -1L)
+            updateVersion(version)
+        else result
     }
 
     @Query("SELECT * FROM DataVersion LIMIT 1")
@@ -85,15 +82,19 @@ interface LineupDao {
 
     @Query("SELECT * FROM Vehicle")
     fun getVehicles(): List<Vehicle>
+
     @Query("SELECT * FROM Vehicle WHERE isFavorite==1")
     fun getFavoriteVehicles(): List<Vehicle>
 
     @Query("SELECT * FROM LineupCycleEntity ORDER BY orderNumber")
     fun getLineupCycleList(): List<LineupCycleEntity>
+
     @Query("SELECT * FROM LineupToBREntity")
     fun getLineupToBr(): List<LineupToBREntity>
+
     @Query("SELECT * FROM LineupShiftEntity")
     fun getLineupShift(): List<LineupShiftEntity>
+
     @Query("SELECT * FROM LineupCycleAvailabilityEntity")
     fun getLineupAvailability(): LineupCycleAvailabilityEntity?
 

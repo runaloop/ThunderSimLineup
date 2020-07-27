@@ -8,9 +8,9 @@ import com.catp.model.JsonVehicleStore
 // File is used to merge data from old csv file(1.93) with lineups and wpcost/unitidlocale together, will not used after new spreed sheet generator created
 class LineupToLocaleMatcher(
     val lineups: List<JsonLineup>,
-    val wpCost: WPCost,
-    val unitIDLocale: UnitIDLocale,
-    val vehicleStore: JsonVehicleStore
+    private val wpCost: WPCost,
+    private val unitIDLocale: UnitIDLocale,
+    private val vehicleStore: JsonVehicleStore
 ) {
 
 
@@ -25,7 +25,7 @@ class LineupToLocaleMatcher(
         wpCost.vehicleItems.values/*.filter { it.unitClass == VehicleType.PLANE }*/.forEach { item ->
             val localeItem = unitIDLocale.localeData.values.find { it.id == item.id }
             if (localeItem == null) {
-                println("Can't find locale for id ${item} tipicaly this happens cause unitIdLocale ignores some of the units with _race or _tutorial suffix, but wpcost is not, in most case, its not a problem")
+                println("Can't find locale for id $item tipicaly this happens cause unitIdLocale ignores some of the units with _race or _tutorial suffix, but wpcost is not, in most case, its not a problem")
             } else {
                 //Changed localeItem.englishTitle to localeItem.id cause it makes bugs in futher spreedsheetgenerator
                 vehicleStore.vehicleList.add(
@@ -52,12 +52,12 @@ class LineupToLocaleMatcher(
                     if (vehicleItem == null) {
                         println("$id not found in wpcost file for $vehicle")
                     } else {
-                        if (vehicle.br != vehicleItem.br) {
+                        /*if (vehicle.br != vehicleItem.br) {
                             //Ignored this, cause actual br would be taken from wpcost and overwrited
                             //println("$vehicle have different BR - ${vehicleItem.br}")
-                        }
+                        }*/
                         if (vehicle.nation != vehicleItem.country) {
-                            println("$vehicle have different country - ${vehicleItem}")
+                            println("$vehicle have different country - $vehicleItem")
                         }
                     }
                 }
@@ -65,13 +65,13 @@ class LineupToLocaleMatcher(
         }
     }
 
-    fun matchLocales() {
+    private fun matchLocales() {
         var notFound = 0
         lineups.forEach { lineup ->
             for (team in listOf(lineup.jsonTeamA, lineup.jsonTeamB)) {
                 for (vehicle in team.vehicles) {
                     if (vehicle.locale == null) {
-                        var locales =
+                        val locales =
                             findLocaleByVehicleName(vehicle)
                         when (locales.size) {
                             0 -> {

@@ -16,8 +16,8 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 class LineupAdapter :
     FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, true) {
 
-    var originalData: List<Lineup> = emptyList()
-    lateinit var filters: FilterState
+    private var originalData: List<Lineup> = emptyList()
+    private lateinit var filters: FilterState
 
     fun setNewLineup(context: Context, lineup: LineupRequestInteractor.LineupForToday) {
         originalData = listOfNotNull(
@@ -49,13 +49,13 @@ class DataSetCreator(val context: Context) {
                 .filter { it.isFavorite }
         }.entries
             .forEachIndexed { index, (lineup, favorites) ->
-                if (matchForLater_NowFilter(index, filters, lineups))
+                if (matchForLaterNowFilter(index, filters, lineups))
                     fillFavorite(lineup, data, favorites, isFavoriteActiveNow(index, lineups))
             }
 
 
         lineups.forEachIndexed { index, lineup ->
-            if (matchForLater_NowFilter(index, filters, lineups))
+            if (matchForLaterNowFilter(index, filters, lineups))
                 fillSet(lineup, data, filters)
         }
         return data
@@ -66,7 +66,7 @@ class DataSetCreator(val context: Context) {
         lineups: List<Lineup>
     ) = index < 2 && lineups.size > 2
 
-    private fun matchForLater_NowFilter(
+    private fun matchForLaterNowFilter(
         index: Int,
         filters: FilterState,
         lineups: List<Lineup>
@@ -115,30 +115,28 @@ class DataSetCreator(val context: Context) {
         filters: FilterState,
         title: String
     ) {
-        with(team) {
-            val vehicles = mapOf(
-                VehicleType.TANK to if (filters.tanksShow) context.getString(R.string.tanks_title) else null,
-                VehicleType.PLANE to if (filters.planesShow) context.getString(R.string.planes_title) else null,
-                VehicleType.HELI to if (filters.helisShow) context.getString(R.string.helis_title) else null
-            )
-            team.vehicles.groupBy { it.type }.forEach { (type, list) ->
-                if (list.isNotEmpty() && vehicles[type] != null) {
+        val vehicles = mapOf(
+            VehicleType.TANK to if (filters.tanksShow) context.getString(R.string.tanks_title) else null,
+            VehicleType.PLANE to if (filters.planesShow) context.getString(R.string.planes_title) else null,
+            VehicleType.HELI to if (filters.helisShow) context.getString(R.string.helis_title) else null
+        )
+        team.vehicles.groupBy { it.type }.forEach { (type, list) ->
+            if (list.isNotEmpty() && vehicles[type] != null) {
 
-                    val isLowLineup = title.indexOf("_1") != -1
-                    if (isLowLineup && filters.lowLineupShow || (!isLowLineup && filters.highLineupShow)) {
-                        val header = "$title ${vehicles[type]}"
-                        val headerItem =
-                            ExpandableHeaderItem<VehicleItem>(
-                                header.hashCode(),
-                                header,
-                                HeaderColors.getByVehicleType(
-                                    team.teamEntity.teamLetter == "A",
-                                    type
-                                )
+                val isLowLineup = title.indexOf("_1") != -1
+                if (isLowLineup && filters.lowLineupShow || (!isLowLineup && filters.highLineupShow)) {
+                    val header = "$title ${vehicles[type]}"
+                    val headerItem =
+                        ExpandableHeaderItem<VehicleItem>(
+                            header.hashCode(),
+                            header,
+                            HeaderColors.getByVehicleType(
+                                team.teamEntity.teamLetter == "A",
+                                type
                             )
-                        dataset += headerItem
-                        fillVehicleList(list, headerItem)
-                    }
+                        )
+                    dataset += headerItem
+                    fillVehicleList(list, headerItem)
                 }
             }
         }

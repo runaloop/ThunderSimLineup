@@ -1,11 +1,11 @@
-package com.catp.localdataconfigurator;
+package com.catp.localdataconfigurator
 
 
-import com.catp.localdataconfigurator.WTDumpReader.CHUNK_PARSE_STATE.*
+import com.catp.localdataconfigurator.WTDumpReader.ChunkParseState.*
 import com.catp.localdataconfigurator.WTDumpReader.Companion.ITEM_FINISH
 import com.catp.localdataconfigurator.WTDumpReader.Companion.ITEM_START
 import com.catp.localdataconfigurator.WTDumpReader.Companion.MAX_DISTANCE_BETWEEN_LINEUPS
-import com.catp.localdataconfigurator.WTDumpReader.FILE_PARSE_STATE.CHUNK_PARSED
+import com.catp.localdataconfigurator.WTDumpReader.FileParseState.CHUNK_PARSED
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -31,12 +31,12 @@ class WTDumpReaderTest {
     @InjectMockKs
     lateinit var dumpReader: WTDumpReader
 
-    val itemVehicleId = "ru_bmp_1"
-    val itemJsonValid = "{\"id\":\"$itemVehicleId\",\"needShopInfo\":true,\"ttype\":\"UNIT\"}"
-    val itemJsonNotValid =
+    private val itemVehicleId = "ru_bmp_1"
+    private val itemJsonValid = "{\"id\":\"$itemVehicleId\",\"needShopInfo\":true,\"ttype\":\"UNIT\"}"
+    private val itemJsonNotValid =
         "\\{{{{\"id\":\"$itemVehicleId\",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
 
-    val listItem = itemJsonValid
+    private val listItem = itemJsonValid
     
 
     @BeforeEach
@@ -116,7 +116,7 @@ class WTDumpReaderTest {
     internal fun `getStartItemCount returns 1 if the string has one item`() {
         //GIVEN
         //WHEN
-        val result = dumpReader.getStartItemCount("AOSDJOSNDQOWD" + WTDumpReader.ITEM_START)
+        val result = dumpReader.getStartItemCount("AOSDJOSNDQOWD$ITEM_START")
         //THEN
         assertThat(result).isEqualTo(1)
     }
@@ -126,7 +126,7 @@ class WTDumpReaderTest {
         //GIVEN
         //WHEN
         val result =
-            dumpReader.getStartItemCount(WTDumpReader.ITEM_START + "AOSDJOSNDQOWD" + WTDumpReader.ITEM_START)
+            dumpReader.getStartItemCount(ITEM_START + "AOSDJOSNDQOWD" + ITEM_START)
         //THEN
         assertThat(result).isEqualTo(2)
     }
@@ -333,7 +333,7 @@ class WTDumpReaderTest {
         dumpReader.buffer = data.toCharArray()
         //WHEN
         val result =
-            dumpReader.parseNextChunk(WTDumpReader.FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL)
+            dumpReader.parseNextChunk(WTDumpReader.FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL)
         //THEN
         assertThat(result).isEqualTo(CHUNK_PARSED)
         assertThat(dumpReader.strings).hasSize(3)
@@ -345,9 +345,9 @@ class WTDumpReaderTest {
         val data = ITEM_START + itemVehicleId
         dumpReader.buffer = data.toCharArray()
         //WHEN
-        val result = dumpReader.parseNextChunk(WTDumpReader.FILE_PARSE_STATE.CHUNK_PARSED)
+        val result = dumpReader.parseNextChunk(CHUNK_PARSED)
         //THEN
-        assertThat(result).isEqualTo(WTDumpReader.FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL)
+        assertThat(result).isEqualTo(WTDumpReader.FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL)
         assertThat(dumpReader.strings).hasSize(1)
         assertThat(dumpReader.strings).containsExactly(Pair(data, 0))
     }

@@ -17,15 +17,15 @@ class FindVehiclesToDelete {
     fun process(
         jsonTeam: JsonTeam,
         vehicleCrossRefList: List<TeamWithVehicleCrossRef>,
-        lineupName: String
+        lineupName: String=""
     ): List<TeamWithVehicleCrossRef> {
-        return vehicleCrossRefList.map { vehicle ->
+        return vehicleCrossRefList.mapNotNull { vehicle ->
             if (!jsonTeam.vehicleIdList.contains(vehicle.vehicleId)) {
                 changeset.reportVehicleRemoved(vehicle.vehicleId, lineupName)
                 vehicle.status = VehicleStatus.DELETED
                 vehicle
             } else
                 null
-        }.filterNotNull()
+        }
     }
 }

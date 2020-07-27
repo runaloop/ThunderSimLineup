@@ -11,13 +11,16 @@ import toothpick.InjectConstructor
 import javax.inject.Inject
 
 @InjectConstructor
-class WorkerFactory: WorkerFactory() {
+class WorkerFactory : WorkerFactory() {
     @Inject
     lateinit var lineupDao: LineupDao
+
     @Inject
     lateinit var dailyNotificator: DailyNotificator
+
     @Inject
     lateinit var schedule: Schedule
+
     @Inject
     lateinit var dateTimeProvider: LocalDateTimeProvider
 

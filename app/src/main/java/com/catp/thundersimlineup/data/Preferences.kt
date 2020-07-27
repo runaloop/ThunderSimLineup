@@ -3,9 +3,7 @@ package com.catp.thundersimlineup.data
 import android.app.Application
 import androidx.preference.PreferenceManager
 import com.catp.thundersimlineup.R
-import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import toothpick.InjectConstructor
-import java.util.logging.Filter
 import javax.inject.Inject
 
 @InjectConstructor
@@ -15,12 +13,11 @@ class Preferences {
     lateinit var context: Application
 
     private fun getBoolean(res: Int): Boolean {
-        val boolean = PreferenceManager
+        return PreferenceManager
             .getDefaultSharedPreferences(context)
             .getBoolean(
                 context.resources.getString(res), true
             )
-        return boolean
     }
 
     private fun getSet(res: Int): MutableSet<String> {
@@ -32,7 +29,7 @@ class Preferences {
     }
 
     val sendStat: Boolean
-    get() = getBoolean(R.string.pref_send_statistics)
+        get() = getBoolean(R.string.pref_send_statistics)
     val sendCrashLogs: Boolean
         get() = getBoolean(R.string.pref_send_crash_logs)
 
@@ -45,11 +42,19 @@ class Preferences {
     val lineupListFilter: FilterState
         get() {
             val pref = getSet(R.string.pref_filter_key_show)
-            if(pref.isEmpty())
+            if (pref.isEmpty())
                 return FilterState()
-            return FilterState("", true, true,
-                pref.contains("tanksShow"), pref.contains("planesShow"), pref.contains("helisShow"),
-                pref.contains("lowLineupShow"), pref.contains("highLineupShow"), pref.contains("nowLineupShow"), pref.contains("laterLineupShow")
+            return FilterState(
+                "",
+                teamAShow = true,
+                teamBShow = true,
+                tanksShow = pref.contains("tanksShow"),
+                planesShow = pref.contains("planesShow"),
+                helisShow = pref.contains("helisShow"),
+                lowLineupShow = pref.contains("lowLineupShow"),
+                highLineupShow = pref.contains("highLineupShow"),
+                nowLineupShow = pref.contains("nowLineupShow"),
+                laterLineupShow = pref.contains("laterLineupShow")
             )
         }
 

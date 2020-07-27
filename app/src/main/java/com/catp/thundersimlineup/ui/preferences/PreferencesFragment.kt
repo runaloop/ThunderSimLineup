@@ -1,4 +1,4 @@
-package com.catp.thundersimlineup.ui.calendar
+package com.catp.thundersimlineup.ui.preferences
 
 import android.os.Bundle
 import android.view.View

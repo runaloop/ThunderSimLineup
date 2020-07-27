@@ -39,12 +39,12 @@ class Changeset {
             allVehicles.find { it.vehicleId == vehicleId }!!
         }
             .mapNotNull { (lineup, vehicles) ->
-            vehicles.map { vehicle ->
-                context.getString(strTemplate, vehicle.title, lineup)
-            }.map {
-                Change(text = it, date = dateProvider.now())
-            }
-        }.flatten()
+                vehicles.map { vehicle ->
+                    context.getString(strTemplate, vehicle.title, lineup)
+                }.map {
+                    Change(text = it, date = dateProvider.now())
+                }
+            }.flatten()
         changeDao.insertChanges(result)
     }
 

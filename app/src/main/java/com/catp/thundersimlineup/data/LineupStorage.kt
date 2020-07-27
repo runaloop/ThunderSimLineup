@@ -31,13 +31,13 @@ class LineupStorage {
      * else check via refresh interval, needness for network call
      * if local db empty, load from local json, and than try to check from network
      */
-    fun refresh(context: Context, force: Boolean): Observable<REFRESH_RESULT> {
+    fun refresh(context: Context, force: Boolean): Observable<RefreshResult> {
         return Observable.just(context)
             .observeOn(Schedulers.io())
             .map { ctx ->
                 val localJsonConfig = storage.loadFromRAW(ctx)
                 val localUpdateResult = updateDBIfNeeded(localJsonConfig, ctx)
-                if (localUpdateResult == REFRESH_RESULT.NO_NEW_DATA
+                if (localUpdateResult == RefreshResult.NO_NEW_DATA
                     && (force || refreshIntervalChecker.isRefreshNeeded(context))
                 ) {
                     return@map updateDBIfNeeded(netLoader.getData(), ctx)
@@ -47,18 +47,18 @@ class LineupStorage {
             }
     }
 
-    fun updateDBIfNeeded(jsonConfig: JsonLineupConfig, ctx: Context): REFRESH_RESULT {
+    private fun updateDBIfNeeded(jsonConfig: JsonLineupConfig, ctx: Context): RefreshResult {
         val localDBVersion = lineupDao.getVersion()?.version ?: 0
         // check if local json version is grater than db
-        if (jsonConfig.version > localDBVersion) {
+        return if (jsonConfig.version > localDBVersion) {
             // if so update db
             dbPopulate.updateData(jsonConfig, ctx)
-            return REFRESH_RESULT.NEW_DATA
+            RefreshResult.NEW_DATA
         } else
-            return REFRESH_RESULT.NO_NEW_DATA
+            RefreshResult.NO_NEW_DATA
     }
 
-    enum class REFRESH_RESULT {
+    enum class RefreshResult {
         NEW_DATA,
         NO_NEW_DATA
     }

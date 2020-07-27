@@ -1,11 +1,9 @@
 package com.catp.thundersimlineup.ui.list
 
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.catp.thundersimlineup.R
-import com.catp.thundersimlineup.data.db.entity.Vehicle
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFilterable
@@ -17,7 +15,7 @@ class LogItem(val text: String, val header: String) :
 
     class ViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>) :
         FlexibleViewHolder(view, adapter) {
-        val title = view.findViewById<TextView>(R.id.tvTitle)
+        val title: TextView = view.findViewById(R.id.tvTitle)
         fun bindView(item: LogItem) {
             title.text = item.text
         }

@@ -11,6 +11,8 @@ import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import org.threeten.bp.LocalDate
@@ -39,12 +41,10 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     @Inject
     lateinit var pushFavoriteVehicleInteractor: PushFavoriteVehicleInteractor
 
-    val selectedItems = mutableSetOf<Vehicle>()
+    private val selectedItems = mutableSetOf<Vehicle>()
 
 
-    private val _refreshResult = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
+    private val _refreshResult = MutableLiveData<String>()
     private val _filterStatus = MutableLiveData<FilterState>().apply {
         value = FilterState()
     }
@@ -52,16 +52,16 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     private val _lineupLoadStatus = MutableLiveData<Boolean>()
 
     val text: LiveData<String> = _refreshResult
-    val daySubject: PublishSubject<LocalDate> = PublishSubject.create<LocalDate>()
+    private val daySubject: PublishSubject<LocalDate> = PublishSubject.create<LocalDate>()
     private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
     val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
     val filterStatus: LiveData<FilterState> = _filterStatus
     val filterAvailable: LiveData<FilterState> = _filterAvailable
     val lineupLoadStatus: LiveData<Boolean> = _lineupLoadStatus
-    val dbUpdates = AtomicBoolean()
+    private val dbUpdates = AtomicBoolean()
 
-    val cs = CompositeDisposable()
-    val subscribtion = daySubject
+    private val cs = CompositeDisposable()
+    private val subscription: Disposable = daySubject
         .doOnError {
             _lineupLoadStatus.postValue(false)
         }
@@ -74,13 +74,13 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                 _filterAvailable.postValue(lineupAvailableFilters)
                 _currentLineup.postValue(lineupForToday)
                 _lineupLoadStatus.postValue(false)
-            } else {
             }
-        }.apply { cs.add(this) }
+        }
 
     override fun onCleared() {
         super.onCleared()
         cs.dispose()
+        subscription.dispose()
     }
 
     fun filterChange(
@@ -129,10 +129,11 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result ->
                 when (result) {
-                    LineupStorage.REFRESH_RESULT.NEW_DATA -> _refreshResult.value =
+                    LineupStorage.RefreshResult.NEW_DATA -> _refreshResult.value =
                         "Lineups have been updated"
-                    LineupStorage.REFRESH_RESULT.NO_NEW_DATA -> _refreshResult.value =
-                        "Lineups loaded and ready to work"
+                    /*LineupStorage.RefreshResult.NO_NEW_DATA ->
+                    _refreshResult.value =
+                        "Lineups loaded and ready to work"*/
                 }
                 refreshDBFinished()
             })
@@ -148,12 +149,12 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         dbUpdates.set(false)
     }
 
-    fun refreshDBFinished() {
+    private fun refreshDBFinished() {
         dbUpdates.set(false)
         onDateChanged(CalendarDay.from(LocalDate.now()), false)
     }
 
-    fun favoriteUpdated() {
+    private fun favoriteUpdated() {
 
     }
 
@@ -168,7 +169,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
             selectedItems.clear()
             pushFavoriteVehicleInteractor.push(items).subscribe {
                 favoriteUpdated()
-            }
+            }.addTo(cs)
         }
     }
 

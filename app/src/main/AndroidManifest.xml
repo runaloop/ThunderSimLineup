@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.catp.thundersimlineup">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,7 +9,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".App" >
+        android:name=".App"
+        tools:ignore="ExtraText">
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,16 +20,18 @@
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="com.catp.thundersimlineup.workmanager-init"
-            android:enabled="false"/>
+            android:enabled="false"
+            tools:ignore="ExportedContentProvider" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+                android:resource="@xml/searchable" />
+
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

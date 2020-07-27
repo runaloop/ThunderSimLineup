@@ -1,7 +1,6 @@
 package com.catp.thundersimlineup
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         injectDependencies()
-        NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment));
+        NavigationUI.setupActionBarWithNavController(
+            this,
+            findNavController(R.id.nav_host_fragment)
+        )
     }
 
     @VisibleForTesting
@@ -50,8 +52,5 @@ class MainActivity : AppCompatActivity() {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
-        return super.onCreateOptionsMenu(menu)
-    }
 }

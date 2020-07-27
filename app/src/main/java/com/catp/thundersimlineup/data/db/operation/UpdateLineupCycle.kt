@@ -14,14 +14,24 @@ class UpdateLineupCycle(val dao: LineupDao) {
         dao.deleteLineupToBr()
         dao.deleteLineupCycleList()
 
-        val lineups = dao.getLineupsEntity()
-
         with(jsonRule) {
             dao.insertLineupCycleList(
                 listOf(
-                    jsonLineupToLineupCycle(lineupCycleRule1, LineupType.LOW, LINEUP_TO_BR_RELATION),
-                    jsonLineupToLineupCycle(lineupCycleRule2, LineupType.TOP, LINEUP_TO_BR_RELATION),
-                    jsonLineupToLineupCycle(lineupCycleRuleExcremental, LineupType.EXCREMENTAL, LINEUP_TO_BR_RELATION)
+                    jsonLineupToLineupCycle(
+                        lineupCycleRule1,
+                        LineupType.LOW,
+                        LINEUP_TO_BR_RELATION
+                    ),
+                    jsonLineupToLineupCycle(
+                        lineupCycleRule2,
+                        LineupType.TOP,
+                        LINEUP_TO_BR_RELATION
+                    ),
+                    jsonLineupToLineupCycle(
+                        lineupCycleRuleExcremental,
+                        LineupType.EXCREMENTAL,
+                        LINEUP_TO_BR_RELATION
+                    )
                 ).flatten()
             )
             val lineupCycleList = dao.getLineupCycleList()
@@ -43,8 +53,7 @@ class UpdateLineupCycle(val dao: LineupDao) {
             if (lineupAvailability.isNotEmpty()) {
                 val availabilityToInsert = lineupAvailability.keys.map { name ->
                     val lineupCycle = lineupCycleList.find { it.lineupName == name }
-                        ?: error("Can't find lineup with such a name in db")
-                    //TODO: Should we crash in such case? or just skip it?
+                        ?: error("Can't find lineup with such a name-$name in db")
                     LineupCycleAvailabilityEntity(
                         lineupCycle.id,
                         LocalDate.parse(lineupAvailability[name]!!.first),
@@ -78,7 +87,7 @@ class UpdateLineupCycle(val dao: LineupDao) {
         }
     }
 
-    fun addShift(
+    private fun addShift(
         lineupShiftRule: Map<String, String>,
         lineupCycleList: List<LineupCycleEntity>
     ): List<LineupShiftEntity> {

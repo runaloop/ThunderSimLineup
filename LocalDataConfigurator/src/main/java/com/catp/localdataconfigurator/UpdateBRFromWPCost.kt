@@ -5,8 +5,8 @@ import com.catp.model.JsonVehicleStore
 
 class UpdateBRFromWPCost(
     val lineups: List<JsonLineup>,
-    val wpCost: WPCost,
-    val vehicleStore: JsonVehicleStore
+    private val wpCost: WPCost,
+    private val vehicleStore: JsonVehicleStore
 ) {
     fun process() {
         vehicleStore.vehicleList.forEach { vehicle ->

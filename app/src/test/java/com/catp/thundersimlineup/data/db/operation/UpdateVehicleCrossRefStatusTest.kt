@@ -14,6 +14,7 @@ import org.junit.Test
 class UpdateVehicleCrossRefStatusTest {
     @MockK(relaxed = true)
     lateinit var dao: LineupDao
+
     @InjectMockKs
     lateinit var updateVehicleCrossRefStatus: UpdateVehicleCrossRefStatus
 

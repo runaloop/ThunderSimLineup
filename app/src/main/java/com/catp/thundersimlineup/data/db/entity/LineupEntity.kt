@@ -19,6 +19,6 @@ import androidx.room.PrimaryKey
 )
 data class LineupEntity(
     @PrimaryKey val name: String,
-    val teamAId: Long=0,
-    val teamBId: Long=0
+    val teamAId: Long = 0,
+    val teamBId: Long = 0
 )

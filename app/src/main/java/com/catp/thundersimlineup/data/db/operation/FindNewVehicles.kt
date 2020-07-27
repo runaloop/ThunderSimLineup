@@ -19,7 +19,7 @@ class FindNewVehicles {
         jsonTeam: JsonTeam,
         vehicleCrossRefList: List<TeamWithVehicleCrossRef>,
         teamId: Long,
-        lineupName: String
+        lineupName: String = ""
     ): List<TeamWithVehicleCrossRef> {
         return jsonTeam.vehicleIdList.map { vehicleId ->
             vehicleCrossRefList

@@ -1,6 +1,5 @@
 package com.catp.thundersimlineup
 
-import android.app.Application
 import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import com.catp.thundersimlineup.annotation.ApplicationScope

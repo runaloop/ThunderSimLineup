@@ -27,7 +27,6 @@ data class JsonLineup(
         return result
     }
 
-    fun isLineupHighTear() = name.endsWith("_2")
 
     val fullVehicleList: List<JsonVehicle>
         get() = listOf(jsonTeamA.vehicles, jsonTeamB.vehicles).flatten()
@@ -36,37 +35,13 @@ data class JsonLineup(
         jsonTeamA.hasVehicle(vehicle) || jsonTeamB.hasVehicle(vehicle)
 
 
-    /**
-     * Removes all vehicle from specified lineups 1_1 - 6_1 and adds planes from vehicle store that matches team and BR condition
-     */
-    fun updateVehiclesFromVehicleStore(vehicleStore: JsonVehicleStore, rules: JsonRules) {
-        if (!rules.LINEUP_TO_BR_RELATION.containsKey(name)) return
-        listOf(jsonTeamA, jsonTeamB).forEach { team ->
-            val planes = team.planes.map { it.name }
-            team.vehicleIdList.removeAll { it in planes }
-            val brList = rules.LINEUP_TO_BR_RELATION[name]!!
-
-            val nationsInTeam = team.vehicles.map { it.nation }.toSet()
-            val vehiclesToAdd = vehicleStore.vehicleList.filter {
-                brList.contains(it.br) && nationsInTeam.contains(it.nation)
-            }
-            team.vehicleIdList.addAll(vehiclesToAdd.map { it.name })
-        }
-    }
-
-
-    fun hasChanges(previousLineup: JsonLineup): Boolean {
-        return !equals(previousLineup)
-    }
-
-
     override fun toString(): String {
         return "Lineup(name='$name', teamA=$jsonTeamA, teamB=$jsonTeamB)"
     }
 }
 
 @CompiledJson(formats = [CompiledJson.Format.ARRAY])
-data class JsonTeam(val vehicleIdList: MutableList<String> = mutableListOf<String>()) {
+data class JsonTeam(val vehicleIdList: MutableList<String> = mutableListOf()) {
 
     val tanks: List<JsonVehicle>
         get() {
@@ -133,23 +108,22 @@ class JsonVehicleStore(val vehicleList: MutableList<JsonVehicle> = mutableListOf
             if (item.locale?.title?.contains(toDelete) == true) {
                 val old = item.locale!!.title
                 val new = item.locale!!.title.replace(toDelete, "")
-                println("Old: ${old}\nNew: ${new}")
+                println("Old: ${old}\nNew: $new")
                 item.locale!!.title = new
             }
         }
     }
 
     fun removeForbidenIds() {
-        val forbidenIds_endings = listOf("_football", "us_amx_13_75", "yt_cup_2019", "us_amx_13_90", "yt_cup_2019")
-        val forbidenTypes = listOf(VehicleType.SHIP)
+        val forbiddenIdsEndings = listOf("_football", "us_amx_13_75", "yt_cup_2019", "us_amx_13_90", "yt_cup_2019")
+        val forbiddenTypes = listOf(VehicleType.SHIP)
         vehicleList.removeAll { vehicle ->
-            vehicle.type in forbidenTypes || forbidenIds_endings.any { vehicle.name.contains(it) }
+            vehicle.type in forbiddenTypes || forbiddenIdsEndings.any { vehicle.name.contains(it) }
         }
     }
 }
 
 
-//TODO: Possible need to remove this to Rules class?
 val lineupTitles = listOf(
     "1_1", "2_1", "3_1", "4_1", "5_1", "6_1"
     , "8_2", "8_2_2", "9_2", "10_2", "12_2"

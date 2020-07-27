@@ -33,7 +33,10 @@ class Schedule {
     //Assume we have only one experimental lineup
     fun getExperimentalLineupForDate(date: LocalDate): Lineup? {
         lineupAvailability?.let { lineupAvailability ->
-            if (date.isAfter(lineupAvailability.startOfLineup.minusDays(1)) && date.isBefore(lineupAvailability.endOfLineup.plusDays(1))) {
+            if (date.isAfter(lineupAvailability.startOfLineup.minusDays(1)) && date.isBefore(
+                    lineupAvailability.endOfLineup.plusDays(1)
+                )
+            ) {
                 val lineupName = lineupsMap.values.flatten()
                     .find { lineupAvailability.lineupId == it.id }!!.lineupName
                 return dao.getLineups().find { it.lineupEntity.name == lineupName }

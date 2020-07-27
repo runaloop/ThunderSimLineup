@@ -8,34 +8,32 @@ import toothpick.InjectConstructor
 
 @InjectConstructor
 class DBPopulate(
-    val changeset: Changeset,
-    val updateVehicleStore: UpdateVehicleStore,
-    val updateLineupsTeams: UpdateTeams,
-    val updateVehicleCrossRef: UpdateVehicleCrossRef,
-    val updateVehicleCrossRefStatus: UpdateVehicleCrossRefStatus,
-    val updateLineupCycle: UpdateLineupCycle,
-    val lineupDao: LineupDao,
-    val preferences: Preferences
+    private val changes: Changeset,
+    private val updateVehicleStore: UpdateVehicleStore,
+    private val updateLineupsTeams: UpdateTeams,
+    private val updateVehicleCrossRef: UpdateVehicleCrossRef,
+    private val updateVehicleCrossRefStatus: UpdateVehicleCrossRefStatus,
+    private val updateLineupCycle: UpdateLineupCycle,
+    private val lineupDao: LineupDao,
+    private val preferences: Preferences
 ) {
     fun updateData(jsonLineupConfig: JsonLineupConfig, context: Context) {
         val db = LineupDatabase.getInstance(context)
         db.runInTransaction {
-            with(jsonLineupConfig) {
-                try {
+            try {
+                with(jsonLineupConfig) {
                     updateVehicleStore.process(jsonVehicleStore)
                     updateLineupsTeams.process(jsonLineups)
                     updateVehicleCrossRefStatus.process()
                     updateVehicleCrossRef.process(jsonLineups)
                     updateLineupCycle.process(jsonRules)
-                    lineupDao.setVersion(jsonLineupConfig.version)
-                } catch (e: Exception) {
-                    //TODO: Correct exception handling, report to a server, delete of local data(except favorite list), and try to repopulate data
-                    throw e
                 }
-
+                lineupDao.setVersion(jsonLineupConfig.version)
+            } catch (e: Exception) {
+                throw e
             }
         }
         if (preferences.logVehicleEvents)
-            changeset.writeChanges()
+            changes.writeChanges()
     }
 }

@@ -2,7 +2,7 @@ package com.catp.localdataconfigurator
 
 import com.catp.model.*
 
-class LineupMatchPlanesWithBR(val lineups: List<JsonLineup>, val vehicleStore: JsonVehicleStore) {
+class LineupMatchPlanesWithBR(val lineups: List<JsonLineup>, private val vehicleStore: JsonVehicleStore) {
     fun process() {
         val lineupToBr = JsonRules().LINEUP_TO_BR_RELATION
         lineups

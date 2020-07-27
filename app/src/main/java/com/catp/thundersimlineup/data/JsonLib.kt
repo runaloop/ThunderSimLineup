@@ -5,7 +5,7 @@ import com.dslplatform.json.runtime.Settings
 
 object JsonLib {
     private var json: DslJson<Any>? = null
-    fun JSON(): DslJson<Any> {
+    fun get(): DslJson<Any> {
         var tmp = json
         if (tmp != null) return tmp
         //during initialization ServiceLoader.load should pick up services registered into META-INF/services

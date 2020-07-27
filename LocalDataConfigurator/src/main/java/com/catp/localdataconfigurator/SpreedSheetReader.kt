@@ -8,10 +8,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.FileInputStream
 
-class SpreedSheetReader(val vehicleStore: JsonVehicleStore) {
-    lateinit var workBook: XSSFWorkbook
-    lateinit var sheet: XSSFSheet
-    val lineupHeader = mutableListOf<String>()
+class SpreedSheetReader(private val vehicleStore: JsonVehicleStore) {
+    private lateinit var workBook: XSSFWorkbook
+    private lateinit var sheet: XSSFSheet
+    private val lineupHeader = mutableListOf<String>()
     val lineups = mutableListOf<JsonLineup>()
 
     fun read(): List<JsonLineup> {
@@ -70,10 +70,6 @@ class SpreedSheetReader(val vehicleStore: JsonVehicleStore) {
 
     }
 
-    private fun processCommand(id: String, row: XSSFRow) {
-
-
-    }
 
     private fun readLineupTitles() {
         val row = sheet.getRow(1)

@@ -17,11 +17,10 @@ class VehicleItem(val vehicle: Vehicle, val header: String) :
 
     class ViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>) :
         FlexibleViewHolder(view, adapter) {
-        val nation = view.findViewById<TextView>(R.id.tvNation)
-        val title = view.findViewById<TextView>(R.id.tvTitle)
-        val br = view.findViewById<TextView>(R.id.tvBR)
-        val heartEmpty = view.findViewById<ImageView>(R.id.ivHeartEmpty)
-        val heartFilled = view.findViewById<ImageView>(R.id.ivHeartFilled)
+        val nation: TextView = view.findViewById(R.id.tvNation)
+        val title: TextView = view.findViewById(R.id.tvTitle)
+        val br: TextView = view.findViewById(R.id.tvBR)
+        private val heartFilled: ImageView = view.findViewById(R.id.ivHeartFilled)
         fun bindView(item: VehicleItem) {
             nation.text = item.vehicle.nation
             title.text = item.vehicle.title

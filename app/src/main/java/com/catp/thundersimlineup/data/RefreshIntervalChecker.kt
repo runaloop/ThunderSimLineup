@@ -1,5 +1,6 @@
 package com.catp.thundersimlineup.data
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.catp.thundersimlineup.whenNonNull
 import org.threeten.bp.Duration
@@ -11,8 +12,9 @@ const val REFRESH_PREFERENCE = "refresh pref"
 const val REFRESH_LAST_TIME = "refresh last time"
 const val REFRESH_ETAG = "refresh etag"
 
+@SuppressLint("ApplySharedPref")
 @InjectConstructor
-class RefreshIntervalChecker(val netLoader: NetLoader) {
+class RefreshIntervalChecker(private val netLoader: NetLoader) {
 
     fun isRefreshNeeded(context: Context): Boolean {
         val lastTime =
@@ -51,7 +53,8 @@ class RefreshIntervalChecker(val netLoader: NetLoader) {
         }
     }
 
-    fun setETag(context: Context, ETag: String) {
+
+    private fun setETag(context: Context, ETag: String) {
         context.getSharedPreferences(REFRESH_PREFERENCE, Context.MODE_PRIVATE)
             .edit()
             .putString(REFRESH_ETAG, ETag)

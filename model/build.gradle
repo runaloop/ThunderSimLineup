@@ -22,7 +22,6 @@ compileKotlin {
         jvmTarget = "1.8"
     }
     dependencies {
-        //TODO: This should be removed due to dsl json usage
         implementation('com.beust:klaxon:5.0.1') {
             //exclude("org.jetbrains.kotlin:kotlin-reflect")
         }

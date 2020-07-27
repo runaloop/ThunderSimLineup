@@ -4,8 +4,8 @@
         android:id="@+id/action_search"
         android:animateLayoutChanges="true"
         android:icon="@drawable/ic_search_black_18dp"
-        app:iconTint="@color/colorIcons"
         android:title="@string/fab_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:iconTint="@color/colorIcons"
         app:showAsAction="collapseActionView|always" />
 </menu>

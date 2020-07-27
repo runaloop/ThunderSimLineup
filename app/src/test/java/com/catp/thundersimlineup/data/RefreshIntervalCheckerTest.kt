@@ -48,7 +48,7 @@ class RefreshIntervalCheckerTest {
                 any()
             )
         } returns RefreshIntervalChecker.REFRESH_INTERVAL.minusMillis(1)
-        every { Instant.parse(any()) } returns mockk<Instant>()
+        every { Instant.parse(any()) } returns mockk()
         every { context.getSharedPreferences(any(), any()).getString(any(), any()) } returns "TIME"
 
         //WHEN
@@ -69,7 +69,7 @@ class RefreshIntervalCheckerTest {
                 any()
             )
         } returns RefreshIntervalChecker.REFRESH_INTERVAL.plusMillis(1)
-        every { Instant.parse(any()) } returns mockk<Instant>()
+        every { Instant.parse(any()) } returns mockk()
         every { context.getSharedPreferences(any(), any()).getString(any(), any()) } returns "TIME"
 
         //WHEN

@@ -10,7 +10,7 @@ import com.catp.thundersimlineup.data.db.entity.converter.DateAndTimeConverter
 import com.catp.thundersimlineup.data.db.entity.converter.LineupTypeConverter
 import com.catp.thundersimlineup.data.db.entity.converter.VehicleStatusConverter
 import com.catp.thundersimlineup.data.db.entity.converter.VehicleTypeConverter
-import com.catp.thundersimlineup.data.db.migration.Migration_1_2
+import com.catp.thundersimlineup.data.db.migration.Migration1to2
 
 @Database(
     entities = [
@@ -51,7 +51,7 @@ abstract class LineupDatabase : RoomDatabase() {
                 context.applicationContext,
                 LineupDatabase::class.java, "Lineups.db"
             )
-                .addMigrations(Migration_1_2())
+                .addMigrations(Migration1to2())
                 .build()
 
     }

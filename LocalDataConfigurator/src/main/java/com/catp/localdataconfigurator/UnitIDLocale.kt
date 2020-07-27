@@ -27,14 +27,14 @@ class UnitIDLocale {
                     do {
                         row = parser.nextRow()
                         row?.let {
-                            var ID = it.getField(ID_COLUMN_NAME)
+                            val id = it.getField(ID_COLUMN_NAME)
 
                             IGNORE_WORDS_LIST.forEach { ignoreWord ->
-                                if (ID.endsWith(ignoreWord))
+                                if (id.endsWith(ignoreWord))
                                     return@let
                             }
                             val localeItem = JsonLocaleItem(
-                                ID,
+                                id,
                                 ""
                             )
 
@@ -87,15 +87,10 @@ class UnitIDLocale {
         localeData.putAll(fullLocaleData)
     }
 
-    fun getLocaleData(id: String): JsonLocaleItem? {
-        return localeData[id]
-    }
 
     companion object {
 
         const val ID_COLUMN_NAME = "<ID|readonly|noverify>"
-        const val ENGLISH_COLUMN_NAME = "<English>"
-        const val RUSSIAN_COLUMN_NAME = "<Russian>"
         const val UNITCSV_PATH =
             "https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges/blob/master/Files/lang.vromfs.bin_u/lang/units.csv?raw=true"
         val IGNORE_WORDS_LIST = listOf(

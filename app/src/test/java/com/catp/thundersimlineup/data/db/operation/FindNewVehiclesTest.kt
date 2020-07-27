@@ -9,7 +9,7 @@ import org.junit.Test
 
 class FindNewVehiclesTest {
 
-    val findNewVehicles = FindNewVehicles()
+    private val findNewVehicles = FindNewVehicles()
 
     @Before
     fun setUp() {
@@ -21,9 +21,10 @@ class FindNewVehiclesTest {
         val jsonTeam = JsonTeam(mutableListOf("1", "2"))
         val localData = emptyList<TeamWithVehicleCrossRef>()
         val teamId = 323231L
+        val lineupId = "1_1"
 
         //WHEN
-        val result = findNewVehicles.process(jsonTeam, localData, teamId)
+        val result = findNewVehicles.process(jsonTeam, localData, teamId, lineupId)
 
         //THEN
         assertThat(result).containsExactly(
@@ -41,9 +42,10 @@ class FindNewVehiclesTest {
             TeamWithVehicleCrossRef(teamId, "1", VehicleStatus.REGULAR),
             TeamWithVehicleCrossRef(teamId, "2", VehicleStatus.REGULAR)
         )
+        val lineupId = "1_1"
 
         //WHEN
-        val result = findNewVehicles.process(jsonTeam, localData, teamId)
+        val result = findNewVehicles.process(jsonTeam, localData, teamId, lineupId)
 
         //THEN
         assertThat(result).isEmpty()
@@ -59,9 +61,10 @@ class FindNewVehiclesTest {
             TeamWithVehicleCrossRef(teamId, "1", VehicleStatus.REGULAR),
             TeamWithVehicleCrossRef(teamId, "2", VehicleStatus.REGULAR)
         )
+        val lineupId = "1_1"
 
         //WHEN
-        val result = findNewVehicles.process(jsonTeam, localData, teamId)
+        val result = findNewVehicles.process(jsonTeam, localData, teamId, lineupId)
 
         //THEN
         assertThat(result).containsExactly(TeamWithVehicleCrossRef(teamId, "3", VehicleStatus.NEW))

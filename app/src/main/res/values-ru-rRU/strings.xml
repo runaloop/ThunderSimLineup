@@ -11,7 +11,7 @@
     <string name="helis_title">Вертолеты</string>
     <string name="team_b_title">Команда Б</string>
     <string name="today_active_lineups">Сейчас доступен %s и %s, сменится через - %sч%sм, будут доступны: %s и %s</string>
-    <string name="selected_day_lineup_text">Лайнапы для выбранной даты: %s и %s будут доступны после 14-00 по Москве</string>
+    <string name="selected_day_lineup_text">Лайнапы для выбранной даты: %s и %s будут доступны после 14–00 по Москве</string>
     <string name="fab_search">Поиск</string>
     <string name="channel_description">показывает один раз в день, когда лайнапы меняются</string>
     <string name="change_log_add">%s добавлен в %s</string>

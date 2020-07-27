@@ -112,7 +112,7 @@ deps.poi_ooxml = "org.apache.poi:poi-ooxml:$versions.poi_ooxml"
 ext.deps = deps
 
 
-def addRepos(RepositoryHandler handler) {
+static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
     handler.mavenCentral()

@@ -8,7 +8,6 @@ import com.catp.thundersimlineup.whenNonNull
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
 import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
-import eu.davidea.flexibleadapter.helpers.EmptyViewHelper
 import eu.davidea.flexibleadapter.items.IFlexible
 
 

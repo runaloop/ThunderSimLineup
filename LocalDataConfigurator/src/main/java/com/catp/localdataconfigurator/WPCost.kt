@@ -15,9 +15,9 @@ class WPCost {
     }
 
     val vehicleItems = mutableMapOf<String, VehicleItem>()
-    val economicRankPattern = "economicRankSimulation"
-    val countryPattern = "country"
-    val unitClassPattern = "unitClass"
+    private val economicRankPattern = "economicRankSimulation"
+    private val countryPattern = "country"
+    private val unitClassPattern = "unitClass"
 
     fun loadData(tryLocalFirst: Boolean = true) {
         val data = Loader().load(WPCOST_PATH, tryLocalFirst)
@@ -31,13 +31,13 @@ class WPCost {
     }
 }
 
-class BRPatchMatcher(val fieldName: String, val vehicles: MutableMap<String, VehicleItem>) :
+class BRPatchMatcher(private val fieldName: String, private val vehicles: MutableMap<String, VehicleItem>) :
     PathMatcher {
 
-    val fieldPattern = ".*$fieldName"
-    val pattern = Pattern.compile(fieldPattern)
+    private val fieldPattern = ".*$fieldName"
+    private val pattern = Pattern.compile(fieldPattern)
 
-    fun extractVehicleId(path: String): String = path.substring(2, path.lastIndexOf('.'))
+    private fun extractVehicleId(path: String): String = path.substring(2, path.lastIndexOf('.'))
 
     override fun onMatch(path: String, value: Any) {
         val id = extractVehicleId(path)
@@ -68,7 +68,7 @@ data class VehicleItem(val id: String) {
         }
 
 
-    val economicRankSimulation: Int
+    private val economicRankSimulation: Int
         get() = Integer.valueOf(params["economicRankSimulation"].toString())
     val country: String
         get() = countryMap[params["country"].toString()]

@@ -5,23 +5,22 @@ import java.io.BufferedReader
 import java.io.File
 
 @ExperimentalStdlibApi
-class WTDumpReader(val fileName: String, val verbose: Boolean) {
+class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
     lateinit var reader: BufferedReader
-    var bufferSize = DEFAULT_BUFFER_SIZE*1000
+    private var bufferSize = DEFAULT_BUFFER_SIZE*1000
     var buffer: CharArray = CharArray(bufferSize)
-    val jsonRegex = Regex(ITEM_JSON)
+    private val jsonRegex = Regex(ITEM_JSON)
     val strings = mutableListOf<Pair<String, Int>>()
-    var currentChunk = 0
-    var indexOffset = 0 // Used if prev item was partial
-    lateinit var file: File
+    private var currentChunk = 0
+    private var indexOffset = 0 // Used if prev item was partial
+    private lateinit var file: File
 
-    enum class FILE_PARSE_STATE {
+    enum class FileParseState {
         CHUNK_PARSED,
-        NO_MORE_DATA,
         CHUNK_PARSED_LAST_ITEM_PARTIAL
     }
 
-    enum class CHUNK_PARSE_STATE {
+    enum class ChunkParseState {
         ITEM_SKIPPED,
         ITEM_PARSED,
         ITEM_PARSED_PARTIALY,// returns if readNextItem can't read item cause of the end of chunk
@@ -30,14 +29,14 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
     //read next chunk
     //find lineup - is it full?
 
-    fun openFile(): BufferedReader {
+    private fun openFile(): BufferedReader {
         file = File(fileName)
         return file.bufferedReader()
     }
 
     fun parseFile() {
         reader = openFile()
-        var readStatus = FILE_PARSE_STATE.CHUNK_PARSED
+        var readStatus = FileParseState.CHUNK_PARSED
         val chunks = file.length() / bufferSize
         while (readNextChunk()) {
             readStatus = parseNextChunk(readStatus)
@@ -45,7 +44,7 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
             val progress = currentChunk*100/chunks.toFloat()
             TermUi.echo("Parsed: ${"%.2f".format(progress)}%\r", trailingNewline = false)
         }
-        if(readStatus == FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL)
+        if(readStatus == FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL)
             strings.removeLast()
         TermUi.echo("Parsing complete")
         if (strings.isNotEmpty()) {
@@ -73,7 +72,7 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
         return result.filter { it.size > 20 }//skip small lists
     }
 
-    fun guessLineups(lineups: List<List<String>>) {
+    private fun guessLineups(lineups: List<List<String>>) {
         val list =
         if(lineups.size > 2){
             TermUi.echo("Found ${lineups.size} lists of a vehicles")
@@ -95,10 +94,10 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
 
 
     fun parseNextChunk(
-        lastChunkState: FILE_PARSE_STATE
-    ): FILE_PARSE_STATE {
+        lastChunkState: FileParseState
+    ): FileParseState {
 
-        val partial = if (lastChunkState == FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL) {
+        val partial = if (lastChunkState == FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL) {
             val partialData = strings.removeLast()
             indexOffset = -partialData.first.length
             partialData.first
@@ -112,31 +111,31 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
             val items = getStartItemsIndexed(data)
             items.map { index ->
                 when (parseNextItem(data, index)) {
-                    CHUNK_PARSE_STATE.ITEM_PARSED_PARTIALY -> {
-                        return FILE_PARSE_STATE.CHUNK_PARSED_LAST_ITEM_PARTIAL
+                    ChunkParseState.ITEM_PARSED_PARTIALY -> {
+                        return FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL
                     }
-                    CHUNK_PARSE_STATE.ITEM_PARSED -> {
+                    ChunkParseState.ITEM_PARSED -> {
                         if (verbose) {
                             TermUi.echo("🦄Found item: " + strings.last())
                         }
                     }
-                    CHUNK_PARSE_STATE.ITEM_SKIPPED -> {
+                    ChunkParseState.ITEM_SKIPPED -> {
 
                     }
                 }
             }
         }
-        return FILE_PARSE_STATE.CHUNK_PARSED
+        return FileParseState.CHUNK_PARSED
     }
 
     fun readPartialItem(
         data: String,
         startAt: Int
-    ): CHUNK_PARSE_STATE {
+    ): ChunkParseState {
         if(data.length - startAt > JSON_MAX_LENGTH)
-            return CHUNK_PARSE_STATE.ITEM_SKIPPED
+            return ChunkParseState.ITEM_SKIPPED
         addResultString(data, startAt)
-        return CHUNK_PARSE_STATE.ITEM_PARSED_PARTIALY
+        return ChunkParseState.ITEM_PARSED_PARTIALY
     }
 
     private fun addResultString(
@@ -144,7 +143,6 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
         startAt: Int,
         endAt: Int = -1
     ) {
-        //TODO: Test to make sure index calculated correctly
         val str = if (endAt == -1) data.substring(startAt) else data.substring(startAt, endAt)
         strings += Pair(str, startAt + bufferSize * currentChunk + indexOffset)
     }
@@ -153,24 +151,24 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
     fun parseNextItem(
         data: String,
         startAt: Int
-    ): CHUNK_PARSE_STATE {
+    ): ChunkParseState {
         val (parseState, _, jsonFinish, json) = extractVehicleJson(
             data,
             startAt
         )
 
         when (parseState) {
-            CHUNK_PARSE_STATE.ITEM_SKIPPED -> return CHUNK_PARSE_STATE.ITEM_SKIPPED
-            CHUNK_PARSE_STATE.ITEM_PARSED_PARTIALY -> return readPartialItem(data, startAt)
+            ChunkParseState.ITEM_SKIPPED -> return ChunkParseState.ITEM_SKIPPED
+            ChunkParseState.ITEM_PARSED_PARTIALY -> return readPartialItem(data, startAt)
         }
 
         val jsonMatch = jsonRegex.find(json)
         return if (jsonMatch != null && jsonMatch.groupValues.size == 2) {
             addResultString(data, startAt, jsonFinish + 1)
-            CHUNK_PARSE_STATE.ITEM_PARSED
+            ChunkParseState.ITEM_PARSED
         } else {
             reportPosition(startAt, "☠️Can't parse item $json")
-            CHUNK_PARSE_STATE.ITEM_SKIPPED
+            ChunkParseState.ITEM_SKIPPED
         }
     }
 
@@ -185,7 +183,7 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
             (jsonFinish != -1 && (jsonFinish - startAt > JSON_MAX_LENGTH || jsonFinish - startAt < JSON_MINIMUM_LENGTH)) ||
             (nextItemStart != -1 && nextItemStart < jsonFinish)
         ) {
-            return VehicleJsonItem(CHUNK_PARSE_STATE.ITEM_SKIPPED, startAt, jsonFinish, "")
+            return VehicleJsonItem(ChunkParseState.ITEM_SKIPPED, startAt, jsonFinish, "")
         }
 
 
@@ -194,7 +192,7 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
             jsonFinish + 1
         )
         return VehicleJsonItem(
-            if (jsonFinish == -1) CHUNK_PARSE_STATE.ITEM_PARSED_PARTIALY else CHUNK_PARSE_STATE.ITEM_PARSED,
+            if (jsonFinish == -1) ChunkParseState.ITEM_PARSED_PARTIALY else ChunkParseState.ITEM_PARSED,
             startAt,
             jsonFinish,
             json
@@ -225,7 +223,7 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
     }
 
 
-    fun reportPosition(position: Int, text: String) {
+    private fun reportPosition(position: Int, text: String) {
         if (verbose) {
             TermUi.echo("Report at position: ${position + bufferSize * currentChunk + indexOffset} $text")
         }
@@ -233,21 +231,19 @@ class WTDumpReader(val fileName: String, val verbose: Boolean) {
 
 
     data class VehicleJsonItem(
-        val parseState: CHUNK_PARSE_STATE,
+        val parseState: ChunkParseState,
         val startAt: Int,
         val finishAt: Int,
         val result: String
     )
 
     companion object {
-        val ITEM_START = "{"
-        val ITEM_FINISH = ",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
-        val ITEM_JSON =
+        const val ITEM_START = "{"
+        const val ITEM_FINISH = ",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
+        const val ITEM_JSON =
             "\\{\"id\":\"([a-zA-Z_\\-0-9]+)\",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
-        val JSON_MAX_LENGTH = 300
-        val JSON_MINIMUM_LENGTH = 44// id with empty filed and needShopInfo ttype fields
-        val NEXT_ITEM_MAX_DISTANCE = 10
-        val ITEM_TITLE_MIN_LENGTH = 10
-        val MAX_DISTANCE_BETWEEN_LINEUPS = 500
+        const val JSON_MAX_LENGTH = 300
+        const val JSON_MINIMUM_LENGTH = 44// id with empty filed and needShopInfo ttype fields
+        const val MAX_DISTANCE_BETWEEN_LINEUPS = 500
     }
 }

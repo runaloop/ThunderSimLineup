@@ -5,6 +5,7 @@ import toothpick.InjectConstructor
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.zip.ZipInputStream
+
 @InjectConstructor
 class JsonIO {
     fun readZip(inputStream: InputStream): JsonLineupConfig {
@@ -14,18 +15,18 @@ class JsonIO {
         }
     }
 
-    fun read(inputStream: InputStream): JsonLineupConfig {
+    private fun read(inputStream: InputStream): JsonLineupConfig {
         inputStream.use { stream ->
-            val dslJson = JsonLib.JSON()
+            val dslJson = JsonLib.get()
             val lineupConfig = dslJson.deserialize(JsonLineupConfig::class.java, stream)
             return lineupConfig
             throw error("Can't load local config")
         }
     }
 
-    fun write(outputStream: OutputStream, jsonLineupConfig: JsonLineupConfig) {
+    /*fun write(outputStream: OutputStream, jsonLineupConfig: JsonLineupConfig) {
         outputStream.use {
-            JsonLib.JSON().serialize(jsonLineupConfig, it)
+            JsonLib.get().serialize(jsonLineupConfig, it)
         }
-    }
+    }*/
 }

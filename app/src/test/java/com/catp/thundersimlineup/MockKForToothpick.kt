@@ -7,9 +7,9 @@ package com.catp.thundersimlineup
  * quick workaround for this, is to make annotation with that filed,
  * which will be additionally added to all mocked fields.
  * For example:
-    @MockKForToothpick
-    @MockK(relaxed = true)
-    lateinit var dao: LineupDao
+@MockKForToothpick
+@MockK(relaxed = true)
+lateinit var dao: LineupDao
  */
 @Target(AnnotationTarget.FIELD, AnnotationTarget.TYPE_PARAMETER)
 @Retention(AnnotationRetention.RUNTIME)

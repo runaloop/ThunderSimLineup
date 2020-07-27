@@ -1,4 +1,4 @@
-package com.catp.thundersimlineup.ui.calendar
+package com.catp.thundersimlineup.ui.whatsnew
 
 import android.os.Bundle
 import android.view.*
@@ -11,7 +11,6 @@ import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
-import com.catp.thundersimlineup.ui.whatsnew.ChangesAdapter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import kotlinx.android.synthetic.main.fragment_changes_list.*
 import toothpick.ktp.KTP

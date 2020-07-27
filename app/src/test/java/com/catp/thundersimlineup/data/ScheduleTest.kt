@@ -21,7 +21,7 @@ class ScheduleTest : BaseTest() {
     @MockK(relaxed = true)
     lateinit var dao: LineupDao
 
-    val schedule: Schedule by inject()
+    private val schedule: Schedule by inject()
 
     @Before
     override fun setUp() {
@@ -45,7 +45,15 @@ class ScheduleTest : BaseTest() {
     @Test
     fun `getLineupForDate returns correct lineup`() {
         //GIVEN
-        every { dao.getLineupCycleList() } returns (0..5).map { LineupCycleEntity(it.toString(), LineupType.LOW, it, true, it+1L) }
+        every { dao.getLineupCycleList() } returns (0..5).map {
+            LineupCycleEntity(
+                it.toString(),
+                LineupType.LOW,
+                it,
+                true,
+                it + 1L
+            )
+        }
         every { dao.getLineupShift() } returns listOf(LineupShiftEntity(1, LocalDate.now(), 723L))
         every { dao.getLineups() } returns listOf(Lineup(LineupEntity("1")))
         //every { getShiftedLineup.process(any(), any(), any()) } returns dao.getLineupCycleList()[1]
@@ -66,32 +74,35 @@ class ScheduleTest : BaseTest() {
         val result = schedule.getExperimentalLineupForDate(LocalDate.now())
         //THEN
         assertThat(result).isNull()
-        verify { dao wasNot Called}
+        verify { dao wasNot Called }
     }
 
     @Test
     fun `trying to find experimental lineup, with time before availability`() {
         //GIVEN
-        schedule.lineupAvailability = LineupCycleAvailabilityEntity(1, LocalDate.now(), LocalDate.now().plusDays(1))
+        schedule.lineupAvailability =
+            LineupCycleAvailabilityEntity(1, LocalDate.now(), LocalDate.now().plusDays(1))
 
         //WHEN
         val result = schedule.getExperimentalLineupForDate(LocalDate.now().minusDays(1))
 
         //THEN
         assertThat(result).isNull()
-        verify { dao wasNot Called}
+        verify { dao wasNot Called }
     }
+
     @Test
     fun `trying to find experimental lineup, with time after availability`() {
         //GIVEN
-        schedule.lineupAvailability = LineupCycleAvailabilityEntity(1, LocalDate.now(), LocalDate.now().plusDays(1))
+        schedule.lineupAvailability =
+            LineupCycleAvailabilityEntity(1, LocalDate.now(), LocalDate.now().plusDays(1))
 
         //WHEN
         val result = schedule.getExperimentalLineupForDate(LocalDate.now().plusDays(2))
 
         //THEN
         assertThat(result).isNull()
-        verify { dao wasNot Called}
+        verify { dao wasNot Called }
     }
 
     @Test
@@ -100,11 +111,13 @@ class ScheduleTest : BaseTest() {
         checkCertainDate(LocalDate.now().plusDays(1))
     }
 
-    private fun checkCertainDate(date:LocalDate){
+    private fun checkCertainDate(date: LocalDate) {
         //GIVEN
-        schedule.lineupAvailability = LineupCycleAvailabilityEntity(1, LocalDate.now(), LocalDate.now().plusDays(1))
+        schedule.lineupAvailability =
+            LineupCycleAvailabilityEntity(1, LocalDate.now(), LocalDate.now().plusDays(1))
         schedule.lineupsMap = mutableMapOf()
-        schedule.lineupsMap[LineupType.EXCREMENTAL] = listOf(LineupCycleEntity("E1", LineupType.EXCREMENTAL, 1, true, 1))
+        schedule.lineupsMap[LineupType.EXCREMENTAL] =
+            listOf(LineupCycleEntity("E1", LineupType.EXCREMENTAL, 1, true, 1))
         val experimentalLineup = Lineup(LineupEntity("E1"))
         every { dao.getLineups() } returns listOf(experimentalLineup, Lineup(LineupEntity("1")))
         //WHEN
@@ -119,9 +132,14 @@ class ScheduleTest : BaseTest() {
         //I/System.out: LineupShiftEntity(lineupId=10, shiftDate=2020-06-10, id=2)
 
         //GIVEN
-        val today_10 = LocalDate.of(2020, 7, 10)
-        val shift_date = LocalDate.of(2020, 6, 10)
-        every { dao.getLineupCycleList() } returns listOf("8_2", "10_2", "8_2_2", "9_2").mapIndexed { index, s ->
+        val today10 = LocalDate.of(2020, 7, 10)
+        val shiftDate = LocalDate.of(2020, 6, 10)
+        every { dao.getLineupCycleList() } returns listOf(
+            "8_2",
+            "10_2",
+            "8_2_2",
+            "9_2"
+        ).mapIndexed { index, s ->
             LineupCycleEntity(
                 s,
                 LineupType.TOP,
@@ -130,16 +148,40 @@ class ScheduleTest : BaseTest() {
                 index.toLong()
             )
         }
-        every { dao.getLineupShift() } returns listOf(LineupShiftEntity(3, shift_date, 723L))
-        every { dao.getLineups() } returns listOf(Lineup(LineupEntity("8_2")), Lineup(LineupEntity("10_2")),Lineup(LineupEntity("8_2_2") ), Lineup(LineupEntity("9_2")) )
+        every { dao.getLineupShift() } returns listOf(LineupShiftEntity(3, shiftDate, 723L))
+        every { dao.getLineups() } returns listOf(
+            Lineup(LineupEntity("8_2")),
+            Lineup(LineupEntity("10_2")),
+            Lineup(LineupEntity("8_2_2")),
+            Lineup(LineupEntity("9_2"))
+        )
         schedule.updateRule()
 
 
-
         //THEN
-        assertThat(schedule.getLineupForDate(today_10, LineupType.TOP)!!.lineupEntity.name).isEqualTo("10_2")
-        assertThat(schedule.getLineupForDate(today_10.minusDays(1), LineupType.TOP)!!.lineupEntity.name).isEqualTo("8_2")
-        assertThat(schedule.getLineupForDate(today_10.minusDays(2), LineupType.TOP)!!.lineupEntity.name).isEqualTo("9_2")
-        assertThat(schedule.getLineupForDate(today_10.minusDays(3), LineupType.TOP)!!.lineupEntity.name).isEqualTo("8_2_2")
+        assertThat(
+            schedule.getLineupForDate(
+                today10,
+                LineupType.TOP
+            )!!.lineupEntity.name
+        ).isEqualTo("10_2")
+        assertThat(
+            schedule.getLineupForDate(
+                today10.minusDays(1),
+                LineupType.TOP
+            )!!.lineupEntity.name
+        ).isEqualTo("8_2")
+        assertThat(
+            schedule.getLineupForDate(
+                today10.minusDays(2),
+                LineupType.TOP
+            )!!.lineupEntity.name
+        ).isEqualTo("9_2")
+        assertThat(
+            schedule.getLineupForDate(
+                today10.minusDays(3),
+                LineupType.TOP
+            )!!.lineupEntity.name
+        ).isEqualTo("8_2_2")
     }
 }

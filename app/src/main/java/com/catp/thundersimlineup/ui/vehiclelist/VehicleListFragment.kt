@@ -55,7 +55,7 @@ class VehicleListFragment : Fragment() {
 
             override fun onQueryTextChange(s: String): Boolean {
                 if (itemAdapter.hasNewFilter(s)) {
-                    itemAdapter.setFilter(s);
+                    itemAdapter.setFilter(s)
                     itemAdapter.filterItems(1000L)
                 }
                 return true
