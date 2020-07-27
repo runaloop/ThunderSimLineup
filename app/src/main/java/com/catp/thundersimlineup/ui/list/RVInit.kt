@@ -47,13 +47,5 @@ fun configureRecyclerView(
         })
 
     }
-
-    fragment.view?.let {
-        EmptyViewHelper.create(
-            adapter,
-            it.findViewById(R.id.empty_rv),
-            it.findViewById(R.id.empty_rv_filter)
-        )
-    }
     adapter.setStickyHeaders(true)
 }
