@@ -90,4 +90,27 @@ class StatUtil {
     }
 }
 
+@InjectConstructor
+@Singleton
+class CrashOnCondition {
+    val hash = mutableMapOf<String, Int>()
+    fun crashOnCount(count: Int, message: String) {
+        println("🤛$message $count $hash")
+        hash[message].whenNull {
+            hash[message] = count
+        }.whenNonNull {
+            hash[message] = this - 1
+        }
+        if (hash[message]!! <= 0) {
+            hash.remove(message)
+            throw RuntimeException(message)
+        }
+    }
 
+    fun crashOnlyOnce(message: String){
+        hash[message].whenNull {
+            hash[message] = 1
+            throw RuntimeException(message)
+        }
+    }
+}

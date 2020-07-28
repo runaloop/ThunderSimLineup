@@ -50,6 +50,5 @@ class CheckAndUpdateBRTest {
 
         assertThat(result).isTrue()
         assertThat(vehicle.br).isEqualTo(newBR)
-        verify { changeset.reportVehicleBRChange(vehicle, oldBR) }
     }
 }

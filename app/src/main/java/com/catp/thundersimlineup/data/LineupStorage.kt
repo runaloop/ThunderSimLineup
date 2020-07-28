@@ -52,7 +52,7 @@ class LineupStorage {
         // check if local json version is grater than db
         return if (jsonConfig.version > localDBVersion) {
             // if so update db
-            dbPopulate.updateData(jsonConfig, ctx)
+            dbPopulate.updateData(jsonConfig)
             RefreshResult.NEW_DATA
         } else
             RefreshResult.NO_NEW_DATA

@@ -35,7 +35,7 @@ class Changeset {
         allVehicles: List<Vehicle>,
         strTemplate: Int
     ) {
-        val result = data.groupBy({ it.second }) { (vehicleId, lineup) ->
+        val result = data.groupBy({ it.second }) { (vehicleId, _) ->
             allVehicles.find { it.vehicleId == vehicleId }!!
         }
             .mapNotNull { (lineup, vehicles) ->
@@ -57,9 +57,6 @@ class Changeset {
         }
     }
 
-    fun reportVehicleBRChange(vehicle: Vehicle, oldBR: String) {
-        //vehicleBRChanged += Pair(vehicle, oldBR)
-    }
 
     fun reportVehicleAdded(vehicleId: String, lineupName: String) {
         reportVehicleAdded += Pair(vehicleId, lineupName)
@@ -67,6 +64,11 @@ class Changeset {
 
     fun reportVehicleRemoved(vehicleId: String, lineupName: String) {
         reportVehicleDeleted += Pair(vehicleId, lineupName)
+    }
+
+    fun clear() {
+        reportVehicleAdded.clear()
+        reportVehicleDeleted.clear()
     }
 
 }

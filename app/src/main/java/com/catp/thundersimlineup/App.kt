@@ -8,6 +8,7 @@ import com.catp.thundersimlineup.data.Preferences
 import com.catp.thundersimlineup.data.db.DBModule
 import com.catp.thundersimlineup.notifications.DailyNotificator
 import com.catp.thundersimlineup.notifications.WorkerFactory
+import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jakewharton.threetenabp.AndroidThreeTen
 import toothpick.Scope
@@ -47,6 +48,7 @@ class App : MultiDexApplication(), Configuration.Provider {
     }
 
     private fun firebaseInit() {
+        FirebaseApp.initializeApp(this)
         val instance = FirebaseCrashlytics.getInstance()
         if (!preferences.sendCrashLogs) {
             instance.deleteUnsentReports()

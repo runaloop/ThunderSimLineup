@@ -11,7 +11,6 @@ class CheckAndUpdateBR(val changeset: Changeset) {
         if (vehicle.br != jsonVehicle.br) {
             val oldBR = vehicle.br
             vehicle.br = jsonVehicle.br
-            changeset.reportVehicleBRChange(vehicle, oldBR)
             return true
         }
         return false
