@@ -16,13 +16,11 @@
     <string name="channel_description">shows once a day, when lineups are changed</string>
     <string name="change_log_add">%s is added to %s</string>
     <string name="change_log_del">%s is deleted to %s</string>
-    <string name="empty_rv_text">No items for now</string>
     <string name="pref_send_crash_logs" translatable="false">send_crash_logs</string>
     <string name="pref_send_statistics" translatable="false">send_statistics</string>
     <string name="pref_filter_key_show" translatable="false">filter_key_show</string>
     <string name="pref_show_daily_notify" translatable="false">show_daily_favorite_notify</string>
     <string name="pref_log_events" translatable="false">log_events_switch</string>
-    <string name="pref_clear_event_log" translatable="false">clear_event_log</string>
     <string name="chip_title_team_a">A</string>
     <string name="chip_title_team_b">B</string>
     <string name="chip_title_tanks">Tanks</string>
@@ -36,7 +34,6 @@
     <string name="pref_title_show_daily_notify">Show daily notification for favorite vehicles</string>
     <string name="pref_title_lineup_list_filter">Lineup list filter</string>
     <string name="pref_title_log_vehicle_event">Log vehicle addition to a lineups</string>
-    <string name="no_items_found_on_your_request">No items found on your request</string>
     <string name="pref_title_send_anonym_stat">Send anonymous statistics</string>
     <string name="pref_refresh_lineup_list" translatable="false">pref_refresh_lineup_list</string>
     <string name="pref_title_refresh_lineup_list">Refresh lineup list</string>

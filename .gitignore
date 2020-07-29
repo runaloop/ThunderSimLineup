@@ -67,3 +67,5 @@ fastlane/readme.md
 /units.csv
 /lineup.txt
 /actual_lineups backup.xlsx
+
+/keystore.properties

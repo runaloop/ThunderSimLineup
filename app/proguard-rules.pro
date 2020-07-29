@@ -35,10 +35,25 @@
     toothpick.ktp.delegate.* *;
 }
 
--keep class com.firebase.** { *; }
+-keep class com.google.firebase.** { *; }
 -keep class org.apache.** { *; }
 -keepnames class com.fasterxml.jackson.** { *; }
 -keepnames class javax.servlet.** { *; }
 -keepnames class org.ietf.jgss.** { *; }
 -dontwarn org.apache.**
 -dontwarn org.w3c.dom.**
+
+-keepattributes SourceFile,LineNumberTable        # Keep file names and line numbers.
+-keep public class * extends java.lang.Exception  # Optional: Keep custom exceptions.
+
+-keep class dsl_json.json.** { *; }
+-dontwarn com.dslplatform.json.**
+-keep @com.dslplatform.json.CompiledJson class *
+-keep @com.dslplatform.json.JsonConverter class *
+
+-keep class com.catp.model.** { *; }
+
+-keep class com.dslplatform.json.** { *; }
+-keep class kotlin._Pair_DslJsonConverter { *; }
+-keep class kotlin.Pair { *; }
+-keepnames class com.google.android.gms.** {*;}

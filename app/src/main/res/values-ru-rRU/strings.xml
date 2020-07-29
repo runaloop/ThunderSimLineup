@@ -16,7 +16,6 @@
     <string name="channel_description">показывает один раз в день, когда лайнапы меняются</string>
     <string name="change_log_add">%s добавлен в %s</string>
     <string name="change_log_del">%s удален из %s</string>
-    <string name="empty_rv_text">Пока список пуст</string>
     <string-array name="filterShowList">
         <item>Танки</item>
         <item>Самолеты</item>
@@ -39,7 +38,6 @@
     <string name="pref_title_show_daily_notify">Показывать ежедневное напоминание если доступна избранная техника</string>
     <string name="pref_title_lineup_list_filter">Настройка фильтров</string>
     <string name="pref_title_log_vehicle_event">Записывать изменения техники в журнал</string>
-    <string name="no_items_found_on_your_request">По вашему запросу ничего не найдено</string>
     <string name="pref_title_send_anonym_stat">Отправлять анонимную статистику использования приложения</string>
     <string name="pref_title_refresh_lineup_list">Обновить список лайнапов</string>
     <string name="refresh_started">Идет проверка обновлений</string>
