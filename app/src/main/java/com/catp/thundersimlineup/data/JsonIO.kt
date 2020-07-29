@@ -20,7 +20,6 @@ class JsonIO {
             val dslJson = JsonLib.get()
             val lineupConfig = dslJson.deserialize(JsonLineupConfig::class.java, stream)
             return lineupConfig
-            throw error("Can't load local config")
         }
     }
 

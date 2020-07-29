@@ -64,12 +64,12 @@ class WhatsNewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         whatsNewViewModel.changes.observe(viewLifecycleOwner, Observer { list ->
-            changesAdapter.setData(requireContext(), list)
+            changesAdapter.setData(list)
         })
 
         configureRecyclerView(changesAdapter, rvChangesList, this, null)
         //Without this headerview is not collapsing
-        changesAdapter.addListener(FlexibleAdapter.OnItemClickListener { view, position ->
+        changesAdapter.addListener(FlexibleAdapter.OnItemClickListener { _, _ ->
             true
         })
 

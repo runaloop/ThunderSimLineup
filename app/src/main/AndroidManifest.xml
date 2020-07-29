@@ -18,10 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
+
+            tools:node="remove"
             android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="com.catp.thundersimlineup.workmanager-init"
-            android:enabled="false"
-            tools:ignore="ExportedContentProvider" />
+            android:authorities="${applicationId}.workmanager-init"
+            />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

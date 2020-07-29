@@ -36,18 +36,18 @@ class LineupStorage {
             .observeOn(Schedulers.io())
             .map { ctx ->
                 val localJsonConfig = storage.loadFromRAW(ctx)
-                val localUpdateResult = updateDBIfNeeded(localJsonConfig, ctx)
+                val localUpdateResult = updateDBIfNeeded(localJsonConfig)
                 if (localUpdateResult == RefreshResult.NO_NEW_DATA
                     && (force || refreshIntervalChecker.isRefreshNeeded(context))
                 ) {
-                    return@map updateDBIfNeeded(netLoader.getData(), ctx)
+                    return@map updateDBIfNeeded(netLoader.getData())
                 } else {
                     localUpdateResult
                 }
             }
     }
 
-    private fun updateDBIfNeeded(jsonConfig: JsonLineupConfig, ctx: Context): RefreshResult {
+    private fun updateDBIfNeeded(jsonConfig: JsonLineupConfig): RefreshResult {
         val localDBVersion = lineupDao.getVersion()?.version ?: 0
         // check if local json version is grater than db
         return if (jsonConfig.version > localDBVersion) {

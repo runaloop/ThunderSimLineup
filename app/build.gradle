@@ -6,6 +6,11 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/ap/AndroidStudioProjects/keystores/upload_keystore.jks')
+        }
+    }
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.catp.thundersimlineup"

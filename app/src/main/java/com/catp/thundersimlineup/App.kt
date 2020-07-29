@@ -41,9 +41,7 @@ class App : MultiDexApplication(), Configuration.Provider {
             .installModules(SmoothieApplicationModule(this), DBModule(this), DataModule())
         scope.inject(this)
         AndroidThreeTen.init(this)
-
         dailyNotificator.createNotificationTask(this)
-
         firebaseInit()
     }
 

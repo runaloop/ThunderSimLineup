@@ -40,7 +40,7 @@ class CalendarFragment : Fragment() {
         val now = LocalDate.now()
 
         calendarView.setSelectedDate(now)
-        calendarView.setOnDateChangedListener { widget, date, selected ->
+        calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
                 lineupListViewModel.onDateChanged(date)
             }

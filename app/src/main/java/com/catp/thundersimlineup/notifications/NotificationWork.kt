@@ -107,7 +107,6 @@ class NotificationWork(
     }
 
     private fun reschedule() {
-        val now = localDateTimeProvider.now()
         dailyNotificator.createNewTask(
             WorkManager.getInstance(applicationContext)
         )

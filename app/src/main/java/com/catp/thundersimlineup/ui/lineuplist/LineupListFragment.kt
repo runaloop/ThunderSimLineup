@@ -111,7 +111,7 @@ class LineupListFragment : Fragment() {
         )
 
         chips.forEach {
-            it.setOnCheckedChangeListener { buttonView, isChecked ->
+            it.setOnCheckedChangeListener { _, _ ->
                 lineupListViewModel.filterChange(
                     "",
                     teamAChip.isChecked,

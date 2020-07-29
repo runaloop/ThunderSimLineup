@@ -36,7 +36,7 @@ fun configureRecyclerView(
 
 
     lineupListViewModel?.whenNonNull {
-        adapter.addListener(FlexibleAdapter.OnItemClickListener { view, position ->
+        adapter.addListener(FlexibleAdapter.OnItemClickListener { _, position ->
             val item: IFlexible<*>? = adapter.getItem(position)
             if (item != null && item is VehicleItem) {
                 lineupListViewModel.onClick(item.vehicle)
