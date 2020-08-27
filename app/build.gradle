@@ -54,6 +54,7 @@ android {
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
+            manifestPlaceholders = [crashlyticsEnabled: false]
         }
         release {
             multiDexKeepFile file('multidex-config.txt')
@@ -76,6 +77,8 @@ android {
             signingConfig signingConfigs.release
 
             debuggable false
+
+            manifestPlaceholders = [crashlyticsEnabled: true]
         }
     }
     compileOptions {
