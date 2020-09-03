@@ -38,6 +38,7 @@ class UpdateProcess : Runnable {
             updateVehicleCrossRefStatus.process()
             updateVehicleCrossRef.process(jsonLineups)
             updateLineupCycle.process(jsonRules)
+            updateVehicleCrossRefStatus.process() // to remove "deleted" xrefs after update, cause no use of that feature so far
         }
         lineupDao.setVersion(json.version)
     }
