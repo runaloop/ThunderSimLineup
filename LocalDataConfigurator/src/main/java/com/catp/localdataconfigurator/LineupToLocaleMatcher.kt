@@ -32,7 +32,6 @@ class LineupToLocaleMatcher(
                 //Changed localeItem.englishTitle to localeItem.id cause it makes bugs in futher spreedsheetgenerator
                 val vehicleInVehicleStore = vehicleStore.vehicleList.find { it.name == item.id }
                 if (vehicleInVehicleStore != null) {//vehiclestore loaded from spreedsheet already have such vehicle, just update its from wpCost and update
-                    vehicleInVehicleStore.br = item.br
                     vehicleInVehicleStore.locale = localeItem
                 } else
                     vehicleStore.vehicleList.add(
