@@ -6,22 +6,27 @@ import com.catp.thundersimlineup.ui.list.HeaderColors
 import com.catp.thundersimlineup.ui.list.LogItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import org.threeten.bp.LocalDate
 
 
 class ChangesAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, false) {
 
     fun setData(items: List<Change>) {
-        val s = items.groupBy { it.date }.map { (date, list) ->
-            val header = ExpandableHeaderItem<LogItem>(
-                date.hashCode(),
-                date.toString(),
-                HeaderColors.getRandom()
-            )
-            header.items += list.map {
-                LogItem(it.text, header.title)
+        val s = items
+            .groupBy { it.date }
+            .map { (date, list) ->
+                val header = ExpandableHeaderItem<LogItem>(
+                    date.hashCode(),
+                    date.toString(),
+                    HeaderColors.getRandom()
+                )
+                header.items += list.map {
+                    LogItem(it.text, header.title)
+                }
+                Pair(date, header)
             }
-            header
-        }
+            .sortedByDescending { it.first }
+            .map { it.second }
         updateDataSet(s, false)
     }
 
