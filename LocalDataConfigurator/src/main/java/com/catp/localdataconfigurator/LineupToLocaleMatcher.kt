@@ -1,5 +1,6 @@
 package com.catp.localdataconfigurator
 
+import com.catp.localdataconfigurator.UnitIDLocale.Companion.IGNORE_WORDS_LIST
 import com.catp.model.JsonLineup
 import com.catp.model.JsonLocaleItem
 import com.catp.model.JsonVehicle
@@ -22,22 +23,33 @@ class LineupToLocaleMatcher(
     }
 
     private fun fillVehicleStore() {
+        val ignoreList = mutableListOf<String>()
         wpCost.vehicleItems.values/*.filter { it.unitClass == VehicleType.PLANE }*/.forEach { item ->
             val localeItem = unitIDLocale.localeData.values.find { it.id == item.id }
             if (localeItem == null) {
-                println("Can't find locale for id $item tipicaly this happens cause unitIdLocale ignores some of the units with _race or _tutorial suffix, but wpcost is not, in most case, its not a problem")
+                ignoreList += item.id
             } else {
                 //Changed localeItem.englishTitle to localeItem.id cause it makes bugs in futher spreedsheetgenerator
-                vehicleStore.vehicleList.add(
-                    JsonVehicle(
-                        localeItem.id,
-                        item.unitClass,
-                        item.country,
-                        item.br,
-                        localeItem
+                val vehicleInVehicleStore = vehicleStore.vehicleList.find { it.name == item.id }
+                if (vehicleInVehicleStore != null) {//vehiclestore loaded from spreedsheet already have such vehicle, just update its from wpCost and update
+                    vehicleInVehicleStore.br = item.br
+                    vehicleInVehicleStore.locale = localeItem
+                } else
+                    vehicleStore.vehicleList.add(
+                        JsonVehicle(
+                            localeItem.id,
+                            item.unitClass,
+                            item.country,
+                            item.br,
+                            localeItem
+                        )
                     )
-                )
             }
+        }
+        val correctEndings =
+            ignoreList.filter { item -> !IGNORE_WORDS_LIST.any { item.endsWith(it) } }
+        if (correctEndings.isNotEmpty()) {
+            println("Cant find locale for such an ids: ${correctEndings.joinToString("\n")}")
         }
     }
 

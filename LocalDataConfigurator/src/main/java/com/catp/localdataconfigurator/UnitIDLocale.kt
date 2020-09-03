@@ -33,9 +33,10 @@ class UnitIDLocale {
                                 if (id.endsWith(ignoreWord))
                                     return@let
                             }
+
                             val localeItem = JsonLocaleItem(
                                 id,
-                                ""
+                                row.getField(ID_COLUMN_TITLE) ?: ""
                             )
 
                             localeData[localeItem.id] = localeItem
@@ -91,12 +92,14 @@ class UnitIDLocale {
     companion object {
 
         const val ID_COLUMN_NAME = "<ID|readonly|noverify>"
+        const val ID_COLUMN_TITLE = "<English>"
         const val UNITCSV_PATH =
             "https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges/blob/master/Files/lang.vromfs.bin_u/lang/units.csv?raw=true"
         val IGNORE_WORDS_LIST = listOf(
             "_1", "_2",
-            "_race_0", "_race_1", "_race_2", "_race_shop",
-            "_for_tutorial_0", "_for_tutorial_1", "_for_tutorial_2", "_for_tutorial_shop"
+            "_race_0", "_race_1", "_race_2", "_race_shop", "_race",
+            "_for_tutorial_0", "_for_tutorial_1", "_for_tutorial_2", "_for_tutorial_shop", "_for_tutorial",
+            "_football"
         )
     }
 }

@@ -108,7 +108,6 @@ class JsonVehicleStore(val vehicleList: MutableList<JsonVehicle> = mutableListOf
             if (item.locale?.title?.contains(toDelete) == true) {
                 val old = item.locale!!.title
                 val new = item.locale!!.title.replace(toDelete, "")
-                println("Old: ${old}\nNew: $new")
                 item.locale!!.title = new
             }
         }
