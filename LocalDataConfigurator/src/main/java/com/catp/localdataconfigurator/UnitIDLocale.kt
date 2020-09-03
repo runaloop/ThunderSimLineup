@@ -66,19 +66,15 @@ class UnitIDLocale {
                         fullLocaleData[id] = if (ending == "shop") {
                             JsonLocaleItem(
                                 id,
-                                ""
+                                item.title
                             )
                         } else
                             JsonLocaleItem(
                                 id,
-                                item.title
+                                ""
                             )
                     } else {
-                        if (ending == "shop") {
                             localeItem.title = item.title
-                        } else {
-                            localeItem.title = item.title
-                        }
                     }
                 }
             }

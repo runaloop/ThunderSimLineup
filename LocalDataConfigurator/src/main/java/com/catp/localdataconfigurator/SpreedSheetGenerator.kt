@@ -48,6 +48,7 @@ class SpreedSheetGenerator(
     }
 
     fun make() {
+        println("Generating xlsx")
         vehicleStore.removeForbidenIds()
         vehicleStore.removeUglySymbolsFromTitles()
         createFile()
@@ -131,15 +132,19 @@ class SpreedSheetGenerator(
         vehicle: JsonVehicle
     ): XSSFRow {
 
-
         val row = sheet.createRow(++rowIndex)
+        val (id, type, nation, br, locale) = vehicle
         row.createCell(HEADER.ID).also {
             it.setCellValue(vehicle.locale!!.id)
         }
-        row.createCell(HEADER.Type).setCellValue(vehicle.type.name)
-        row.createCell(HEADER.Nation).setCellValue(vehicle.nation)
-        row.createCell(HEADER.BR).setCellValue(vehicle.br)
-        row.createCell(HEADER.FullEnglishTitle).setCellValue(vehicle.locale!!.title)
+        row.createCell(HEADER.Type).setCellValue(type.name)
+        row.createCell(HEADER.Nation).setCellValue(nation)
+        row.createCell(HEADER.BR).setCellValue(br)
+        row.createCell(HEADER.FullEnglishTitle).setCellValue(locale!!.title)
+
+        if(listOf(id, nation, br, locale.title).any { it.isEmpty() }){
+            println("Vehicle has empty fields: $vehicle")
+        }
         return row
     }
 
