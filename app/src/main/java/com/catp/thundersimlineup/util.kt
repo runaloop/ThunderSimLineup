@@ -114,3 +114,8 @@ class CrashOnCondition {
         }
     }
 }
+
+fun log(str: String){
+    if(BuildConfig.DEBUG)
+        println(str)
+}

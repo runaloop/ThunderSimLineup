@@ -90,7 +90,8 @@ class UnitIDLocale {
         const val ID_COLUMN_NAME = "<ID|readonly|noverify>"
         const val ID_COLUMN_TITLE = "<English>"
         const val UNITCSV_PATH =
-            "https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges/blob/master/Files/lang.vromfs.bin_u/lang/units.csv?raw=true"
+            //"https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges/blob/master/Files/lang.vromfs.bin_u/lang/units.csv?raw=true"
+            "https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges_DevClient/blob/master/Files/lang.vromfs.bin_u/lang/units.csv?raw=true"
         val IGNORE_WORDS_LIST = listOf(
             "_1", "_2",
             "_race_0", "_race_1", "_race_2", "_race_shop", "_race",

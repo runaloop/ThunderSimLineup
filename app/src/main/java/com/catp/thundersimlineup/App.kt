@@ -1,12 +1,12 @@
 package com.catp.thundersimlineup
 
+import android.util.Log.VERBOSE
 import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.data.DataModule
 import com.catp.thundersimlineup.data.Preferences
 import com.catp.thundersimlineup.data.db.DBModule
-import com.catp.thundersimlineup.notifications.DailyNotificator
 import com.catp.thundersimlineup.notifications.WorkerFactory
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -20,8 +20,6 @@ import javax.inject.Inject
 class App : MultiDexApplication(), Configuration.Provider {
     lateinit var scope: Scope
 
-    @Inject
-    lateinit var dailyNotificator: DailyNotificator
 
     @Inject
     lateinit var workerFactory: WorkerFactory
@@ -41,7 +39,6 @@ class App : MultiDexApplication(), Configuration.Provider {
             .installModules(SmoothieApplicationModule(this), DBModule(this), DataModule())
         scope.inject(this)
         AndroidThreeTen.init(this)
-        dailyNotificator.createNotificationTask(this)
         firebaseInit()
     }
 
@@ -59,7 +56,7 @@ class App : MultiDexApplication(), Configuration.Provider {
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
             .setWorkerFactory(workerFactory)
-            //.setMinimumLoggingLevel(VERBOSE)
+            .setMinimumLoggingLevel(VERBOSE)
             .build()
     }
 }

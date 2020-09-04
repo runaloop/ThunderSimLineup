@@ -12,11 +12,14 @@ import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import toothpick.ktp.KTP
-import toothpick.ktp.binding.module
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
 import toothpick.smoothie.viewmodel.installViewModelBinding
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +30,20 @@ class MainActivity : AppCompatActivity() {
             this,
             findNavController(R.id.nav_host_fragment)
         )
+        if (viewModel.notificationTaskCreateDelegate != "OK") {
+            throw RuntimeException("Notifcation task should be initialized")
+        }
     }
 
     @VisibleForTesting
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(ViewModelScope::class.java) { scope ->
-                scope.installViewModelBinding<LineupListViewModel>(this)
+                scope
+                    .installViewModelBinding<LineupListViewModel>(this)
+                    .installViewModelBinding<MainActivityViewModel>(this)
                     .closeOnViewModelCleared(this)
-                    .installModules(module {
-                    })
+                    .apply { inject(this@MainActivity) }
             }
     }
 

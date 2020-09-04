@@ -18,6 +18,7 @@ import com.catp.thundersimlineup.data.Schedule
 import com.catp.thundersimlineup.data.db.LineupDao
 import com.catp.thundersimlineup.data.db.entity.LineupType
 import com.catp.thundersimlineup.data.db.entity.Vehicle
+import com.catp.thundersimlineup.log
 import com.google.firebase.analytics.FirebaseAnalytics
 
 
@@ -32,10 +33,15 @@ class NotificationWork(
     Worker(appContext, workerParams) {
     private val channelId = this.javaClass.name
     override fun doWork(): Result {
+        log("🌈NW: doWork: $applicationContext")
         val favorites = getFavoritesForToday()
+        log("🌈NW: fav: $favorites")
         logFavorites()
+        log("🌈NW: logDone")
         showNotification(favorites)
+        log("🌈NW: showNotify done")
         reschedule()
+        log("🌈NW: reschedule done")
         return Result.success()
     }
 
@@ -90,6 +96,7 @@ class NotificationWork(
 
     private fun getFavoritesForToday(): List<Vehicle> {
         val vehicles = lineupDao.getFavoriteVehicles()
+        log("🐷getFavoritesForToday fav: $vehicles")
         val result = mutableListOf<Vehicle>()
         if (vehicles.isNotEmpty()) {
             schedule.updateRule()
@@ -97,6 +104,7 @@ class NotificationWork(
                 schedule.getLineupForDate(localDateTimeProvider.now().toLocalDate(), LineupType.LOW)
             val topLineups =
                 schedule.getLineupForDate(localDateTimeProvider.now().toLocalDate(), LineupType.TOP)
+            log("🐷getFavoritesForToday lineups: ${lowLineups?.lineupEntity?.name} and ${topLineups?.lineupEntity?.name}")
             listOfNotNull(lowLineups, topLineups).forEach { lineup ->
                 result += listOf(lineup.teamA.vehicles, lineup.teamB.vehicles)
                     .flatten()

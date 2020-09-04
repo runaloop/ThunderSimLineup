@@ -8,7 +8,9 @@ import androidx.work.await
 import com.catp.model.JsonRules
 import com.catp.thundersimlineup.LocalDateTimeProvider
 import com.catp.thundersimlineup.data.Preferences
-import kotlinx.coroutines.GlobalScope
+import com.catp.thundersimlineup.log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.threeten.bp.Duration
 import toothpick.InjectConstructor
@@ -26,9 +28,9 @@ class DailyNotificator {
     lateinit var preferences: Preferences
 
     private val tag = "send_reminder_periodic"
-
     fun createNotificationTask(context: Context) {
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.Default).launch {
+            log("👁DN:createLaunch")
             val workManager = WorkManager.getInstance(context)
             cancelCurrentTask(workManager)
             if (preferences.showDailyNotification)
@@ -46,6 +48,8 @@ class DailyNotificator {
         hour: Int = JsonRules.LINEUP_UTC_TIME_OF_CHANGE,
         minute: Int = 0
     ) {
+        log("👁DN: createNewTask")
+
         val initialDelay = initialDelay(hour, minute)
 
         val workRequest = OneTimeWorkRequestBuilder<NotificationWork>()
@@ -53,15 +57,16 @@ class DailyNotificator {
             .addTag(tag)
             .build()
 
+        log("👁DN: enqueueUniqueWork")
         workManager.enqueueUniqueWork(
             tag,
             ExistingWorkPolicy.REPLACE,
             workRequest
         )
+        log("👁DN: done")
     }
 
     private fun initialDelay(hour: Int, minute: Int): Duration {
-
         val now = dateTimeProvider.now()
         return if (!Duration.between(
                 now, now.withHour(hour).withMinute(minute).withSecond(0)
@@ -84,7 +89,9 @@ class DailyNotificator {
     }
 
     private suspend fun cancelCurrentTask(workManager: WorkManager) {
+        log("👁DN:cancelCurrentTask")
         workManager.cancelAllWorkByTag(tag).await()
         workManager.pruneWork().await()
+        log("👁DN:cancelCurrentTask done")
     }
 }

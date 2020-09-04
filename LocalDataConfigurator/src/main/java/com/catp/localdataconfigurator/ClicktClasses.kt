@@ -22,7 +22,7 @@ class MainParser : CliktCommand() {
  * Get data from local xlsx, an wpcost+unitIDlocale(can be local, or from net), and regenerate xlsx with new data
  */
 class RegenerateXLSXFile : CliktCommand() {
-    private val useLocalFiles: Boolean by option().flag(default = true)
+    private val useLocalFiles: Boolean by option("-l").flag(default = false)
     override fun run() {
         val unitIDLocale = UnitIDLocale().apply { loadData(useLocalFiles) }
         val wpCost = WPCost().apply { loadData(useLocalFiles) }

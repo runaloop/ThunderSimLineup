@@ -49,6 +49,7 @@ compileKotlin {
         kapt deps.json
         annotationProcessor deps.json
         implementation deps.kotlin.coroutine
+        implementation deps.kotlin.coroutine_android
         implementation deps.fastcsv
         implementation deps.poi_ooxml
         testImplementation deps.test.mockk
