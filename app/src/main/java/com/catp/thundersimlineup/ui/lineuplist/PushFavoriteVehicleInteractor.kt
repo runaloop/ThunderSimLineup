@@ -12,9 +12,7 @@ class PushFavoriteVehicleInteractor {
     @Inject
     lateinit var lineupDao: LineupDao
 
-    fun push(selectedItems: List<Vehicle>): Observable<Int> {
-        return Observable.just(lineupDao).observeOn(Schedulers.io()).map {
-            lineupDao.updateVehicles(selectedItems)
-        }
+    fun push(selectedItems: List<Vehicle>){
+        lineupDao.updateVehicles(selectedItems)
     }
 }

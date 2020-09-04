@@ -38,10 +38,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     @Inject
     lateinit var lineupFilterByLineup: LineupFilterByLineup
 
-    @Inject
-    lateinit var pushFavoriteVehicleInteractor: PushFavoriteVehicleInteractor
-
-    private val selectedItems = mutableSetOf<Vehicle>()
 
 
     private val _refreshResult = MutableLiveData<String>()
@@ -112,7 +108,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     fun onDateChanged(date: CalendarDay, updateLoadingStatus: Boolean = true) {
         if (updateLoadingStatus)
             _lineupLoadStatus.value = true
-        pushFavorites()
         daySubject.onNext(date.date)
     }
 
@@ -158,19 +153,8 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
 
     }
 
-    fun onClick(vehicle: Vehicle) {
-        vehicle.isFavorite = !vehicle.isFavorite
-        selectedItems += vehicle
-    }
 
-    fun pushFavorites() {
-        if (selectedItems.isNotEmpty()) {
-            val items = selectedItems.toList()
-            selectedItems.clear()
-            pushFavoriteVehicleInteractor.push(items).subscribe {
-                favoriteUpdated()
-            }.addTo(cs)
-        }
-    }
+
+
 
 }

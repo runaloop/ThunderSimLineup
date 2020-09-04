@@ -2,8 +2,8 @@ package com.catp.thundersimlineup.ui.list
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
-import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import com.catp.thundersimlineup.whenNonNull
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
@@ -15,7 +15,7 @@ fun configureRecyclerView(
     adapter: FlexibleAdapter<*>,
     recyclerView: RecyclerView,
     fragment: Fragment,
-    lineupListViewModel: LineupListViewModel?
+    activityViewModel: MainActivityViewModel?
 ) {
 
     adapter.expandItemsAtStartUp()
@@ -35,11 +35,11 @@ fun configureRecyclerView(
     )
 
 
-    lineupListViewModel?.whenNonNull {
+    activityViewModel?.whenNonNull {
         adapter.addListener(FlexibleAdapter.OnItemClickListener { _, position ->
             val item: IFlexible<*>? = adapter.getItem(position)
             if (item != null && item is VehicleItem) {
-                lineupListViewModel.onClick(item.vehicle)
+                activityViewModel.onFavoriteChange(item.vehicle)
             }
             adapter.notifyItemChanged(position)
             true

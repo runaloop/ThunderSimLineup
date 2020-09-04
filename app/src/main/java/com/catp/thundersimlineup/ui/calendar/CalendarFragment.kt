@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
+import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
@@ -25,6 +26,9 @@ class CalendarFragment : Fragment() {
     @Inject
     lateinit var currentDayDecorator: CurrentDayDecorator
 
+    @Inject
+    lateinit var mainActivityViewModel: MainActivityViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +47,7 @@ class CalendarFragment : Fragment() {
         calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
                 lineupListViewModel.onDateChanged(date)
+                mainActivityViewModel.pushFavorites()
             }
         }
         calendarView.addDecorators(currentDayDecorator)

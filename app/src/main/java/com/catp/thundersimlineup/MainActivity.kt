@@ -37,14 +37,14 @@ class MainActivity : AppCompatActivity() {
 
     @VisibleForTesting
     private fun injectDependencies() {
-        KTP.openScopes(ApplicationScope::class.java)
+        val activityScope = KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(ViewModelScope::class.java) { scope ->
                 scope
                     .installViewModelBinding<LineupListViewModel>(this)
                     .installViewModelBinding<MainActivityViewModel>(this)
                     .closeOnViewModelCleared(this)
-                    .apply { inject(this@MainActivity) }
             }
+        activityScope.inject(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

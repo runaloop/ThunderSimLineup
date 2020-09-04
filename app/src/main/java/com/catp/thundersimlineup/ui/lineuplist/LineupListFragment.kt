@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
@@ -29,6 +30,9 @@ class LineupListFragment : Fragment() {
 
     @Inject
     lateinit var lineupListViewModel: LineupListViewModel
+
+    @Inject
+    lateinit var mainActivityViewModel: MainActivityViewModel
 
     @Inject
     lateinit var statUtil: StatUtil
@@ -56,6 +60,7 @@ class LineupListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //LoggingLifecycleObserver.registerLogging(viewLifecycleOwner.lifecycle,"😻LineupListFragmentView:")
         lineupListViewModel.text.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty() && getView() != null) {
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
@@ -65,7 +70,7 @@ class LineupListFragment : Fragment() {
 
         fab.setOnClickListener {
             fab.isEnabled = false
-            lineupListViewModel.pushFavorites()
+            mainActivityViewModel.pushFavorites()
             findNavController(this).navigate(R.id.action_lineup_list_fragment_to_vehicle_list)
         }
         fab.isEnabled = true
@@ -76,7 +81,7 @@ class LineupListFragment : Fragment() {
 
         lineupListViewModel.refreshData(false)
 
-        configureRecyclerView(lineupAdapter, rvLineupList, this, lineupListViewModel)
+        configureRecyclerView(lineupAdapter, rvLineupList, this, mainActivityViewModel)
 
         lineupListViewModel.currentLineup.observe(viewLifecycleOwner, Observer { lineup ->
             lineupAdapter.setNewLineup(this.requireContext(), lineup)
@@ -85,6 +90,11 @@ class LineupListFragment : Fragment() {
         })
 
         statUtil.sendViewStat(this, "LineupList")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        //LoggingLifecycleObserver.registerLogging(lifecycle, "😻LineupListFragment:")
+        super.onCreate(savedInstanceState)
     }
 
 
@@ -141,13 +151,17 @@ class LineupListFragment : Fragment() {
     }
 
     override fun onDetach() {
-        lineupListViewModel.pushFavorites()
         super.onDetach()
     }
 
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).supportActionBar?.show()
+    }
+
+    override fun onPause() {
+        mainActivityViewModel.pushFavorites()
+        super.onPause()
     }
 
     private fun updateLineupText(lineup: LineupRequestInteractor.LineupForToday) {
