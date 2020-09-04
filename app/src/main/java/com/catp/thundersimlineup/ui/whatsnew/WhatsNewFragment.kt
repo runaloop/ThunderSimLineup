@@ -69,7 +69,8 @@ class WhatsNewFragment : Fragment() {
 
         configureRecyclerView(changesAdapter, rvChangesList, this, null)
         //Without this headerview is not collapsing
-        changesAdapter.addListener(FlexibleAdapter.OnItemClickListener { _, _ ->
+        changesAdapter.addListener(FlexibleAdapter.OnItemClickListener { _, position ->
+            changesAdapter.notifyItemChanged(position)
             true
         })
 
