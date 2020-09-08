@@ -12,6 +12,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jakewharton.threetenabp.AndroidThreeTen
 import toothpick.Scope
+import toothpick.Toothpick
 import toothpick.ktp.KTP
 import toothpick.smoothie.module.SmoothieApplicationModule
 import javax.inject.Inject
@@ -35,17 +36,23 @@ class App : MultiDexApplication(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        tpInit()
+        AndroidThreeTen.init(this)
+        firebaseInit()
+    }
+
+    private fun tpInit() {
         scope = KTP.openScope(ApplicationScope::class.java)
             .installModules(SmoothieApplicationModule(this), DBModule(this), DataModule())
         scope.inject(this)
-        AndroidThreeTen.init(this)
-        firebaseInit()
+        if (BuildConfig.DEBUG)
+            Toothpick.setConfiguration(toothpick.configuration.Configuration.forDevelopment())
     }
 
     private fun firebaseInit() {
         FirebaseApp.initializeApp(this)
         val instance = FirebaseCrashlytics.getInstance()
-        if (!preferences.sendCrashLogs) {
+        if (!preferences.sendCrashLogs || BuildConfig.DEBUG) {
             instance.deleteUnsentReports()
             instance.setCrashlyticsCollectionEnabled(false)
         } else {
@@ -56,7 +63,7 @@ class App : MultiDexApplication(), Configuration.Provider {
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
             .setWorkerFactory(workerFactory)
-            .setMinimumLoggingLevel(VERBOSE)
+            //.setMinimumLoggingLevel(VERBOSE)
             .build()
     }
 }

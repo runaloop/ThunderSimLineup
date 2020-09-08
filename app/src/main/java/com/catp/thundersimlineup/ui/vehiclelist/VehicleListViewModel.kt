@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.catp.thundersimlineup.data.db.entity.Vehicle
+import com.catp.thundersimlineup.log
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import toothpick.InjectConstructor
@@ -13,8 +14,6 @@ import javax.inject.Singleton
 @Singleton
 @InjectConstructor
 class VehicleListViewModel : ViewModel() {
-
-
     @Inject
     lateinit var vehicleRequestInteractor: VehicleRequestInteractor
 

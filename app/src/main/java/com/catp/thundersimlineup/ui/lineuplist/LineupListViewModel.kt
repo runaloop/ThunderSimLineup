@@ -7,12 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import com.catp.thundersimlineup.data.FilterState
 import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
-import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import org.threeten.bp.LocalDate
@@ -74,9 +72,9 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         }
 
     override fun onCleared() {
-        super.onCleared()
         cs.dispose()
         subscription.dispose()
+        super.onCleared()
     }
 
     fun filterChange(

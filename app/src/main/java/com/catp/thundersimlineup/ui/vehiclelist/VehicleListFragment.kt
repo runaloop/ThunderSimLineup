@@ -12,11 +12,13 @@ import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
+import com.catp.thundersimlineup.annotation.VehicleListViewModelScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import kotlinx.android.synthetic.main.fragment_vehicle_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
+import toothpick.smoothie.viewmodel.installViewModelBinding
 import javax.inject.Inject
 
 class VehicleListFragment : Fragment() {
@@ -37,7 +39,6 @@ class VehicleListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root = inflater.inflate(R.layout.fragment_vehicle_list, container, false)
         injectDependencies()
         setHasOptionsMenu(true)
@@ -96,8 +97,9 @@ class VehicleListFragment : Fragment() {
         KTP
             .openScopes(ApplicationScope::class.java)
             .openSubScope(ViewModelScope::class.java)
-            .closeOnViewModelCleared(this).apply {
-                inject(this@VehicleListFragment)
-            }
+            .openSubScope(VehicleListViewModelScope::class.java)
+            .installViewModelBinding<VehicleListViewModel>(this)
+            .closeOnViewModelCleared(this)
+            .inject(this)
     }
 }

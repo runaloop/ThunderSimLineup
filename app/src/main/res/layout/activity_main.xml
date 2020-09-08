@@ -11,14 +11,15 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        style="@style/CustomToolbarStyle"
+        style="@style/AppTheme.CustomToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/colorIcons" />
+        app:titleTextColor="@color/colorIcons"
+        />
 
     <fragment
         android:id="@+id/nav_host_fragment"

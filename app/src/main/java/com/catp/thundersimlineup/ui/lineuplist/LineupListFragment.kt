@@ -10,19 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.catp.thundersimlineup.MainActivityViewModel
-import com.catp.thundersimlineup.R
-import com.catp.thundersimlineup.StatUtil
+import com.catp.thundersimlineup.*
 import com.catp.thundersimlineup.annotation.ApplicationScope
+import com.catp.thundersimlineup.annotation.LineupListViewModelScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.data.FilterState
-import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.lineup_list.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
+import toothpick.smoothie.viewmodel.installViewModelBinding
 import javax.inject.Inject
 
 
@@ -87,6 +86,10 @@ class LineupListFragment : Fragment() {
             lineupAdapter.setNewLineup(this.requireContext(), lineup)
             updateLineupText(lineup)
             rvLineupList.scrollToPosition(0)
+        })
+
+        mainActivityViewModel.calendarDate.observe(viewLifecycleOwner, Observer { date ->
+            lineupListViewModel.onDateChanged(date)
         })
 
         statUtil.sendViewStat(this, "LineupList")
@@ -195,8 +198,9 @@ class LineupListFragment : Fragment() {
         KTP
             .openScopes(ApplicationScope::class.java)
             .openSubScope(ViewModelScope::class.java)
-            .closeOnViewModelCleared(this).apply {
-                inject(this@LineupListFragment)
-            }
+            .openSubScope(LineupListViewModelScope::class.java)
+            .installViewModelBinding<LineupListViewModel>(this)
+            .closeOnViewModelCleared(this)
+            .inject(this)
     }
 }

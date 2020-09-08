@@ -9,7 +9,6 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
-import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import toothpick.ktp.KTP
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -30,21 +29,19 @@ class MainActivity : AppCompatActivity() {
             this,
             findNavController(R.id.nav_host_fragment)
         )
-        if (viewModel.notificationTaskCreateDelegate != "OK") {
-            throw RuntimeException("Notifcation task should be initialized")
+        require(viewModel.notificationTaskCreateDelegate == "OK"){
+            "Notification task should be initialized"
         }
     }
 
     @VisibleForTesting
     private fun injectDependencies() {
-        val activityScope = KTP.openScopes(ApplicationScope::class.java)
+        KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(ViewModelScope::class.java) { scope ->
                 scope
-                    .installViewModelBinding<LineupListViewModel>(this)
                     .installViewModelBinding<MainActivityViewModel>(this)
                     .closeOnViewModelCleared(this)
-            }
-        activityScope.inject(this)
+            }.inject(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -2,10 +2,13 @@ package com.catp.thundersimlineup
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.catp.thundersimlineup.data.db.entity.Vehicle
 import com.catp.thundersimlineup.notifications.DailyNotificator
 import com.catp.thundersimlineup.ui.lineuplist.PushFavoriteVehicleInteractor
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,14 +26,19 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         dailyNotificator.createNotificationTask(application)
         "OK"
     }
-    init {
-        log("🍏 inited")
-    }
-    override fun onCleared() {
-        log("🍏 onCleared")
+
+
+
+    private val _calendarDate: MutableLiveData<CalendarDay> = MutableLiveData()
+    val calendarDate = _calendarDate as LiveData<CalendarDay>
+
+    override fun onCleared() { log("🍏 onCleared")
         super.onCleared()
     }
 
+    fun onDateChanged(date: CalendarDay) {
+        _calendarDate.value = date
+    }
     fun onFavoriteChange(vehicle: Vehicle) {
         vehicle.isFavorite = !vehicle.isFavorite
         selectedItems += vehicle

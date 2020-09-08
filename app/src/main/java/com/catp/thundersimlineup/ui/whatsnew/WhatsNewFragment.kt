@@ -9,11 +9,14 @@ import androidx.lifecycle.Observer
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
+import com.catp.thundersimlineup.annotation.NewViewModelScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import kotlinx.android.synthetic.main.fragment_changes_list.*
 import toothpick.ktp.KTP
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
+import toothpick.smoothie.viewmodel.installViewModelBinding
 import javax.inject.Inject
 
 
@@ -82,6 +85,9 @@ class WhatsNewFragment : Fragment() {
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(ViewModelScope::class.java)
+            .openSubScope(NewViewModelScope::class.java)
+            .installViewModelBinding<WhatsNewViewModel>(this)
+            .closeOnViewModelCleared(this)
             .inject(this)
     }
 

@@ -10,7 +10,6 @@ import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
-import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import org.threeten.bp.LocalDate
 import toothpick.ktp.KTP
@@ -18,11 +17,6 @@ import javax.inject.Inject
 
 
 class CalendarFragment : Fragment() {
-
-
-    @Inject
-    lateinit var lineupListViewModel: LineupListViewModel
-
     @Inject
     lateinit var currentDayDecorator: CurrentDayDecorator
 
@@ -46,7 +40,7 @@ class CalendarFragment : Fragment() {
         calendarView.setSelectedDate(now)
         calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
-                lineupListViewModel.onDateChanged(date)
+                mainActivityViewModel.onDateChanged(date)
                 mainActivityViewModel.pushFavorites()
             }
         }

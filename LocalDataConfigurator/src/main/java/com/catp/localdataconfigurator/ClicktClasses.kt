@@ -11,6 +11,7 @@ import com.github.ajalt.clikt.parameters.options.option
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.nio.file.Files
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
@@ -66,16 +67,36 @@ class ReadWTDump : CliktCommand() {
     override fun run() {
         with(File(fileToParse)) {
             if (isDirectory) {
-                listFiles().filter { it.length() > 1000000 }.forEach { file ->
+                val bigFiles = listFiles().filter { it.length() > 1000000 }
+                if (bigFiles.size > 1) {
+                    TermUi.echo("Found ${bigFiles.size} files:")
+                    bigFiles.forEachIndexed { index, file ->
+                        val time = Files.getLastModifiedTime(file.toPath())
+                        TermUi.echo("${index + 1} $time ${file.name}")
+                    }
+                }
+                bigFiles.forEach { file ->
                     if ("y" == TermUi.prompt("Would you like to parse file: $file"))
                         WTDumpReader(file.absolutePath, verbose).parseFile()
                 }
+                deleteParsedFile(bigFiles)
             } else {
                 WTDumpReader(fileToParse, verbose).parseFile()
+                deleteParsedFile(listOf(File(fileToParse)))
             }
         }
 
     }
 
+    private fun deleteParsedFile(files: List<File>) {
+        if ("y" == TermUi.prompt("Would you like to delete all the listed files?")) {
+            files.forEach { file ->
+                Files.delete(file.toPath())
+            }
+        }
+    }
+
 
 }
+
+
