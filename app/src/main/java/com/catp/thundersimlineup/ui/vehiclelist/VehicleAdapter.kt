@@ -11,7 +11,14 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 
 class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, false) {
 
+    var setDataItems: List<Vehicle> = emptyList()
     fun setData(context: Context, items: List<Vehicle>) {
+
+        if(items == setDataItems)
+            return
+
+        setDataItems = items
+
         val favorites = items.filter { it.isFavorite }.sortedBy { it.nation }
 
         val favHeader = if (favorites.isNotEmpty()) {

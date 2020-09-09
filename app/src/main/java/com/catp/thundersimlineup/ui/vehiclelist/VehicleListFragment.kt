@@ -32,7 +32,7 @@ class VehicleListFragment : Fragment() {
     @Inject
     lateinit var statUtil: StatUtil
 
-    val itemAdapter = VehicleAdapter()
+    lateinit var itemAdapter: VehicleAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,6 +72,8 @@ class VehicleListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        itemAdapter = VehicleAdapter()
 
         vehicleListViewModel.vehicles.observe(viewLifecycleOwner, Observer { list ->
             itemAdapter.setData(requireContext(), list)
