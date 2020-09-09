@@ -3,10 +3,9 @@ package com.catp.thundersimlineup.ui.vehiclelist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.catp.thundersimlineup.data.db.entity.Vehicle
-import com.catp.thundersimlineup.log
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
+import kotlinx.coroutines.launch
 import toothpick.InjectConstructor
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,24 +17,19 @@ class VehicleListViewModel : ViewModel() {
     lateinit var vehicleRequestInteractor: VehicleRequestInteractor
 
 
-    private val _vehicles = MutableLiveData<List<Vehicle>>().apply {
-        //
-    }
-
+    private val _vehicles = MutableLiveData<List<Vehicle>>()
 
     val vehicles: LiveData<List<Vehicle>> = _vehicles
-    private val cs = CompositeDisposable()
 
     override fun onCleared() {
-        cs.clear()
         super.onCleared()
     }
 
     fun viewCreated() {
-        vehicleRequestInteractor.getVehicles()
-            .subscribe {
-                _vehicles.postValue(it)
-            }.addTo(cs)
+        viewModelScope.launch {
+            val vehicles = vehicleRequestInteractor.getVehicles()
+            _vehicles.value = vehicles
+        }
     }
 
 

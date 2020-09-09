@@ -3,9 +3,9 @@ package com.catp.thundersimlineup.ui.whatsnew
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.catp.thundersimlineup.data.db.entity.Change
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class WhatsNewViewModel : ViewModel() {
@@ -13,23 +13,17 @@ class WhatsNewViewModel : ViewModel() {
     @Inject
     lateinit var changesRequestInteractor: ChangesRequestInteractor
 
-    private val _changes = MutableLiveData<List<Change>>().apply {
-        //
-    }
-
+    private val _changes = MutableLiveData<List<Change>>()
 
     val changes: LiveData<List<Change>> = _changes
-
-    private val cs = CompositeDisposable()
-
     override fun onCleared() {
-        cs.clear()
         super.onCleared()
     }
 
     fun viewCreated() {
-        changesRequestInteractor.getChanges().subscribe {
-            _changes.postValue(it)
-        }.addTo(cs)
+        viewModelScope.launch {
+            val result = changesRequestInteractor.getChanges()
+            _changes.value = result
+        }
     }
 }

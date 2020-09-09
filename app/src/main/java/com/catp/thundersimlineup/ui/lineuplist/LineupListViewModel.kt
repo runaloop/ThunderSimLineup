@@ -4,15 +4,19 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.catp.thundersimlineup.data.FilterState
 import com.catp.thundersimlineup.data.LineupStorage
 import com.catp.thundersimlineup.data.Schedule
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.PublishSubject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 import toothpick.InjectConstructor
 import java.util.concurrent.atomic.AtomicBoolean
@@ -37,7 +41,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     lateinit var lineupFilterByLineup: LineupFilterByLineup
 
 
-
     private val _refreshResult = MutableLiveData<String>()
     private val _filterStatus = MutableLiveData<FilterState>().apply {
         value = FilterState()
@@ -46,7 +49,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     private val _lineupLoadStatus = MutableLiveData<Boolean>()
 
     val text: LiveData<String> = _refreshResult
-    private val daySubject: PublishSubject<LocalDate> = PublishSubject.create<LocalDate>()
+    private val daySubject = Channel<LocalDate>()
     private val _currentLineup = MutableLiveData<LineupRequestInteractor.LineupForToday>()
     val currentLineup: LiveData<LineupRequestInteractor.LineupForToday> = _currentLineup
     val filterStatus: LiveData<FilterState> = _filterStatus
@@ -54,26 +57,29 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     val lineupLoadStatus: LiveData<Boolean> = _lineupLoadStatus
     private val dbUpdates = AtomicBoolean()
 
-    private val cs = CompositeDisposable()
-    private val subscription: Disposable = daySubject
-        .doOnError {
-            _lineupLoadStatus.postValue(false)
+    init {
+        viewModelScope.launch {
+            daySubject
+                .receiveAsFlow()
+                .catch { _lineupLoadStatus.postValue(false) }
+                .collectLatest { day ->
+                    withContext(Dispatchers.IO) {
+                        if (!dbUpdates.get()) {
+                            delay(3000)
+                            val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
+                            val lineupAvailableFilters =
+                                lineupFilterByLineup.getFilters(lineupForToday)
+                            withContext(Dispatchers.Main) {
+                                _filterAvailable.value = lineupAvailableFilters
+                                _currentLineup.value = lineupForToday
+                                _lineupLoadStatus.value = false
+                            }
+                        }
+                    }
+                }
         }
-        .observeOn(Schedulers.io())
-        //.subscribeOn(Schedulers.io())
-        .subscribe { day ->
-            if (!dbUpdates.get()) {
-                val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
-                val lineupAvailableFilters = lineupFilterByLineup.getFilters(lineupForToday)
-                _filterAvailable.postValue(lineupAvailableFilters)
-                _currentLineup.postValue(lineupForToday)
-                _lineupLoadStatus.postValue(false)
-            }
-        }
-
+    }
     override fun onCleared() {
-        cs.dispose()
-        subscription.dispose()
         super.onCleared()
     }
 
@@ -106,30 +112,29 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     fun onDateChanged(date: CalendarDay, updateLoadingStatus: Boolean = true) {
         if (updateLoadingStatus)
             _lineupLoadStatus.value = true
-        daySubject.onNext(date.date)
+        viewModelScope.launch(Dispatchers.IO) {
+            daySubject.send(date.date)
+        }
     }
 
     fun refreshData(force: Boolean) {
         startDBRefresh()
-        cs.add(lineupStorage
-            .refresh(this.getApplication(), force)
-            .doOnError {
-                refreshDBError()
-            }
-            .map { result ->
-                result
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
+        viewModelScope.launch {
+            try {
+                val result = lineupStorage.refresh(getApplication(), force)
                 when (result) {
                     LineupStorage.RefreshResult.NEW_DATA -> _refreshResult.value =
                         "Lineups have been updated"
-                    /*LineupStorage.RefreshResult.NO_NEW_DATA ->
-                    _refreshResult.value =
-                        "Lineups loaded and ready to work"*/
                 }
+                /*LineupStorage.RefreshResult.NO_NEW_DATA ->
+                _refreshResult.value =
+                    "Lineups loaded and ready to work"*/
+            } catch (exception: Exception) {
+                refreshDBError()
+            } finally {
                 refreshDBFinished()
-            })
+            }
+        }
     }
 
     private fun startDBRefresh() {
@@ -150,9 +155,6 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     private fun favoriteUpdated() {
 
     }
-
-
-
 
 
 }

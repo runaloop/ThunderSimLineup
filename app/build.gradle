@@ -113,7 +113,6 @@ dependencies {
     implementation deps.android.lifecycle
     implementation deps.android.room
     implementation deps.android.room_ktx
-    implementation deps.android.room_rx
     implementation deps.android.work
     implementation deps.android.preferences
 
@@ -130,8 +129,6 @@ dependencies {
     implementation deps.material_calendar
     implementation deps.threetenabp
 
-    implementation deps.rxkotlin
-    implementation deps.rxandroid
 
     implementation deps.flexible_adapter
     implementation deps.flexible_adapter_ui

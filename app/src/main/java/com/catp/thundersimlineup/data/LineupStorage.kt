@@ -4,8 +4,8 @@ import android.content.Context
 import com.catp.model.JsonLineupConfig
 import com.catp.thundersimlineup.data.db.DBPopulate
 import com.catp.thundersimlineup.data.db.LineupDao
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -31,21 +31,19 @@ class LineupStorage {
      * else check via refresh interval, needness for network call
      * if local db empty, load from local json, and than try to check from network
      */
-    fun refresh(context: Context, force: Boolean): Observable<RefreshResult> {
-        return Observable.just(context)
-            .observeOn(Schedulers.io())
-            .map { ctx ->
-                val localJsonConfig = storage.loadFromRAW(ctx)
-                val localUpdateResult = updateDBIfNeeded(localJsonConfig)
-                if (localUpdateResult == RefreshResult.NO_NEW_DATA
-                    && (force || refreshIntervalChecker.isRefreshNeeded(context))
-                ) {
-                    return@map updateDBIfNeeded(netLoader.getData())
-                } else {
-                    localUpdateResult
-                }
+    suspend fun refresh(context: Context, force: Boolean): RefreshResult =
+        withContext(Dispatchers.IO){
+            val localJsonConfig = storage.loadFromRAW(context)
+            val localUpdateResult = updateDBIfNeeded(localJsonConfig)
+            if (localUpdateResult == RefreshResult.NO_NEW_DATA
+                && (force || refreshIntervalChecker.isRefreshNeeded(context))
+            ) {
+                updateDBIfNeeded(netLoader.getData())
+            } else {
+                localUpdateResult
             }
-    }
+        }
+
 
     private fun updateDBIfNeeded(jsonConfig: JsonLineupConfig): RefreshResult {
         val localDBVersion = lineupDao.getVersion()?.version ?: 0
