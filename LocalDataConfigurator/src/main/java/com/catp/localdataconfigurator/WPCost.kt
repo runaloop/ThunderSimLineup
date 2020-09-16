@@ -12,7 +12,8 @@ class WPCost {
     companion object {
         const val WPCOST_PATH =
             //"https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges/blob/master/Files/char.vromfs.bin_u/config/wpcost.blkx?raw=true"
-            "https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges_DevClient/blob/master/Files/char.vromfs.bin_u/config/wpcost.blkx?raw=true"
+            //"https://github.com/VitaliiAndreev/WarThunder_JsonFileChanges_DevClient/blob/master/Files/char.vromfs.bin_u/config/wpcost.blkx?raw=true"
+            "https://github.com/gszabi99/War-Thunder-Datamine/blob/master/char.vromfs.bin_u/config/wpcost.blkx?raw=true"
     }
 
     val vehicleItems = mutableMapOf<String, VehicleItem>()
