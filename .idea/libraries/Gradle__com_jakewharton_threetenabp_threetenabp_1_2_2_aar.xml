@@ -9,9 +9,10 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7564046ed7045f05263f8cbfcfd57838/jetified-threetenabp-1.2.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/475075da748579d289b5bea9267bfa20/jetified-threetenabp-1.2.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ae4109d4f19ee407d42f4105400e2f3/jetified-threetenabp-1.2.2/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e5fed6694a03c6da336c8cba9c97dea1/jetified-threetenabp-1.2.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e5fed6694a03c6da336c8cba9c97dea1/jetified-threetenabp-1.2.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e5fed6694a03c6da336c8cba9c97dea1/jetified-threetenabp-1.2.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c43bb7db4e24c69f3b2bac4c7e204818/jetified-threetenabp-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c43bb7db4e24c69f3b2bac4c7e204818/jetified-threetenabp-1.2.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c43bb7db4e24c69f3b2bac4c7e204818/jetified-threetenabp-1.2.2/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.threetenabp/threetenabp/1.2.2/ca856baeee1116136825b4b5550d37f16f8f7059/threetenabp-1.2.2-javadoc.jar!/" />

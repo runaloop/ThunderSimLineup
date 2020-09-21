@@ -4,26 +4,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.catp.thundersimlineup.data.db.ChangeDao
 import com.catp.thundersimlineup.data.db.entity.Change
+import com.catp.thundersimlineup.ui.BaseViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class WhatsNewViewModel : ViewModel() {
+class WhatsNewViewModel : BaseViewModel() {
 
     @Inject
-    lateinit var changesRequestInteractor: ChangesRequestInteractor
+    lateinit var changesDao: ChangeDao
 
     private val _changes = MutableLiveData<List<Change>>()
-
     val changes: LiveData<List<Change>> = _changes
-    override fun onCleared() {
-        super.onCleared()
-    }
 
-    fun viewCreated() {
+    override fun onCreateAfterInject() {
         viewModelScope.launch {
-            val result = changesRequestInteractor.getChanges()
-            _changes.value = result
+            changesDao.getChangeList().collectLatest { _changes.value = it }
         }
     }
 }

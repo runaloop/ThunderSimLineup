@@ -22,12 +22,21 @@ class ThunderLineupTxtGuesser {
         }
         data.forEach { list ->
             TermUi.echo("🐷List of items")
-            TermUi.echo(list)
+            TermUi.echo(extractVehicleId(list))
             guessAndMerge(lineups, parseJson(list)!!)
         }
         if (TermUi.confirm("Would you like to generate new xlsx?") == true) {
             lineupMatchPlanesWithBR.process()
             SpreedSheetGenerator(lineups, vehicleStore).make()
+        }
+    }
+
+    private fun extractVehicleId(list: List<String>): List<String> {
+        return list.map { title ->
+            val id = "{\"id\":\""
+            val start = title.indexOf(id) + id.length
+            val finish = title.indexOf("\",", start)
+            title.substring(start, finish)
         }
     }
 
@@ -84,11 +93,13 @@ class ThunderLineupTxtGuesser {
 
         if (toDelete.isNotEmpty()) {
             val removePromt = TermUi.prompt(
-                "Confirm items to remove from team ${teamLetter}: \u001b[31m${toDelete.joinToString(
-                    "\n",
-                    "\n",
-                    "\n"
-                )} \u001B[37m(If not, you will be asked about every listed items separetly, if you want to skip this changes type -)"
+                "Confirm items to remove from team ${teamLetter}: \u001b[31m${
+                    toDelete.joinToString(
+                        "\n",
+                        "\n",
+                        "\n"
+                    )
+                } \u001B[37m(If not, you will be asked about every listed items separetly, if you want to skip this changes type -)"
             )
             if (removePromt == "y"
             ) {
@@ -105,11 +116,13 @@ class ThunderLineupTxtGuesser {
         }
         if (toAdd.isNotEmpty()) {
             val confirm = TermUi.prompt(
-                "\u001b[37mConfirm items to add to team $teamLetter \u001b[32m${toAdd.joinToString(
-                    "\n",
-                    "\n",
-                    "\n"
-                )} \u001B[37m(If not, you will be asked about every listed items separetly, if you want to skip this changes type -)"
+                "\u001b[37mConfirm items to add to team $teamLetter \u001b[32m${
+                    toAdd.joinToString(
+                        "\n",
+                        "\n",
+                        "\n"
+                    )
+                } \u001B[37m(If not, you will be asked about every listed items separetly, if you want to skip this changes type -)"
             )
             if (confirm == "y"
             ) {

@@ -2,6 +2,7 @@ package com.catp.thundersimlineup.data.db
 
 import androidx.room.*
 import com.catp.thundersimlineup.data.db.entity.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface LineupDao {
@@ -79,6 +80,9 @@ interface LineupDao {
     @Query("SELECT * FROM DataVersion LIMIT 1")
     fun getVersion(): DataVersion?
 
+
+    @Query("SELECT * FROM Vehicle")
+    fun getVehiclesFlow(): Flow<List<Vehicle>>
 
     @Query("SELECT * FROM Vehicle")
     fun getVehicles(): List<Vehicle>

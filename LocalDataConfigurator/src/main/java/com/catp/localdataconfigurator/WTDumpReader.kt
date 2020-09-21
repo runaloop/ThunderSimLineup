@@ -66,9 +66,6 @@ class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
             currentList.add(item)
             lastPosition = position
         }
-        result.forEach{
-            println("😾$it")
-        }
         return result.filter { it.size > 20 }//skip small lists
     }
 

@@ -11,6 +11,8 @@ import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.NewViewModelScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.ui.BaseFragment
+import com.catp.thundersimlineup.ui.BaseViewModel
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import kotlinx.android.synthetic.main.fragment_changes_list.*
@@ -20,10 +22,12 @@ import toothpick.smoothie.viewmodel.installViewModelBinding
 import javax.inject.Inject
 
 
-class WhatsNewFragment : Fragment() {
+class WhatsNewFragment : BaseFragment() {
 
     @Inject
     lateinit var whatsNewViewModel: WhatsNewViewModel
+    override val viewModel: BaseViewModel
+        get() = whatsNewViewModel
 
     @Inject
     lateinit var statUtil: StatUtil
@@ -64,6 +68,8 @@ class WhatsNewFragment : Fragment() {
     }
 
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         whatsNewViewModel.changes.observe(viewLifecycleOwner, Observer { list ->
@@ -77,7 +83,6 @@ class WhatsNewFragment : Fragment() {
             true
         })
 
-        whatsNewViewModel.viewCreated()
         statUtil.sendViewStat(this, "WhatsNew")
     }
 

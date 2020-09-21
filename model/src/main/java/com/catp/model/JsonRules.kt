@@ -11,6 +11,7 @@ class JsonRules(
     val lineupShiftRule1: Map<String, String> = mapOf("2020-06-10" to "4_1"),
     val lineupShiftRule2: Map<String, String> = mapOf("2020-06-10" to "9_2"),
     val lineupAvailability: Map<String, Pair<String, String>> = mapOf(
+
         /*"E_1" to Pair(
             "2019-12-26",
             "2019-12-29"
