@@ -1,10 +1,8 @@
 package com.catp.thundersimlineup
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.view.View
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.analytics.FirebaseAnalytics
 import org.threeten.bp.LocalDate
@@ -39,41 +37,36 @@ class LocalDateTimeProvider {
 class LocalDateProvider {
     fun now(): LocalDate = LocalDate.now(ZoneId.of("Z"))
 }
-
+const val loadingOpacity = 0.5f
+const val loadingTransparent = 0f
+const val loadingAnimDuration = 200L
 @SuppressLint("ClickableViewAccessibility")
-fun progressBarStatus(value: Boolean, progressBar: View) {
-    val loadingOpacity = 0.5f
-    if (value) {
-        progressBar.animation?.cancel()
-        val animator = ObjectAnimator.ofFloat(progressBar, View.ALPHA, 0f, loadingOpacity)
-        animator.duration = 200
-        animator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationStart(animation: Animator?, isReverse: Boolean) {
+fun progressBarStatus(show: Boolean, progressBar: View) {
+    if (show) {
+        ViewCompat.animate(progressBar)
+            .alpha(loadingOpacity)
+            .withStartAction {
+                progressBar.alpha = loadingTransparent
+                progressBar.setOnTouchListener { _, _ ->
+                    true
+                }
+                progressBar.setOnClickListener {
+                    true
+                }
                 progressBar.visibility = View.VISIBLE
             }
-        })
-        animator.start()
-
-        progressBar.setOnTouchListener { _, _ ->
-            true
-        }
-        progressBar.setOnClickListener {
-            true
-        }
+            .setDuration(loadingAnimDuration)
+            .start()
     } else {
-        progressBar.animation?.cancel()
-        val animator = ObjectAnimator.ofFloat(progressBar, View.ALPHA, loadingOpacity, 0f)
-        animator.duration = 200
-        animator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationStart(animation: Animator?, isReverse: Boolean) {
+        ViewCompat.animate(progressBar)
+            .alpha(loadingTransparent)
+            .setDuration(loadingAnimDuration)
+            .withStartAction {
+                progressBar.alpha = loadingOpacity
                 progressBar.visibility = View.VISIBLE
-            }
-
-            override fun onAnimationEnd(animation: Animator?) {
+            }.withEndAction {
                 progressBar.visibility = View.GONE
-            }
-        })
-        animator.start()
+            }.start()
     }
 }
 
@@ -107,7 +100,7 @@ class CrashOnCondition {
         }
     }
 
-    fun crashOnlyOnce(message: String){
+    fun crashOnlyOnce(message: String) {
         hash[message].whenNull {
             hash[message] = 1
             throw RuntimeException(message)
@@ -115,7 +108,7 @@ class CrashOnCondition {
     }
 }
 
-fun log(str: String){
-    if(BuildConfig.DEBUG)
+fun log(str: String) {
+    if (BuildConfig.DEBUG)
         println(str)
 }
