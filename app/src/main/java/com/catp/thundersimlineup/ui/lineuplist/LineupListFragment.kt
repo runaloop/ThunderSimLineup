@@ -10,11 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.catp.thundersimlineup.*
+import com.catp.thundersimlineup.MainActivityViewModel
+import com.catp.thundersimlineup.R
+import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.LineupListViewModelScope
 import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.data.FilterState
+import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
@@ -173,9 +176,8 @@ class LineupListFragment : Fragment() {
         val hoursToChange = lineup.timeToChange.toHours().toString()
         val minutesToChange = (lineup.timeToChange.toMinutes() % 60).toString()
         if (lineup.timeToChange.isZero) {
-            //hide
             tvCurrentLineup.text = getString(
-                R.string.selected_day_lineup_text,
+                if (lineup.isPast) R.string.selected_past_day_lineup_text else R.string.selected_day_lineup_text,
                 currentLineupLow,
                 currentLineupTop
             )

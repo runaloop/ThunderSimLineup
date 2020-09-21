@@ -41,4 +41,5 @@
     <string name="pref_title_send_anonym_stat">Отправлять анонимную статистику использования приложения</string>
     <string name="pref_title_refresh_lineup_list">Обновить список лайнапов</string>
     <string name="refresh_started">Идет проверка обновлений</string>
+    <string name="selected_past_day_lineup_text">Лайнапы для выбранной даты: %s и %s</string>
 </resources>

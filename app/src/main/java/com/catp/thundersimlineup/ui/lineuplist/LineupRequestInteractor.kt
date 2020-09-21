@@ -44,6 +44,7 @@ class LineupRequestInteractor {
         }
 
 
+
         val isLineupForToday = !diff.isZero
         return LineupForToday(
             Pair(
@@ -57,7 +58,8 @@ class LineupRequestInteractor {
                 ) else Pair(null, null)
             ,
             diff,
-            isLineupForToday
+            isLineupForToday,
+            currentUTC.toLocalDate().isAfter(day)
         )
     }
 
@@ -65,6 +67,7 @@ class LineupRequestInteractor {
         val lineupNow: Pair<Lineup?, Lineup?>,
         val lineupThen: Pair<Lineup?, Lineup?>,
         val timeToChange: Duration,
-        val isLineupForNow: Boolean = false
+        val isLineupForNow: Boolean = false,
+        val isPast: Boolean = false
     )
 }
