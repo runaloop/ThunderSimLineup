@@ -11,7 +11,6 @@ import com.catp.thundersimlineup.data.Schedule
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -56,6 +55,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
     val filterAvailable: LiveData<FilterState> = _filterAvailable
     val lineupLoadStatus: LiveData<Boolean> = _lineupLoadStatus
     private val dbUpdates = AtomicBoolean()
+    private var selectedDay = LocalDate.now()
 
     init {
         viewModelScope.launch {
@@ -63,9 +63,9 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                 .receiveAsFlow()
                 .catch { _lineupLoadStatus.postValue(false) }
                 .collectLatest { day ->
+                    selectedDay = day
                     withContext(Dispatchers.IO) {
                         if (!dbUpdates.get()) {
-                            delay(3000)
                             val lineupForToday = lineupRequestInteractor.getLineupForADay(day)
                             val lineupAvailableFilters =
                                 lineupFilterByLineup.getFilters(lineupForToday)
@@ -79,6 +79,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                 }
         }
     }
+
     override fun onCleared() {
         super.onCleared()
     }
@@ -149,7 +150,7 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun refreshDBFinished() {
         dbUpdates.set(false)
-        onDateChanged(CalendarDay.from(LocalDate.now()), false)
+        onDateChanged(CalendarDay.from(selectedDay), false)
     }
 
     private fun favoriteUpdated() {

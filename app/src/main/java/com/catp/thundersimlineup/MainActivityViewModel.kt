@@ -16,6 +16,7 @@ import javax.inject.Inject
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
     @Inject
     lateinit var dailyNotificator: DailyNotificator
+
     @Inject
     lateinit var pushFavoriteVehicleInteractor: PushFavoriteVehicleInteractor
 
@@ -28,17 +29,20 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }
 
 
-
-    private val _calendarDate: MutableLiveData<CalendarDay> = MutableLiveData()
+    private val _calendarDate = MutableLiveData<CalendarDay>().apply {
+        value = CalendarDay.today()
+    }
     val calendarDate = _calendarDate as LiveData<CalendarDay>
 
-    override fun onCleared() { log("🍏 onCleared")
+    override fun onCleared() {
+        log("🍏 onCleared")
         super.onCleared()
     }
 
     fun onDateChanged(date: CalendarDay) {
         _calendarDate.value = date
     }
+
     fun onFavoriteChange(vehicle: Vehicle) {
         vehicle.isFavorite = !vehicle.isFavorite
         selectedItems += vehicle

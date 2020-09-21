@@ -35,9 +35,7 @@ class CalendarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         calendarView.setDayFormatter { day -> day.day.toString() }
-        val now = LocalDate.now()
-
-        calendarView.setSelectedDate(now)
+        calendarView.selectedDate = mainActivityViewModel.calendarDate.value
         calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
                 mainActivityViewModel.onDateChanged(date)
