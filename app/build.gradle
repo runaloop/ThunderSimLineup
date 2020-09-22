@@ -23,8 +23,8 @@ android {
         applicationId "com.catp.thundersimlineup"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 4
-        versionName "1.02"
+        versionCode 5
+        versionName "1.03"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {

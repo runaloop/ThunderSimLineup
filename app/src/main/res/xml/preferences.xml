@@ -3,6 +3,10 @@
 
     <SwitchPreference
         android:defaultValue="true"
+        android:key="@string/pref_collapse_lineup_list_items"
+        android:title="@string/pref_title_collapse_lineup_list_items" />
+    <SwitchPreference
+        android:defaultValue="true"
         android:key="@string/pref_send_crash_logs"
         android:title="@string/pref_title_send_crash_log" />
     <SwitchPreference

@@ -42,6 +42,8 @@
     <string name="header_collapse_expand_state" translatable="false">Header collapse/expand state</string>
     <string name="vehicle_without_favorite_status" translatable="false">Vehicle without favorite status</string>
     <string name="vehicle_with_favorite_status" translatable="false">Vehicle with favorite status</string>
+    <string name="pref_collapse_lineup_list_items" translatable="false">collapse_lineup_list_items</string>
+    <string name="pref_title_collapse_lineup_list_items">Collapse lineup list items</string>
 
     <string-array name="filterShowList">
         <item>Tanks</item>

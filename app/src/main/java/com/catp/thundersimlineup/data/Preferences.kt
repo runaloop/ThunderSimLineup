@@ -12,11 +12,11 @@ class Preferences {
     @Inject
     lateinit var context: Application
 
-    private fun getBoolean(res: Int): Boolean {
+    private fun getBoolean(res: Int, defaultValue:Boolean=true): Boolean {
         return PreferenceManager
             .getDefaultSharedPreferences(context)
             .getBoolean(
-                context.resources.getString(res), true
+                context.resources.getString(res), defaultValue
             )
     }
 
@@ -28,6 +28,8 @@ class Preferences {
             )!!
     }
 
+    val collapseLineupListItems: Boolean
+        get() = getBoolean(R.string.pref_collapse_lineup_list_items)
     val sendStat: Boolean
         get() = getBoolean(R.string.pref_send_statistics)
     val sendCrashLogs: Boolean

@@ -42,4 +42,5 @@
     <string name="pref_title_refresh_lineup_list">Обновить список лайнапов</string>
     <string name="refresh_started">Идет проверка обновлений</string>
     <string name="selected_past_day_lineup_text">Лайнапы для выбранной даты: %s и %s</string>
+    <string name="pref_title_collapse_lineup_list_items">Всегда сворачивать списки лайнапов</string>
 </resources>

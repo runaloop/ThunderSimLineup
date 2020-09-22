@@ -39,8 +39,8 @@ class LineupListFragment : Fragment() {
     @Inject
     lateinit var statUtil: StatUtil
 
-
-    private val lineupAdapter = LineupAdapter()
+    @Inject
+    lateinit var lineupAdapter: LineupAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
