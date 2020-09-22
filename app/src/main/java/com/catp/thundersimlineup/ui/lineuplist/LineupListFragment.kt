@@ -66,6 +66,7 @@ class LineupListFragment : Fragment() {
         lineupListViewModel.text.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty() && getView() != null) {
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+                lineupListViewModel.refreshDataShowed()
             }
         })
         configureFilter()

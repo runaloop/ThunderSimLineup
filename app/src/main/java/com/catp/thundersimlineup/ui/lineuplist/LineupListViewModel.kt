@@ -118,6 +118,10 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    fun refreshDataShowed() {
+        _refreshResult.value = ""
+    }
+
     fun refreshData(force: Boolean) {
         startDBRefresh()
         viewModelScope.launch {
@@ -126,10 +130,9 @@ class LineupListViewModel(app: Application) : AndroidViewModel(app) {
                 when (result) {
                     LineupStorage.RefreshResult.NEW_DATA -> _refreshResult.value =
                         "Lineups have been updated"
+                    LineupStorage.RefreshResult.NO_NEW_DATA ->
+                        _refreshResult.value = ""
                 }
-                /*LineupStorage.RefreshResult.NO_NEW_DATA ->
-                _refreshResult.value =
-                    "Lineups loaded and ready to work"*/
             } catch (exception: Exception) {
                 refreshDBError()
             } finally {
