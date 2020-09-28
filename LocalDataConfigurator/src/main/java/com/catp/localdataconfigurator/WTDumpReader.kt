@@ -241,6 +241,6 @@ class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
             "\\{\"id\":\"([a-zA-Z_\\-0-9]+)\",\"needShopInfo\":true,\"ttype\":\"UNIT\"\\}"
         const val JSON_MAX_LENGTH = 300
         const val JSON_MINIMUM_LENGTH = 44// id with empty filed and needShopInfo ttype fields
-        const val MAX_DISTANCE_BETWEEN_LINEUPS = 500
+        const val MAX_DISTANCE_BETWEEN_LINEUPS = 400
     }
 }

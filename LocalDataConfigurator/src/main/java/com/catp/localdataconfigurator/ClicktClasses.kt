@@ -70,7 +70,9 @@ class ReadWTDump : CliktCommand() {
                 val bigFiles = listFiles().filter { it.length() > 1000000 }
                 if (bigFiles.size > 1) {
                     TermUi.echo("Found ${bigFiles.size} files:")
-                    bigFiles.forEachIndexed { index, file ->
+                    bigFiles
+                        .sortedBy { Files.getLastModifiedTime(it.toPath()) }
+                        .forEachIndexed { index, file ->
                         val time = Files.getLastModifiedTime(file.toPath())
                         TermUi.echo("${index + 1} $time ${file.name}")
                     }
