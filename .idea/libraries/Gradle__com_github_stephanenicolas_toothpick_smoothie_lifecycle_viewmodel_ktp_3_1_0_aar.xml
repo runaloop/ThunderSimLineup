@@ -1,18 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:3.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/420ae843eeccd3c6a97f9e74f54c59a0/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e7f531dabf1a25448f5219bc4c69cdef/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5a69b796663fcd71bef4f2af2738b45e/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc21e32dd140388698c807ca61cafb43/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b70db851a84e8a47926092528776c139/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/577976d994b991b6ae90c3161d3344f8/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/784df28a61558884601e78358892f7a3/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/07fda110a42ada37c01fe34a916710ef/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea4f016794ab292b7c23fd05d3eb605a/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/296f40be1b790c2041a2acfbc0f59d4c/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/296f40be1b790c2041a2acfbc0f59d4c/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/296f40be1b790c2041a2acfbc0f59d4c/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d7297c5389dfd7e19565f36fc8b6e2d/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d7297c5389dfd7e19565f36fc8b6e2d/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d7297c5389dfd7e19565f36fc8b6e2d/jetified-smoothie-lifecycle-viewmodel-ktp-3.1.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stephanenicolas.toothpick/smoothie-lifecycle-viewmodel-ktp/3.1.0/29538de2c630314406c1864533657d4636ae3683/smoothie-lifecycle-viewmodel-ktp-3.1.0-javadoc.jar!/" />

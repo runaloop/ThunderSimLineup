@@ -23,11 +23,18 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
     private val selectedItems = mutableSetOf<Vehicle>()
 
-    val notificationTaskCreateDelegate: String by lazy {
-        dailyNotificator.createNotificationTask(application)
-        "OK"
+    private val inited: Boolean by lazy {
+        onCreateAfterInject()
+        true
     }
 
+    fun afterInject() {
+        inited
+    }
+
+    private fun onCreateAfterInject() {
+        dailyNotificator.createNotificationTask(getApplication())
+    }
 
     private val _calendarDate = MutableLiveData<CalendarDay>().apply {
         value = CalendarDay.today()

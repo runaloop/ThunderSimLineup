@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.annotation.ApplicationScope
-import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.annotation.ActivityViewModelScope
 import kotlinx.android.synthetic.main.calendar_fragment.*
-import org.threeten.bp.LocalDate
 import toothpick.ktp.KTP
 import javax.inject.Inject
 
@@ -49,7 +48,7 @@ class CalendarFragment : Fragment() {
     @VisibleForTesting
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)
-            .openSubScope(ViewModelScope::class.java)
+            .openSubScope(ActivityViewModelScope::class.java)
             .inject(this)
     }
 

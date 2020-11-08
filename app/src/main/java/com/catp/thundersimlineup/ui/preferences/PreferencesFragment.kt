@@ -8,7 +8,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
-import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.annotation.ActivityViewModelScope
 import com.catp.thundersimlineup.ui.lineuplist.LineupListViewModel
 import com.google.android.material.snackbar.Snackbar
 import toothpick.ktp.KTP
@@ -45,7 +45,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
     @VisibleForTesting
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)
-            .openSubScope(ViewModelScope::class.java)
+            .openSubScope(ActivityViewModelScope::class.java)
             .inject(this)
     }
 

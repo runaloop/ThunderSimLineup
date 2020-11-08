@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.*
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.NewViewModelScope
-import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.annotation.ActivityViewModelScope
 import com.catp.thundersimlineup.ui.BaseFragment
 import com.catp.thundersimlineup.ui.BaseViewModel
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
@@ -89,7 +88,7 @@ class WhatsNewFragment : BaseFragment() {
     @VisibleForTesting
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)
-            .openSubScope(ViewModelScope::class.java)
+            .openSubScope(ActivityViewModelScope::class.java)
             .openSubScope(NewViewModelScope::class.java)
             .installViewModelBinding<WhatsNewViewModel>(this)
             .closeOnViewModelCleared(this)

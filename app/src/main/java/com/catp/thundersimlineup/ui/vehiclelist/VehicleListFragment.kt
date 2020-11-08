@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -13,7 +12,7 @@ import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.VehicleListViewModelScope
-import com.catp.thundersimlineup.annotation.ViewModelScope
+import com.catp.thundersimlineup.annotation.ActivityViewModelScope
 import com.catp.thundersimlineup.ui.BaseFragment
 import com.catp.thundersimlineup.ui.BaseViewModel
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
@@ -100,7 +99,7 @@ class VehicleListFragment : BaseFragment() {
     private fun injectDependencies() {
         KTP
             .openScopes(ApplicationScope::class.java)
-            .openSubScope(ViewModelScope::class.java)
+            .openSubScope(ActivityViewModelScope::class.java)
             .openSubScope(VehicleListViewModelScope::class.java)
             .installViewModelBinding<VehicleListViewModel>(this)
             .closeOnViewModelCleared(this)

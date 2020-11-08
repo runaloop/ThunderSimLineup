@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
 import com.catp.thundersimlineup.StatUtil
+import com.catp.thundersimlineup.annotation.ActivityViewModelScope
 import com.catp.thundersimlineup.annotation.ApplicationScope
 import com.catp.thundersimlineup.annotation.LineupListViewModelScope
-import com.catp.thundersimlineup.annotation.ViewModelScope
 import com.catp.thundersimlineup.data.FilterState
-import com.catp.thundersimlineup.progressBarStatus
 import com.catp.thundersimlineup.ui.list.configureRecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
@@ -200,10 +200,47 @@ class LineupListFragment : Fragment() {
     private fun injectDependencies() {
         KTP
             .openScopes(ApplicationScope::class.java)
-            .openSubScope(ViewModelScope::class.java)
+            .openSubScope(ActivityViewModelScope::class.java)
             .openSubScope(LineupListViewModelScope::class.java)
             .installViewModelBinding<LineupListViewModel>(this)
             .closeOnViewModelCleared(this)
             .inject(this)
     }
+
+    @SuppressLint("ClickableViewAccessibility")
+    fun progressBarStatus(show: Boolean, progressBar: View) {
+        if (show) {
+            ViewCompat.animate(progressBar)
+                .alpha(loadingOpacity)
+                .withStartAction {
+                    progressBar.alpha = loadingTransparent
+                    progressBar.setOnTouchListener { _, _ ->
+                        true
+                    }
+                    progressBar.setOnClickListener {
+                        true
+                    }
+                    progressBar.visibility = View.VISIBLE
+                }
+                .setDuration(loadingAnimDuration)
+                .start()
+        } else {
+            ViewCompat.animate(progressBar)
+                .alpha(loadingTransparent)
+                .setDuration(loadingAnimDuration)
+                .withStartAction {
+                    progressBar.alpha = loadingOpacity
+                    progressBar.visibility = View.VISIBLE
+                }.withEndAction {
+                    progressBar.visibility = View.GONE
+                }.start()
+        }
+    }
+
+    companion object {
+        const val loadingOpacity = 0.5f
+        const val loadingTransparent = 0f
+        const val loadingAnimDuration = 200L
+    }
 }
+

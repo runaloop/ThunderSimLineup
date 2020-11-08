@@ -37,38 +37,6 @@ class LocalDateTimeProvider {
 class LocalDateProvider {
     fun now(): LocalDate = LocalDate.now(ZoneId.of("Z"))
 }
-const val loadingOpacity = 0.5f
-const val loadingTransparent = 0f
-const val loadingAnimDuration = 200L
-@SuppressLint("ClickableViewAccessibility")
-fun progressBarStatus(show: Boolean, progressBar: View) {
-    if (show) {
-        ViewCompat.animate(progressBar)
-            .alpha(loadingOpacity)
-            .withStartAction {
-                progressBar.alpha = loadingTransparent
-                progressBar.setOnTouchListener { _, _ ->
-                    true
-                }
-                progressBar.setOnClickListener {
-                    true
-                }
-                progressBar.visibility = View.VISIBLE
-            }
-            .setDuration(loadingAnimDuration)
-            .start()
-    } else {
-        ViewCompat.animate(progressBar)
-            .alpha(loadingTransparent)
-            .setDuration(loadingAnimDuration)
-            .withStartAction {
-                progressBar.alpha = loadingOpacity
-                progressBar.visibility = View.VISIBLE
-            }.withEndAction {
-                progressBar.visibility = View.GONE
-            }.start()
-    }
-}
 
 @InjectConstructor
 @Singleton
