@@ -7,7 +7,7 @@ import java.io.File
 @ExperimentalStdlibApi
 class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
     lateinit var reader: BufferedReader
-    private var bufferSize = DEFAULT_BUFFER_SIZE*1000
+    private var bufferSize = DEFAULT_BUFFER_SIZE * 1000
     var buffer: CharArray = CharArray(bufferSize)
     private val jsonRegex = Regex(ITEM_JSON)
     val strings = mutableListOf<Pair<String, Int>>()
@@ -36,21 +36,23 @@ class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
 
     fun parseFile() {
         reader = openFile()
-        var readStatus = FileParseState.CHUNK_PARSED
-        val chunks = file.length() / bufferSize
-        while (readNextChunk()) {
-            readStatus = parseNextChunk(readStatus)
-            currentChunk++
-            val progress = currentChunk*100/chunks.toFloat()
-            TermUi.echo("Parsed: ${"%.2f".format(progress)}%\r", trailingNewline = false)
-        }
-        if(readStatus == FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL)
-            strings.removeLast()
-        TermUi.echo("Parsing complete")
-        if (strings.isNotEmpty()) {
-            val lineups = splitLineups()
+        reader.use {
+            var readStatus = FileParseState.CHUNK_PARSED
+            val chunks = file.length() / bufferSize
+            while (readNextChunk()) {
+                readStatus = parseNextChunk(readStatus)
+                currentChunk++
+                val progress = currentChunk * 100 / chunks.toFloat()
+                TermUi.echo("Parsed: ${"%.2f".format(progress)}%\r", trailingNewline = false)
+            }
+            if (readStatus == FileParseState.CHUNK_PARSED_LAST_ITEM_PARTIAL)
+                strings.removeLast()
+            TermUi.echo("Parsing complete")
+            if (strings.isNotEmpty()) {
+                val lineups = splitLineups()
 
-            guessLineups(lineups)
+                guessLineups(lineups)
+            }
         }
     }
 
@@ -71,14 +73,14 @@ class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
 
     private fun guessLineups(lineups: List<List<String>>) {
         val list =
-        if(lineups.size > 2){
-            TermUi.echo("Found ${lineups.size} lists of a vehicles")
-            lineups.filter {
-                TermUi.echo("$it")
-                "y" == TermUi.prompt("🙉Would you like to process the list above?")
-            }
-        }else
-            lineups
+            if (lineups.size > 2) {
+                TermUi.echo("Found ${lineups.size} lists of a vehicles")
+                lineups.filter {
+                    TermUi.echo("$it")
+                    "y" == TermUi.prompt("🙉Would you like to process the list above?")
+                }
+            } else
+                lineups
         ThunderLineupTxtGuesser().parse(list)
     }
 
@@ -129,7 +131,7 @@ class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
         data: String,
         startAt: Int
     ): ChunkParseState {
-        if(data.length - startAt > JSON_MAX_LENGTH)
+        if (data.length - startAt > JSON_MAX_LENGTH)
             return ChunkParseState.ITEM_SKIPPED
         addResultString(data, startAt)
         return ChunkParseState.ITEM_PARSED_PARTIALY

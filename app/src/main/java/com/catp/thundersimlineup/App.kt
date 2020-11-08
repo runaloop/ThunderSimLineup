@@ -27,12 +27,6 @@ class App : MultiDexApplication(), Configuration.Provider {
     @Inject
     lateinit var preferences: Preferences
 
-
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
-        scope.release()
-    }
-
     override fun onCreate() {
         super.onCreate()
         tpInit()
