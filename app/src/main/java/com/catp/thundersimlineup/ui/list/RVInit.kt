@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.catp.thundersimlineup.MainActivityViewModel
 import com.catp.thundersimlineup.R
-import com.catp.thundersimlineup.whenNonNull
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
 import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
@@ -35,7 +34,7 @@ fun configureRecyclerView(
     )
 
 
-    activityViewModel?.whenNonNull {
+    activityViewModel?.let {
         adapter.addListener(FlexibleAdapter.OnItemClickListener { _, position ->
             val item: IFlexible<*>? = adapter.getItem(position)
             if (item != null && item is VehicleItem) {

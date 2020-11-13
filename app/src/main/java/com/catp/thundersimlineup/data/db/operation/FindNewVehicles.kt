@@ -4,7 +4,6 @@ import com.catp.model.JsonTeam
 import com.catp.thundersimlineup.data.db.Changeset
 import com.catp.thundersimlineup.data.db.entity.TeamWithVehicleCrossRef
 import com.catp.thundersimlineup.data.db.entity.VehicleStatus
-import com.catp.thundersimlineup.whenNonNull
 import com.catp.thundersimlineup.whenNull
 import toothpick.InjectConstructor
 import javax.inject.Inject
@@ -32,7 +31,7 @@ class FindNewVehicles {
                         vehicleId,
                         VehicleStatus.NEW
                     )
-                }.whenNonNull {
+                }?.let {
                     return@map null
                 }
         }.filterNotNull()

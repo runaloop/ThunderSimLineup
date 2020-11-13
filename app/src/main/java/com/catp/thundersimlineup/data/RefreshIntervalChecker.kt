@@ -2,7 +2,6 @@ package com.catp.thundersimlineup.data
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.catp.thundersimlineup.whenNonNull
 import org.threeten.bp.Duration
 import org.threeten.bp.Instant
 import toothpick.InjectConstructor
@@ -34,15 +33,15 @@ class RefreshIntervalChecker(private val netLoader: NetLoader) {
     private fun checkETag(context: Context): Boolean {
         try {
             val etag = netLoader.getETag()
-            etag.whenNonNull {
+            etag?.let {
                 val localETag = context
                     .getSharedPreferences(REFRESH_PREFERENCE, Context.MODE_PRIVATE)
                     .getString(
                         REFRESH_ETAG, ""
                     )!!
 
-                return if (localETag != this) {
-                    setETag(context, this)
+                return if (localETag != it) {
+                    setETag(context, it)
                     true
                 } else
                     false

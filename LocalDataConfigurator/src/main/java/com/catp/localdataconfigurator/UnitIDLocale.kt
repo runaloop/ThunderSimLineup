@@ -18,10 +18,10 @@ class UnitIDLocale {
     fun loadData(tryLocalFirst: Boolean = true) {
         val data = Loader().load(UNITCSV_PATH, tryLocalFirst)
         println("Parsing unit id locale")
-        with(CsvReader()) {
-            this.setContainsHeader(true)
-            this.setFieldSeparator(';')
-            this.parse(StringReader(data))
+        CsvReader().run {
+            setContainsHeader(true)
+            setFieldSeparator(';')
+            parse(StringReader(data))
                 .use { parser ->
                     var row = parser.nextRow()
                     do {

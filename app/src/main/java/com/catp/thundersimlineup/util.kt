@@ -17,11 +17,6 @@ inline fun <T> T?.whenNull(block: T?.() -> Unit): T? {
     return this@whenNull
 }
 
-inline fun <T> T?.whenNonNull(block: T.() -> Unit): T? {
-    this?.block()
-    return this@whenNonNull
-}
-
 fun <T> List<T>.lShift(n: Int) =
     let { slice(n % size until size) + slice(0 until n % size) }
 
@@ -59,8 +54,8 @@ class CrashOnCondition {
         println("🤛$message $count $hash")
         hash[message].whenNull {
             hash[message] = count
-        }.whenNonNull {
-            hash[message] = this - 1
+        }?.let {
+            hash[message] = it - 1
         }
         if (hash[message]!! <= 0) {
             hash.remove(message)
