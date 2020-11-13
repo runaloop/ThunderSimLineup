@@ -133,7 +133,6 @@ class DataSetCreator {
         headerItem.isExpanded = !preferences.collapseLineupListItems
         headerItem.items.addAll(
             vehicleList
-                .sortedBy { it.isFavorite }
                 .sortedBy { it.nation }
                 .map { vehicle ->
                     VehicleItem(vehicle, headerItem.title)
