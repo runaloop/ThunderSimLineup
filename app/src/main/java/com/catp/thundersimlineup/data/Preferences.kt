@@ -12,7 +12,12 @@ class Preferences {
     @Inject
     lateinit var context: Application
 
-    private fun getBoolean(res: Int, defaultValue:Boolean=true): Boolean {
+    private val preferenceManager by lazy {
+        PreferenceManager
+            .getDefaultSharedPreferences(context)
+    }
+
+    private fun getBoolean(res: Int, defaultValue: Boolean = true): Boolean {
         return PreferenceManager
             .getDefaultSharedPreferences(context)
             .getBoolean(
@@ -21,9 +26,7 @@ class Preferences {
     }
 
     private fun getSet(res: Int): MutableSet<String> {
-        return PreferenceManager
-            .getDefaultSharedPreferences(context)
-            .getStringSet(
+        return preferenceManager.getStringSet(
                 context.resources.getString(res), emptySet()
             )!!
     }

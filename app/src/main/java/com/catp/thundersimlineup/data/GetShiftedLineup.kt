@@ -18,7 +18,9 @@ class GetShiftedLineup {
         val between = ChronoUnit.DAYS.between(shift.shiftDate, date).toInt()
 
         val order = lineups.indexOfFirst { it.id == shift.lineupId }
-        if (order == -1) error("Cant find correct shift lineup id: $shift in $lineups")
+        if (order == -1) {
+            error("Cant find correct shift lineup id: $shift in $lineups")
+        }
 
         val data = lineups.lShift(order + between)
         return data.first()

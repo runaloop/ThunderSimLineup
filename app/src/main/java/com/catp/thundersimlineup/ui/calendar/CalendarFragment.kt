@@ -33,6 +33,7 @@ class CalendarFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         calendarView.setDayFormatter { day -> day.day.toString() }
         calendarView.selectedDate = mainActivityViewModel.calendarDate.value
         calendarView.setOnDateChangedListener { _, date, selected ->
@@ -42,7 +43,6 @@ class CalendarFragment : Fragment() {
             }
         }
         calendarView.addDecorators(currentDayDecorator)
-        super.onViewCreated(view, savedInstanceState)
     }
 
     @VisibleForTesting

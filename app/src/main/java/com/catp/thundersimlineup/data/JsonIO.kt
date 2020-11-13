@@ -1,13 +1,16 @@
 package com.catp.thundersimlineup.data
 
 import com.catp.model.JsonLineupConfig
+import com.dslplatform.json.DslJson
 import toothpick.InjectConstructor
 import java.io.InputStream
-import java.io.OutputStream
 import java.util.zip.ZipInputStream
+import javax.inject.Inject
 
 @InjectConstructor
-class JsonIO {
+class JsonIO() {
+    @Inject
+    lateinit var dslJson: DslJson<JsonLineupConfig>
     fun readZip(inputStream: InputStream): JsonLineupConfig {
         ZipInputStream(inputStream).use { zipInputStream ->
             zipInputStream.nextEntry
@@ -17,7 +20,6 @@ class JsonIO {
 
     private fun read(inputStream: InputStream): JsonLineupConfig {
         inputStream.use { stream ->
-            val dslJson = JsonLib.get()
             val lineupConfig = dslJson.deserialize(JsonLineupConfig::class.java, stream)
             return lineupConfig
         }

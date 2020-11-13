@@ -99,12 +99,6 @@ class LineupListFragment : Fragment() {
         statUtil.sendViewStat(this, "LineupList")
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        //LoggingLifecycleObserver.registerLogging(lifecycle, "😻LineupListFragment:")
-        super.onCreate(savedInstanceState)
-    }
-
-
     @SuppressLint("FragmentLiveDataObserve")
     private fun configureFilter() {
         lineupListViewModel.filterStatus.observe(this, Observer { filter ->
@@ -155,10 +149,6 @@ class LineupListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
     }
 
     override fun onStop() {
