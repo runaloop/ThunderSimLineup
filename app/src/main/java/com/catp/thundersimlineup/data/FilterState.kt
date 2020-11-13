@@ -12,17 +12,20 @@ data class FilterState(
     var nowLineupShow: Boolean = true,
     var laterLineupShow: Boolean = true
 ) {
-    val data = listOf(
-        teamAShow,
-        teamBShow,
-        tanksShow,
-        planesShow,
-        helisShow,
-        lowLineupShow,
-        highLineupShow,
-        nowLineupShow,
-        laterLineupShow
-    )
+    val data: List<Boolean>
+        get() {
+            return listOf(
+                teamAShow,
+                teamBShow,
+                tanksShow,
+                planesShow,
+                helisShow,
+                lowLineupShow,
+                highLineupShow,
+                nowLineupShow,
+                laterLineupShow
+            )
+        }
 
     operator fun get(n: Int): Boolean = data[n]
 }

@@ -37,10 +37,12 @@ class LineupRequestInteractor {
             diff = Duration.between(currentUTC, nextLineupUTC)
         } else {
             dayToLoad = day
-            diff = if (currentUTC.toLocalDate() != day) Duration.ZERO else Duration.between(
-                currentUTC,
-                nextLineupUTC.plusDays(1)
-            )
+            diff = if (currentUTC.toLocalDate() != day) Duration.ZERO else {
+                Duration.between(
+                    currentUTC,
+                    nextLineupUTC.plusDays(1)
+                )
+            }
         }
 
 

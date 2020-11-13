@@ -29,7 +29,9 @@ class VehicleAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, fals
             )
             favHeader.items += favorites.map { VehicleItem(it, favHeader.title) }
             favHeader
-        } else null
+        } else {
+            null
+        }
 
 
         val rest = items.groupBy { it.nation }.map { (nation, list) ->

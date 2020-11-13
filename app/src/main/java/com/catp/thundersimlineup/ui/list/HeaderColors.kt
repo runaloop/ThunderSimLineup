@@ -27,17 +27,4 @@ object HeaderColors {
     fun getRandom(): Int {
         return headersColor.random()
     }
-
-
-    /*
-     * GENERAL CODE NEEDED TO WRAP AN ADAPTER
-     */
-
-    //private AbstractAdapter mParentAdapter;
-    //keep a reference to the FastAdapter which contains the base logic
-    /**
-     * @return the reference to the FastAdapter
-     */
-
-
 }
