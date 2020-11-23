@@ -4,7 +4,6 @@ import com.github.ajalt.clikt.output.TermUi
 import java.io.BufferedReader
 import java.io.File
 
-@ExperimentalStdlibApi
 class WTDumpReader(private val fileName: String, private val verbose: Boolean) {
     lateinit var reader: BufferedReader
     private var bufferSize = DEFAULT_BUFFER_SIZE * 1000

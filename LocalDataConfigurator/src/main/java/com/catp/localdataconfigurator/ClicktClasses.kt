@@ -59,7 +59,6 @@ class GenerateJson : CliktCommand() {
 }
 
 
-@ExperimentalStdlibApi
 class ReadWTDump : CliktCommand() {
     private val verbose by option().flag(default = false)
     private val fileToParse by option().default("LocalDataConfigurator/")
