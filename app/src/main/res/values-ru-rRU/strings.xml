@@ -14,8 +14,8 @@
     <string name="selected_day_lineup_text">Лайнапы для выбранной даты: %s и %s будут доступны после 14–00 по Москве</string>
     <string name="fab_search">Поиск</string>
     <string name="channel_description">показывает один раз в день, когда лайнапы меняются</string>
-    <string name="change_log_add">%s добавлен в %s</string>
-    <string name="change_log_del">%s удален из %s</string>
+    <string name="change_log_add">%s(%s) добавлен в %s</string>
+    <string name="change_log_del">%s(%s) удален из %s</string>
     <string-array name="filterShowList">
         <item>Танки</item>
         <item>Самолеты</item>

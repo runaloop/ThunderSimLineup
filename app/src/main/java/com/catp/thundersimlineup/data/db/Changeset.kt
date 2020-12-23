@@ -40,7 +40,7 @@ class Changeset {
         }
             .mapNotNull { (lineup, vehicles) ->
                 vehicles.map { vehicle ->
-                    context.getString(strTemplate, vehicle.title, lineup)
+                    context.getString(strTemplate, vehicle.title, vehicle.nation, lineup)
                 }.map {
                     Change(text = it, date = dateProvider.now())
                 }
