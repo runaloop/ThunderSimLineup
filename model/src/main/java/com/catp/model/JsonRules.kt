@@ -30,7 +30,7 @@ class JsonRules(
         val LINEUP_SEQUEQNCE_LOW = listOf("1_1", "3_1", "2_1", "5_1", "4_1", "6_1")
         val LINEUP_SEQUEQNCE_TOP = listOf("8_2", "10_2", "8_2_2", "9_2")
         const val LINEUP_UTC_TIME_OF_CHANGE = 11
-        const val VERSION = 33
+        const val VERSION = 34
     }
 
 
@@ -38,3 +38,5 @@ class JsonRules(
         return "Rules(lineupCycleRule1=$lineupCycleRule1, lineupCycleRule2=$lineupCycleRule2, lineupShiftRule1=$lineupShiftRule1, lineupShiftRule2=$lineupShiftRule2)"
     }
 }
+
+
