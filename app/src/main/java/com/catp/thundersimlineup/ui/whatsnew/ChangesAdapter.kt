@@ -29,9 +29,11 @@ class ChangesAdapter : FlexibleAdapter<AbstractFlexibleItem<*>>(null, null, fals
             .sortedByDescending { it.first }
             .map { it.second }
         if (BuildConfig.DEBUG) {
-            s.first().items.forEach {
-                println("ChangeAdapter: ${it.text}")
-            }
+            println(s.first()
+                .items
+                .map { it.text + "\n" }
+                .reduce { acc, s -> acc + s }
+            )
         }
         updateDataSet(s, false)
     }
