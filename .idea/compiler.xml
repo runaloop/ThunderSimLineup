@@ -22,6 +22,8 @@
         <module name="ThunderSimLineup.model" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="ThunderSimLineup.app" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
