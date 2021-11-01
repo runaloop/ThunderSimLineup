@@ -93,7 +93,8 @@ data class VehicleItem(val id: String) {
             "country_china" to "CH",
             "country_japan" to "JP",
             "country_germany" to "GR",
-            "country_sweden" to "SW"
+            "country_sweden" to "SW",
+            "country_israel" to "IL",
         )
         val vehicleType = mapOf(
             "exp_cruiser" to VehicleType.SHIP,

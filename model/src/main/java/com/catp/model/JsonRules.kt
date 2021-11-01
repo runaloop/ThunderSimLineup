@@ -8,8 +8,8 @@ class JsonRules(
     val lineupCycleRule1: List<String> = LINEUP_SEQUEQNCE_LOW,
     val lineupCycleRule2: List<String> = LINEUP_SEQUEQNCE_TOP,
     val lineupCycleRuleExcremental: List<String> = emptyList(),
-    val lineupShiftRule1: Map<String, String> = mapOf("2020-06-10" to "4_1"),
-    val lineupShiftRule2: Map<String, String> = mapOf("2020-06-10" to "9_2"),
+    val lineupShiftRule1: Map<String, String> = mapOf("2021-10-29" to "6_1"),
+    val lineupShiftRule2: Map<String, String> = mapOf("2021-10-29" to "9_2"),
     val lineupAvailability: Map<String, Pair<String, String>> = mapOf(
 
         /*"E_1" to Pair(
@@ -30,7 +30,7 @@ class JsonRules(
         val LINEUP_SEQUEQNCE_LOW = listOf("1_1", "3_1", "2_1", "5_1", "4_1", "6_1")
         val LINEUP_SEQUEQNCE_TOP = listOf("8_2", "10_2", "8_2_2", "9_2")
         const val LINEUP_UTC_TIME_OF_CHANGE = 11
-        const val VERSION = 43
+        const val VERSION = 45
     }
 
 
