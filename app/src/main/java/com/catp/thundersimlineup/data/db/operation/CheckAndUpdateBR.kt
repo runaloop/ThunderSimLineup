@@ -8,8 +8,8 @@ import toothpick.InjectConstructor
 @InjectConstructor
 class CheckAndUpdateBR(val changeset: Changeset) {
     fun process(vehicle: Vehicle, jsonVehicle: JsonVehicle): Boolean {
-        if (vehicle.br != jsonVehicle.br) {
-            vehicle.br = jsonVehicle.br
+        if (vehicle.br != jsonVehicle.BR) {
+            vehicle.br = jsonVehicle.BR
             return true
         }
         return false

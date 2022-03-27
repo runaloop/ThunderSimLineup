@@ -113,7 +113,7 @@ class SpreedSheetGenerator(
     private fun writeVehicleStore() {
         vehicleStore.vehicleList
             .toSet().minus(lineups.map { it.fullVehicleList }.flatten()).toTypedArray()
-            .sortedWith(compareBy<JsonVehicle> { it.br.toDouble() }.thenBy { it.type }.thenBy { it.nation })
+            .sortedWith(compareBy<JsonVehicle> { it.BR.toDouble() }.thenBy { it.type }.thenBy { it.nation })
             .forEach { vehicle ->
                 vehicleToCell(vehicle)
             }
@@ -130,7 +130,7 @@ class SpreedSheetGenerator(
 
     private fun writeLineupData() {
         val vehicleList = lineups.map { it.fullVehicleList }.flatten().distinct()
-            .sortedWith(compareBy<JsonVehicle> { it.br.toDouble() }.thenBy { it.type }.thenBy { it.nation })
+            .sortedWith(compareBy<JsonVehicle> { it.BR.toDouble() }.thenBy { it.type }.thenBy { it.nation })
 
         vehicleList.forEach { vehicle ->
             val row = vehicleToCell(vehicle)

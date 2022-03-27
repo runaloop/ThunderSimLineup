@@ -20,7 +20,7 @@ data class Vehicle(
                 jsonVehicle.type,
                 jsonVehicle.nation,
                 jsonVehicle.locale!!.title,
-                jsonVehicle.br,
+                jsonVehicle.BR,
                 false
             )
 

@@ -14,14 +14,14 @@ class UpdateBRFromWPCost(
         val lineupToBR = JsonRules().LINEUP_TO_BR_RELATION
         vehicleStore.vehicleList.forEach { vehicle ->
             wpCost.vehicleItems[vehicle.name]?.let { vehicleItem ->
-                if (vehicle.br != vehicleItem.br) {
+                if (vehicle.BR != vehicleItem.br) {
                     if(vehicleItem.unitClass == VehicleType.PLANE){
-                        val lineupsBefore = lineupToBR.filter { pair -> pair.value.contains(vehicle.br) }.keys
+                        val lineupsBefore = lineupToBR.filter { pair -> pair.value.contains(vehicle.BR) }.keys
                         val lineupsAfter = lineupToBR.filter { pair -> pair.value.contains(vehicleItem.br) }.keys
                         if(lineupsAfter.isNotEmpty())
-                            println("${vehicle.name} изменения БР ${vehicle.br}-${vehicleItem.br} лайнапы до: $lineupsBefore лайнапы после: $lineupsAfter")
+                            println("${vehicle.name} изменения БР ${vehicle.BR}-${vehicleItem.br} лайнапы до: $lineupsBefore лайнапы после: $lineupsAfter")
                     }
-                    vehicle.br = vehicleItem.br
+                    vehicle.BR = vehicleItem.br
                 }
             }
         }

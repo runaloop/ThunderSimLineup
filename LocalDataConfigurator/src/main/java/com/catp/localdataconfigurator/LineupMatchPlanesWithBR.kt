@@ -20,7 +20,7 @@ class LineupMatchPlanesWithBR(val lineups: List<JsonLineup>, private val vehicle
 
     private fun addPlanes(team: JsonTeam, brs: List<String>) {
         val nations = listNations(team)
-        team.vehicleIdList.addAll(vehicleStore.vehicleList.filter { it.type == VehicleType.PLANE && it.nation in nations && it.br in brs  }
+        team.vehicleIdList.addAll(vehicleStore.vehicleList.filter { it.type == VehicleType.PLANE && it.nation in nations && it.BR in brs  }
             .map { it.name })
     }
 

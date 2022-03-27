@@ -47,15 +47,15 @@ val vehicleStore = JsonVehicleStore()
 class JsonVehicleStore(val vehicleList: MutableList<JsonVehicle> = mutableListOf()) {
 
     fun getPlanes(br: String): List<JsonVehicle> {
-        return vehicleList.filter { it.br == br && it.type == VehicleType.PLANE }
+        return vehicleList.filter { it.BR == br && it.type == VehicleType.PLANE }
     }
 
     fun getHelis(br: String): List<JsonVehicle> {
-        return vehicleList.filter { it.br == br && it.type == VehicleType.HELI }
+        return vehicleList.filter { it.BR == br && it.type == VehicleType.HELI }
     }
 
     fun getTanks(br: String): List<JsonVehicle> {
-        return vehicleList.filter { it.br == br && it.type == VehicleType.TANK }
+        return vehicleList.filter { it.BR == br && it.type == VehicleType.TANK }
     }
 }
 
@@ -74,6 +74,14 @@ data class JsonVehicle(
     var locale: JsonLocaleItem? = null
 ) {
     constructor() : this("", VehicleType.TANK, "", "", null)
+
+    var BR: String
+        get() {
+            return br.replace(",", ".")
+        }
+        set(value){
+            br = value
+        }
 
     /**
      * Equals method used in a data class, because for business logic vehicle is still equal even
