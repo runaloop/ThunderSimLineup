@@ -206,7 +206,7 @@ class ThunderLineupTxtGuesser {
 
     companion object {
         val HIGH_TEAR_A_TEAM_COUNTRIES = listOf("RU", "CH")
-        val LOW_TEAR_A_TEAM_COUNTRIES = listOf("RU", "CH", "FR", "UK", "US", "SW")
+        val LOW_TEAR_A_TEAM_COUNTRIES = listOf("RU", "CH", "FR", "UK", "US", "SW", "IL")
     }
 
     class TxtLineupItem(
